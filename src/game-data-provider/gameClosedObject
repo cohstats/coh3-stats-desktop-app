@@ -1,0 +1,16 @@
+{
+    "duration": 0,
+    "game_state": "Closed",
+    "game_type": "Custom",
+    "left": {
+        "players": [],
+        "side": "Mixed"
+    },
+    "map": "",
+    "right": {
+        "players": [],
+        "side": "Mixed"
+    },
+    "timestamp": "",
+    "win_condition": ""
+}

@@ -1,0 +1,33 @@
+{
+    "name": "coh3-game-stats-app",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "prettier": "prettier --write src",
+        "tauri": "tauri"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.10.5",
+        "@mantine/core": "^5.10.0",
+        "@mantine/hooks": "^5.10.0",
+        "@tauri-apps/api": "^1.2.0",
+        "coh-stats-components": "github:cohstats/coh-stats-components#0.0.6",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.4.5",
+        "tauri-plugin-fs-watch-api": "github:tauri-apps/tauri-plugin-fs-watch#1f460724c82cc7e0ab38cf05443fe00e07321459"
+    },
+    "devDependencies": {
+        "@tauri-apps/cli": "^1.2.2",
+        "@types/react": "^18.0.26",
+        "@types/react-dom": "^18.0.9",
+        "@vitejs/plugin-react": "^3.0.0",
+        "prettier": "^2.8.1",
+        "typescript": "^4.9.3",
+        "vite": "^4.0.0"
+    }
+}
