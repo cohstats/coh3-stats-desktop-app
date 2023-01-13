@@ -72,7 +72,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
   // Read log file in reverse order line by line
   for line in rev_lines {
     if nom::bytes::complete::tag::<&str, &str, ()>("Application closed")(line.as_str()).is_ok() {
-      println!("Found application closed");
+      //println!("Found application closed");
       game_running = false;
       continue;
     }
@@ -84,19 +84,19 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
         
       }
       if let Ok((tail, _)) = get_match_started_line(tail) {
-        println!("Match started {}", tail);
+        //println!("Match started {}", tail);
         if let Ok((tail, relic_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" ")(tail) {
           if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" ")(tail) {
-            println!("Match started relic {}", relic_id);
+            //println!("Match started relic {}", relic_id);
             if let Ok((tail, steam_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>("], ")(tail) {
               if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>("], slot =  ")(tail) {
-                println!("Match started steam {}", steam_id);
+                //println!("Match started steam {}", steam_id);
                 if let Ok((tail, position_str)) = nom::bytes::complete::take_until1::<&str, &str, ()>(", ranking =   ")(tail) {
                   if let Ok((rank_str, _)) = nom::bytes::complete::tag::<&str, &str, ()>(", ranking =   ")(tail) {
                     if let Ok(position) = position_str.parse::<u8>() {
                       if let Ok(rank) = rank_str.parse::<i64>() {
-                        println!("Match started slot {}", position);
-                        println!("Match started rank {}", rank);
+                        //println!("Match started slot {}", position);
+                        //println!("Match started rank {}", rank);
                         if let Some(index) = left.iter().position(|p| *p.relic_id == relic_id.to_string()) {
                           left[index].steam_id = steam_id.to_string();
                           left[index].rank = rank;
