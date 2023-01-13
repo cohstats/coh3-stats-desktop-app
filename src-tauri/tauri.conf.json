@@ -6,7 +6,7 @@
         "distDir": "../dist"
     },
     "package": {
-        "productName": "Coh3 Game Stats App",
+        "productName": "Coh3 Stats Desktop App (Alpha)",
         "version": "0.0.0"
     },
     "tauri": {
@@ -58,8 +58,8 @@
                 "fullscreen": false,
                 "resizable": true,
                 "focus": true,
-                "title": "Coh3 Game Stats App",
-                "width": 800,
+                "title": "Coh3 Stats Desktop App (Alpha)",
+                "width": 1200,
                 "minWidth": 350,
                 "height": 600,
                 "minHeight": 200,

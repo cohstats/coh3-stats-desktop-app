@@ -13,6 +13,8 @@ export interface RawPlayerData {
     relic_id: string
     name: string
     position: number
+    steam_id: string
+    rank: number
 }
 
 export interface RawTeamData {

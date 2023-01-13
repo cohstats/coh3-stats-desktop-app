@@ -85,8 +85,8 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
       }
       if let Ok((tail, _)) = get_match_started_line(tail) {
         //println!("Match started {}", tail);
-        if let Ok((tail, relic_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" ")(tail) {
-          if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" ")(tail) {
+        if let Ok((tail, relic_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" /steam/")(tail) {
+          if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" /steam/")(tail) {
             //println!("Match started relic {}", relic_id);
             if let Ok((tail, steam_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>("], ")(tail) {
               if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>("], slot =  ")(tail) {
