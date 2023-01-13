@@ -28,7 +28,7 @@
                 "icons/icon.icns",
                 "icons/icon.ico"
             ],
-            "identifier": "com.coh2stats.dev",
+            "identifier": "com.coh3stats.desktopalpha",
             "longDescription": "",
             "macOS": {
                 "entitlements": null,
