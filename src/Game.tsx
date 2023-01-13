@@ -29,21 +29,21 @@ export const Game: React.FC = () => {
                                                 withBorder
                                                 p="md"
                                             >
-                                                <Tooltip label="Link to coh2 profile (might not exist)">
-                                                    <Title
-                                                        size="h3"
-                                                        onClick={() =>
-                                                            open(
-                                                                "https://coh2stats.com/players/" +
-                                                                    player.steam_id
-                                                            )
-                                                        }
-                                                    >
+                                                <Title
+                                                    size="h3"
+                                                    onClick={() =>
+                                                        open(
+                                                            "https://coh2stats.com/players/" +
+                                                                player.steam_id
+                                                        )
+                                                    }
+                                                >
+                                                    <Tooltip label="Link to coh2 profile (might not exist)">
                                                         <Anchor>
                                                             {player.name}
                                                         </Anchor>
-                                                    </Title>
-                                                </Tooltip>
+                                                    </Tooltip>
+                                                </Title>
                                                 <Text>
                                                     Faction: {player.faction}
                                                 </Text>
@@ -66,21 +66,21 @@ export const Game: React.FC = () => {
                                                 withBorder
                                                 p="md"
                                             >
-                                                <Tooltip label="Link to coh2 profile (might not exist)">
-                                                    <Title
-                                                        size="h3"
-                                                        onClick={() =>
-                                                            open(
-                                                                "https://coh2stats.com/players/" +
-                                                                    player.steam_id
-                                                            )
-                                                        }
-                                                    >
+                                                <Title
+                                                    size="h3"
+                                                    onClick={() =>
+                                                        open(
+                                                            "https://coh2stats.com/players/" +
+                                                                player.steam_id
+                                                        )
+                                                    }
+                                                >
+                                                    <Tooltip label="Link to coh2 profile (might not exist)">
                                                         <Anchor>
                                                             {player.name}
                                                         </Anchor>
-                                                    </Title>
-                                                </Tooltip>
+                                                    </Tooltip>
+                                                </Title>
                                                 <Text>
                                                     Faction: {player.faction}
                                                 </Text>
