@@ -33,6 +33,8 @@ pub struct PlayerData {
   pub relic_id: String,
   pub name: String,
   pub position: u8,
+  pub steam_id: String,
+  pub rank: i64,
 }
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -72,12 +74,45 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     if nom::bytes::complete::tag::<&str, &str, ()>("Application closed")(line.as_str()).is_ok() {
       println!("Found application closed");
       game_running = false;
-      
-    } else if let Ok((tail, parsed_timestamp)) = get_timestamped_line(line.as_str()) {
+      continue;
+    }
+    
+    if let Ok((tail, parsed_timestamp)) = get_timestamped_line(line.as_str()) {
       if is_game_start_line(tail) {
         timestamp = parsed_timestamp.to_string();
-        println!("Timestamp {}", timestamp);
-        break;
+        //println!("Timestamp {}", timestamp);
+        
+      }
+      if let Ok((tail, _)) = get_match_started_line(tail) {
+        println!("Match started {}", tail);
+        if let Ok((tail, relic_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" ")(tail) {
+          if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" ")(tail) {
+            println!("Match started relic {}", relic_id);
+            if let Ok((tail, steam_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>("], ")(tail) {
+              if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>("], slot =  ")(tail) {
+                println!("Match started steam {}", steam_id);
+                if let Ok((tail, position_str)) = nom::bytes::complete::take_until1::<&str, &str, ()>(", ranking =   ")(tail) {
+                  if let Ok((rank_str, _)) = nom::bytes::complete::tag::<&str, &str, ()>(", ranking =   ")(tail) {
+                    if let Ok(position) = position_str.parse::<u8>() {
+                      if let Ok(rank) = rank_str.parse::<i64>() {
+                        println!("Match started slot {}", position);
+                        println!("Match started rank {}", rank);
+                        if let Some(index) = left.iter().position(|p| *p.relic_id == relic_id.to_string()) {
+                          left[index].steam_id = steam_id.to_string();
+                          left[index].rank = rank;
+                        }
+                        if let Some(index) = right.iter().position(|p| *p.relic_id == relic_id.to_string()) {
+                          right[index].steam_id = steam_id.to_string();
+                          right[index].rank = rank;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       if let Ok((tail, param)) = get_param_line(tail) {
         if param == "GAME" {
@@ -85,12 +120,12 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
             if sub_param == "Scenario" {
               if let Ok((parsed_map, _)) = get_map_name(tail) {
                 map = parsed_map.to_string();
-                println!("Map {}", map);
+                //println!("Map {}", map);
               }
             } else if sub_param == "Win Condition Name" {
               win_condition = tail.trim().to_string();
               game_loading = true;
-              println!("Win Condition {}", win_condition);
+              //println!("Win Condition {}", win_condition);
             } else if sub_param == "Starting mission" {
               game_started = true;
             } else if sub_param == "Human Player" {
@@ -107,18 +142,20 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                                 position,
                                 faction: faction.to_string(),
                                 relic_id: relic_id.to_string(),
-                                name: user_name.to_string()
+                                name: user_name.to_string(),
+                                steam_id: "".to_string(),
+                                rank: -1,
                               };
                               if side == 0 {
                                 left.push(player_data);
                               } else {
                                 right.push(player_data);
                               }
-                              println!("{}", position);
-                              println!("{}", faction);
-                              println!("{}", side);
-                              println!("{}", relic_id);
-                              println!("{}", user_name);
+                              //println!("{}", position);
+                              //println!("{}", faction);
+                              //println!("{}", side);
+                              //println!("{}", relic_id);
+                              //println!("{}", user_name);
                             }
                           }
                         }
@@ -141,17 +178,19 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                                 position,
                                 faction: faction.to_string(),
                                 relic_id: "-1".to_string(),
-                                name: user_name.to_string()
+                                name: user_name.to_string(),
+                                steam_id: "".to_string(),
+                                rank: -1,
                               };
                               if side == 0 {
                                 left.push(player_data);
                               } else {
                                 right.push(player_data);
                               }
-                              println!("{}", position);
-                              println!("{}", faction);
-                              println!("{}", side);
-                              println!("{}", user_name);
+                              //println!("{}", position);
+                              //println!("{}", faction);
+                              //println!("{}", side);
+                              //println!("{}", user_name);
                             }
                           }
                         }
@@ -166,7 +205,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
           if let Ok((duration_str, _)) = get_game_over(tail) {
             if let Ok(duration) = duration_str.parse::<u64>() {
               game_duration = duration/8;
-              println!("Game Duration {}s", duration/8);
+              //println!("Game Duration {}s", duration/8);
             }
             game_ended = true;
           }
@@ -267,7 +306,12 @@ fn get_timestamped_line(line: &str) -> nom::IResult<&str, &str> {
 }
 
 fn is_game_start_line(timestamped_tail: &str) -> bool {
-  nom::bytes::complete::tag::<_, _, nom::error::Error<_>>("WorldwideAutomatchService::OnStartComplete - detected successful game start")(timestamped_tail).is_ok()
+  nom::bytes::complete::tag::<_, _, nom::error::Error<_>>("WorldwideAutomatch2Service::Process - Got into game successfully")(timestamped_tail).is_ok()
+}
+
+fn get_match_started_line(timestamped_tail: &str) -> nom::IResult<&str, ()> {
+  let (tail, _) = nom::bytes::complete::tag("Match Started - [")(timestamped_tail)?;
+  Ok((tail, ()))
 }
 
 fn get_param_line(timestamped_tail: &str) -> nom::IResult<&str, &str> {
