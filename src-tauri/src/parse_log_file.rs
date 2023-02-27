@@ -83,7 +83,8 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
         //println!("Timestamp {}", timestamp);
         
       }
-      if let Ok((tail, _)) = get_match_started_line(tail) {
+      // these logs have been removed by relic
+      /*if let Ok((tail, _)) = get_match_started_line(tail) {
         //println!("Match started {}", tail);
         if let Ok((tail, relic_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" /steam/")(tail) {
           if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" /steam/")(tail) {
@@ -111,7 +112,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
             }
           }
         }
-      }
+      }*/
       if let Ok((tail, param)) = get_param_line(tail) {
         if param == "GAME" {
           if let Ok((tail, sub_param)) = get_game_sub_param(tail) {
@@ -304,7 +305,7 @@ fn get_timestamped_line(line: &str) -> nom::IResult<&str, &str> {
 }
 
 fn is_game_start_line(timestamped_tail: &str) -> bool {
-  nom::bytes::complete::tag::<_, _, nom::error::Error<_>>("WorldwideAutomatch2Service::Process - Got into game successfully")(timestamped_tail).is_ok()
+  nom::bytes::complete::tag::<_, _, nom::error::Error<_>>("GameApp::SetState : new (Game)")(timestamped_tail).is_ok()
 }
 
 fn get_match_started_line(timestamped_tail: &str) -> nom::IResult<&str, ()> {

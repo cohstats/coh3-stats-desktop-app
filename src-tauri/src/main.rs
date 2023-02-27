@@ -28,7 +28,7 @@ fn main() {
 fn get_default_log_file_path() -> String {
     let mut path = tauri::api::path::document_dir().unwrap();
     path.push("My Games");
-    path.push("Company of Heroes 3 - Playtest");
+    path.push("Company of Heroes 3");
     path.push("warnings.log");
     path.display().to_string()
 }
