@@ -1,14 +1,6 @@
 import { useGameData } from "./game-data-provider/GameDataProvider"
-import {
-    Title,
-    Grid,
-    Paper,
-    Stack,
-    Group,
-    Text,
-    Anchor,
-    Tooltip,
-} from "@mantine/core"
+import { Title, Grid } from "@mantine/core"
+import { PlayerCard } from "./components/PlayerCard"
 
 export const Game: React.FC = () => {
     const gameData = useGameData()
@@ -17,38 +9,16 @@ export const Game: React.FC = () => {
         <>
             {gameData.logFileFound ? (
                 <>
-                    {gameData.rawGameData.timestamp.length > 0 ? (
+                    {gameData.gameData.timestamp.length > 0 ? (
                         <>
                             <Grid gutter={0}>
                                 <Grid.Col span="auto" pt={40}>
-                                    {gameData.rawGameData.left.players.map(
+                                    {gameData.gameData.left.players.map(
                                         (player) => (
-                                            <Paper
-                                                key={player.relic_id}
-                                                shadow="xs"
-                                                withBorder
-                                                p="md"
-                                            >
-                                                <Title
-                                                    size="h3"
-                                                    onClick={() =>
-                                                        open(
-                                                            "https://coh2stats.com/players/" +
-                                                                player.steam_id
-                                                        )
-                                                    }
-                                                >
-                                                    <Tooltip label="Link to coh2 profile (might not exist)">
-                                                        <Anchor>
-                                                            {player.name}
-                                                        </Anchor>
-                                                    </Tooltip>
-                                                </Title>
-                                                <Text>
-                                                    Faction: {player.faction}
-                                                </Text>
-                                                <Text>Rank: {player.rank}</Text>
-                                            </Paper>
+                                            <PlayerCard
+                                                key={player.relicID}
+                                                {...player}
+                                            />
                                         )
                                     )}
                                 </Grid.Col>
@@ -58,34 +28,12 @@ export const Game: React.FC = () => {
                                     </Title>
                                 </Grid.Col>
                                 <Grid.Col span="auto" pt={40}>
-                                    {gameData.rawGameData.right.players.map(
+                                    {gameData.gameData.right.players.map(
                                         (player) => (
-                                            <Paper
-                                                key={player.relic_id}
-                                                shadow="xs"
-                                                withBorder
-                                                p="md"
-                                            >
-                                                <Title
-                                                    size="h3"
-                                                    onClick={() =>
-                                                        open(
-                                                            "https://coh2stats.com/players/" +
-                                                                player.steam_id
-                                                        )
-                                                    }
-                                                >
-                                                    <Tooltip label="Link to coh2 profile (might not exist)">
-                                                        <Anchor>
-                                                            {player.name}
-                                                        </Anchor>
-                                                    </Tooltip>
-                                                </Title>
-                                                <Text>
-                                                    Faction: {player.faction}
-                                                </Text>
-                                                <Text>Rank: {player.rank}</Text>
-                                            </Paper>
+                                            <PlayerCard
+                                                key={player.relicID}
+                                                {...player}
+                                            />
                                         )
                                     )}
                                 </Grid.Col>

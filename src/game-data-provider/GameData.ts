@@ -1,3 +1,6 @@
+import { MantineColor } from "@mantine/core"
+import { logFileRaceType, raceType } from "coh3-data-types-library"
+
 export type GameState = "Closed" | "Menu" | "Loading" | "InGame"
 
 /** Classic means pvp axis vs allies mode like automatch */
@@ -5,11 +8,9 @@ export type GameType = "Classic" | "AI" | "Custom"
 
 export type TeamSide = "Axis" | "Allies" | "Mixed"
 
-export type Faction = "soviet" | "aef" | "british" | "german" | "west_german"
-
 export interface RawPlayerData {
     ai: boolean
-    faction: Faction
+    faction: logFileRaceType
     relic_id: string
     name: string
     position: number
@@ -35,13 +36,58 @@ export interface RawGameData {
     right: RawTeamData
 }
 
+export interface FullPlayerData {
+    ai: boolean
+    faction: raceType
+    relicID: string
+    name: string
+    position: number
+    steamID?: string
+    country?: string
+    level?: number
+    xp?: number
+    disputes?: number
+    drops?: number
+    lastMatchDate?: number
+    losses?: number
+    rank?: number
+    rankLevel?: number
+    rankTotal?: number
+    rating?: number
+    regionRank?: number
+    regionRankTotal?: number
+    streak?: number
+    wins?: number
+    color: MantineColor
+}
+
+export interface FullTeamData {
+    players: FullPlayerData[]
+    side: TeamSide
+    //averageRating: number
+    //averageRank: number
+    //averageWinRatio: number
+}
+
+export interface FullGameData {
+    uniqueID: string
+    state: GameState
+    type: GameType
+    timestamp: string
+    duration: number
+    map: string
+    winCondition: string
+    left: FullTeamData
+    right: FullTeamData
+}
+
 export interface LogFileNotFoundGameData {
     logFileFound: false
 }
 
 export interface LogFileFoundGameData {
     logFileFound: true
-    rawGameData: RawGameData
+    gameData: FullGameData
 }
 
 export type GameData = LogFileFoundGameData | LogFileNotFoundGameData

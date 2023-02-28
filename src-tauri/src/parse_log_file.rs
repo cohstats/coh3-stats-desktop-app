@@ -120,6 +120,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
               if let Ok((parsed_map, _)) = get_map_name(tail) {
                 map = parsed_map.to_string();
                 //println!("Map {}", map);
+                break;
               }
             } else if sub_param == "Win Condition Name" {
               win_condition = tail.trim().to_string();

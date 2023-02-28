@@ -76,5 +76,6 @@ export const useRawGameData = () => {
         logFilePath,
         interval,
         rawGameData,
+        logFileFound: logFilePath !== undefined,
     }
 }
