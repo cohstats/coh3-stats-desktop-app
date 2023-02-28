@@ -1,5 +1,5 @@
 import { useGameData } from "./game-data-provider/GameDataProvider"
-import { Title, Grid } from "@mantine/core"
+import { Title, Grid, Button, Loader, Group } from "@mantine/core"
 import { PlayerCard } from "./components/PlayerCard"
 
 export const Game: React.FC = () => {
@@ -9,14 +9,17 @@ export const Game: React.FC = () => {
         <>
             {gameData.logFileFound ? (
                 <>
-                    {gameData.gameData.timestamp.length > 0 ? (
+                    <Button onClick={gameData.reloadLogFile}>Reload</Button>
+                    {gameData.gameData.map.length > 0 ? (
                         <>
                             <Grid gutter={0}>
                                 <Grid.Col span="auto" pt={40}>
                                     {gameData.gameData.left.players.map(
-                                        (player) => (
+                                        (player, index) => (
                                             <PlayerCard
-                                                key={player.relicID}
+                                                key={
+                                                    player.relicID + " " + index
+                                                }
                                                 {...player}
                                             />
                                         )
@@ -29,9 +32,11 @@ export const Game: React.FC = () => {
                                 </Grid.Col>
                                 <Grid.Col span="auto" pt={40}>
                                     {gameData.gameData.right.players.map(
-                                        (player) => (
+                                        (player, index) => (
                                             <PlayerCard
-                                                key={player.relicID}
+                                                key={
+                                                    player.relicID + " " + index
+                                                }
                                                 {...player}
                                             />
                                         )
@@ -39,7 +44,14 @@ export const Game: React.FC = () => {
                                 </Grid.Col>
                             </Grid>
                         </>
-                    ) : null}
+                    ) : (
+                        <Group position="center" mt={50}>
+                            <Title>
+                                <Loader mr="md" />
+                                Waiting for a game
+                            </Title>
+                        </Group>
+                    )}
                 </>
             ) : (
                 <>Could not find Log File</>

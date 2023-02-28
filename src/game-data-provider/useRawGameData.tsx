@@ -8,12 +8,13 @@ import React, {
 import { invoke } from "@tauri-apps/api/tauri"
 import { watch } from "tauri-plugin-fs-watch-api"
 import { RawGameData } from "./GameData"
+import { UnlistenFn } from "@tauri-apps/api/event"
 
 /** This hook handles the collection of raw game data from the log file */
 export const useRawGameData = () => {
     const [logFilePath, setExistingLogFilePath] = useState<string>()
-    const stopWatcherRef = useRef<() => Promise<void>>()
-    const [interval, setInterval] = useState(2000) // default log file checking interval is 2 seconds
+    const stopWatcherRef = useRef<UnlistenFn>()
+    const [interval, setInterval] = useState(200) // default log file checking interval is 2 seconds
     const [rawGameData, setRawGameData] = useState<RawGameData>()
 
     const setLogFilePath = async (logFilePath: string) => {
@@ -36,14 +37,19 @@ export const useRawGameData = () => {
             getDefaultLogFilePath()
         }
     }, [logFilePath])
+    const getLogFileData = async (path: string) => {
+        const data = (await invoke("parse_log_file_reverse", {
+            path,
+        })) as RawGameData
+        setRawGameData(data)
+    }
+    const reloadLogFile = () => {
+        if (logFilePath) {
+            getLogFileData(logFilePath)
+        }
+    }
     // when log file exists start watching the log file
     useEffect(() => {
-        const getLogFileData = async (path: string) => {
-            const data = (await invoke("parse_log_file_reverse", {
-                path,
-            })) as RawGameData
-            setRawGameData(data)
-        }
         const recreateWatcher = async (path: string) => {
             if (stopWatcherRef.current) {
                 await stopWatcherRef.current()
@@ -52,7 +58,9 @@ export const useRawGameData = () => {
             getLogFileData(path)
             const newStopWatcher = await watch(
                 path,
-                { delayMs: interval },
+                {
+                    //delayMs: interval
+                },
                 () => {
                     console.log("log file updated")
                     getLogFileData(path)
@@ -77,5 +85,6 @@ export const useRawGameData = () => {
         interval,
         rawGameData,
         logFileFound: logFilePath !== undefined,
+        reloadLogFile,
     }
 }

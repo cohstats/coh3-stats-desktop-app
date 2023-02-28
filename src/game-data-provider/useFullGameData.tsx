@@ -32,6 +32,7 @@ export const useFullGameData = () => {
         setLogFilePath,
         interval,
         logFileFound,
+        reloadLogFile,
     } = useRawGameData()
     const lastGameUniqueKeyRef = useRef<string>("")
     const [gameData, setGameData] = useState<FullGameData>()
@@ -192,5 +193,6 @@ export const useFullGameData = () => {
         logFilePath,
         rawGameData,
         gameData,
+        reloadLogFile,
     }
 }
