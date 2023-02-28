@@ -26,7 +26,7 @@ export interface RawTeamData {
 export interface RawGameData {
     game_state: GameState
     game_type: GameType
-    /** Timestamp in log file when the last game started. This timestamp represents the time since coh2 was launched! */
+    /** Timestamp in log file when the last game started. This timestamp represents the time since coh3 was launched! */
     timestamp: string
     /** Duration in seconds */
     duration: number
@@ -88,6 +88,7 @@ export interface LogFileNotFoundGameData {
 export interface LogFileFoundGameData {
     logFileFound: true
     gameData: FullGameData
+    reloadLogFile: () => void
 }
 
 export type GameData = LogFileFoundGameData | LogFileNotFoundGameData

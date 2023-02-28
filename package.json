@@ -21,7 +21,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.4.5",
-        "tauri-plugin-fs-watch-api": "github:tauri-apps/tauri-plugin-fs-watch#1f460724c82cc7e0ab38cf05443fe00e07321459"
+        "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch"
     },
     "devDependencies": {
         "@tauri-apps/cli": "^1.2.2",

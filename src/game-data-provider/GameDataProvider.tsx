@@ -17,13 +17,13 @@ export interface GameDataProviderProps {
 export const GameDataProvider: React.FC<GameDataProviderProps> = ({
     children,
 }) => {
-    const { logFilePath, gameData } = useFullGameData()
+    const { logFilePath, gameData, reloadLogFile } = useFullGameData()
     return (
         <>
             <GameDataContext.Provider
                 value={
                     logFilePath !== undefined && gameData
-                        ? { logFileFound: true, gameData }
+                        ? { logFileFound: true, gameData, reloadLogFile }
                         : { logFileFound: false }
                 }
             >

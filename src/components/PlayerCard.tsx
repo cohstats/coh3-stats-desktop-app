@@ -34,6 +34,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
     losses,
     country,
     color,
+    ai,
 }) => {
     return (
         <>
@@ -51,11 +52,14 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                     <Col span="auto">
                         <Stack align="stretch">
                             <Group>
-                                <Image
-                                    src={"/flags/4x3/" + country + ".svg"}
-                                    alt={country}
-                                    width={40}
-                                />
+                                {!ai ? (
+                                    <Image
+                                        src={"/flags/4x3/" + country + ".svg"}
+                                        alt={country}
+                                        width={40}
+                                    />
+                                ) : null}
+
                                 <Title
                                     size="h3"
                                     onClick={() =>

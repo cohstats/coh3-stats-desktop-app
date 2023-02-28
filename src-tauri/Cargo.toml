@@ -22,10 +22,7 @@ nom = "7.1.1"
 rev_lines = "0.2.1"
 window-shadows = "0.2.0"
 tauri-plugin-window-state = "0.1"
-
-[dependencies.tauri-plugin-fs-watch]
-git = "https://github.com/tauri-apps/tauri-plugin-fs-watch"
-rev = "1f460724c82cc7e0ab38cf05443fe00e07321459"
+tauri-plugin-fs-watch = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
 
 [features]
 # by default Tauri runs in production mode
