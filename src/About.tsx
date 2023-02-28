@@ -32,7 +32,7 @@ export const About: React.FC = () => {
             <Divider p="xs" />
             <Grid style={{ margin: 0 }}>
                 <Grid.Col span="content">
-                    <img src={logoBig} alt="Coh2Stats Logo" width={200} />
+                    <img src={logoBig} alt="Coh3Stats Logo" width={200} />
                 </Grid.Col>
                 <Grid.Col span="auto" pt="md">
                     <Group spacing="xs">
@@ -41,8 +41,8 @@ export const About: React.FC = () => {
                     </Group>
                     <Text component="p" size="sm">
                         Visit our website{" "}
-                        <Anchor onClick={() => open("https://coh2stats.com/")}>
-                            coh2stats.com
+                        <Anchor onClick={() => open("https://coh3stats.com/")}>
+                            coh3stats.com
                         </Anchor>
                         .
                     </Text>
@@ -51,7 +51,7 @@ export const About: React.FC = () => {
                         <Anchor
                             onClick={() =>
                                 open(
-                                    "https://github.com/cohstats/coh2stats/issues"
+                                    "https://github.com/cohstats/coh3-stats-desktop-app/issues"
                                 )
                             }
                         >
@@ -59,9 +59,7 @@ export const About: React.FC = () => {
                         </Anchor>
                         ,{" "}
                         <Anchor
-                            onClick={() =>
-                                open("https://coh2stats.com/about#donations")
-                            }
+                            onClick={() => open("https://coh3stats.com/about")}
                         >
                             make a donation
                         </Anchor>{" "}
