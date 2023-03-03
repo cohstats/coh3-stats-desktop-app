@@ -7,7 +7,7 @@
     },
     "package": {
         "productName": "Coh3 Stats Desktop App",
-        "version": "0.0.1"
+        "version": "0.0.2"
     },
     "tauri": {
         "allowlist": {
@@ -33,7 +33,7 @@
                 "icons/icon.icns",
                 "icons/icon.ico"
             ],
-            "identifier": "com.coh3stats.desktopalpha",
+            "identifier": "com.coh3stats.desktop",
             "longDescription": "",
             "macOS": {
                 "entitlements": null,
@@ -55,7 +55,10 @@
             "csp": null
         },
         "updater": {
-            "active": false
+            "active": true,
+            "endpoints": [],
+            "dialog": true,
+            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgyREVFNjNGNDVDQkJCMzMKUldRenU4dEZQK2JlZ25RS3Q4eTd0d3MwQW0rRWc3bFF6TTU1aFYvOTdjV0pQR2xXaHh3S002dnQK"
         },
         "windows": [
             {
