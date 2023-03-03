@@ -56,7 +56,9 @@
         },
         "updater": {
             "active": true,
-            "endpoints": [],
+            "endpoints": [
+                "https://raw.githubusercontent.com/cohstats/coh3-stats-desktop-app/master/updater.json"
+            ],
             "dialog": true,
             "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgyREVFNjNGNDVDQkJCMzMKUldRenU4dEZQK2JlZ25RS3Q4eTd0d3MwQW0rRWc3bFF6TTU1aFYvOTdjV0pQR2xXaHh3S002dnQK"
         },
