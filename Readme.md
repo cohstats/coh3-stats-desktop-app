@@ -1,6 +1,6 @@
-# Coh2 Game Stats Lightweight
+# Coh3 Stats Desktop App
 
-This is a lightweight alternative desktop application to show ranks of players in the current game of coh2. It does not have all features the full application provides but uses less hardware resources and has a more user friendly installer.
+View stats of players in the current game of Company of Heroes 3.
 
 ## Development
 
