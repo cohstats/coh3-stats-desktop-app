@@ -57,7 +57,7 @@
         "updater": {
             "active": true,
             "endpoints": ["https://dev.coh3stats.com/api/appUpdateRoute"],
-            "dialog": false,
+            "dialog": true,
             "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERFNjMzQTcwRjBEQjUwNTUKUldSVlVOdndjRHBqM21pc1BGYndieG03VVZOSGhxdUxPeDNkRkFqaXVpcEMyL2l1WUN6VDNCK1kK"
         },
         "windows": [
