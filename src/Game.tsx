@@ -9,7 +9,6 @@ export const Game: React.FC = () => {
         <>
             {gameData.logFileFound ? (
                 <>
-                    <Button onClick={gameData.reloadLogFile}>Reload</Button>
                     {gameData.gameData.map.length > 0 ? (
                         <>
                             <Grid gutter={0}>

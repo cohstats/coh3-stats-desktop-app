@@ -1,7 +1,7 @@
 {
     "name": "coh3-stats-desktop-app",
     "private": true,
-    "version": "0.0.7",
+    "version": "0.0.8",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -12,8 +12,8 @@
     },
     "dependencies": {
         "@emotion/react": "^11.10.6",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
+        "@mantine/core": "^6.0.0",
+        "@mantine/hooks": "^6.0.0",
         "@tauri-apps/api": "^1.2.0",
         "axios": "^1.3.4",
         "coh-stats-components": "github:cohstats/coh-stats-components#0.0.7",
