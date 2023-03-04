@@ -28,9 +28,7 @@ export const useFullGameData = () => {
     const {
         logFilePath,
         rawGameData,
-        setInterval,
         setLogFilePath,
-        interval,
         logFileFound,
         reloadLogFile,
     } = useRawGameData()
@@ -68,6 +66,7 @@ export const useFullGameData = () => {
                     )
                 )
             )
+            console.log("FETCH DATA")
             let mergedResponses = responses.map((response, index) => ({
                 response,
                 relicID: onlyRealPlayers[index].relic_id,
@@ -187,9 +186,7 @@ export const useFullGameData = () => {
     }, [logFilePath, rawGameData])
 
     return {
-        setInterval,
         setLogFilePath,
-        interval,
         logFilePath,
         rawGameData,
         gameData,
