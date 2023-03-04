@@ -4,10 +4,8 @@ import {
     FullGameData,
     FullPlayerData,
     GameState,
-    GameType,
     RawGameData,
     RawTeamData,
-    TeamSide,
 } from "./GameData"
 import { useRawGameData } from "./useRawGameData"
 import { fetch } from "@tauri-apps/api/http"
@@ -18,6 +16,7 @@ import {
     logFileRaceTypeToRaceType,
 } from "coh3-data-types-library"
 import { MantineColor } from "@mantine/core"
+import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay"
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
     left: ["blue", "blue", "blue", "blue"],
@@ -33,6 +32,7 @@ export const useFullGameData = () => {
         reloadLogFile,
     } = useRawGameData()
     const lastGameUniqueKeyRef = useRef<string>("")
+    const lastGameStateRef = useRef<GameState>()
     const [gameData, setGameData] = useState<FullGameData>()
 
     const generateUniqueGameKey = useCallback((rawGameData: RawGameData) => {
@@ -106,11 +106,8 @@ export const useFullGameData = () => {
                             member.level
                         refinedPlayerData[refinedPlayerIndex].xp = member.xp
                     }
-                    console.log(gameMode)
-                    console.log(response.faction)
                     const leaderboardID =
                         leaderboardsIDAsObject[gameMode][response.faction]
-                    console.log(leaderboardID)
                     const leaderboard = data.leaderboardStats.find(
                         (leaderboard) =>
                             leaderboard.leaderboard_id === leaderboardID
@@ -151,7 +148,7 @@ export const useFullGameData = () => {
                     refineSide(rawGameData.left, true),
                     refineSide(rawGameData.right, false),
                 ])
-                setGameData({
+                const newGameData: FullGameData = {
                     uniqueID: generateUniqueGameKey(rawGameData),
                     state: rawGameData.game_state,
                     type: rawGameData.game_type,
@@ -167,21 +164,31 @@ export const useFullGameData = () => {
                         side: rawGameData.right.side,
                         players: rightRefined,
                     },
-                })
-                console.log("done")
+                }
+                renderStreamerHTML(newGameData)
+                setGameData(newGameData)
             } catch (e: any) {
                 console.error(e)
             }
         }
-        if (
-            logFileFound &&
-            rawGameData &&
-            lastGameUniqueKeyRef.current !== generateUniqueGameKey(rawGameData)
-        ) {
-            console.log("Refine log file data")
-            console.log(rawGameData)
-            refineLogFileData(rawGameData)
-            lastGameUniqueKeyRef.current = generateUniqueGameKey(rawGameData)
+        // when raw data from log file changes check if its a new game with the generated unique key and refine data external api data
+        if (logFileFound && rawGameData) {
+            if (
+                lastGameUniqueKeyRef.current !==
+                generateUniqueGameKey(rawGameData)
+            ) {
+                refineLogFileData(rawGameData)
+                lastGameUniqueKeyRef.current =
+                    generateUniqueGameKey(rawGameData)
+            } else if (lastGameStateRef.current !== rawGameData.game_state) {
+                if (gameData) {
+                    lastGameStateRef.current = rawGameData.game_state
+                    const newGameData = gameData
+                    newGameData.state = rawGameData.game_state
+                    renderStreamerHTML(newGameData)
+                    setGameData(newGameData)
+                }
+            }
         }
     }, [logFilePath, rawGameData])
 
