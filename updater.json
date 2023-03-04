@@ -1,7 +1,7 @@
 {
-    "version": "v0.0.2",
+    "version": "v0.0.3",
     "notes": "See the assets to download this version and install.",
-    "pub_date": "2023-03-04T00:07:54.000Z",
+    "pub_date": "2023-03-04T00:42:59.000Z",
     "platforms": {
         "windows-x86_64": {
             "signature": "https://github.com/cohstats/coh3-stats-desktop-app/releases/download/0.0.2/Coh3.Stats.Desktop.App_0.0.2_x64_en-US.msi.zip.sig",
