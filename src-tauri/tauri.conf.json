@@ -7,7 +7,7 @@
     },
     "package": {
         "productName": "Coh3 Stats Desktop App",
-        "version": "0.0.4"
+        "version": "0.0.5"
     },
     "tauri": {
         "allowlist": {
@@ -56,9 +56,7 @@
         },
         "updater": {
             "active": true,
-            "endpoints": [
-                "https://raw.githubusercontent.com/cohstats/coh3-stats-desktop-app/release/updater.json"
-            ],
+            "endpoints": ["https://dev.coh3stats.com/api/appUpdateRoute"],
             "dialog": true,
             "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgyREVFNjNGNDVDQkJCMzMKUldRenU4dEZQK2JlZ25RS3Q4eTd0d3MwQW0rRWc3bFF6TTU1aFYvOTdjV0pQR2xXaHh3S002dnQK"
         },
