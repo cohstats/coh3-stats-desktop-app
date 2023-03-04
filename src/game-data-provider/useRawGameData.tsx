@@ -14,7 +14,6 @@ export const useRawGameData = () => {
         setRawGameData(data)
     }
     const interval = useInterval(() => {
-        console.log("Check log file")
         if (logFilePath !== undefined) {
             getLogFileData(logFilePath)
         }

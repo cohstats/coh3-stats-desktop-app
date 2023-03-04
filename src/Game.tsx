@@ -4,7 +4,6 @@ import { PlayerCard } from "./components/PlayerCard"
 
 export const Game: React.FC = () => {
     const gameData = useGameData()
-    console.log("gamedata", gameData)
     return (
         <>
             {gameData.logFileFound ? (
@@ -53,7 +52,12 @@ export const Game: React.FC = () => {
                     )}
                 </>
             ) : (
-                <>Could not find Log File</>
+                <Group position="center" mt={50}>
+                    <Title>
+                        <Loader mr="md" />
+                        Waiting for logfile
+                    </Title>
+                </Group>
             )}
         </>
     )
