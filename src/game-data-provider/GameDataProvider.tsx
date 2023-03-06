@@ -1,13 +1,9 @@
-import axios from "axios"
-import React, { useCallback, useContext, useEffect, useRef } from "react"
-import { http } from "@tauri-apps/api"
-import { GameData, RawGameData } from "./GameData"
-import { useRawGameData } from "./useRawGameData"
+import React, { useContext } from "react"
+import { useLogFilePath } from "../configStore"
+import { GameData } from "./GameData"
 import { useFullGameData } from "./useFullGameData"
 
-const BASE_RELIC_API_URL = "https://coh3-api.reliclink.com"
-
-const GameDataContext = React.createContext<GameData>({ logFileFound: false })
+const GameDataContext = React.createContext<GameData>(undefined)
 export const useGameData = () => useContext(GameDataContext)
 
 export interface GameDataProviderProps {
@@ -17,14 +13,18 @@ export interface GameDataProviderProps {
 export const GameDataProvider: React.FC<GameDataProviderProps> = ({
     children,
 }) => {
-    const { logFilePath, gameData, reloadLogFile } = useFullGameData()
+    const { gameData, reloadLogFile } = useFullGameData()
+    const logFilePath = useLogFilePath()
     return (
         <>
             <GameDataContext.Provider
                 value={
                     logFilePath !== undefined && gameData
-                        ? { logFileFound: true, gameData, reloadLogFile }
-                        : { logFileFound: false }
+                        ? {
+                              gameData,
+                              reloadLogFile,
+                          }
+                        : undefined
                 }
             >
                 {children}

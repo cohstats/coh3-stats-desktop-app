@@ -7,7 +7,7 @@
     },
     "package": {
         "productName": "Coh3 Stats Desktop App",
-        "version": "0.0.9"
+        "version": "1.0.0"
     },
     "tauri": {
         "allowlist": {
@@ -18,7 +18,16 @@
                 "scope": ["https://coh3-api.reliclink.com/*"]
             },
             "fs": {
+                "all": true,
                 "writeFile": true,
+                "readFile": true,
+                "exists": true,
+                "copyFile": true,
+                "createDir": true,
+                "readDir": true,
+                "removeDir": true,
+                "removeFile": true,
+                "renameFile": true,
                 "scope": ["$APPDATA/*"]
             },
             "path": {
