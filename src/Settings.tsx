@@ -11,16 +11,18 @@ import {
     Image,
     Button,
     Tooltip,
+    Checkbox,
 } from "@mantine/core"
 import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
-import { trySetLogFilePath, useLogFilePath } from "./configStore"
+import { trySetLogFilePath, useLogFilePath, usePlaySound } from "./configStore"
 
 export const Settings: React.FC = () => {
     const logFilePath = useLogFilePath()
+    const { playSound, setPlaySound } = usePlaySound()
     const [appDataPath, setAppDataPath] = useState<string>("")
     useEffect(() => {
         const getAppDataPath = async () => {
@@ -100,6 +102,17 @@ export const Settings: React.FC = () => {
                                     </ActionIcon>
                                 </Tooltip>
                             </Group>
+                        </div>
+                    </Group>
+                    <Group>
+                        <div>Play sound on match found:</div>
+                        <div>
+                            <Checkbox
+                                checked={playSound}
+                                onChange={(event) => {
+                                    setPlaySound(event.currentTarget.checked)
+                                }}
+                            />
                         </div>
                     </Group>
                     <Divider />

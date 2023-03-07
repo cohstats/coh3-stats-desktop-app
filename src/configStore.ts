@@ -1,13 +1,14 @@
 import { Store } from "tauri-plugin-store-api"
 import { invoke } from "@tauri-apps/api/tauri"
 import { useEffect, useRef, useState } from "react"
-import { UnlistenFn } from "@tauri-apps/api/event"
 import { appDataDir } from "@tauri-apps/api/path"
 import { EventEmitter } from "@tauri-apps/api/shell"
 
 const LOG_FILE_PATH_KEY = "logFilePath"
+const PLAY_SOUND_KEY = "playSound"
+
 let CONFIG_STORE: Store | undefined
-const LOG_FILE_CHANGE_EVENT = new EventEmitter()
+const CONFIG_CHANGE_EVENT = new EventEmitter()
 
 export const getStore: () => Promise<Store> = async () => {
     if (CONFIG_STORE === undefined) {
@@ -34,6 +35,11 @@ export const getStore: () => Promise<Store> = async () => {
                 trySetDefaultLogFilePath(CONFIG_STORE)
             }
         }
+        const hasPlaySound = await CONFIG_STORE.has(PLAY_SOUND_KEY)
+        if (!hasPlaySound) {
+            await CONFIG_STORE.set(PLAY_SOUND_KEY, false)
+            await CONFIG_STORE.save()
+        }
     }
     return CONFIG_STORE
 }
@@ -48,7 +54,7 @@ const trySetDefaultLogFilePath = async (store: Store) => {
     if (defaultLogFileExists) {
         await store.set(LOG_FILE_PATH_KEY, defaultLogFilePath)
         await store.save()
-        LOG_FILE_CHANGE_EVENT.emit("change", defaultLogFilePath)
+        CONFIG_CHANGE_EVENT.emit(LOG_FILE_PATH_KEY, defaultLogFilePath)
     }
 }
 
@@ -62,7 +68,7 @@ export const trySetLogFilePath: (path: string) => Promise<boolean> = async (
     if (logFileExists) {
         await store.set(LOG_FILE_PATH_KEY, path)
         await store.save()
-        LOG_FILE_CHANGE_EVENT.emit("change", path)
+        CONFIG_CHANGE_EVENT.emit(LOG_FILE_PATH_KEY, path)
         return true
     }
     return false
@@ -98,11 +104,57 @@ export const useLogFilePath = () => {
         if (valueInitializedRef.current === false) {
             initializeValue()
         }
-        LOG_FILE_CHANGE_EVENT.on("change", onChange)
+        CONFIG_CHANGE_EVENT.on(LOG_FILE_PATH_KEY, onChange)
         return () => {
-            LOG_FILE_CHANGE_EVENT.off("change", onChange)
+            CONFIG_CHANGE_EVENT.off(LOG_FILE_PATH_KEY, onChange)
         }
     }, [])
 
     return logFilePath
+}
+
+export const usePlaySound = () => {
+    const [playSound, setPlaySound] = useState(false)
+    const valueInitializedRef = useRef(false)
+
+    useEffect(() => {
+        const onChange = (value: boolean) => {
+            setPlaySound(value)
+        }
+        const initializeValue = async () => {
+            const store = await getStore()
+            const initialValue = await store.get<boolean>(PLAY_SOUND_KEY)
+            if (initialValue === null) {
+                setPlaySound(false)
+            } else {
+                setPlaySound(initialValue)
+            }
+            valueInitializedRef.current = true
+        }
+        if (valueInitializedRef.current === false) {
+            initializeValue()
+        }
+        CONFIG_CHANGE_EVENT.on(PLAY_SOUND_KEY, onChange)
+        return () => {
+            CONFIG_CHANGE_EVENT.off(PLAY_SOUND_KEY, onChange)
+        }
+    }, [])
+
+    const setPlaySoundInStore = async (value: boolean) => {
+        const store = await getStore()
+        await store.set(PLAY_SOUND_KEY, value)
+        await store.save()
+        CONFIG_CHANGE_EVENT.emit(PLAY_SOUND_KEY, value)
+    }
+
+    return { playSound, setPlaySound: setPlaySoundInStore }
+}
+
+export const getPlaySound = async () => {
+    const store = await getStore()
+    const value = await store.get(PLAY_SOUND_KEY)
+    if (value === null) {
+        return false
+    }
+    return value
 }

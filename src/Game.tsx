@@ -1,5 +1,5 @@
 import { useGameData } from "./game-data-provider/GameDataProvider"
-import { Title, Grid, Button, Loader, Group } from "@mantine/core"
+import { Title, Grid, Button, Loader, Group, Box, Badge } from "@mantine/core"
 import { PlayerCard } from "./components/PlayerCard"
 import { useLogFilePath } from "./configStore"
 
@@ -8,6 +8,11 @@ export const Game: React.FC = () => {
     const logFilePath = useLogFilePath()
     return (
         <>
+            {gameData ? (
+                <Box pt="xs" px="md">
+                    Game State: <Badge>{gameData.gameData.state}</Badge>
+                </Box>
+            ) : null}
             {logFilePath !== undefined ? (
                 <>
                     {gameData && gameData.gameData.map.length > 0 ? (
