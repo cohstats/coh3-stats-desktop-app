@@ -81,14 +81,9 @@ export interface FullGameData {
     right: FullTeamData
 }
 
-export interface LogFileNotFoundGameData {
-    logFileFound: false
-}
-
 export interface LogFileFoundGameData {
-    logFileFound: true
     gameData: FullGameData
     reloadLogFile: () => void
 }
 
-export type GameData = LogFileFoundGameData | LogFileNotFoundGameData
+export type GameData = LogFileFoundGameData | undefined

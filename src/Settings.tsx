@@ -1,4 +1,3 @@
-import { useGameData } from "./game-data-provider/GameDataProvider"
 import { ColorSchemeToggle } from "coh-stats-components"
 import {
     Box,
@@ -10,13 +9,20 @@ import {
     Text,
     List,
     Image,
+    Button,
+    Tooltip,
+    Checkbox,
 } from "@mantine/core"
 import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
-import { IconCopy } from "@tabler/icons-react"
+import { IconCheck, IconCopy, IconX } from "@tabler/icons-react"
+import { open } from "@tauri-apps/api/dialog"
+import { trySetLogFilePath, useLogFilePath, usePlaySound } from "./configStore"
 
 export const Settings: React.FC = () => {
+    const logFilePath = useLogFilePath()
+    const { playSound, setPlaySound } = usePlaySound()
     const [appDataPath, setAppDataPath] = useState<string>("")
     useEffect(() => {
         const getAppDataPath = async () => {
@@ -28,6 +34,24 @@ export const Settings: React.FC = () => {
         }
     }, [appDataPath])
 
+    const openDialog = async () => {
+        const selected = await open({
+            title: "Select Coh3 warnings.log file",
+            multiple: false,
+            directory: false,
+            defaultPath: logFilePath,
+            filters: [
+                {
+                    name: "Logfile",
+                    extensions: ["log"],
+                },
+            ],
+        })
+        if (selected !== null) {
+            trySetLogFilePath(selected as string)
+        }
+    }
+
     return (
         <>
             <Box p="xl">
@@ -36,6 +60,59 @@ export const Settings: React.FC = () => {
                         <div>Color Theme:</div>
                         <div>
                             <ColorSchemeToggle />
+                        </div>
+                    </Group>
+                    <Group>
+                        <div>Path to warnings.log:</div>
+                        <div>
+                            <Group spacing="xs">
+                                <Group spacing={3}>
+                                    <Input
+                                        readOnly
+                                        value={logFilePath ? logFilePath : ""}
+                                    />
+                                    <Button
+                                        variant="default"
+                                        onClick={openDialog}
+                                    >
+                                        Select
+                                    </Button>
+                                </Group>
+                                <Tooltip
+                                    label={
+                                        logFilePath !== undefined
+                                            ? "Log file found"
+                                            : "Could not find log file"
+                                    }
+                                >
+                                    <ActionIcon
+                                        variant="light"
+                                        color={
+                                            logFilePath !== undefined
+                                                ? "green"
+                                                : "red"
+                                        }
+                                        radius="xl"
+                                    >
+                                        {logFilePath !== undefined ? (
+                                            <IconCheck size="1.125rem" />
+                                        ) : (
+                                            <IconX size="1.125rem" />
+                                        )}
+                                    </ActionIcon>
+                                </Tooltip>
+                            </Group>
+                        </div>
+                    </Group>
+                    <Group>
+                        <div>Play sound on match found:</div>
+                        <div>
+                            <Checkbox
+                                checked={playSound}
+                                onChange={(event) => {
+                                    setPlaySound(event.currentTarget.checked)
+                                }}
+                            />
                         </div>
                     </Group>
                     <Divider />

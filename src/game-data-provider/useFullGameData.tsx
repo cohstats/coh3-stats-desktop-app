@@ -17,6 +17,7 @@ import {
 } from "coh3-data-types-library"
 import { MantineColor } from "@mantine/core"
 import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay"
+import { getPlaySound, useLogFilePath } from "../configStore"
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
     left: ["blue", "blue", "blue", "blue"],
@@ -24,13 +25,8 @@ const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
 }
 
 export const useFullGameData = () => {
-    const {
-        logFilePath,
-        rawGameData,
-        setLogFilePath,
-        logFileFound,
-        reloadLogFile,
-    } = useRawGameData()
+    const { rawGameData, reloadLogFile } = useRawGameData()
+    const logFilePath = useLogFilePath()
     const lastGameUniqueKeyRef = useRef<string>("")
     const lastGameStateRef = useRef<GameState>()
     const [gameData, setGameData] = useState<FullGameData>()
@@ -143,6 +139,11 @@ export const useFullGameData = () => {
             return refinedPlayerData
         }
         const refineLogFileData = async (rawGameData: RawGameData) => {
+            const playSound = await getPlaySound()
+            if (playSound && rawGameData.game_state === "Loading") {
+                const audio = new Audio("/hoorah.wav")
+                audio.play()
+            }
             try {
                 const [leftRefined, rightRefined] = await Promise.all([
                     refineSide(rawGameData.left, true),
@@ -172,7 +173,7 @@ export const useFullGameData = () => {
             }
         }
         // when raw data from log file changes check if its a new game with the generated unique key and refine data external api data
-        if (logFileFound && rawGameData) {
+        if (logFilePath !== undefined && rawGameData) {
             if (
                 lastGameUniqueKeyRef.current !==
                 generateUniqueGameKey(rawGameData)
@@ -193,8 +194,6 @@ export const useFullGameData = () => {
     }, [logFilePath, rawGameData])
 
     return {
-        setLogFilePath,
-        logFilePath,
         rawGameData,
         gameData,
         reloadLogFile,

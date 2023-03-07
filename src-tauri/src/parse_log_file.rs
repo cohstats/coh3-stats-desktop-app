@@ -309,10 +309,10 @@ fn is_game_start_line(timestamped_tail: &str) -> bool {
   nom::bytes::complete::tag::<_, _, nom::error::Error<_>>("GameApp::SetState : new (Game)")(timestamped_tail).is_ok()
 }
 
-fn get_match_started_line(timestamped_tail: &str) -> nom::IResult<&str, ()> {
+/*fn get_match_started_line(timestamped_tail: &str) -> nom::IResult<&str, ()> {
   let (tail, _) = nom::bytes::complete::tag("Match Started - [")(timestamped_tail)?;
   Ok((tail, ()))
-}
+}*/
 
 fn get_param_line(timestamped_tail: &str) -> nom::IResult<&str, &str> {
   let (tail, param) = nom::bytes::complete::take_until1(" -- ")(timestamped_tail)?;
