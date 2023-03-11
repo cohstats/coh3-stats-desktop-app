@@ -18,6 +18,7 @@ import {
 import { MantineColor } from "@mantine/core"
 import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay"
 import { getPlaySound, useLogFilePath } from "../configStore"
+import { playSound as playSoundFunc } from "../game-found-sound/playSound"
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
     left: ["blue", "blue", "blue", "blue"],
@@ -141,8 +142,7 @@ export const useFullGameData = () => {
         const refineLogFileData = async (rawGameData: RawGameData) => {
             const playSound = await getPlaySound()
             if (playSound && rawGameData.game_state === "Loading") {
-                const audio = new Audio("/hoorah.wav")
-                audio.play()
+                playSoundFunc()
             }
             try {
                 const [leftRefined, rightRefined] = await Promise.all([

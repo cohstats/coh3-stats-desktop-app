@@ -24,6 +24,16 @@ export const PlayerEntry: React.FC<PlayerEntryProps> = ({ playerData }) => {
                 height={25}
                 style={{ paddingRight: 10 }}
             />
+            <img
+                src={
+                    "https://raw.githubusercontent.com/cohstats/coh3-stats-desktop-app/master/public/flags/4x3/" +
+                    playerData.country +
+                    ".svg"
+                }
+                width={25}
+                height={25}
+                style={{ paddingRight: 10 }}
+            />
             <span
                 style={{
                     paddingRight: 10,
