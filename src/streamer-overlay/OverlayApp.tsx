@@ -7,10 +7,12 @@ export interface OverlayAppProps {
     gameData: FullGameData
 }
 
+// gameData.state === "Loading" || gameData.state === "InGame"
+
 export const OverlayApp: React.FC<OverlayAppProps> = ({ gameData }) => {
     return (
         <>
-            {gameData.state === "Loading" || gameData.state === "InGame" ? (
+            {true ? (
                 <div
                     style={{
                         display: "flex",
@@ -18,8 +20,8 @@ export const OverlayApp: React.FC<OverlayAppProps> = ({ gameData }) => {
                         justifyContent: "flex-start",
                         alignItems: "stretch",
                         position: "absolute",
-                        left: "calc(calc(100vw / 2) - 450px)",
-                        right: "calc(calc(100vw / 2) - 450px)",
+                        left: "calc(calc(100vw / 2) - 485px)",
+                        right: "calc(calc(100vw / 2) - 485px)",
                         top: 65,
                     }}
                 >
