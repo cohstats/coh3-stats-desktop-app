@@ -12,17 +12,25 @@ import {
     Button,
     Tooltip,
     Checkbox,
+    Slider,
 } from "@mantine/core"
 import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
-import { IconCheck, IconCopy, IconX } from "@tabler/icons-react"
+import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
-import { trySetLogFilePath, useLogFilePath, usePlaySound } from "./configStore"
+import {
+    trySetLogFilePath,
+    useLogFilePath,
+    usePlaySound,
+    usePlaySoundVolume,
+} from "./configStore"
+import { playSound as playSoundFunc } from "./game-found-sound/playSound"
 
 export const Settings: React.FC = () => {
     const logFilePath = useLogFilePath()
     const { playSound, setPlaySound } = usePlaySound()
+    const { playSoundVolume, setPlaySoundVolume } = usePlaySoundVolume()
     const [appDataPath, setAppDataPath] = useState<string>("")
     useEffect(() => {
         const getAppDataPath = async () => {
@@ -107,12 +115,33 @@ export const Settings: React.FC = () => {
                     <Group>
                         <div>Play sound on match found:</div>
                         <div>
-                            <Checkbox
-                                checked={playSound}
-                                onChange={(event) => {
-                                    setPlaySound(event.currentTarget.checked)
-                                }}
-                            />
+                            <Group>
+                                <Checkbox
+                                    checked={playSound}
+                                    onChange={(event) => {
+                                        setPlaySound(
+                                            event.currentTarget.checked
+                                        )
+                                    }}
+                                />
+                                <Text>Volume:</Text>
+                                <Slider
+                                    min={0}
+                                    max={1}
+                                    step={0.1}
+                                    style={{ width: "100px" }}
+                                    value={playSoundVolume}
+                                    onChange={setPlaySoundVolume}
+                                />
+                                <ActionIcon
+                                    radius="xl"
+                                    variant="filled"
+                                    color="blue"
+                                    onClick={playSoundFunc}
+                                >
+                                    <IconPlayerPlay size="1.125rem" />
+                                </ActionIcon>
+                            </Group>
                         </div>
                     </Group>
                     <Divider />

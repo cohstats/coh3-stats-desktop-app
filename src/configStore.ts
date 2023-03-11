@@ -6,6 +6,7 @@ import { EventEmitter } from "@tauri-apps/api/shell"
 
 const LOG_FILE_PATH_KEY = "logFilePath"
 const PLAY_SOUND_KEY = "playSound"
+const PLAY_SOUND_VOLUME_KEY = "playSoundVolume"
 
 let CONFIG_STORE: Store | undefined
 const CONFIG_CHANGE_EVENT = new EventEmitter()
@@ -38,6 +39,11 @@ export const getStore: () => Promise<Store> = async () => {
         const hasPlaySound = await CONFIG_STORE.has(PLAY_SOUND_KEY)
         if (!hasPlaySound) {
             await CONFIG_STORE.set(PLAY_SOUND_KEY, false)
+            await CONFIG_STORE.save()
+        }
+        const hasPlaySoundVolume = await CONFIG_STORE.has(PLAY_SOUND_VOLUME_KEY)
+        if (!hasPlaySoundVolume) {
+            await CONFIG_STORE.set(PLAY_SOUND_VOLUME_KEY, 0.8)
             await CONFIG_STORE.save()
         }
     }
@@ -155,6 +161,52 @@ export const getPlaySound = async () => {
     const value = await store.get(PLAY_SOUND_KEY)
     if (value === null) {
         return false
+    }
+    return value
+}
+
+export const usePlaySoundVolume = () => {
+    const [playSoundVolume, setPlaySoundVolume] = useState(0.8)
+    const valueInitializedRef = useRef(false)
+
+    useEffect(() => {
+        const onChange = (value: number) => {
+            setPlaySoundVolume(value)
+        }
+        const initializeValue = async () => {
+            const store = await getStore()
+            const initialValue = await store.get<number>(PLAY_SOUND_VOLUME_KEY)
+            if (initialValue === null) {
+                setPlaySoundVolume(0.8)
+            } else {
+                setPlaySoundVolume(initialValue)
+            }
+            valueInitializedRef.current = true
+        }
+        if (valueInitializedRef.current === false) {
+            initializeValue()
+        }
+        CONFIG_CHANGE_EVENT.on(PLAY_SOUND_VOLUME_KEY, onChange)
+        return () => {
+            CONFIG_CHANGE_EVENT.off(PLAY_SOUND_VOLUME_KEY, onChange)
+        }
+    }, [])
+
+    const setPlaySoundInStore = async (value: number) => {
+        const store = await getStore()
+        await store.set(PLAY_SOUND_VOLUME_KEY, value)
+        await store.save()
+        CONFIG_CHANGE_EVENT.emit(PLAY_SOUND_VOLUME_KEY, value)
+    }
+
+    return { playSoundVolume, setPlaySoundVolume: setPlaySoundInStore }
+}
+
+export const getPlaySoundVolume = async () => {
+    const store = await getStore()
+    const value = await store.get<number>(PLAY_SOUND_VOLUME_KEY)
+    if (value === null) {
+        return 0.8
     }
     return value
 }
