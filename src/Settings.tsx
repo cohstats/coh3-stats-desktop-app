@@ -26,7 +26,7 @@ import {
     usePlaySoundVolume,
 } from "./configStore"
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
-import events from "./analytics/mixpanel"
+import events from "./mixpanel/mixpanel"
 
 export const Settings: React.FC = () => {
     const logFilePath = useLogFilePath()
