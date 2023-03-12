@@ -35,7 +35,7 @@ export const Settings: React.FC = () => {
     const [appDataPath, setAppDataPath] = useState<string>("")
 
     useEffect(() => {
-        events.open_settings().then()
+        events.open_settings()
     },[]);
 
     useEffect(() => {
@@ -125,6 +125,7 @@ export const Settings: React.FC = () => {
                                 <Checkbox
                                     checked={playSound}
                                     onChange={(event) => {
+                                        events.settings_changed("play_sound", `{event.currentTarget.checked}`)
                                         setPlaySound(
                                             event.currentTarget.checked
                                         )

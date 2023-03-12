@@ -13,6 +13,10 @@ const getClientId = async () => {
     return clientId
 }
 
+/**
+ * The events for Mixpanel
+ * Make sure that init is called before any other event
+ */
 const events = {
     init: async (): Promise<void> => {
         mixpanel.track("app_init", {
@@ -30,6 +34,17 @@ const events = {
         mixpanel.track("open_settings", {
             distinct_id: await getClientId(),
             version: await getVersion(),
+        })
+    },
+    settings_changed: async (
+        setting: string,
+        value?: string | number
+    ): Promise<void> => {
+        mixpanel.track("settings_changed", {
+            distinct_id: await getClientId(),
+            version: await getVersion(),
+            setting,
+            value,
         })
     },
 }

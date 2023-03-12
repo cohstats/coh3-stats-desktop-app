@@ -23,7 +23,7 @@ export const About: React.FC = () => {
     const [appVersion, setAppVersion] = useState<string>()
     useEffect(() => {
         getVersion().then((version) => setAppVersion(version))
-        events.open_about().then()
+        events.open_about()
     }, [])
 
     return (
