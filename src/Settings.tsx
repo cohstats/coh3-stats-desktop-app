@@ -26,12 +26,18 @@ import {
     usePlaySoundVolume,
 } from "./configStore"
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
+import events from "./utils/mixpanel";
 
 export const Settings: React.FC = () => {
     const logFilePath = useLogFilePath()
     const { playSound, setPlaySound } = usePlaySound()
     const { playSoundVolume, setPlaySoundVolume } = usePlaySoundVolume()
     const [appDataPath, setAppDataPath] = useState<string>("")
+
+    useEffect(() => {
+        events.open_settings().then()
+    },[]);
+
     useEffect(() => {
         const getAppDataPath = async () => {
             const path = await appDataDir()
