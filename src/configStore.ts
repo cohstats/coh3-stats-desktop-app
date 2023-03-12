@@ -3,6 +3,7 @@ import { invoke } from "@tauri-apps/api/tauri"
 import { useEffect, useRef, useState } from "react"
 import { appDataDir } from "@tauri-apps/api/path"
 import { EventEmitter } from "@tauri-apps/api/shell"
+import events from "./analytics/mixpanel"
 
 const LOG_FILE_PATH_KEY = "logFilePath"
 const PLAY_SOUND_KEY = "playSound"
@@ -171,7 +172,9 @@ export const usePlaySoundVolume = () => {
 
     useEffect(() => {
         const onChange = (value: number) => {
-            setPlaySoundVolume(value)
+            const roundedValue = Math.round(value * 100) / 100
+            events.settings_changed("play_sound_volume", roundedValue)
+            setPlaySoundVolume(roundedValue)
         }
         const initializeValue = async () => {
             const store = await getStore()
