@@ -2,7 +2,7 @@ import mixpanel from "mixpanel-browser"
 import { getVersion } from "@tauri-apps/api/app"
 import { invoke } from "@tauri-apps/api/tauri"
 
-mixpanel.init("bf92acb0810b9e7d4a49e63efc41433d", { debug: true })
+mixpanel.init("bf92acb0810b9e7d4a49e63efc41433d")
 
 let clientId: string
 
