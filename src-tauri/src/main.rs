@@ -3,6 +3,7 @@
     windows_subsystem = "windows"
 )]
 
+extern crate machine_uid;
 use tauri_plugin_fs_watch;
 use std::path::Path;
 use tauri::Manager;
@@ -11,7 +12,7 @@ mod parse_log_file;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![get_default_log_file_path, check_log_file_exists, parse_log_file::parse_log_file_reverse])
+        .invoke_handler(tauri::generate_handler![get_default_log_file_path, check_log_file_exists, get_machine_id, parse_log_file::parse_log_file_reverse])
         .plugin(tauri_plugin_fs_watch::init())
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
@@ -38,4 +39,10 @@ fn get_default_log_file_path() -> String {
 #[tauri::command]
 fn check_log_file_exists(path: &str) -> bool {
     Path::new(path).exists()
+}
+
+/// get the system machine id
+#[tauri::command]
+fn get_machine_id() -> String {
+    machine_uid::get().unwrap()
 }
