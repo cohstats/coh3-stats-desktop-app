@@ -26,7 +26,7 @@ import {
     usePlaySoundVolume,
 } from "./configStore"
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
-import events from "./utils/mixpanel";
+import events from "./analytics/mixpanel"
 
 export const Settings: React.FC = () => {
     const logFilePath = useLogFilePath()
@@ -36,7 +36,7 @@ export const Settings: React.FC = () => {
 
     useEffect(() => {
         events.open_settings()
-    },[]);
+    }, [])
 
     useEffect(() => {
         const getAppDataPath = async () => {
@@ -125,7 +125,10 @@ export const Settings: React.FC = () => {
                                 <Checkbox
                                     checked={playSound}
                                     onChange={(event) => {
-                                        events.settings_changed("play_sound", `{event.currentTarget.checked}`)
+                                        events.settings_changed(
+                                            "play_sound",
+                                            `{event.currentTarget.checked}`
+                                        )
                                         setPlaySound(
                                             event.currentTarget.checked
                                         )

@@ -3,7 +3,7 @@ import { invoke } from "@tauri-apps/api/tauri"
 import { useEffect, useRef, useState } from "react"
 import { appDataDir } from "@tauri-apps/api/path"
 import { EventEmitter } from "@tauri-apps/api/shell"
-import events from "./utils/mixpanel";
+import events from "./analytics/mixpanel"
 
 const LOG_FILE_PATH_KEY = "logFilePath"
 const PLAY_SOUND_KEY = "playSound"

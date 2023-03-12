@@ -1,21 +1,10 @@
 import mixpanel from "mixpanel-browser"
-import { getVersion } from "@tauri-apps/api/app"
-import { invoke } from "@tauri-apps/api/tauri"
+import { getClientId, getVersion } from "./propertyGetters"
 
 mixpanel.init("bf92acb0810b9e7d4a49e63efc41433d")
 
-let clientId: string
-
-const getClientId = async () => {
-    if (clientId === undefined) {
-        clientId = (await invoke("get_machine_id")) as string
-    }
-    return clientId
-}
-
 /**
  * The events for Mixpanel
- * Make sure that init is called before any other event
  */
 const events = {
     init: async (): Promise<void> => {
