@@ -1,6 +1,6 @@
 import { MantineProvider } from "@mantine/styles"
 import React from "react"
-import { FullGameData } from "../game-data-provider/GameData"
+import { FullGameData } from "../../game-data-provider/GameData"
 import { PlayerEntry } from "./PlayerEntry"
 
 export interface OverlayAppProps {

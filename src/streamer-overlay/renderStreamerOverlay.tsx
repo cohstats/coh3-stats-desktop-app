@@ -1,8 +1,8 @@
 import { FullGameData } from "../game-data-provider/GameData"
 import { BaseDirectory, writeTextFile } from "@tauri-apps/api/fs"
 import { renderToStaticMarkup, renderToString } from "react-dom/server"
-import { OverlayApp } from "./OverlayApp"
-import { HTML } from "./HTML"
+import { OverlayApp } from "./SPECIAL-REACT/OverlayApp"
+import { HTML } from "./SPECIAL-REACT/HTML"
 
 export const renderStreamerHTML = async (gameData: FullGameData) => {
     const content = renderToString(<OverlayApp gameData={gameData} />)
