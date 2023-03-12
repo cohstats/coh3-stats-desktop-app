@@ -7,7 +7,6 @@ import { HTML } from "./SPECIAL-REACT/HTML"
 export const renderStreamerHTML = async (gameData: FullGameData) => {
     const content = renderToString(<OverlayApp gameData={gameData} />)
     const html = renderToStaticMarkup(<HTML html={content} />)
-    console.log("HTML", HTML)
     await writeTextFile("streamerOverlay.html", `<!doctype html>\n${html}`, {
         dir: BaseDirectory.AppData,
     })
