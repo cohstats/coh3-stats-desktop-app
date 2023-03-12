@@ -1,5 +1,5 @@
 import { useGameData } from "./game-data-provider/GameDataProvider"
-import { Title, Grid, Button, Loader, Group, Box, Badge } from "@mantine/core"
+import { Title, Grid, Loader, Group, Box, Badge } from "@mantine/core"
 import { PlayerCard } from "./components/PlayerCard"
 import { useLogFilePath } from "./configStore"
 
