@@ -4,6 +4,10 @@ export interface HTMLProps {
     html: string
 }
 
+/**
+ * You cannot use mantine here!
+ * This react component is meant for the streamerOverlay where only inline styles work!
+ */
 export const HTML: React.FC<HTMLProps> = ({ html }) => {
     return (
         <html lang="en">

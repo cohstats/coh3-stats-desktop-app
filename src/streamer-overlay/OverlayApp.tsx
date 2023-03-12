@@ -9,6 +9,10 @@ export interface OverlayAppProps {
 
 // gameData.state === "Loading" || gameData.state === "InGame"
 
+/**
+ * You cannot use mantine here!
+ * This react component is meant for the streamerOverlay where only inline styles work!
+ */
 export const OverlayApp: React.FC<OverlayAppProps> = ({ gameData }) => {
     return (
         <>

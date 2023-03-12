@@ -5,6 +5,10 @@ export interface PlayerEntryProps {
     playerData: FullPlayerData
 }
 
+/**
+ * You cannot use mantine here!
+ * This react component is meant for the streamerOverlay where only inline styles work!
+ */
 export const PlayerEntry: React.FC<PlayerEntryProps> = ({ playerData }) => {
     return (
         <div
