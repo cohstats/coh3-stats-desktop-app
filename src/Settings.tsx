@@ -69,6 +69,7 @@ export const Settings: React.FC = () => {
             ],
         })
         if (selected !== null) {
+            events.settings_changed("logFilePath", selected as string)
             setLogFilePath(selected as string)
         }
     }
@@ -138,7 +139,7 @@ export const Settings: React.FC = () => {
                                     onChange={(event) => {
                                         events.settings_changed(
                                             "play_sound",
-                                            `{event.currentTarget.checked}`
+                                            `${event.currentTarget.checked}`
                                         )
                                         setPlaySound(
                                             event.currentTarget.checked
@@ -153,6 +154,12 @@ export const Settings: React.FC = () => {
                                     style={{ width: "100px" }}
                                     value={playSoundVolume}
                                     onChange={setPlaySoundVolume}
+                                    onChangeEnd={(value) => {
+                                        events.settings_changed(
+                                            "play_sound_volume",
+                                            value
+                                        )
+                                    }}
                                 />
                                 <ActionIcon
                                     radius="xl"
@@ -177,6 +184,10 @@ export const Settings: React.FC = () => {
                                         : alwaysShowOverlay
                                 }
                                 onChange={(event) => {
+                                    events.settings_changed(
+                                        "alwaysShowOverlay",
+                                        `${event.currentTarget.checked}`
+                                    )
                                     setAlwaysShowOverlay(
                                         event.currentTarget.checked
                                     )
@@ -197,6 +208,10 @@ export const Settings: React.FC = () => {
                                         : showFlagsOverlay
                                 }
                                 onChange={(event) => {
+                                    events.settings_changed(
+                                        "showFlagsOverlay",
+                                        `${event.currentTarget.checked}`
+                                    )
                                     setShowFlagsOverlay(
                                         event.currentTarget.checked
                                     )
