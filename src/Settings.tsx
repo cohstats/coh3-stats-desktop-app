@@ -24,13 +24,21 @@ import {
     usePlaySound,
     usePlaySoundVolume,
 } from "./game-found-sound/configValues"
+import {
+    useShowFlagsOverlay,
+    useAlwaysShowOverlay,
+} from "./streamer-overlay/configValues"
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
 import events from "./mixpanel/mixpanel"
+import { useGameData } from "./game-data-provider/GameDataProvider"
 
 export const Settings: React.FC = () => {
+    const gameData = useGameData()
     const [logFilePath, setLogFilePath] = useLogFilePath()
     const [playSound, setPlaySound] = usePlaySound()
     const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume()
+    const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay()
+    const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay()
     const [appDataPath, setAppDataPath] = useState<string>("")
 
     useEffect(() => {
@@ -158,10 +166,49 @@ export const Settings: React.FC = () => {
                         </div>
                     </Group>
                     <Divider />
+                    <Text weight={700}>OBS Streamer Overlay:</Text>
+                    <Group>
+                        <div>Only show stats when loading / ingame:</div>
+                        <div>
+                            <Checkbox
+                                checked={
+                                    alwaysShowOverlay === undefined
+                                        ? false
+                                        : alwaysShowOverlay
+                                }
+                                onChange={(event) => {
+                                    setAlwaysShowOverlay(
+                                        event.currentTarget.checked
+                                    )
+                                    if (gameData) {
+                                        gameData.reloadLogFile()
+                                    }
+                                }}
+                            />
+                        </div>
+                    </Group>
+                    <Group>
+                        <div>Show flags:</div>
+                        <div>
+                            <Checkbox
+                                checked={
+                                    showFlagsOverlay === undefined
+                                        ? false
+                                        : showFlagsOverlay
+                                }
+                                onChange={(event) => {
+                                    setShowFlagsOverlay(
+                                        event.currentTarget.checked
+                                    )
+                                    if (gameData) {
+                                        gameData.reloadLogFile()
+                                    }
+                                }}
+                            />
+                        </div>
+                    </Group>
                     <div>
-                        <Text weight={700}>
-                            OBS Streamer Overlay instructions:
-                        </Text>
+                        <Text weight={700}>Setup instructions:</Text>
                         <List type="ordered">
                             <List.Item>
                                 In OBS Sources section click on "Add Source" and

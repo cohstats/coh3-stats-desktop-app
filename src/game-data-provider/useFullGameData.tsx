@@ -27,7 +27,7 @@ const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
 }
 
 export const useFullGameData = () => {
-    const { rawGameData, reloadLogFile } = useRawGameData()
+    const { rawGameData } = useRawGameData()
     const [logFilePath] = useLogFilePath()
     const lastGameUniqueKeyRef = useRef<string>("")
     const lastGameStateRef = useRef<GameState>()
@@ -193,6 +193,10 @@ export const useFullGameData = () => {
             }
         }
     }, [logFilePath, rawGameData])
+
+    const reloadLogFile = () => {
+        lastGameUniqueKeyRef.current = ""
+    }
 
     return {
         rawGameData,
