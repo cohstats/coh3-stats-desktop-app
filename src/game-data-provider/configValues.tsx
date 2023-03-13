@@ -1,8 +1,8 @@
-import { useConfigValue } from "./hooks"
+import { configValueFactory } from "../config-store/configValueFactory"
 import { invoke } from "@tauri-apps/api/tauri"
 
-export const useLogFilePath = useConfigValue<string | null>(
-    "LOGFILEPATH",
+const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
+    "logFilePath",
     async () => (await invoke("get_default_log_file_path")) as string,
     async (value, store, defaultValue) => {
         const logFileExists = (await invoke("check_log_file_exists", {
@@ -18,16 +18,8 @@ export const useLogFilePath = useConfigValue<string | null>(
             return defaultValue
         }
 
-        return null
+        return undefined
     }
 )
 
-export const usePlaySound = useConfigValue<boolean>(
-    "PLAYSOUND",
-    async () => false
-)
-
-export const usePlaySoundVolume = useConfigValue<number>(
-    "PLAYSOUNDVOLUME",
-    async () => 0.8
-)
+export { getLogFilePath, useLogFilePath }

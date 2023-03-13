@@ -6,7 +6,7 @@ let CONFIG_StORE: Store | undefined
 export const getStore = async () => {
     if (CONFIG_StORE === undefined) {
         const appDataPath = await appDataDir()
-        CONFIG_StORE = new Store(appDataPath + "test.dat")
+        CONFIG_StORE = new Store(appDataPath + "config.dat")
         try {
             await CONFIG_StORE.load()
         } catch {

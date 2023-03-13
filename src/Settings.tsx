@@ -19,19 +19,18 @@ import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
+import { useLogFilePath } from "./game-data-provider/configValues"
 import {
-    trySetLogFilePath,
-    useLogFilePath,
     usePlaySound,
     usePlaySoundVolume,
-} from "./configStore"
+} from "./game-found-sound/configValues"
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
 import events from "./mixpanel/mixpanel"
 
 export const Settings: React.FC = () => {
-    const logFilePath = useLogFilePath()
-    const { playSound, setPlaySound } = usePlaySound()
-    const { playSoundVolume, setPlaySoundVolume } = usePlaySoundVolume()
+    const [logFilePath, setLogFilePath] = useLogFilePath()
+    const [playSound, setPlaySound] = usePlaySound()
+    const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume()
     const [appDataPath, setAppDataPath] = useState<string>("")
 
     useEffect(() => {
@@ -62,7 +61,7 @@ export const Settings: React.FC = () => {
             ],
         })
         if (selected !== null) {
-            trySetLogFilePath(selected as string)
+            setLogFilePath(selected as string)
         }
     }
 
@@ -123,7 +122,11 @@ export const Settings: React.FC = () => {
                         <div>
                             <Group>
                                 <Checkbox
-                                    checked={playSound}
+                                    checked={
+                                        playSound === undefined
+                                            ? false
+                                            : playSound
+                                    }
                                     onChange={(event) => {
                                         events.settings_changed(
                                             "play_sound",
