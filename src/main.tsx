@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client"
 import { Providers } from "./Providers"
 import { Router } from "./Router"
 import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay"
+import events from "./mixpanel/mixpanel"
+
+events.init()
 
 // make sure an html file exists
 renderStreamerHTML({

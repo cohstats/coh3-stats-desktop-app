@@ -1,5 +1,5 @@
 import { invoke } from "@tauri-apps/api/tauri"
-import app from "@tauri-apps/api/app"
+import { getVersion as getVersionTauri } from "@tauri-apps/api/app"
 
 let clientId: string
 
@@ -14,7 +14,7 @@ let version: string
 
 export const getVersion = async () => {
     if (version === undefined) {
-        version = await app.getVersion()
+        version = await getVersionTauri()
     }
     return version
 }

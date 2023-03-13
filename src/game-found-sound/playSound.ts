@@ -1,4 +1,4 @@
-import { getPlaySoundVolume } from "../configStore"
+import { getPlaySoundVolume } from "./configValues"
 
 export const playSound = async () => {
     const audio = new Audio("/hoorah.wav")
