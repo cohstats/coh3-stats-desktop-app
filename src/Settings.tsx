@@ -180,16 +180,16 @@ export const Settings: React.FC = () => {
                             <Checkbox
                                 checked={
                                     alwaysShowOverlay === undefined
-                                        ? false
-                                        : alwaysShowOverlay
+                                        ? true
+                                        : !alwaysShowOverlay
                                 }
                                 onChange={(event) => {
                                     events.settings_changed(
                                         "alwaysShowOverlay",
-                                        `${event.currentTarget.checked}`
+                                        `${!event.currentTarget.checked}`
                                     )
                                     setAlwaysShowOverlay(
-                                        event.currentTarget.checked
+                                        !event.currentTarget.checked
                                     )
                                     if (gameData) {
                                         gameData.reloadLogFile()
