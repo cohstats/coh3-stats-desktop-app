@@ -4,15 +4,27 @@
 )]
 
 extern crate machine_uid;
+use tauri_plugin_single_instance;
 use tauri_plugin_fs_watch;
 use std::path::Path;
 use tauri::Manager;
 use window_shadows::set_shadow;
 mod parse_log_file;
 
+#[derive(Clone, serde::Serialize)]
+struct Payload {
+  args: Vec<String>,
+  cwd: String,
+}
+
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![get_default_log_file_path, check_log_file_exists, get_machine_id, parse_log_file::parse_log_file_reverse])
+        .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
+            println!("{}, {argv:?}, {cwd}", app.package_info().name);
+
+            app.emit_all("single-instance", Payload { args: argv, cwd }).unwrap();
+        }))
         .plugin(tauri_plugin_fs_watch::init())
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
