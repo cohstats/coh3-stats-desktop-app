@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { useLogFilePath } from "../configStore"
+import { useLogFilePath } from "./configValues"
 import { GameData } from "./GameData"
 import { useFullGameData } from "./useFullGameData"
 
@@ -14,7 +14,7 @@ export const GameDataProvider: React.FC<GameDataProviderProps> = ({
     children,
 }) => {
     const { gameData, reloadLogFile } = useFullGameData()
-    const logFilePath = useLogFilePath()
+    const [logFilePath] = useLogFilePath()
     return (
         <>
             <GameDataContext.Provider

@@ -17,8 +17,9 @@ import {
 } from "coh3-data-types-library"
 import { MantineColor } from "@mantine/core"
 import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay"
-import { getPlaySound, useLogFilePath } from "../configStore"
+import { useLogFilePath } from "./configValues"
 import { playSound as playSoundFunc } from "../game-found-sound/playSound"
+import { getPlaySound } from "../game-found-sound/configValues"
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
     left: ["blue", "blue", "blue", "blue"],
@@ -26,8 +27,8 @@ const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
 }
 
 export const useFullGameData = () => {
-    const { rawGameData, reloadLogFile } = useRawGameData()
-    const logFilePath = useLogFilePath()
+    const { rawGameData } = useRawGameData()
+    const [logFilePath] = useLogFilePath()
     const lastGameUniqueKeyRef = useRef<string>("")
     const lastGameStateRef = useRef<GameState>()
     const [gameData, setGameData] = useState<FullGameData>()
@@ -192,6 +193,10 @@ export const useFullGameData = () => {
             }
         }
     }, [logFilePath, rawGameData])
+
+    const reloadLogFile = () => {
+        lastGameUniqueKeyRef.current = ""
+    }
 
     return {
         rawGameData,

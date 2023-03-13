@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react"
 import { invoke } from "@tauri-apps/api/tauri"
 import { RawGameData } from "./GameData"
-import { useInterval } from "@mantine/hooks"
-import { useLogFilePath } from "../configStore"
+import { useLogFilePath } from "./configValues"
 
 /** This hook handles the collection of raw game data from the log file */
 export const useRawGameData = () => {
-    const logFilePath = useLogFilePath()
+    const [logFilePath] = useLogFilePath()
     const [rawGameData, setRawGameData] = useState<RawGameData>()
     const intervalRef = useRef<number>()
     const getLogFileData = async (path: string) => {

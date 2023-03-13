@@ -19,19 +19,32 @@ import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
+import { useLogFilePath } from "./game-data-provider/configValues"
 import {
-    trySetLogFilePath,
-    useLogFilePath,
     usePlaySound,
     usePlaySoundVolume,
-} from "./configStore"
+} from "./game-found-sound/configValues"
+import {
+    useShowFlagsOverlay,
+    useAlwaysShowOverlay,
+} from "./streamer-overlay/configValues"
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
+import events from "./mixpanel/mixpanel"
+import { useGameData } from "./game-data-provider/GameDataProvider"
 
 export const Settings: React.FC = () => {
-    const logFilePath = useLogFilePath()
-    const { playSound, setPlaySound } = usePlaySound()
-    const { playSoundVolume, setPlaySoundVolume } = usePlaySoundVolume()
+    const gameData = useGameData()
+    const [logFilePath, setLogFilePath] = useLogFilePath()
+    const [playSound, setPlaySound] = usePlaySound()
+    const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume()
+    const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay()
+    const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay()
     const [appDataPath, setAppDataPath] = useState<string>("")
+
+    useEffect(() => {
+        events.open_settings()
+    }, [])
+
     useEffect(() => {
         const getAppDataPath = async () => {
             const path = await appDataDir()
@@ -56,7 +69,8 @@ export const Settings: React.FC = () => {
             ],
         })
         if (selected !== null) {
-            trySetLogFilePath(selected as string)
+            events.settings_changed("logFilePath", selected as string)
+            setLogFilePath(selected as string)
         }
     }
 
@@ -117,8 +131,16 @@ export const Settings: React.FC = () => {
                         <div>
                             <Group>
                                 <Checkbox
-                                    checked={playSound}
+                                    checked={
+                                        playSound === undefined
+                                            ? false
+                                            : playSound
+                                    }
                                     onChange={(event) => {
+                                        events.settings_changed(
+                                            "play_sound",
+                                            `${event.currentTarget.checked}`
+                                        )
                                         setPlaySound(
                                             event.currentTarget.checked
                                         )
@@ -132,6 +154,12 @@ export const Settings: React.FC = () => {
                                     style={{ width: "100px" }}
                                     value={playSoundVolume}
                                     onChange={setPlaySoundVolume}
+                                    onChangeEnd={(value) => {
+                                        events.settings_changed(
+                                            "play_sound_volume",
+                                            value
+                                        )
+                                    }}
                                 />
                                 <ActionIcon
                                     radius="xl"
@@ -145,10 +173,57 @@ export const Settings: React.FC = () => {
                         </div>
                     </Group>
                     <Divider />
+                    <Text weight={700}>OBS Streamer Overlay:</Text>
+                    <Group>
+                        <div>Only show stats when loading / ingame:</div>
+                        <div>
+                            <Checkbox
+                                checked={
+                                    alwaysShowOverlay === undefined
+                                        ? false
+                                        : alwaysShowOverlay
+                                }
+                                onChange={(event) => {
+                                    events.settings_changed(
+                                        "alwaysShowOverlay",
+                                        `${event.currentTarget.checked}`
+                                    )
+                                    setAlwaysShowOverlay(
+                                        event.currentTarget.checked
+                                    )
+                                    if (gameData) {
+                                        gameData.reloadLogFile()
+                                    }
+                                }}
+                            />
+                        </div>
+                    </Group>
+                    <Group>
+                        <div>Show flags:</div>
+                        <div>
+                            <Checkbox
+                                checked={
+                                    showFlagsOverlay === undefined
+                                        ? false
+                                        : showFlagsOverlay
+                                }
+                                onChange={(event) => {
+                                    events.settings_changed(
+                                        "showFlagsOverlay",
+                                        `${event.currentTarget.checked}`
+                                    )
+                                    setShowFlagsOverlay(
+                                        event.currentTarget.checked
+                                    )
+                                    if (gameData) {
+                                        gameData.reloadLogFile()
+                                    }
+                                }}
+                            />
+                        </div>
+                    </Group>
                     <div>
-                        <Text weight={700}>
-                            OBS Streamer Overlay instructions:
-                        </Text>
+                        <Text weight={700}>Setup instructions:</Text>
                         <List type="ordered">
                             <List.Item>
                                 In OBS Sources section click on "Add Source" and
