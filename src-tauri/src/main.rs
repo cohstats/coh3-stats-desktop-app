@@ -21,6 +21,10 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![get_default_log_file_path, check_log_file_exists, get_machine_id, parse_log_file::parse_log_file_reverse])
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
+            let window = app.get_window("main").unwrap();
+            window.set_focus().ok();
+            window.request_user_attention(Some(tauri::UserAttentionType::Informational)).ok();
+            
             println!("{}, {argv:?}, {cwd}", app.package_info().name);
 
             app.emit_all("single-instance", Payload { args: argv, cwd }).unwrap();
