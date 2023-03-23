@@ -24,6 +24,7 @@ renderStreamerHTML({
         players: [],
         side: "Mixed",
     },
+    language_code: "",
 })
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
