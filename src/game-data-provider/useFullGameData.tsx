@@ -46,7 +46,11 @@ export const useFullGameData = () => {
     }, [])
 
     useEffect(() => {
-        const refineSide = async (side: RawTeamData, left: boolean) => {
+        const refineSide = async (
+            side: RawTeamData,
+            left: boolean,
+            rawGameData: RawGameData
+        ) => {
             const gameMode = (side.players.length +
                 "v" +
                 side.players.length) as leaderBoardType
@@ -81,6 +85,7 @@ export const useFullGameData = () => {
                     color: left
                         ? PLAYER_COLOR_OBJECT.left[index]
                         : PLAYER_COLOR_OBJECT.right[index],
+                    self: player.name === rawGameData.player_name,
                 })
             )
             mergedResponses.forEach((response) => {
@@ -140,16 +145,32 @@ export const useFullGameData = () => {
             })
             return refinedPlayerData
         }
+        const swapTeamsBasedOnGamePlayer = (
+            teams: [FullPlayerData[], FullPlayerData[]],
+            rawGameData: RawGameData
+        ) => {
+            if (
+                teams[1].find(
+                    (player) => player.name === rawGameData.player_name
+                )
+            ) {
+                return [teams[1], teams[0]]
+            }
+            return [teams[0], teams[1]]
+        }
         const refineLogFileData = async (rawGameData: RawGameData) => {
             const playSound = await getPlaySound()
             if (playSound && rawGameData.game_state === "Loading") {
                 playSoundFunc()
             }
             try {
-                const [leftRefined, rightRefined] = await Promise.all([
-                    refineSide(rawGameData.left, true),
-                    refineSide(rawGameData.right, false),
-                ])
+                const [leftRefined, rightRefined] = swapTeamsBasedOnGamePlayer(
+                    await Promise.all([
+                        refineSide(rawGameData.left, true, rawGameData),
+                        refineSide(rawGameData.right, false, rawGameData),
+                    ]),
+                    rawGameData
+                )
                 const newGameData: FullGameData = {
                     uniqueID: generateUniqueGameKey(rawGameData),
                     state: rawGameData.game_state,
@@ -166,6 +187,7 @@ export const useFullGameData = () => {
                         side: rawGameData.right.side,
                         players: rightRefined,
                     },
+                    language_code: rawGameData.language_code,
                 }
                 renderStreamerHTML(newGameData)
                 setGameData(newGameData)
