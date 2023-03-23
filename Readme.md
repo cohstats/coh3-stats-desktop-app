@@ -18,17 +18,17 @@ View stats of players in the current game of Company of Heroes 3.
 7. In the Coh3 Stats Desktop App go into settings
 ![grafik](https://user-images.githubusercontent.com/25324640/227334078-e975b12a-6730-4afd-9be1-3ed160371661.png)
 8. Copy the path to the streamerOverlay.html
-
+![grafik](https://user-images.githubusercontent.com/25324640/227336591-6eba8879-ddd7-4f38-ab22-31573e4df8df.png)
 9. In the OBS properties window click on browse to set the path to the streamerOverlay.html
-
-10. An explorer window opens. Paste the copied path into the path field
-
+![grafik](https://user-images.githubusercontent.com/25324640/227336733-aee8ac78-e076-4077-a756-e463752fae0c.png)
+10. An explorer window opens. Paste the copied path into the path field and hit enter
+![grafik](https://user-images.githubusercontent.com/25324640/227337198-3058a4cc-94b8-45e1-b059-9edd1ca98b6a.png)
 11. Select the streamerOverlay.html file and click open
-
+![grafik](https://user-images.githubusercontent.com/25324640/227337374-e2ded687-1cdb-442d-b384-0f9c5fd8cb43.png)
 12. Set the resolution to the same resolution Coh3 is running at. E.G 1920 Width and 1080 Height
-
+![grafik](https://user-images.githubusercontent.com/25324640/227337508-78e625e2-e72b-42d7-87fd-811a02c7e5e4.png)
 13. Click Ok to finish creating the source
-
+![grafik](https://user-images.githubusercontent.com/25324640/227337725-c9f9d443-1611-4765-94a6-5411c2032c86.png)
 14. Scale the source to match the Coh3 source size
 
 ## Development
