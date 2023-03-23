@@ -152,7 +152,8 @@ export const Settings: React.FC = () => {
                                     max={1}
                                     step={0.1}
                                     style={{ width: "100px" }}
-                                    value={playSoundVolume.toFixed(1)}
+                                    label={playSoundVolume!.toFixed(1)}
+                                    value={playSoundVolume}
                                     onChange={setPlaySoundVolume}
                                     onChangeEnd={(value) => {
                                         events.settings_changed(
