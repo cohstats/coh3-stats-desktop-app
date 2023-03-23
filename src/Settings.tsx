@@ -8,17 +8,18 @@ import {
     ActionIcon,
     Text,
     List,
-    Image,
     Button,
     Tooltip,
     Checkbox,
     Slider,
+    Anchor,
 } from "@mantine/core"
 import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
+import { open as openLink } from "@tauri-apps/api/shell"
 import { useLogFilePath } from "./game-data-provider/configValues"
 import {
     usePlaySound,
@@ -228,55 +229,35 @@ export const Settings: React.FC = () => {
                         </div>
                     </Group>
                     <div>
-                        <Text weight={700}>Setup instructions:</Text>
-                        <List type="ordered">
-                            <List.Item>
-                                In OBS Sources section click on "Add Source" and
-                                select Browser
-                            </List.Item>
-                            <List.Item>
-                                In the Browser source settings tick "Local File"
-                            </List.Item>
-                            <List.Item>
-                                <Text>Copy this path:</Text>{" "}
-                                <Group>
-                                    <Input
-                                        value={appDataPath}
-                                        style={{ width: 300 }}
-                                        readOnly
-                                    />
-                                    <ActionIcon
-                                        onClick={() => {
-                                            writeText(appDataPath)
-                                        }}
-                                    >
-                                        <IconCopy size="1.125rem" />
-                                    </ActionIcon>
-                                </Group>
-                            </List.Item>
-                            <List.Item>
-                                In the Local File section click on "Browse"
-                            </List.Item>
-                            <List.Item>
-                                An explorer window opens. Paste the copied path
-                                into the path field shown in the image below:
-                                <Image
-                                    src={"/instructions/navigateToPath.png"}
-                                    height={100}
-                                />
-                            </List.Item>
-                            <List.Item>
-                                Select the file "streamerOverlay.html" and click
-                                on open
-                            </List.Item>
-                            <List.Item>
-                                Set the Width to 1920 and the Height to 1080
-                            </List.Item>
-                            <List.Item>
-                                Click ok. All Done! The overlay will display
-                                player ranks only when loading or ingame!
-                            </List.Item>
-                        </List>
+                        <Text weight={700}>
+                            Follow the Setup instructions{" "}
+                            <Anchor
+                                onClick={() =>
+                                    openLink(
+                                        "https://github.com/cohstats/coh3-stats-desktop-app#setup-obs-streamer-overlay"
+                                    )
+                                }
+                            >
+                                Here
+                            </Anchor>
+                        </Text>
+                        <Group pt="md">
+                            <Text>Path to streamerOverlay.html:</Text>
+                            <Input
+                                value={appDataPath}
+                                style={{ width: 300 }}
+                                readOnly
+                            />
+                            <Tooltip label="Copy">
+                                <ActionIcon
+                                    onClick={() => {
+                                        writeText(appDataPath)
+                                    }}
+                                >
+                                    <IconCopy size="1.125rem" />
+                                </ActionIcon>
+                            </Tooltip>
+                        </Group>
                     </div>
                 </Stack>
             </Box>
