@@ -52,13 +52,17 @@ pub struct LogFileData {
   pub map: String,
   pub win_condition: String,
   pub left: TeamData,
-  pub right: TeamData
+  pub right: TeamData,
+  pub player_name: String,
+  pub player_steam_id: String,
+  pub language_code: String
 }
 
 #[tauri::command]
 pub fn parse_log_file_reverse(path: String) -> LogFileData {
   let file = File::open(path).unwrap();
   let rev_lines = RevLines::new(BufReader::new(file)).unwrap();
+  let mut full_game = false;
   let mut game_running = true;
   let mut game_loading = false;
   let mut game_started = false;
@@ -69,6 +73,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
   let mut game_duration: u64 = 0;
   let mut left: Vec<PlayerData> = Vec::new();
   let mut right: Vec<PlayerData> = Vec::new();
+  let mut player_name = "".to_string();
+  let mut player_steam_id = "".to_string();
+  let mut language_code = "".to_string();
   // Read log file in reverse order line by line
   for line in rev_lines {
     if nom::bytes::complete::tag::<&str, &str, ()>("Application closed")(line.as_str()).is_ok() {
@@ -82,6 +89,10 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
         timestamp = parsed_timestamp.to_string();
         //println!("Timestamp {}", timestamp);
         
+      }
+      if let Ok((steam_id, _)) = get_game_player_steam_id(tail) {
+        player_steam_id = steam_id.to_string();
+        //println!("Game steam {}", steam_id);
       }
       // these logs have been removed by relic
       /*if let Ok((tail, _)) = get_match_started_line(tail) {
@@ -115,20 +126,31 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
       }*/
       if let Ok((tail, param)) = get_param_line(tail) {
         if param == "GAME" {
+          if let Ok((steam_name, _)) = get_game_player_name(tail) {
+            player_name = steam_name.to_string();
+            //println!("Steam name {}", steam_name);
+            break;
+          }
+          if let Ok((game_language, _)) = get_game_language(tail) {
+            language_code = game_language.to_string();
+            //println!("Game language {}", game_language);
+          }
           if let Ok((tail, sub_param)) = get_game_sub_param(tail) {
             if sub_param == "Scenario" {
               if let Ok((parsed_map, _)) = get_map_name(tail) {
-                map = parsed_map.to_string();
-                //println!("Map {}", map);
-                break;
+                if !full_game {
+                  map = parsed_map.to_string();
+                  //println!("Map {}", map);
+                  full_game = true;
+                }
               }
-            } else if sub_param == "Win Condition Name" {
+            } else if sub_param == "Win Condition Name" && !full_game {
               win_condition = tail.trim().to_string();
               game_loading = true;
               //println!("Win Condition {}", win_condition);
-            } else if sub_param == "Starting mission" {
+            } else if sub_param == "Starting mission" && !full_game {
               game_started = true;
-            } else if sub_param == "Human Player" {
+            } else if sub_param == "Human Player" && !full_game {
               if let Ok((without_space, _)) = get_without_leading_space(tail) {
                 if let Ok((tail, position_str)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" ")(without_space) {
                   if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" ")(tail) {
@@ -164,7 +186,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                   }
                 }
               }
-            } else if sub_param == "AI Player" {
+            } else if sub_param == "AI Player" && !full_game {
               if let Ok((without_space, _)) = get_without_leading_space(tail) {
                 if let Ok((tail, position_str)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" ")(without_space) {
                   if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" ")(tail) {
@@ -203,11 +225,13 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
           }
         } else if param == "MOD" {
           if let Ok((duration_str, _)) = get_game_over(tail) {
-            if let Ok(duration) = duration_str.parse::<u64>() {
-              game_duration = duration/8;
-              //println!("Game Duration {}s", duration/8);
+            if !full_game {
+              if let Ok(duration) = duration_str.parse::<u64>() {
+                game_duration = duration/8;
+                //println!("Game Duration {}s", duration/8);
+              }
+              game_ended = true;
             }
-            game_ended = true;
           }
         }
       }
@@ -225,6 +249,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     win_condition,
     left: left_team,
     right: right_team,
+    player_name: player_name,
+    player_steam_id: player_steam_id,
+    language_code: language_code
   }
 }
 
@@ -324,6 +351,23 @@ fn get_game_sub_param(game_param_tail: &str) -> nom::IResult<&str, &str> {
   let (tail, sub_param) = nom::bytes::complete::take_until1(":")(game_param_tail)?;
   let (tail, _) = nom::bytes::complete::tag(":")(tail)?;
   Ok((tail,sub_param))
+}
+
+fn get_game_player_name(game_param_tail: &str) -> nom::IResult<&str, ()> {
+  let (name_tail, _) = nom::bytes::complete::tag("Current Steam name is [")(game_param_tail)?;
+  let (_, name) = nom::bytes::complete::take_until1("]")(name_tail)?;
+  Ok((name,()))
+}
+
+fn get_game_language(game_param_tail: &str) -> nom::IResult<&str, ()> {
+  let (language_tail, _) = nom::bytes::complete::tag("[Company of Heroes 3] set to language [")(game_param_tail)?;
+  let (_, language) = nom::bytes::complete::take_until1("]")(language_tail)?;
+  Ok((language,()))
+}
+
+fn get_game_player_steam_id(timestamped_tail: &str) -> nom::IResult<&str, ()> {
+  let (steam_id, _) = nom::bytes::complete::tag("Found profile: /steam/")(timestamped_tail)?;
+  Ok((steam_id,()))
 }
 
 fn get_map_name(scenario_tail: &str) -> nom::IResult<&str, &str> {
