@@ -78,7 +78,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
 
                             <Group position="apart" grow>
                                 <PlayerRank rank={rank} />
-                                <PlayerELO rating={rating} />
+                                <PlayerELO rating={rank ? rating : undefined} />
                                 <PlayerStreak streak={streak} />
                                 <PlayerWinRatio wins={wins} losses={losses} />
                                 <PlayerWins wins={wins} />
