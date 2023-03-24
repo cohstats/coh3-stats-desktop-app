@@ -79,63 +79,29 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
   let mut language_code = "".to_string();
   // Read log file in reverse order line by line
   for line in rev_lines {
+    // Is the line when the game is being closed correctly
     if nom::bytes::complete::tag::<&str, &str, ()>("Application closed")(line.as_str()).is_ok() {
-      //println!("Found application closed");
       game_running = false;
       continue;
     }
     
     if let Ok((tail, parsed_timestamp)) = get_timestamped_line(line.as_str()) {
+
+      // Is the line where a game starts
       if is_game_start_line(tail) {
         timestamp = parsed_timestamp.to_string();
-        //println!("Timestamp {}", timestamp);
-        
+        continue;
       }
+
+      // Is the line that logs the player steam id
       if let Ok((steam_id, _)) = get_game_player_steam_id(tail) {
         player_steam_id = steam_id.to_string();
-        //println!("Game steam {}", steam_id);
+        continue;
       }
-      // these logs have been removed by relic
-      /*if let Ok((tail, _)) = get_match_started_line(tail) {
-        //println!("Match started {}", tail);
-        if let Ok((tail, relic_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>(" /steam/")(tail) {
-          if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>(" /steam/")(tail) {
-            //println!("Match started relic {}", relic_id);
-            if let Ok((tail, steam_id)) = nom::bytes::complete::take_until1::<&str, &str, ()>("], ")(tail) {
-              if let Ok((tail, _)) = nom::bytes::complete::tag::<&str, &str, ()>("], slot =  ")(tail) {
-                //println!("Match started steam {}", steam_id);
-                if let Ok((tail, _position_str)) = nom::bytes::complete::take_until1::<&str, &str, ()>(", ranking =   ")(tail) {
-                  if let Ok((rank_str, _)) = nom::bytes::complete::tag::<&str, &str, ()>(", ranking =   ")(tail) {
-                    if let Ok(rank) = rank_str.parse::<i64>() {
-                      //println!("Match started slot {}", position);
-                      //println!("Match started rank {}", rank);
-                      if let Some(index) = left.iter().position(|p| *p.relic_id == relic_id.to_string()) {
-                        left[index].steam_id = steam_id.to_string();
-                        left[index].rank = rank;
-                      }
-                      if let Some(index) = right.iter().position(|p| *p.relic_id == relic_id.to_string()) {
-                        right[index].steam_id = steam_id.to_string();
-                        right[index].rank = rank;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }*/
+
       if let Ok((tail, param)) = get_param_line(tail) {
         if param == "GAME" {
-          if let Ok((steam_name, _)) = get_game_player_name(tail) {
-            player_name = steam_name.to_string();
-            println!("Steam name {}", steam_name);
-            break;
-          }
-          if let Ok((game_language, _)) = get_game_language(tail) {
-            language_code = game_language.to_string();
-            //println!("Game language {}", game_language);
-          }
+
           if let Ok((tail, sub_param)) = get_game_sub_param(tail) {
             if sub_param == "Scenario" {
               if let Ok((parsed_map, _)) = get_map_name(tail) {
@@ -223,6 +189,15 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                 }
               }
             }
+
+          // Is the line that logs the playing players name
+          } else if let Ok((steam_name, _)) = get_game_player_name(tail) {
+            player_name = steam_name.to_string();
+            break;
+
+          // Is the line that logs the games language
+          } else if let Ok((game_language, _)) = get_game_language(tail) {
+            language_code = game_language.to_string();
           }
         } else if param == "MOD" {
           if let Ok((duration_str, _)) = get_game_over(tail) {
@@ -409,3 +384,15 @@ fn get_without_leading_space(line: &str) -> nom::IResult<&str, ()> {
   let (without_space, _) = nom::bytes::complete::tag(" ")(line)?;
   Ok((without_space, ()))
 }
+
+/*fn test_logging_solution(line: &str) -> nom::IResult<&str, ()> {
+  let test = nom::bytes::complete::tag("Applsdasdasded")(line);
+  let result = match test {
+    Ok((tail, _)) => tail,
+    Err(e) => {
+      info!("Failed!");
+      return Err(e)
+    }
+  };
+  Ok(("without_space", ()))
+}*/
