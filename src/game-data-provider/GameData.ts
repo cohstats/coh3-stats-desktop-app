@@ -34,10 +34,14 @@ export interface RawGameData {
     win_condition: string
     left: RawTeamData
     right: RawTeamData
+    player_name: string
+    player_steam_id: string
+    language_code: string
 }
 
 export interface FullPlayerData {
     ai: boolean
+    self: boolean
     faction: raceType
     relicID: string
     name: string
@@ -79,6 +83,7 @@ export interface FullGameData {
     winCondition: string
     left: FullTeamData
     right: FullTeamData
+    language_code: string
 }
 
 export interface LogFileFoundGameData {

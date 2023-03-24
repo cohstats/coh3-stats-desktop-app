@@ -24,6 +24,7 @@ window-shadows = "0.2.0"
 tauri-plugin-window-state = "0.1"
 tauri-plugin-fs-watch = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
 tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
+tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
 machine-uid = "0.2.0"
 
 [features]

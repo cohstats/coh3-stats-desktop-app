@@ -35,6 +35,11 @@
             },
             "clipboard": {
                 "writeText": true
+            },
+            "window": {
+                "setFocus": true,
+                "show": true,
+                "requestUserAttention": true
             }
         },
         "bundle": {

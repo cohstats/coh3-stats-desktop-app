@@ -35,6 +35,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
     country,
     color,
     ai,
+    self,
 }) => {
     return (
         <>
@@ -69,14 +70,15 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                                         )
                                     }
                                 >
-                                    <Anchor>{name}</Anchor>
+                                    <Anchor>{name}</Anchor>{" "}
+                                    {self ? <>(You)</> : null}
                                 </Title>
                                 {/*<ColorSwatch color={color} />*/}
                             </Group>
 
                             <Group position="apart" grow>
                                 <PlayerRank rank={rank} />
-                                <PlayerELO rating={rating} />
+                                <PlayerELO rating={rank ? rating : undefined} />
                                 <PlayerStreak streak={streak} />
                                 <PlayerWinRatio wins={wins} losses={losses} />
                                 <PlayerWins wins={wins} />
