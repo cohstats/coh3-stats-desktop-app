@@ -4,6 +4,8 @@ import { Providers } from "./Providers"
 import { Router } from "./Router"
 import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay"
 import events from "./mixpanel/mixpanel"
+import { listen } from "@tauri-apps/api/event"
+import { appWindow } from "@tauri-apps/api/window"
 
 events.init()
 
@@ -25,6 +27,11 @@ renderStreamerHTML({
         side: "Mixed",
     },
     language_code: "",
+})
+
+listen("single-instance", () => {
+    //appWindow.requestUserAttention(2)
+    //appWindow.setFocus()
 })
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

@@ -25,7 +25,7 @@ fn main() {
             window.set_focus().ok();
             window.request_user_attention(Some(tauri::UserAttentionType::Informational)).ok();
             
-            println!("{}, {argv:?}, {cwd}", app.package_info().name);
+            //println!("{}, {argv:?}, {cwd}", app.package_info().name);
 
             app.emit_all("single-instance", Payload { args: argv, cwd }).unwrap();
         }))
