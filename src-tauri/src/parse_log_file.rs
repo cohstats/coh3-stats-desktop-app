@@ -3,6 +3,7 @@ use rev_lines::RevLines;
 use nom;
 use std::io::BufReader;
 use std::fs::File;
+use log::{info};
 
 #[derive(Serialize, Deserialize, Clone)]
 pub enum GameState {
@@ -128,7 +129,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
         if param == "GAME" {
           if let Ok((steam_name, _)) = get_game_player_name(tail) {
             player_name = steam_name.to_string();
-            //println!("Steam name {}", steam_name);
+            println!("Steam name {}", steam_name);
             break;
           }
           if let Ok((game_language, _)) = get_game_language(tail) {
@@ -240,6 +241,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
   let game_state = determine_game_state(game_running, game_ended, game_loading, game_started);
   let left_team = get_team_data(left);
   let right_team = get_team_data(right);
+  info!("Log file parsed: Found {} players", left_team.players.len() + right_team.players.len());
   LogFileData {
     game_state,
     game_type: determine_game_type(&left_team, &right_team),
@@ -355,7 +357,8 @@ fn get_game_sub_param(game_param_tail: &str) -> nom::IResult<&str, &str> {
 
 fn get_game_player_name(game_param_tail: &str) -> nom::IResult<&str, ()> {
   let (name_tail, _) = nom::bytes::complete::tag("Current Steam name is [")(game_param_tail)?;
-  let (_, name) = nom::bytes::complete::take_until1("]")(name_tail)?;
+  let (name, _) = get_till_last_tag(name_tail, "]")?;
+  //let (_, name) = nom::bytes::complete::take_until1("]")(name_tail)?;
   Ok((name,()))
 }
 
@@ -385,12 +388,21 @@ fn get_game_over(mod_param_tail: &str) -> nom::IResult<&str, &str> {
 }
 
 fn get_last_separated_by_space(line: &str) -> nom::IResult<&str, &str> {
-  let (tail, front) = nom::bytes::complete::take_until1(" ")(line)?;
+  let (tail, front) = nom::bytes::complete::take_until(" ")(line)?;
   let (tail, _) = nom::bytes::complete::tag(" ")(tail)?;
   if let Ok((tail, _)) = get_last_separated_by_space(tail) {
     return Ok((tail, &line[0..(line.len() - tail.len() - 1)]))
   }
   Ok((tail, front))
+}
+
+fn get_till_last_tag<'a>(line: &'a str, tag: &'a str) -> nom::IResult<&'a str, &'a str> {
+  let (tail, front) = nom::bytes::complete::take_until(tag)(line)?;
+  let (tail, _) = nom::bytes::complete::tag(tag)(tail)?;
+  if let Ok((front, tail)) = get_till_last_tag(tail, tag) {
+    return Ok((front, tail))
+  }
+  Ok((front, tail))
 }
 
 fn get_without_leading_space(line: &str) -> nom::IResult<&str, ()> {

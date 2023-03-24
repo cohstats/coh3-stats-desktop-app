@@ -1313,6 +1313,12 @@ tabbable@^6.0.1:
   dependencies:
     "@tauri-apps/api" "^1.2.0"
 
+"tauri-plugin-log-api@https://github.com/tauri-apps/tauri-plugin-log":
+  version "0.0.0"
+  resolved "https://github.com/tauri-apps/tauri-plugin-log#05a9bfd9edb9b5f4ab95412bb607691708b65a25"
+  dependencies:
+    "@tauri-apps/api" "^1.2.0"
+
 "tauri-plugin-store-api@https://github.com/tauri-apps/tauri-plugin-store":
   version "0.0.0"
   resolved "https://github.com/tauri-apps/tauri-plugin-store#201639d72bc8c4dec6f40ff7c02162c7926bfa3d"
