@@ -9,6 +9,7 @@ use tauri_plugin_fs_watch;
 use std::path::Path;
 use tauri::Manager;
 use window_shadows::set_shadow;
+use tauri_plugin_log::{LogTarget};
 mod parse_log_file;
 
 #[derive(Clone, serde::Serialize)]
@@ -29,6 +30,10 @@ fn main() {
 
             app.emit_all("single-instance", Payload { args: argv, cwd }).unwrap();
         }))
+        .plugin(tauri_plugin_log::Builder::default().targets([
+            LogTarget::LogDir,
+            LogTarget::Stdout,
+        ]).build())
         .plugin(tauri_plugin_fs_watch::init())
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())

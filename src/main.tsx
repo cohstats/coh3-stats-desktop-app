@@ -6,6 +6,9 @@ import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay"
 import events from "./mixpanel/mixpanel"
 import { listen } from "@tauri-apps/api/event"
 import { appWindow } from "@tauri-apps/api/window"
+import { trace, info, error, attachConsole } from "tauri-plugin-log-api"
+
+info("Start frontend")
 
 events.init()
 
