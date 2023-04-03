@@ -14,33 +14,33 @@ events.init()
 
 // make sure an html file exists
 renderStreamerHTML({
-    uniqueID: "",
-    state: "Closed",
-    type: "Classic",
-    timestamp: "",
-    duration: 0,
-    map: "",
-    winCondition: "",
-    left: {
-        players: [],
-        side: "Mixed",
-    },
-    right: {
-        players: [],
-        side: "Mixed",
-    },
-    language_code: "",
+  uniqueID: "",
+  state: "Closed",
+  type: "Classic",
+  timestamp: "",
+  duration: 0,
+  map: "",
+  winCondition: "",
+  left: {
+    players: [],
+    side: "Mixed",
+  },
+  right: {
+    players: [],
+    side: "Mixed",
+  },
+  language_code: "",
 })
 
 listen("single-instance", () => {
-    //appWindow.requestUserAttention(2)
-    //appWindow.setFocus()
+  //appWindow.requestUserAttention(2)
+  //appWindow.setFocus()
 })
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <React.StrictMode>
-        <Providers>
-            <Router />
-        </Providers>
-    </React.StrictMode>
+  <React.StrictMode>
+    <Providers>
+      <Router />
+    </Providers>
+  </React.StrictMode>
 )

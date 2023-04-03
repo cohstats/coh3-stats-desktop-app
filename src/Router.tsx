@@ -5,30 +5,30 @@ import { Root } from "./Root"
 import { Settings } from "./Settings"
 
 export enum Routes {
-    GAME = "/",
-    SETTINGS = "/settings",
-    ABOUT = "/about",
+  GAME = "/",
+  SETTINGS = "/settings",
+  ABOUT = "/about",
 }
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Root />,
-        children: [
-            {
-                path: Routes.GAME,
-                element: <Game />,
-            },
-            {
-                path: Routes.SETTINGS,
-                element: <Settings />,
-            },
-            {
-                path: Routes.ABOUT,
-                element: <About />,
-            },
-        ],
-    },
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: Routes.GAME,
+        element: <Game />,
+      },
+      {
+        path: Routes.SETTINGS,
+        element: <Settings />,
+      },
+      {
+        path: Routes.ABOUT,
+        element: <About />,
+      },
+    ],
+  },
 ])
 
 export const Router: React.FC = () => <RouterProvider router={router} />
