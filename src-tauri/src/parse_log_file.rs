@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
-use rev_lines::RevLines;
 use nom;
 use std::io::BufReader;
+use std::io::BufRead;
 use std::fs::File;
 use log::{info};
 
@@ -62,7 +62,26 @@ pub struct LogFileData {
 #[tauri::command]
 pub fn parse_log_file_reverse(path: String) -> LogFileData {
   let file = File::open(path).unwrap();
-  let rev_lines = RevLines::new(BufReader::new(file)).unwrap();
+  let reader = BufReader::new(file);
+
+  let mut string_array: Vec<String> = Vec::new();
+
+  // Because some of the lines are not UTF-8, I needed to skip them while parsing
+  // this is less effective than using RevLines because we first load the whole log
+  // and than read it backwards. But I couldn't figure out how to fix it with revlines.
+  for result in reader.lines() {
+    match result {
+      Ok(line) => {
+        // If the conversion is successful, process the line
+        string_array.push(line);
+      }
+      Err(_) => {
+        // If the conversion fails, skip the line
+        // println!("Skipped non-UTF-8 line");
+      }
+    }
+  }
+
   let mut full_game = false;
   let mut game_running = true;
   let mut game_loading = false;
@@ -77,8 +96,10 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
   let mut player_name = "".to_string();
   let mut player_steam_id = "".to_string();
   let mut language_code = "".to_string();
+
   // Read log file in reverse order line by line
-  for line in rev_lines {
+  for line in string_array.iter().rev() {
+
     // Is the line when the game is being closed correctly
     if nom::bytes::complete::tag::<&str, &str, ()>("Application closed")(line.as_str()).is_ok() {
       game_running = false;
@@ -190,12 +211,12 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
               }
             }
 
-          // Is the line that logs the playing players name
+            // Is the line that logs the playing players name
           } else if let Ok((steam_name, _)) = get_game_player_name(tail) {
             player_name = steam_name.to_string();
             break;
 
-          // Is the line that logs the games language
+            // Is the line that logs the games language
           } else if let Ok((game_language, _)) = get_game_language(tail) {
             language_code = game_language.to_string();
           }
@@ -203,7 +224,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
           if let Ok((duration_str, _)) = get_game_over(tail) {
             if !full_game {
               if let Ok(duration) = duration_str.parse::<u64>() {
-                game_duration = duration/8;
+                game_duration = duration / 8;
                 //println!("Game Duration {}s", duration/8);
               }
               game_ended = true;
@@ -211,12 +232,17 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
           }
         }
       }
-    } 
+    }
+
+
   }
+
   let game_state = determine_game_state(game_running, game_ended, game_loading, game_started);
   let left_team = get_team_data(left);
   let right_team = get_team_data(right);
+
   info!("Log file parsed: Found {} players", left_team.players.len() + right_team.players.len());
+
   LogFileData {
     game_state,
     game_type: determine_game_type(&left_team, &right_team),
