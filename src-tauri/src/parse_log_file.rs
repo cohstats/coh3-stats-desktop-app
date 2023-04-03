@@ -77,7 +77,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
       }
       Err(_) => {
         // If the conversion fails, skip the line
-        println!("Skipped non-UTF-8 line");
+        // println!("Skipped non-UTF-8 line");
       }
     }
   }
