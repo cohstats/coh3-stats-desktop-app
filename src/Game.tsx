@@ -17,7 +17,7 @@ export const Game: React.FC = () => {
         <>
           {gameData && gameData.gameData.map.length > 0 ? (
             <>
-              <Grid gutter={0}>
+              <Grid gutter={0} p={"md"}>
                 <Grid.Col span="auto" pt={40}>
                   {gameData.gameData.left.players.map((player, index) => (
                     <PlayerCard

@@ -39,7 +39,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
 }) => {
   return (
     <>
-      <Paper shadow="xs" withBorder p="md">
+      <Paper shadow="xs" withBorder p="xs" mb={"xs"}>
         <Grid>
           <Col span="content">
             <Tooltip label={faction}>
@@ -57,7 +57,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                   <Image
                     src={"/flags/4x3/" + country + ".svg"}
                     alt={country}
-                    width={40}
+                    width={35}
                   />
                 ) : null}
 

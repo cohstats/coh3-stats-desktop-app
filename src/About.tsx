@@ -68,6 +68,19 @@ export const About: React.FC = () => {
               join our discord and get involved!
             </Anchor>
           </Text>
+          <Title order={5}>Reporting a bug</Title>
+          <Text component="p" size="sm">
+            In case of issues please, please try to report them in Discord
+            sections bugs-and-questions with as much details as possible.
+            <br />
+            Also try to provide the warnings.log file from:
+            <br />{" "}
+            <Code>
+              {" "}
+              C:\Users\Username\Documents\My Games\Company of Heroes
+              3\warnings.log
+            </Code>
+          </Text>
           <Button onClick={() => open("https://ko-fi.com/cohstats")}>
             <Group spacing="xs">
               <img
