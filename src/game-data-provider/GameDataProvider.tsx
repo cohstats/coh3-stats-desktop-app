@@ -7,28 +7,28 @@ const GameDataContext = React.createContext<GameData>(undefined)
 export const useGameData = () => useContext(GameDataContext)
 
 export interface GameDataProviderProps {
-    children?: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const GameDataProvider: React.FC<GameDataProviderProps> = ({
-    children,
+  children,
 }) => {
-    const { gameData, reloadLogFile } = useFullGameData()
-    const [logFilePath] = useLogFilePath()
-    return (
-        <>
-            <GameDataContext.Provider
-                value={
-                    logFilePath !== undefined && gameData
-                        ? {
-                              gameData,
-                              reloadLogFile,
-                          }
-                        : undefined
-                }
-            >
-                {children}
-            </GameDataContext.Provider>
-        </>
-    )
+  const { gameData, reloadLogFile } = useFullGameData()
+  const [logFilePath] = useLogFilePath()
+  return (
+    <>
+      <GameDataContext.Provider
+        value={
+          logFilePath !== undefined && gameData
+            ? {
+                gameData,
+                reloadLogFile,
+              }
+            : undefined
+        }
+      >
+        {children}
+      </GameDataContext.Provider>
+    </>
+  )
 }

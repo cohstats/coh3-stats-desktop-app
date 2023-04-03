@@ -6,77 +6,77 @@ import { getStore } from "./store"
 const CONFIG_CHANGE_EVENT = new EventEmitter()
 
 export const configValueFactory = <T,>(
-    key: string,
-    defaultValueFunc: () => Promise<T>,
-    validatorFunc?: (value: T, store: Store, defaultValue: T) => Promise<T>
+  key: string,
+  defaultValueFunc: () => Promise<T>,
+  validatorFunc?: (value: T, store: Store, defaultValue: T) => Promise<T>
 ) => {
-    const reactHook = () => {
-        const [value, setValue] = useState<T>()
-        const valueInitializedRef = useRef(false)
+  const reactHook = () => {
+    const [value, setValue] = useState<T>()
+    const valueInitializedRef = useRef(false)
 
-        useEffect(() => {
-            const init = async () => {
-                const store = await getStore()
-                const storeValue = await store.get<T>(key)
-                const defaultValue = await defaultValueFunc()
-                let validatedValue = defaultValue
-                if (validatorFunc !== undefined) {
-                    if (storeValue === null) {
-                        validatedValue = await validatorFunc(
-                            defaultValue,
-                            store,
-                            defaultValue
-                        )
-                    } else {
-                        validatedValue = await validatorFunc(
-                            storeValue,
-                            store,
-                            defaultValue
-                        )
-                    }
-                } else if (storeValue !== null) {
-                    validatedValue = storeValue
-                }
-                await store.set(key, validatedValue)
-                await store.save()
-                CONFIG_CHANGE_EVENT.emit(key, validatedValue)
-                valueInitializedRef.current = true
-            }
-            if (valueInitializedRef.current === false) {
-                init()
-            }
-            const onChange = (value: T) => {
-                setValue(value)
-            }
-            CONFIG_CHANGE_EVENT.on(key, onChange)
-            return () => {
-                CONFIG_CHANGE_EVENT.off(key, onChange)
-            }
-        }, [])
-
-        const setValueExtern = async (value: T) => {
-            const store = await getStore()
-            let validatedValue = value
-            if (validatorFunc) {
-                const defaultValue = await defaultValueFunc()
-                validatedValue = await validatorFunc(value, store, defaultValue)
-            }
-            await store.set(key, validatedValue)
-            await store.save()
-            CONFIG_CHANGE_EVENT.emit(key, validatedValue)
-        }
-
-        return [value, setValueExtern] as const
-    }
-    const getter: () => Promise<T> = async () => {
+    useEffect(() => {
+      const init = async () => {
         const store = await getStore()
         const storeValue = await store.get<T>(key)
-        if (storeValue === null) {
-            return await defaultValueFunc()
+        const defaultValue = await defaultValueFunc()
+        let validatedValue = defaultValue
+        if (validatorFunc !== undefined) {
+          if (storeValue === null) {
+            validatedValue = await validatorFunc(
+              defaultValue,
+              store,
+              defaultValue
+            )
+          } else {
+            validatedValue = await validatorFunc(
+              storeValue,
+              store,
+              defaultValue
+            )
+          }
+        } else if (storeValue !== null) {
+          validatedValue = storeValue
         }
-        return storeValue
+        await store.set(key, validatedValue)
+        await store.save()
+        CONFIG_CHANGE_EVENT.emit(key, validatedValue)
+        valueInitializedRef.current = true
+      }
+      if (valueInitializedRef.current === false) {
+        init()
+      }
+      const onChange = (value: T) => {
+        setValue(value)
+      }
+      CONFIG_CHANGE_EVENT.on(key, onChange)
+      return () => {
+        CONFIG_CHANGE_EVENT.off(key, onChange)
+      }
+    }, [])
+
+    const setValueExtern = async (value: T) => {
+      const store = await getStore()
+      let validatedValue = value
+      if (validatorFunc) {
+        const defaultValue = await defaultValueFunc()
+        validatedValue = await validatorFunc(value, store, defaultValue)
+      }
+      await store.set(key, validatedValue)
+      await store.save()
+      CONFIG_CHANGE_EVENT.emit(key, validatedValue)
     }
-    return [getter, reactHook] as const
+
+    return [value, setValueExtern] as const
+  }
+  const getter: () => Promise<T> = async () => {
+    const store = await getStore()
+    const storeValue = await store.get<T>(key)
+    if (storeValue === null) {
+      return await defaultValueFunc()
+    }
+    return storeValue
+  }
+  return [getter, reactHook] as const
 }
 
 /*export const useConfigValue = <T,>(
