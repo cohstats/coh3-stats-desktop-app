@@ -60,44 +60,31 @@ pub struct LogFileData {
 
 #[tauri::command]
 pub fn parse_log_file_reverse(path: String) -> LogFileData {
-  let file = File::open(path).unwrap();
-  let reader = BufReader::new(file);
+    let mut full_game = false;
+    let mut game_running = true;
+    let mut game_loading = false;
+    let mut game_started = false;
+    let mut game_ended = false;
+    let mut map = "".to_string();
+    let mut win_condition = "".to_string();
+    let mut timestamp = "".to_string();
+    let mut game_duration: u64 = 0;
+    let mut left: Vec<PlayerData> = Vec::new();
+    let mut right: Vec<PlayerData> = Vec::new();
+    let mut player_name = "".to_string();
+    let mut player_steam_id = "".to_string();
+    let mut language_code = "".to_string();
 
-  let mut string_array: Vec<String> = Vec::new();
+    // Read log file in reverse order line by line
+    let log_file = BufReader::new(File::open(path).unwrap());
 
-  // Because some of the lines are not UTF-8, I needed to skip them while parsing
-  // this is less effective than using RevLines because we first load the whole log
-  // and than read it backwards. But I couldn't figure out how to fix it with revlines.
-  for result in reader.lines() {
-    match result {
-      Ok(line) => {
-        // If the conversion is successful, process the line
-        string_array.push(line);
-      }
-      Err(_) => {
-        // If the conversion fails, skip the line
-        // println!("Skipped non-UTF-8 line");
-      }
-    }
-  }
-
-  let mut full_game = false;
-  let mut game_running = true;
-  let mut game_loading = false;
-  let mut game_started = false;
-  let mut game_ended = false;
-  let mut map = "".to_string();
-  let mut win_condition = "".to_string();
-  let mut timestamp = "".to_string();
-  let mut game_duration: u64 = 0;
-  let mut left: Vec<PlayerData> = Vec::new();
-  let mut right: Vec<PlayerData> = Vec::new();
-  let mut player_name = "".to_string();
-  let mut player_steam_id = "".to_string();
-  let mut language_code = "".to_string();
-
-  // Read log file in reverse order line by line
-  for line in string_array.iter().rev() {
+    for line in log_file
+        .lines()
+        .filter_map(|x| x.ok())
+        .collect::<Vec<_>>()
+        .iter()
+        .rev()
+    {
 
     // Is the line when the game is being closed correctly
     if nom::bytes::complete::tag::<&str, &str, ()>("Application closed")(line.as_str()).is_ok() {
