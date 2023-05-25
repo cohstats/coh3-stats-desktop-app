@@ -90,7 +90,11 @@ export const Settings: React.FC = () => {
             <div>
               <Group spacing="xs">
                 <Group spacing={3}>
-                  <Input readOnly value={logFilePath ? logFilePath : ""} />
+                  <Input
+                    value={logFilePath ? logFilePath : ""}
+                    style={{ width: 500 }}
+                    readOnly
+                  />
                   <Button variant="default" onClick={openDialog}>
                     Select
                   </Button>
@@ -146,14 +150,16 @@ export const Settings: React.FC = () => {
                     events.settings_changed("play_sound_volume", value)
                   }}
                 />
-                <ActionIcon
-                  radius="xl"
-                  variant="filled"
-                  color="blue"
-                  onClick={playSoundFunc}
-                >
-                  <IconPlayerPlay size="1.125rem" />
-                </ActionIcon>
+                <Tooltip label="Play sound">
+                  <ActionIcon
+                    radius="xl"
+                    variant="filled"
+                    color="blue"
+                    onClick={playSoundFunc}
+                  >
+                    <IconPlayerPlay size="1.125rem" />
+                  </ActionIcon>
+                </Tooltip>
               </Group>
             </div>
           </Group>
@@ -201,7 +207,7 @@ export const Settings: React.FC = () => {
           </Group>
           <div>
             <Text weight={700}>
-              Follow the Setup instructions{" "}
+              Follow the{" "}
               <Anchor
                 onClick={() =>
                   openLink(
@@ -209,12 +215,12 @@ export const Settings: React.FC = () => {
                   )
                 }
               >
-                Here
+                Setup instructions
               </Anchor>
             </Text>
             <Group pt="md">
               <Text>Path to streamerOverlay.html:</Text>
-              <Input value={appDataPath} style={{ width: 300 }} readOnly />
+              <Input value={appDataPath} style={{ width: 500 }} readOnly />
               <Tooltip label="Copy">
                 <ActionIcon
                   onClick={() => {
