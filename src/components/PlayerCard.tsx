@@ -20,6 +20,7 @@ import { PlayerStreak } from "./PlayerStreak"
 import { PlayerWinRatio } from "./PlayerWinRatio"
 import { PlayerWins } from "./PlayerWins"
 import { open } from "@tauri-apps/api/shell"
+import { getFactionName, getCountryName } from "../utils/renameLabels"
 
 export interface PlayerCardProps extends FullPlayerData {}
 
@@ -37,12 +38,15 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
   ai,
   self,
 }) => {
+  const factionName = getFactionName(faction)
+  const countryName = country ? getCountryName(country) : ""
+
   return (
     <>
       <Paper shadow="xs" withBorder p="xs" mb={"xs"}>
         <Grid>
           <Col span="content">
-            <Tooltip label={faction}>
+            <Tooltip label={factionName}>
               <Image
                 src={"/factions/" + faction + ".webp"}
                 alt={faction}
@@ -54,11 +58,13 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
             <Stack align="stretch">
               <Group>
                 {!ai ? (
-                  <Image
-                    src={"/flags/4x3/" + country + ".svg"}
-                    alt={country}
-                    width={35}
-                  />
+                  <Tooltip label={countryName}>
+                    <Image
+                      src={"/flags/4x3/" + country + ".svg"}
+                      alt={country}
+                      width={35}
+                    />
+                  </Tooltip>
                 ) : null}
 
                 <Title
