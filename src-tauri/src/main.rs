@@ -4,8 +4,6 @@
 )]
 
 extern crate machine_uid;
-use tauri_plugin_single_instance;
-use tauri_plugin_fs_watch;
 use std::path::Path;
 use tauri::Manager;
 use window_shadows::set_shadow;

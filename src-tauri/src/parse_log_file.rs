@@ -1,9 +1,8 @@
 use serde::{Deserialize, Serialize};
-use nom;
 use std::io::BufReader;
 use std::io::BufRead;
 use std::fs::File;
-use log::{info};
+use log::info;
 
 #[derive(Serialize, Deserialize, Clone)]
 pub enum GameState {
@@ -252,9 +251,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     win_condition,
     left: left_team,
     right: right_team,
-    player_name: player_name,
-    player_steam_id: player_steam_id,
-    language_code: language_code
+    player_name,
+    player_steam_id,
+    language_code
   }
 }
 
@@ -313,9 +312,9 @@ fn get_team_data(players: Vec<PlayerData>) -> TeamData {
     }
   }
   if mixed {
-    return TeamData { players: players, side: TeamSide::Mixed }
+    return TeamData { players, side: TeamSide::Mixed }
   }
-  TeamData { players: players, side: last }
+  TeamData { players, side: last }
 }
 
 // look for blocks like this:
