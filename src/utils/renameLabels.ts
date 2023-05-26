@@ -3,8 +3,8 @@ export const getFactionName = (factionCode: string): string => {
   const countryMapping: { [code: string]: string } = {
     dak: "Deutsches Afrikakorps",
     german: "Wehrmacht",
-    british: "US Forces",
-    american: "British Forces",
+    american: "US Forces",
+    british: "British Forces",
   }
 
   return countryMapping[factionCode] || factionCode
