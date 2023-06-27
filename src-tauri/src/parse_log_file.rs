@@ -260,9 +260,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
         win_condition,
         left: left_team,
         right: right_team,
-        player_name: player_name,
-        player_steam_id: player_steam_id,
-        language_code: language_code,
+        player_name,
+        player_steam_id,
+        language_code,
     }
 }
 
@@ -280,8 +280,8 @@ fn determine_game_state(running: bool, ended: bool, loading: bool, started: bool
 }
 
 fn determine_game_type(left_team: &TeamData, right_team: &TeamData) -> GameType {
-    let left_ai_count = get_ai_count(&left_team);
-    let right_ai_count = get_ai_count(&right_team);
+    let left_ai_count = get_ai_count(left_team);
+    let right_ai_count = get_ai_count(right_team);
     if left_team.side != TeamSide::Mixed
         && right_team.side != TeamSide::Mixed
         && left_team.side != right_team.side
@@ -327,12 +327,12 @@ fn get_team_data(players: Vec<PlayerData>) -> TeamData {
     }
     if mixed {
         return TeamData {
-            players: players,
+            players,
             side: TeamSide::Mixed,
         };
     }
     TeamData {
-        players: players,
+        players,
         side: last,
     }
 }
