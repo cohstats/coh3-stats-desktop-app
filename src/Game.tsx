@@ -2,6 +2,7 @@ import { useGameData } from "./game-data-provider/GameDataProvider"
 import { Title, Grid, Loader, Group, Box, Badge } from "@mantine/core"
 import { PlayerCard } from "./components/PlayerCard"
 import { useLogFilePath } from "./game-data-provider/configValues"
+import { OnlinePlayers } from "./components/Online-players"
 
 export const Game: React.FC = () => {
   const gameData = useGameData()
@@ -9,9 +10,16 @@ export const Game: React.FC = () => {
   return (
     <>
       {gameData ? (
-        <Box pt="xs" px="md">
-          Game State: <Badge>{gameData.gameData.state}</Badge>
-        </Box>
+        <>
+          <Group position={"apart"}>
+            <Box pt="xs" px="md">
+              Game State <Badge>{gameData.gameData.state}</Badge>
+            </Box>
+            <Box pt="xs" px="md">
+              <OnlinePlayers />
+            </Box>
+          </Group>
+        </>
       ) : null}
       {logFilePath !== undefined ? (
         <>
