@@ -40,7 +40,7 @@ jobs:
     runs-on: windows-latest
 
     concurrency:
-      group: tests-${{ github.ref }}
+      group: tests-tauri-build-${{ github.ref }}
       cancel-in-progress: true
 
     steps:
