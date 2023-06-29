@@ -14,8 +14,8 @@ export const OnlinePlayers: React.FC = () => {
     ;(async () => {
       try {
         if (
-          onlinePlayersData &&
-          onlinePlayersData.timeStampMs < new Date().getTime() - 1000 * 60 * 4
+          (onlinePlayersData &&
+          onlinePlayersData.timeStampMs < new Date().getTime() - 1000 * 60 * 4) || !onlinePlayersData
         ) {
           const fetchResponse = await fetch(getNumberOfOnlinePlayersSteamUrl())
           // @ts-ignore
@@ -30,9 +30,9 @@ export const OnlinePlayers: React.FC = () => {
         const intervalId = setInterval(async () => {
           try {
             if (
-              onlinePlayersData &&
+              (onlinePlayersData &&
               onlinePlayersData.timeStampMs <
-                new Date().getTime() - 1000 * 60 * 4
+                new Date().getTime() - 1000 * 60 * 4) || !onlinePlayersData
             ) {
               const fetchResponse = await fetch(
                 getNumberOfOnlinePlayersSteamUrl()
