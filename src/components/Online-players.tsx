@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { Badge, Group, Tooltip } from "@mantine/core"
-import { getNumberOfOnlinePlayersSteamUrl } from "../utils/steam-api"
-import { fetch } from "@tauri-apps/api/http"
-import { SteamIcon } from "./other/Steam-icon"
+import {useEffect, useState} from "react"
+import {Badge, Group, Tooltip} from "@mantine/core"
+import {getNumberOfOnlinePlayersSteamUrl} from "../utils/steam-api"
+import {fetch} from "@tauri-apps/api/http"
+import {SteamIcon} from "./other/Steam-icon"
 
 export const OnlinePlayers: React.FC = () => {
   const [onlinePlayersData, setOnlinePlayersData] = useState<null | {
@@ -15,11 +15,11 @@ export const OnlinePlayers: React.FC = () => {
       try {
         if (
           (onlinePlayersData &&
-          onlinePlayersData.timeStampMs < new Date().getTime() - 1000 * 60 * 4) || !onlinePlayersData
+            onlinePlayersData.timeStampMs < new Date().getTime() - 1000 * 60 * 4) || !onlinePlayersData
         ) {
           const fetchResponse = await fetch(getNumberOfOnlinePlayersSteamUrl())
           // @ts-ignore
-          const { response } = fetchResponse.data
+          const {response} = fetchResponse.data
           setOnlinePlayersData({
             playerCount: response.player_count,
             timeStampMs: new Date().getTime(),
@@ -31,14 +31,14 @@ export const OnlinePlayers: React.FC = () => {
           try {
             if (
               (onlinePlayersData &&
-              onlinePlayersData.timeStampMs <
+                onlinePlayersData.timeStampMs <
                 new Date().getTime() - 1000 * 60 * 4) || !onlinePlayersData
             ) {
               const fetchResponse = await fetch(
                 getNumberOfOnlinePlayersSteamUrl()
               )
               // @ts-ignore
-              const { response } = fetchResponse.data
+              const {response} = fetchResponse.data
               setOnlinePlayersData({
                 playerCount: response.player_count,
                 timeStampMs: new Date().getTime(),
@@ -69,13 +69,13 @@ export const OnlinePlayers: React.FC = () => {
     >
       <div>
         <Group spacing={6}>
-          <SteamIcon size={20} />
+          <SteamIcon size={20}/>
           Players in game
           <Badge
             color="green"
             variant="filled"
             size="md"
-            style={{ minWidth: 60, marginBottom: -1 }}
+            style={{minWidth: 60, marginBottom: -1}}
           >
             {onlinePlayersData?.playerCount}
           </Badge>
