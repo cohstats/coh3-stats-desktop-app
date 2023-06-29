@@ -35,7 +35,7 @@ View stats of players in the current game of Company of Heroes 3.
 
 Install rust on your system using rustup https://www.rust-lang.org/tools/install
 
-Install all dependecies with:
+Install all dependencies with:
 
 ```
 yarn install
@@ -56,6 +56,19 @@ yarn tauri build
 ```
 
 The build output can be found in `src-tauri/target/release`. The installer can be found in `src-tauri/target/release/bundle/msi`.
+
+Don't forget to run prettier with `yarn fix`. 
+
+### Release
+- Increase the version in files:
+  - `package.json`
+  - `src-tauri/tauri.conf.json`
+  - `src-tauri/Cargo.toml`
+- Commit the updated version 
+- Make a new tag on master
+- Merge master into release branch (TODO: Why we have separate release branch?)
+
+
 
 ## Project Architecture
 
