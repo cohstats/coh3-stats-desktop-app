@@ -21,6 +21,7 @@ import { PlayerWinRatio } from "./PlayerWinRatio"
 import { PlayerWins } from "./PlayerWins"
 import { open } from "@tauri-apps/api/shell"
 import { getFactionName, getCountryName } from "../utils/renameLabels"
+import RankIcon from "./other/rank-icon";
 
 export interface PlayerCardProps extends FullPlayerData {}
 
@@ -56,6 +57,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
           </Col>
           <Col span="auto">
             <Stack align="stretch">
+              <Group position={"apart"}>
               <Group>
                 {!ai ? (
                   <Tooltip label={countryName}>
@@ -77,10 +79,13 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                 </Title>
                 {/*<ColorSwatch color={color} />*/}
               </Group>
+              <RankIcon size={35} rank={rank || 0} rating={rating || 0} />
+              </Group>
 
               <Group position="apart" grow>
                 <PlayerRank rank={rank} />
                 <PlayerELO rating={!rank || rank < 1 ? undefined : rating} />
+
                 <PlayerStreak streak={streak} />
                 <PlayerWinRatio wins={wins} losses={losses} />
                 <PlayerWins wins={wins} />
