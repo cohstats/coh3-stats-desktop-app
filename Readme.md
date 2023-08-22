@@ -32,6 +32,7 @@ View stats of players in the current game of Company of Heroes 3.
 14. Scale the source to match the Coh3 source size
 
 ## Custom CSS for the overlay 
+If you don't like the default style of overlay, you can modify it with custom CSS.
 All the elements in the overlay have CSS classes assigned. The styling is as follows:
 ```
 
