@@ -21,7 +21,7 @@ import { PlayerWinRatio } from "./PlayerWinRatio"
 import { PlayerWins } from "./PlayerWins"
 import { open } from "@tauri-apps/api/shell"
 import { getFactionName, getCountryName } from "../utils/renameLabels"
-import RankIcon from "./other/rank-icon";
+import RankIcon from "./other/rank-icon"
 
 export interface PlayerCardProps extends FullPlayerData {}
 
@@ -58,28 +58,28 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
           <Col span="auto">
             <Stack align="stretch">
               <Group position={"apart"}>
-              <Group>
-                {!ai ? (
-                  <Tooltip label={countryName}>
-                    <Image
-                      src={"/flags/4x3/" + country + ".svg"}
-                      alt={country}
-                      width={35}
-                    />
-                  </Tooltip>
-                ) : null}
+                <Group>
+                  {!ai ? (
+                    <Tooltip label={countryName}>
+                      <Image
+                        src={"/flags/4x3/" + country + ".svg"}
+                        alt={country}
+                        width={35}
+                      />
+                    </Tooltip>
+                  ) : null}
 
-                <Title
-                  size="h3"
-                  onClick={() =>
-                    open("https://coh3stats.com/players/" + relicID)
-                  }
-                >
-                  <Anchor>{name}</Anchor> {self ? <>(You)</> : null}
-                </Title>
-                {/*<ColorSwatch color={color} />*/}
-              </Group>
-              <RankIcon size={35} rank={rank || 0} rating={rating || 0} />
+                  <Title
+                    size="h3"
+                    onClick={() =>
+                      open("https://coh3stats.com/players/" + relicID)
+                    }
+                  >
+                    <Anchor>{name}</Anchor> {self ? <>(You)</> : null}
+                  </Title>
+                  {/*<ColorSwatch color={color} />*/}
+                </Group>
+                <RankIcon size={35} rank={rank || 0} rating={rating || 0} />
               </Group>
 
               <Group position="apart" grow>
