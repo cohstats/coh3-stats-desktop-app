@@ -1,4 +1,4 @@
-# Coh3 Stats Desktop App
+# COH3 Stats Desktop App
 
 View stats of players in the current game of Company of Heroes 3.
 
@@ -30,6 +30,106 @@ View stats of players in the current game of Company of Heroes 3.
 13. Click Ok to finish creating the source
 <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227337725-c9f9d443-1611-4765-94a6-5411c2032c86.png" height="400" ></a>
 14. Scale the source to match the Coh3 source size
+
+## Custom CSS for the overlay 
+All the elements in the overlay have CSS classes assigned. The styling is as follows:
+```
+
+.coh3stats-overlay {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  position: absolute;
+  left: calc((100vw / 2) - 485px);
+  right: calc((100vw / 2) - 485px);
+  top: 65px;
+}
+
+.coh3stats-overlay-left {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding-right: 40px;
+  padding-left: 10px;
+}
+
+.coh3stats-overlay-right {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding-left: 40px;
+  padding-right: 10px;
+}
+
+.coh3stats-overlay-player {
+  color: white;
+  font-size: 20px;
+  font-family: Tilt Warp;
+}
+
+.coh3stats-overlay-player-factionIcon {
+  padding-right: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.coh3stats-overlay-player-flagIcon {
+  padding-right: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.coh3stats-overlay-player-rank {
+  padding-right: 10px;
+  min-width: 4ch;
+  display: inline-block;
+  text-align: center;
+}
+
+.coh3stats-overlay-player-rating {
+  padding-right: 10px;
+  min-width: 4ch;
+  display: inline-block;
+  text-align: center;
+}
+
+.coh3stats-overlay-player-name {
+  max-width: 17ch;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+```
+
+Steps when you want to change something.
+Let's say I want to move it lower and change the color to red. 
+1. Pick the classes you want to change and do the changes:
+```
+.coh3stats-overlay {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  position: absolute;
+  left: calc((100vw / 2) - 485px);
+  right: calc((100vw / 2) - 485px);
+  top: 250px; 
+}
+
+.coh3stats-overlay-player {
+  color: red;
+  font-size: 20px;
+  font-family: Tilt Warp;
+}
+```
+2. Open the configuration of "Overlay" in OBS 
+![image](https://github.com/cohstats/coh3-stats-desktop-app/assets/8086995/fa62f8df-0c08-4a1f-a12b-ca1598b2deb6)
+3. Paste the 2 modified classes into the box Custom CSS
+![image](https://github.com/cohstats/coh3-stats-desktop-app/assets/8086995/c6f4cb56-f250-40f9-be93-5f65fefe8421)
+4. Click OK and observe the changes
+![image](https://github.com/cohstats/coh3-stats-desktop-app/assets/8086995/ee77f6f8-2a8b-4da5-960c-e2c15f119d48)
+
+
 
 ## Development
 
