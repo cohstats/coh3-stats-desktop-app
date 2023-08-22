@@ -15,9 +15,7 @@ export const PlayerEntry: React.FC<PlayerEntryProps> = ({
   flags = false,
 }) => {
   return (
-    <div
-      className={"coh3stats-overlay-player"}
-    >
+    <div className={"coh3stats-overlay-player"}>
       <img
         className={"coh3stats-overlay-player-factionIcon"}
         src={
@@ -36,25 +34,17 @@ export const PlayerEntry: React.FC<PlayerEntryProps> = ({
           }
         />
       ) : null}
-      <span
-        className={"coh3stats-overlay-player-rank"}
-      >
+      <span className={"coh3stats-overlay-player-rank"}>
         {playerData.rank === undefined || playerData.rank === -1
           ? "-"
           : "#" + playerData.rank}
       </span>{" "}
-      <span
-        className={"coh3stats-overlay-player-rating"}
-      >
+      <span className={"coh3stats-overlay-player-rating"}>
         {playerData.rating === undefined || playerData.rating === -1
           ? "-"
           : playerData.rating}
       </span>{" "}
-      <span
-        className={"coh3stats-overlay-player-name"}
-      >
-        {playerData.name}
-      </span>
+      <span className={"coh3stats-overlay-player-name"}>{playerData.name}</span>
     </div>
   )
 }

@@ -24,12 +24,8 @@ export const OverlayApp: React.FC<OverlayAppProps> = ({
       {alwaysVisible ||
       gameData.state === "Loading" ||
       gameData.state === "InGame" ? (
-        <div
-          className={"coh3stats-overlay"}
-        >
-          <div
-            className={"coh3stats-overlay-left"}
-          >
+        <div className={"coh3stats-overlay"}>
+          <div className={"coh3stats-overlay-left"}>
             {gameData.left.players.map((player, index) => (
               <PlayerEntry
                 key={player.relicID + "_" + index}
@@ -38,9 +34,7 @@ export const OverlayApp: React.FC<OverlayAppProps> = ({
               />
             ))}
           </div>
-          <div
-            className={"coh3stats-overlay-right"}
-          >
+          <div className={"coh3stats-overlay-right"}>
             {gameData.right.players.map((player, index) => (
               <PlayerEntry
                 key={player.relicID + "_" + index}
