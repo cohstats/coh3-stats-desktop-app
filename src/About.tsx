@@ -86,7 +86,7 @@ export const About: React.FC = () => {
               <img
                 src="https://storage.ko-fi.com/cdn/cup-border.png"
                 alt="Ko-fi donations"
-                width={20}
+                width={18}
               />
               Donate
             </Group>

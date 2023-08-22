@@ -1,8 +1,8 @@
 [package]
 name = "coh3-stats-desktop-app"
-version = "1.2.2"
-description = "A Tauri App"
-authors = ["you"]
+version = "1.2.3"
+description = "COH3 Stats Desktop App"
+authors = ["coh3stats team"]
 license = ""
 repository = ""
 edition = "2021"

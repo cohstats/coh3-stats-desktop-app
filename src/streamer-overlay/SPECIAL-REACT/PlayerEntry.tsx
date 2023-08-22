@@ -16,66 +16,42 @@ export const PlayerEntry: React.FC<PlayerEntryProps> = ({
 }) => {
   return (
     <div
-      style={{
-        color: "white",
-        fontSize: 20,
-        fontFamily: "'Tilt Warp', cursive",
-      }}
+      className={"coh3stats-overlay-player"}
     >
       <img
+        className={"coh3stats-overlay-player-factionIcon"}
         src={
           "https://raw.githubusercontent.com/cohstats/coh3-stats-desktop-app/master/public/factions/" +
           playerData.faction +
           ".webp"
         }
-        width={25}
-        height={25}
-        style={{ paddingRight: 10 }}
       />
       {flags ? (
         <img
+          className={"coh3stats-overlay-player-flagIcon"}
           src={
             "https://raw.githubusercontent.com/cohstats/coh3-stats-desktop-app/master/public/flags/4x3/" +
             playerData.country +
             ".svg"
           }
-          width={25}
-          height={25}
-          style={{ paddingRight: 10 }}
         />
       ) : null}
       <span
-        style={{
-          paddingRight: 10,
-          minWidth: "4ch",
-          display: "inline-block",
-          textAlign: "center",
-        }}
+        className={"coh3stats-overlay-player-rank"}
       >
         {playerData.rank === undefined || playerData.rank === -1
           ? "-"
           : "#" + playerData.rank}
       </span>{" "}
       <span
-        style={{
-          paddingRight: 10,
-          minWidth: "4ch",
-          display: "inline-block",
-          textAlign: "center",
-        }}
+        className={"coh3stats-overlay-player-rating"}
       >
         {playerData.rating === undefined || playerData.rating === -1
           ? "-"
           : playerData.rating}
       </span>{" "}
       <span
-        style={{
-          maxWidth: "17ch",
-          display: "inline-block",
-          textOverflow: "ellipsis",
-          overflow: "hidden",
-          whiteSpace: "nowrap",
-        }}
+        className={"coh3stats-overlay-player-name"}
       >
         {playerData.name}
       </span>

@@ -217,6 +217,16 @@ export const Settings: React.FC = () => {
               >
                 Setup instructions
               </Anchor>
+              {" "}&{" "}<Anchor
+              onClick={() =>
+                openLink(
+                  "https://github.com/cohstats/coh3-stats-desktop-app#custom-css-for-the-overlay"
+                )
+              }
+            >
+              Custom CSS instructions
+            </Anchor>
+
             </Text>
             <Group pt="md">
               <Text>Path to streamerOverlay.html:</Text>

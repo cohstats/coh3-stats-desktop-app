@@ -25,24 +25,10 @@ export const OverlayApp: React.FC<OverlayAppProps> = ({
       gameData.state === "Loading" ||
       gameData.state === "InGame" ? (
         <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "flex-start",
-            alignItems: "stretch",
-            position: "absolute",
-            left: "calc(calc(100vw / 2) - 485px)",
-            right: "calc(calc(100vw / 2) - 485px)",
-            top: 65,
-          }}
+          className={"coh3stats-overlay"}
         >
           <div
-            style={{
-              flexGrow: 1,
-              flexBasis: 0,
-              paddingRight: 40,
-              paddingLeft: 10,
-            }}
+            className={"coh3stats-overlay-left"}
           >
             {gameData.left.players.map((player, index) => (
               <PlayerEntry
@@ -53,12 +39,7 @@ export const OverlayApp: React.FC<OverlayAppProps> = ({
             ))}
           </div>
           <div
-            style={{
-              flexGrow: 1,
-              flexBasis: 0,
-              paddingLeft: 40,
-              paddingRight: 10,
-            }}
+            className={"coh3stats-overlay-right"}
           >
             {gameData.right.players.map((player, index) => (
               <PlayerEntry
