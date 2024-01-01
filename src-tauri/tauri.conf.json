@@ -7,7 +7,7 @@
     },
     "package": {
         "productName": "Coh3 Stats Desktop App",
-        "version": "1.2.4"
+        "version": "1.2.6"
     },
     "tauri": {
         "allowlist": {
