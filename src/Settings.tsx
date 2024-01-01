@@ -137,7 +137,7 @@ export const Settings: React.FC = () => {
                 />
                 <Text>Volume:</Text>
                 <Slider
-                  min={0}
+                  min={0.1}
                   max={1}
                   step={0.1}
                   style={{ width: "100px" }}

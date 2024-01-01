@@ -1,7 +1,7 @@
 {
     "name": "coh3-stats-desktop-app",
     "private": true,
-    "version": "1.2.3",
+    "version": "1.2.4",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -12,30 +12,30 @@
         "tauri": "tauri"
     },
     "dependencies": {
-        "@emotion/react": "^11.11.1",
-        "@mantine/core": "^6.0.15",
-        "@mantine/hooks": "^6.0.15",
-        "@tabler/icons-react": "^2.23.0",
-        "@tauri-apps/api": "^1.2.0",
-        "axios": "^1.4.0",
+        "@emotion/react": "11.11.3",
+        "@mantine/core": "6.0.21",
+        "@mantine/hooks": "6.0.21",
+        "@tabler/icons-react": "2.44.0",
+        "@tauri-apps/api": "1.5.3",
+        "axios": "1.6.3",
         "coh-stats-components": "github:cohstats/coh-stats-components#0.0.7",
         "coh3-data-types-library": "github:cohstats/coh3-data-types-library#0.0.2",
-        "mixpanel-browser": "^2.47.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-router-dom": "^6.14.0",
+        "mixpanel-browser": "2.48.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-router-dom": "6.21.1",
         "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch",
         "tauri-plugin-log-api": "https://github.com/tauri-apps/tauri-plugin-log",
         "tauri-plugin-store-api": "https://github.com/tauri-apps/tauri-plugin-store"
     },
     "devDependencies": {
-        "@tauri-apps/cli": "^1.2.2",
-        "@types/mixpanel-browser": "^2.38.1",
-        "@types/react": "^18.2.14",
-        "@types/react-dom": "^18.2.6",
-        "@vitejs/plugin-react": "^3.0.0",
-        "prettier": "^2.8.8",
-        "typescript": "^5.1.6",
-        "vite": "^4.3.9"
+        "@tauri-apps/cli": "1.5.9",
+        "@types/mixpanel-browser": "2.48.1",
+        "@types/react": "18.2.46",
+        "@types/react-dom": "18.2.18",
+        "@vitejs/plugin-react": "3.1.0",
+        "prettier": "2.8.8",
+        "typescript": "5.1.6",
+        "vite": "4.5.1"
     }
 }
