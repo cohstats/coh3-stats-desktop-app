@@ -67,7 +67,7 @@ export const OnlinePlayers: React.FC = () => {
         onlinePlayersData?.timeStampMs || ""
       ).toLocaleString()}`}
       multiline
-      width={200}
+      width={250}
       withArrow
     >
       <div>

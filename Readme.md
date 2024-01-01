@@ -1,6 +1,7 @@
 # COH3 Stats Desktop App
 
-View stats of players in the current game of Company of Heroes 3.
+View stats of players in the current game of Company of Heroes 3.  
+**Download from https://coh3stats.com/desktop-app**
 
 ## Setup OBS Streamer Overlay
 
@@ -167,9 +168,6 @@ Don't forget to run prettier with `yarn fix`.
   - `src-tauri/Cargo.toml`
 - Commit the updated version 
 - Make a new tag on master
-- Merge master into release branch (TODO: Why we have separate release branch?)
-
-
 
 ## Project Architecture
 
