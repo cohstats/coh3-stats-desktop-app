@@ -17,6 +17,8 @@ struct Payload {
 }
 
 fn main() {
+    tauri_plugin_deep_link::prepare("com.coh3stats.desktop");
+
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             get_default_log_file_path,
@@ -42,12 +44,26 @@ fn main() {
                 .build(),
         )
         .plugin(tauri_plugin_fs_watch::init())
-        .plugin(tauri_plugin_window_state::Builder::default().build())
+        // .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
         .setup(|app| {
             // Add window shadows
             let window = app.get_window("main").unwrap();
             set_shadow(&window, true).expect("Unsupported platform!");
+
+            // Set up deep link
+            let handle = app.handle();
+            tauri_plugin_deep_link::register(
+                "coh3stats",
+                move |request| {
+                    dbg!(&request);
+                    handle.emit_all("scheme-request-received", request).unwrap();
+                    for (key, val) in handle.windows().iter() {
+                        val.set_focus();
+                    }
+                }
+            ).unwrap();
+
             Ok(())
         })
         .run(tauri::generate_context!())
