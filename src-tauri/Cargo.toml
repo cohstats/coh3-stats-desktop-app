@@ -29,6 +29,7 @@ log = "^0.4"
 tauri-plugin-log = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
 machine-uid = "0.2.0"
 tauri-plugin-deep-link = "0.1.2"
+tauri-plugin-cohdb = { path = "../../tauri-plugin-cohdb" }
 
 [dev-dependencies]
 criterion = { version = "0.4", features = ["html_reports"] }

@@ -18,7 +18,7 @@ import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
-import { open } from "@tauri-apps/api/dialog"
+import {message, open} from "@tauri-apps/api/dialog"
 import { open as openLink } from "@tauri-apps/api/shell"
 import { useLogFilePath } from "./game-data-provider/configValues"
 import {
@@ -32,6 +32,12 @@ import {
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
 import events from "./mixpanel/mixpanel"
 import { useGameData } from "./game-data-provider/GameDataProvider"
+import {invoke} from "@tauri-apps/api/tauri";
+import {listen} from "@tauri-apps/api/event";
+
+interface CohdbConnectionPayload {
+  connected: boolean
+}
 
 export const Settings: React.FC = () => {
   const gameData = useGameData()
@@ -41,6 +47,7 @@ export const Settings: React.FC = () => {
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay()
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay()
   const [appDataPath, setAppDataPath] = useState<string>("")
+  const [cohdbConnected, setCohdbConnected] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
     events.open_settings()
@@ -55,6 +62,36 @@ export const Settings: React.FC = () => {
       getAppDataPath()
     }
   }, [appDataPath])
+
+  useEffect(() => {
+    const getCohdbConnected = async () => {
+      const connected = await invoke('plugin:cohdb|connected') as boolean;
+      setCohdbConnected(connected);
+    }
+
+    const unlisten = listen<CohdbConnectionPayload>('cohdb:connection', ({ payload: { connected } }) => {
+      getCohdbConnected();
+      if (connected) {
+        message('Your account has been connected! You can close the browser window now.');
+      }
+    });
+
+    getCohdbConnected();
+
+    return () => {
+      unlisten.then(f => f());
+    }
+  }, [])
+
+  // useEffect(() => {
+  //   const getCohdbConnected = async () => {
+  //     const connected = await invoke('plugin:cohdb|connected') as boolean;
+  //     console.warn('connected', connected);
+  //     setCohdbConnected(connected);
+  //   }
+  //
+  //   getCohdbConnected()
+  // }, [cohdbConnected])
 
   const openDialog = async () => {
     const selected = await open({
@@ -241,6 +278,22 @@ export const Settings: React.FC = () => {
                 </ActionIcon>
               </Tooltip>
             </Group>
+            {cohdbConnected != undefined && (
+              <Group pt="md">
+                {cohdbConnected ? (
+                  <>
+                    Connected!
+                    <Button variant="default" onClick={() => invoke('plugin:cohdb|disconnect')}>
+                      Disconnect
+                    </Button>
+                  </>
+                ) : (
+                  <Button variant="default" onClick={() => invoke('plugin:cohdb|authenticate')}>
+                    Authenticate with cohdb!
+                  </Button>
+                )}
+              </Group>
+            )}
           </div>
         </Stack>
       </Box>

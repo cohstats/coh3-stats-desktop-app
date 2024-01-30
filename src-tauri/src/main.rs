@@ -46,6 +46,7 @@ fn main() {
         .plugin(tauri_plugin_fs_watch::init())
         // .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
+        .plugin(tauri_plugin_cohdb::init("cAa3BzJMYurf05WJM2ra_oVAPtWqa9Vr-qVxu6UtZgc".to_string(), "coh3stats://cohdb.com/oauth/authorize".to_string()))
         .setup(|app| {
             // Add window shadows
             let window = app.get_window("main").unwrap();
@@ -56,11 +57,7 @@ fn main() {
             tauri_plugin_deep_link::register(
                 "coh3stats",
                 move |request| {
-                    dbg!(&request);
-                    handle.emit_all("scheme-request-received", request).unwrap();
-                    for (key, val) in handle.windows().iter() {
-                        val.set_focus();
-                    }
+                    tauri_plugin_cohdb::retrieve_token(&request, &handle);
                 }
             ).unwrap();
 
