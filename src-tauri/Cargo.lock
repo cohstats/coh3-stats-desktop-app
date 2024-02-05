@@ -708,7 +708,7 @@ dependencies = [
  "log",
  "machine-uid",
  "nom",
- "notify",
+ "notify 6.1.1",
  "rev_lines",
  "serde",
  "serde_json",
@@ -2466,6 +2466,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6877bb514081ee2a7ff5ef9de3281f14a4dd4bceac4c09388074a6b5df8a139a"
 
 [[package]]
+name = "mime_guess"
+version = "2.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4192263c238a5f0d0c6bfd21f336a313a4ce1c450542449ca191bb657b4642ef"
+dependencies = [
+ "mime",
+ "unicase",
+]
+
+[[package]]
 name = "minimal-lexical"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2599,13 +2609,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "notify"
+version = "6.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6205bd8bb1e454ad2e27422015fb5e4f2bcc7e08fa8f27058670d208324a4d2d"
+dependencies = [
+ "bitflags 2.4.1",
+ "crossbeam-channel",
+ "filetime",
+ "fsevent-sys",
+ "inotify",
+ "kqueue",
+ "libc",
+ "log",
+ "mio",
+ "walkdir",
+ "windows-sys 0.48.0",
+]
+
+[[package]]
 name = "notify-debouncer-mini"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e23e9fa24f094b143c1eb61f90ac6457de87be6987bc70746e0179f7dbc9007b"
 dependencies = [
  "crossbeam-channel",
- "notify",
+ "notify 5.2.0",
  "serde",
 ]
 
@@ -3559,6 +3588,7 @@ dependencies = [
  "js-sys",
  "log",
  "mime",
+ "mime_guess",
  "native-tls",
  "once_cell",
  "percent-encoding",
@@ -4442,8 +4472,10 @@ name = "tauri-plugin-cohdb"
 version = "0.1.0"
 dependencies = [
  "keyring",
+ "log",
  "oauth2",
  "regex",
+ "reqwest",
  "serde",
  "tauri",
  "thiserror",
@@ -4471,7 +4503,7 @@ version = "0.1.0"
 source = "git+https://github.com/tauri-apps/plugins-workspace?branch=dev#cea1d4f7b54b94354e8100daf804b810c680efd7"
 dependencies = [
  "log",
- "notify",
+ "notify 5.2.0",
  "notify-debouncer-mini",
  "serde",
  "serde_json",
@@ -4978,6 +5010,15 @@ dependencies = [
  "memoffset 0.9.0",
  "tempfile",
  "winapi",
+]
+
+[[package]]
+name = "unicase"
+version = "2.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f7d2d4dafb69621809a81864c9c1b864479e1235c0dd4e199924b9742439ed89"
+dependencies = [
+ "version_check",
 ]
 
 [[package]]
