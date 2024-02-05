@@ -6,7 +6,7 @@
 extern crate machine_uid;
 use coh3_stats_desktop_app::parse_log_file;
 use std::path::{Path, PathBuf};
-use notify::{Config, EventKind, FsEventWatcher, RecommendedWatcher, RecursiveMode};
+use notify::{Config, EventKind, RecommendedWatcher, RecursiveMode};
 use notify::event::ModifyKind::Data;
 use std::sync::Mutex;
 use log::{error, info, warn};
@@ -26,7 +26,7 @@ struct Payload {
 #[derive(Debug)]
 struct State {
     store: Store<Wry>,
-    playback_watcher: Mutex<Option<FsEventWatcher>>,
+    playback_watcher: Mutex<Option<RecommendedWatcher>>,
 }
 
 impl State {
@@ -134,7 +134,7 @@ fn watch_and_store(path: PathBuf, state: tauri::State<State>) {
     *state.playback_watcher.lock().unwrap() = watcher;
 }
 
-fn watch_playback(path: PathBuf) -> notify::Result<FsEventWatcher> {
+fn watch_playback(path: PathBuf) -> notify::Result<RecommendedWatcher> {
     let (tx, rx) = std::sync::mpsc::channel();
 
     let mut watcher = RecommendedWatcher::new(tx, Config::default())?;
