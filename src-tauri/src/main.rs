@@ -69,7 +69,7 @@ fn main() {
         // .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_cohdb::init(
-            "cAa3BzJMYurf05WJM2ra_oVAPtWqa9Vr-qVxu6UtZgc".to_string(),
+            "kHERjpU_rXcvgvLgwPir0w3bqcgETLOH-p95-PVxN-M".to_string(),
             "coh3stats://cohdb.com/oauth/authorize".to_string(),
         ))
         .setup(setup)
