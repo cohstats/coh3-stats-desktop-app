@@ -156,7 +156,7 @@ fn watch_playback(path: PathBuf, handle: AppHandle<Wry>) -> notify::Result<Recom
                             Ok(buf) => buf,
                             Err(err) => {
                                 error!("error reading file at {}: {err}", path.display());
-                                break;
+                                continue;
                             }
                         };
 
