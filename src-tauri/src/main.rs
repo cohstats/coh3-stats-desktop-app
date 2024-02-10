@@ -177,14 +177,20 @@ fn watch_playback(path: PathBuf, handle: AppHandle<Wry>) -> notify::Result<Recom
                                             .collect::<Vec<_>>()
                                             .is_empty()
                                         {
-                                            if let Err(err) = tauri_plugin_cohdb::upload(
-                                                bytes,
-                                                format!("{}.rec", replay.matchhistory_id()),
-                                                handle.clone(),
-                                            )
-                                            .await
-                                            {
-                                                error!("error uploading replay: {err}");
+                                            // naive check for skirmish games, they have very large values in this field
+                                            // so we can use that to check and skip for now (need to add natively later)
+                                            if replay.matchhistory_id() < 18446744073709551360 {
+                                                if let Err(err) = tauri_plugin_cohdb::upload(
+                                                    bytes,
+                                                    format!("{}.rec", replay.matchhistory_id()),
+                                                    handle.clone(),
+                                                )
+                                                    .await
+                                                {
+                                                    error!("error uploading replay: {err}");
+                                                }
+                                            } else {
+                                                warn!("skirmish replay detected at {}, skipping", path.display());
                                             }
                                         } else {
                                             warn!("replay at {} does not include player with profile ID {}", path.display(), user.profile_id);
