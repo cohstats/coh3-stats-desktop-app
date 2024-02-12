@@ -14,7 +14,7 @@ use std::sync::Mutex;
 use tauri::{AppHandle, Manager, Wry};
 use tauri_plugin_log::LogTarget;
 use tauri_plugin_store::{Store, StoreBuilder};
-use vault::Replay;
+use vault::{GameType, Replay};
 use window_shadows::set_shadow;
 
 #[derive(Clone, serde::Serialize)]
@@ -177,12 +177,10 @@ fn watch_playback(path: PathBuf, handle: AppHandle<Wry>) -> notify::Result<Recom
                                             .collect::<Vec<_>>()
                                             .is_empty()
                                         {
-                                            // naive check for skirmish games, they have very large values in this field
-                                            // so we can use that to check and skip for now (need to add natively later)
-                                            if replay.matchhistory_id() < 18446744073709551360 {
+                                            if replay.game_type() != GameType::Skirmish {
                                                 if let Err(err) = tauri_plugin_cohdb::upload(
                                                     bytes,
-                                                    format!("{}.rec", replay.matchhistory_id()),
+                                                    format!("{}.rec", replay.matchhistory_id().unwrap()),
                                                     handle.clone(),
                                                 )
                                                     .await
