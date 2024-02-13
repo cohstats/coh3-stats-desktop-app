@@ -170,9 +170,8 @@ fn watch_playback(path: PathBuf, handle: AppHandle<Wry>) -> notify::Result<Recom
                                             .players()
                                             .iter()
                                             .filter(|player| {
-                                                player
-                                                    .profile_id()
-                                                    .is_some_and(|id| id == user.profile_id)
+                                                player.profile_id().is_some()
+                                                    && player.profile_id() == user.profile_id
                                             })
                                             .collect::<Vec<_>>()
                                             .is_empty()
@@ -180,18 +179,24 @@ fn watch_playback(path: PathBuf, handle: AppHandle<Wry>) -> notify::Result<Recom
                                             if replay.game_type() != GameType::Skirmish {
                                                 if let Err(err) = tauri_plugin_cohdb::upload(
                                                     bytes,
-                                                    format!("{}.rec", replay.matchhistory_id().unwrap()),
+                                                    format!(
+                                                        "{}.rec",
+                                                        replay.matchhistory_id().unwrap()
+                                                    ),
                                                     handle.clone(),
                                                 )
-                                                    .await
+                                                .await
                                                 {
                                                     error!("error uploading replay: {err}");
                                                 }
                                             } else {
-                                                warn!("skirmish replay detected at {}, skipping", path.display());
+                                                warn!(
+                                                    "skirmish replay detected at {}, skipping",
+                                                    path.display()
+                                                );
                                             }
                                         } else {
-                                            warn!("replay at {} does not include player with profile ID {}", path.display(), user.profile_id);
+                                            warn!("replay at {} does not include player with profile ID {:?}", path.display(), user.profile_id);
                                         }
                                     } else {
                                         debug!("cohdb user not connected, skipping upload");
