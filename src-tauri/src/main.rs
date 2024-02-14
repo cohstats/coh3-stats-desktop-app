@@ -5,7 +5,7 @@
 
 extern crate machine_uid;
 
-use coh3_stats_desktop_app::parse_log_file;
+use coh3_stats_desktop_app::{parse_log_file, plugins::cohdb};
 use log::error;
 use std::path::Path;
 use tauri::Manager;
@@ -49,7 +49,7 @@ fn main() {
         .plugin(tauri_plugin_fs_watch::init())
         // .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
-        .plugin(tauri_plugin_cohdb::init(
+        .plugin(cohdb::auth::init(
             "kHERjpU_rXcvgvLgwPir0w3bqcgETLOH-p95-PVxN-M".to_string(),
             "coh3stats://cohdb.com/oauth/authorize".to_string(),
         ))
@@ -68,7 +68,7 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let handle = app.handle();
     tauri_plugin_deep_link::register("coh3stats", move |request| {
         if let Err(err) =
-            tauri::async_runtime::block_on(tauri_plugin_cohdb::retrieve_token(&request, &handle))
+            tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle))
         {
             error!("error retrieving cohdb token: {err}");
         }

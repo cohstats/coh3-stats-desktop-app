@@ -6,9 +6,11 @@ use tauri::{
     plugin::{Builder, TauriPlugin},
     AppHandle, EventHandler, Manager, Runtime,
 };
-use tauri_plugin_cohdb::responses::User;
+use auth::responses::User;
 use tauri_plugin_store::StoreBuilder;
 use vault::{GameType, Replay};
+
+use super::auth;
 
 #[derive(Debug)]
 pub struct State {
@@ -16,7 +18,7 @@ pub struct State {
 }
 
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
-    Builder::new("cohdb")
+    Builder::new("cohdbsync")
         .invoke_handler(tauri::generate_handler![])
         .setup(|app| {
             let path = PathBuf::from(load_playback_path(app.clone()));
@@ -71,7 +73,7 @@ fn watch<R: Runtime>(path: PathBuf, handle: AppHandle<R>) -> notify::Result<Reco
 }
 
 async fn handle_modify_event<R: Runtime>(event: Event, handle: AppHandle<R>) {
-    let Some(user) = tauri_plugin_cohdb::connected_user(handle.clone()).await else {
+    let Some(user) = auth::connected_user(handle.clone()).await else {
         error!("cohdb user not connected, skipping sync");
         return;
     };
@@ -101,7 +103,7 @@ async fn handle_modify_event<R: Runtime>(event: Event, handle: AppHandle<R>) {
                 return;
             }
 
-            if let Err(err) = tauri_plugin_cohdb::upload(
+            if let Err(err) = auth::upload(
                 bytes,
                 format!("{}.rec", replay.matchhistory_id().unwrap()),
                 handle.clone(),
