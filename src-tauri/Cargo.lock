@@ -4509,7 +4509,7 @@ dependencies = [
 [[package]]
 name = "tauri-plugin-cohdb"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/tauri-plugin-cohdb?branch=main#0d305a2144ef3a365d299a6e07f99b2dd5e2706c"
+source = "git+https://github.com/ryantaylor/tauri-plugin-cohdb?branch=main#f8fc522bfea56a7c90f001ef52f791675d7bb7d2"
 dependencies = [
  "keyring",
  "log",

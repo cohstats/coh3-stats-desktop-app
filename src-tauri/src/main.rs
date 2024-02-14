@@ -6,36 +6,16 @@
 extern crate machine_uid;
 
 use coh3_stats_desktop_app::parse_log_file;
-use log::{debug, error, info, warn};
-use notify::Watcher;
-use notify::{Config, RecommendedWatcher, RecursiveMode};
-use std::path::{Path, PathBuf};
-use std::sync::Mutex;
-use tauri::{AppHandle, Manager, Wry};
+use log::error;
+use std::path::Path;
+use tauri::Manager;
 use tauri_plugin_log::LogTarget;
-use tauri_plugin_store::{Store, StoreBuilder};
-use vault::{GameType, Replay};
 use window_shadows::set_shadow;
 
 #[derive(Clone, serde::Serialize)]
 struct Payload {
     args: Vec<String>,
     cwd: String,
-}
-
-#[derive(Debug)]
-struct State {
-    store: Store<Wry>,
-    playback_watcher: Mutex<Option<RecommendedWatcher>>,
-}
-
-impl State {
-    pub fn new(store: Store<Wry>) -> Self {
-        Self {
-            store,
-            playback_watcher: Mutex::new(None),
-        }
-    }
 }
 
 fn main() {
@@ -73,20 +53,13 @@ fn main() {
             "kHERjpU_rXcvgvLgwPir0w3bqcgETLOH-p95-PVxN-M".to_string(),
             "coh3stats://cohdb.com/oauth/authorize".to_string(),
         ))
+        .plugin(coh3_stats_desktop_app::plugins::cohdb::sync::init())
         .setup(setup)
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
-    let handle = app.handle();
-    let mut store = StoreBuilder::new(handle, "config.dat".parse().unwrap()).build();
-    if let Err(err) = store.load() {
-        warn!("error loading store: {err}");
-    }
-
-    app.manage(State::new(store));
-
     // Add window shadows
     let window = app.get_window("main").unwrap();
     set_shadow(&window, true).expect("Unsupported platform!");
@@ -94,137 +67,15 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     // Set up deep link
     let handle = app.handle();
     tauri_plugin_deep_link::register("coh3stats", move |request| {
-        let state = handle.state::<State>();
-        tauri::async_runtime::block_on(tauri_plugin_cohdb::retrieve_token(&request, &handle))
-            .unwrap();
-
-        // Set up playback watcher
-        let dir = playback_dir_from_store(state);
-        watch_and_store(PathBuf::from(dir), handle.clone());
+        if let Err(err) =
+            tauri::async_runtime::block_on(tauri_plugin_cohdb::retrieve_token(&request, &handle))
+        {
+            error!("error retrieving cohdb token: {err}");
+        }
     })
     .unwrap();
 
-    // Set up initial directory watcher
-    let handle = app.handle();
-    if tauri::async_runtime::block_on(tauri_plugin_cohdb::is_connected(app.handle())).is_some() {
-        let state = handle.state::<State>();
-        let dir = playback_dir_from_store(state);
-        watch_and_store(PathBuf::from(dir), handle);
-    }
-
-    // Listen to store changes
-    let handle = app.handle();
-    let _id = app.listen_global("playback-dir-changed", move |event| {
-        let dir: String = serde_json::from_str(event.payload().unwrap()).unwrap();
-
-        info!("playback directory changed to {dir}");
-
-        watch_and_store(PathBuf::from(dir), handle.clone());
-    });
-
     Ok(())
-}
-
-fn watch_and_store(path: PathBuf, handle: AppHandle<Wry>) {
-    let state = handle.state::<State>();
-    let watcher = match watch_playback(path, handle.clone()) {
-        Ok(watch) => Some(watch),
-        Err(err) => {
-            warn!("problem watching playback directory: {err}");
-            None
-        }
-    };
-    *state.playback_watcher.lock().unwrap() = watcher;
-}
-
-fn watch_playback(path: PathBuf, handle: AppHandle<Wry>) -> notify::Result<RecommendedWatcher> {
-    let (tx, rx) = std::sync::mpsc::channel();
-
-    let mut watcher = RecommendedWatcher::new(tx, Config::default())?;
-
-    watcher.watch(&path, RecursiveMode::NonRecursive)?;
-
-    tauri::async_runtime::spawn(async move {
-        for res in rx {
-            match res {
-                Ok(event) => {
-                    debug!("got file event: {event:?}");
-
-                    if event.kind.is_modify() {
-                        let path = event.paths[0].clone();
-                        let bytes = match std::fs::read(path.clone()) {
-                            Ok(buf) => buf,
-                            Err(err) => {
-                                error!("error reading file at {}: {err}", path.display());
-                                continue;
-                            }
-                        };
-
-                        if !bytes.is_empty() {
-                            match Replay::from_bytes(&bytes) {
-                                Ok(replay) => {
-                                    if let Some(user) =
-                                        tauri_plugin_cohdb::is_connected(handle.clone()).await
-                                    {
-                                        if !replay
-                                            .players()
-                                            .iter()
-                                            .filter(|player| {
-                                                player.profile_id().is_some()
-                                                    && player.profile_id() == user.profile_id
-                                            })
-                                            .collect::<Vec<_>>()
-                                            .is_empty()
-                                        {
-                                            if replay.game_type() != GameType::Skirmish {
-                                                if let Err(err) = tauri_plugin_cohdb::upload(
-                                                    bytes,
-                                                    format!(
-                                                        "{}.rec",
-                                                        replay.matchhistory_id().unwrap()
-                                                    ),
-                                                    handle.clone(),
-                                                )
-                                                .await
-                                                {
-                                                    error!("error uploading replay: {err}");
-                                                }
-                                            } else {
-                                                warn!(
-                                                    "skirmish replay detected at {}, skipping",
-                                                    path.display()
-                                                );
-                                            }
-                                        } else {
-                                            warn!("replay at {} does not include player with profile ID {:?}", path.display(), user.profile_id);
-                                        }
-                                    } else {
-                                        debug!("cohdb user not connected, skipping upload");
-                                    }
-                                }
-                                Err(err) => {
-                                    warn!("error parsing replay at {}: {err}", path.display())
-                                }
-                            }
-                        } else {
-                            info!("skipping empty stub file {}", path.display());
-                        }
-                    }
-                }
-                Err(error) => error!("file event error: {error:?}"),
-            }
-        }
-    });
-
-    Ok(watcher)
-}
-
-fn playback_dir_from_store(state: tauri::State<State>) -> String {
-    if let Some(path) = state.store.get("playbackPath") {
-        serde_json::from_value(path.clone()).unwrap()
-    } else {
-        default_playback_path()
-    }
 }
 
 /// returns the default expected log file path
