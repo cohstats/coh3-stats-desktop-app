@@ -18,9 +18,12 @@ import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
 import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
-import { open } from "@tauri-apps/api/dialog"
+import { message, open } from "@tauri-apps/api/dialog"
 import { open as openLink } from "@tauri-apps/api/shell"
-import { useLogFilePath } from "./game-data-provider/configValues"
+import {
+  useLogFilePath,
+  usePlaybackPath,
+} from "./game-data-provider/configValues"
 import {
   usePlaySound,
   usePlaySoundVolume,
@@ -32,15 +35,27 @@ import {
 import { playSound as playSoundFunc } from "./game-found-sound/playSound"
 import events from "./mixpanel/mixpanel"
 import { useGameData } from "./game-data-provider/GameDataProvider"
+import { invoke } from "@tauri-apps/api/tauri"
+import { emit, listen } from "@tauri-apps/api/event"
+import { Simulate } from "react-dom/test-utils"
+import play = Simulate.play
+
+interface CohdbUser {
+  name: string
+  profile_id: number
+  steam_id: number
+}
 
 export const Settings: React.FC = () => {
   const gameData = useGameData()
   const [logFilePath, setLogFilePath] = useLogFilePath()
+  const [playbackPath, setPlaybackPath] = usePlaybackPath()
   const [playSound, setPlaySound] = usePlaySound()
   const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume()
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay()
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay()
   const [appDataPath, setAppDataPath] = useState<string>("")
+  const [cohdbUser, setCohdbUser] = useState<CohdbUser | null>(null)
 
   useEffect(() => {
     events.open_settings()
@@ -56,7 +71,29 @@ export const Settings: React.FC = () => {
     }
   }, [appDataPath])
 
-  const openDialog = async () => {
+  useEffect(() => {
+    const getCohdbUser = async () => {
+      const user = (await invoke("plugin:cohdb|connected")) as CohdbUser | null
+      setCohdbUser(user)
+    }
+
+    const unlisten = listen<CohdbUser | null>("cohdb:connection", (event) => {
+      getCohdbUser()
+      if (event.payload != null) {
+        message(
+          "Your account has been connected! You can close the browser window now."
+        )
+      }
+    })
+
+    getCohdbUser()
+
+    return () => {
+      unlisten.then((f) => f())
+    }
+  }, [])
+
+  const openLogfileDialog = async () => {
     const selected = await open({
       title: "Select Coh3 warnings.log file",
       multiple: false,
@@ -72,6 +109,21 @@ export const Settings: React.FC = () => {
     if (selected !== null) {
       events.settings_changed("logFilePath", selected as string)
       setLogFilePath(selected as string)
+    }
+  }
+
+  const openPlaybackDialog = async () => {
+    const selected = await open({
+      title: "Select CoH3 playback directory",
+      multiple: false,
+      directory: true,
+      defaultPath: playbackPath,
+    })
+    if (selected !== null) {
+      events.settings_changed("playbackPath", selected as string)
+      setPlaybackPath(selected as string).then(() =>
+        emit("playback-dir-changed", selected)
+      )
     }
   }
 
@@ -95,7 +147,7 @@ export const Settings: React.FC = () => {
                     style={{ width: 500 }}
                     readOnly
                   />
-                  <Button variant="default" onClick={openDialog}>
+                  <Button variant="default" onClick={openLogfileDialog}>
                     Select
                   </Button>
                 </Group>
@@ -228,20 +280,84 @@ export const Settings: React.FC = () => {
                 Custom CSS instructions
               </Anchor>
             </Text>
-            <Group pt="md">
-              <Text>Path to streamerOverlay.html:</Text>
-              <Input value={appDataPath} style={{ width: 500 }} readOnly />
-              <Tooltip label="Copy">
-                <ActionIcon
-                  onClick={() => {
-                    writeText(appDataPath)
-                  }}
-                >
-                  <IconCopy size="1.125rem" />
-                </ActionIcon>
-              </Tooltip>
-            </Group>
           </div>
+          <Group>
+            <Text>Path to streamerOverlay.html:</Text>
+            <Input value={appDataPath} style={{ width: 500 }} readOnly />
+            <Tooltip label="Copy">
+              <ActionIcon
+                onClick={() => {
+                  writeText(appDataPath)
+                }}
+              >
+                <IconCopy size="1.125rem" />
+              </ActionIcon>
+            </Tooltip>
+          </Group>
+          <Group>
+            {cohdbUser != null ? (
+              <>
+                Connected as {cohdbUser.name}!
+                <Button
+                  variant="default"
+                  onClick={() => invoke("plugin:cohdb|disconnect")}
+                >
+                  Disconnect
+                </Button>
+                <Button
+                  variant="filled"
+                  onClick={() => invoke("plugin:cohdb|upload")}
+                >
+                  Upload
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="default"
+                onClick={() => invoke("plugin:cohdb|authenticate")}
+              >
+                Authenticate with cohdb!
+              </Button>
+            )}
+          </Group>
+          {cohdbUser != null && (
+            <Group>
+              <div>Path to playback directory:</div>
+              <div>
+                <Group spacing="xs">
+                  <Group spacing={3}>
+                    <Input
+                      value={playbackPath ? playbackPath : ""}
+                      style={{ width: 500 }}
+                      readOnly
+                    />
+                    <Button variant="default" onClick={openPlaybackDialog}>
+                      Select
+                    </Button>
+                  </Group>
+                  <Tooltip
+                    label={
+                      playbackPath !== undefined
+                        ? "Playback directory found"
+                        : "Could not find playback directory"
+                    }
+                  >
+                    <ActionIcon
+                      variant="light"
+                      color={playbackPath !== undefined ? "green" : "red"}
+                      radius="xl"
+                    >
+                      {playbackPath !== undefined ? (
+                        <IconCheck size="1.125rem" />
+                      ) : (
+                        <IconX size="1.125rem" />
+                      )}
+                    </ActionIcon>
+                  </Tooltip>
+                </Group>
+              </div>
+            </Group>
+          )}
         </Stack>
       </Box>
     </>
