@@ -11,35 +11,28 @@
     },
     "tauri": {
         "allowlist": {
-            "all": true,
-            "http": {
-                "all": true,
-                "request": true,
-                "scope": ["https://coh3-api.reliclink.com/*", "https://api.steampowered.com/*"]
-            },
-            "fs": {
-                "all": true,
-                "writeFile": true,
-                "readFile": true,
-                "exists": true,
-                "copyFile": true,
-                "createDir": true,
-                "readDir": true,
-                "removeDir": true,
-                "removeFile": true,
-                "renameFile": true,
-                "scope": ["$APPDATA/*"]
-            },
-            "path": {
-                "all": false
-            },
             "clipboard": {
                 "writeText": true
             },
+            "dialog": {
+                "all": true
+            },
+            "fs": {
+                "all": true,
+                "scope": ["$APPDATA/*"]
+            },
+            "http": {
+                "all": true,
+                "scope": ["https://coh3-api.reliclink.com/*", "https://api.steampowered.com/*"]
+            },
+            "path": {
+                "all": true
+            },
+            "shell": {
+                "open": true
+            },
             "window": {
-                "setFocus": true,
-                "show": true,
-                "requestUserAttention": true
+                "all": true
             }
         },
         "bundle": {
