@@ -47,7 +47,7 @@ fn main() {
                 .unwrap();
         }))
         .plugin(tauri_plugin_fs_watch::init())
-        // .plugin(tauri_plugin_window_state::Builder::default().build())
+        .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(cohdb::auth::init(
             "kHERjpU_rXcvgvLgwPir0w3bqcgETLOH-p95-PVxN-M".to_string(),
