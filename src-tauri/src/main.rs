@@ -150,7 +150,7 @@ fn watch_playback(path: PathBuf, handle: AppHandle<Wry>) -> notify::Result<Recom
                 Ok(event) => {
                     debug!("got file event: {event:?}");
 
-                    if event.kind.is_create() || event.kind.is_modify() {
+                    if event.kind.is_modify() {
                         let path = event.paths[0].clone();
                         let bytes = match std::fs::read(path.clone()) {
                             Ok(buf) => buf,
