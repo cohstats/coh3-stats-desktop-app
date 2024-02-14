@@ -22,7 +22,9 @@ const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
   }
 )
 
-const [getPlaybackPath, usePlaybackPath] = configValueFactory<string | undefined>(
+const [getPlaybackPath, usePlaybackPath] = configValueFactory<
+  string | undefined
+>(
   "playbackPath",
   async () => (await invoke("default_playback_path")) as string,
   async (value, store, defaultValue) => {
