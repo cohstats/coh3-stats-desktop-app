@@ -1,12 +1,12 @@
 use std::{path::PathBuf, sync::Mutex};
 
+use auth::responses::User;
 use log::{debug, error, info, warn};
 use notify::{Config, Event, RecommendedWatcher, RecursiveMode, Watcher};
 use tauri::{
     plugin::{Builder, TauriPlugin},
     AppHandle, EventHandler, Manager, Runtime,
 };
-use auth::responses::User;
 use tauri_plugin_store::StoreBuilder;
 use vault::{GameType, Replay};
 
