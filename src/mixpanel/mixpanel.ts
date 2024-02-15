@@ -25,6 +25,24 @@ const events = {
       version: await getVersion(),
     })
   },
+  open_replays: async (): Promise<void> => {
+    mixpanel.track("open_replays", {
+      distinct_id: await getClientId(),
+      version: await getVersion(),
+    })
+  },
+  connect_coh_db: async (): Promise<void> => {
+    mixpanel.track("cohdb_connect_account", {
+      distinct_id: await getClientId(),
+      version: await getVersion(),
+    })
+  },
+  disconnect_coh_db: async (): Promise<void> => {
+    mixpanel.track("cohdb_disconnect_account", {
+      distinct_id: await getClientId(),
+      version: await getVersion(),
+    })
+  },
   settings_changed: async (
     setting: string,
     value?: string | number
