@@ -7,8 +7,22 @@ import events from "./mixpanel/mixpanel"
 import { listen } from "@tauri-apps/api/event"
 import { info } from "tauri-plugin-log-api"
 import { UploadNotifications } from "./components/UploadNotifications"
+import * as Sentry from "@sentry/react";
+
 
 info("Start frontend")
+
+
+Sentry.init({
+  dsn: "https://88e8a309f91b8b5bb9a41dd14ff775b9@o4504995920543744.ingest.sentry.io/4506752563019776",
+  integrations: [
+    Sentry.browserTracingIntegration(),
+  ],
+  // Performance Monitoring
+  tracesSampleRate: 0.1, //  Capture 100% of the transactions
+  // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+  tracePropagationTargets: ["localhost"],
+});
 
 events.init()
 
