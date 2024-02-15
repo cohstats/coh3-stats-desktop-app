@@ -6,8 +6,7 @@ import {
 import { useLocalStorage } from "@mantine/hooks"
 import { useState } from "react"
 import { GameDataProvider } from "./game-data-provider/GameDataProvider"
-import { Notifications } from '@mantine/notifications';
-
+import { Notifications } from "@mantine/notifications"
 
 interface ProvidersProps {
   children?: React.ReactNode

@@ -1,7 +1,7 @@
-import { IconInfoCircle } from "@tabler/icons-react";
-import React from "react";
-import {ActionIcon, Tooltip} from "@mantine/core";
-import { FloatingPosition } from "@mantine/core/lib/Floating";
+import { IconInfoCircle } from "@tabler/icons-react"
+import React from "react"
+import { ActionIcon, Tooltip } from "@mantine/core"
+import { FloatingPosition } from "@mantine/core/lib/Floating"
 
 const HelperIcon = ({
   content,
@@ -9,25 +9,24 @@ const HelperIcon = ({
   iconSize = 20,
   position = "top",
 }: {
-  content: string | React.ReactNode;
-  toolTipWidth?: number;
-  iconSize?: number;
-  position?: FloatingPosition;
+  content: string | React.ReactNode
+  toolTipWidth?: number
+  iconSize?: number
+  position?: FloatingPosition
 }) => {
   return (
-    <ActionIcon
-     p={0}>
-    <Tooltip
-      label={<div style={{ textAlign: "left" }}>{content}</div>}
-      withArrow
-      multiline
-      width={toolTipWidth}
-      position={position}
-    >
-      <IconInfoCircle size={iconSize} />
-    </Tooltip>
+    <ActionIcon p={0}>
+      <Tooltip
+        label={<div style={{ textAlign: "left" }}>{content}</div>}
+        withArrow
+        multiline
+        width={toolTipWidth}
+        position={position}
+      >
+        <IconInfoCircle size={iconSize} />
+      </Tooltip>
     </ActionIcon>
-  );
-};
+  )
+}
 
-export default HelperIcon;
+export default HelperIcon

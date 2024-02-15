@@ -3,7 +3,7 @@ import { About } from "./views/About"
 import { Game } from "./views/Game"
 import { Root } from "./views/Root"
 import { Settings } from "./views/Settings"
-import {Replays} from "./views/Replays";
+import { Replays } from "./views/Replays"
 
 export enum Routes {
   GAME = "/",

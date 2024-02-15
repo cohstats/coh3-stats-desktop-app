@@ -19,9 +19,7 @@ import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
 import { open as openLink } from "@tauri-apps/api/shell"
-import {
-  useLogFilePath,
-} from "../game-data-provider/configValues"
+import { useLogFilePath } from "../game-data-provider/configValues"
 import {
   usePlaySound,
   usePlaySoundVolume,

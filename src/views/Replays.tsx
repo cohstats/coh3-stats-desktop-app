@@ -10,25 +10,29 @@ import {
   Button,
   Tooltip,
   Checkbox,
-  Anchor, Paper, Title, Flex, Space, Code,
+  Anchor,
+  Paper,
+  Title,
+  Flex,
+  Space,
+  Code,
 } from "@mantine/core"
-import {useEffect, useState} from "react"
-import {IconCheck, IconX} from "@tabler/icons-react"
-import {open} from "@tauri-apps/api/dialog"
-import {open as openLink} from "@tauri-apps/api/shell"
+import { useEffect, useState } from "react"
+import { IconCheck, IconX } from "@tabler/icons-react"
+import { open } from "@tauri-apps/api/dialog"
+import { open as openLink } from "@tauri-apps/api/shell"
 import {
   useAutoSyncReplays,
-
   usePlaybackPath,
 } from "../game-data-provider/configValues"
 
 import events from "../mixpanel/mixpanel"
-import {invoke} from "@tauri-apps/api/tauri"
-import {emit, listen} from "@tauri-apps/api/event"
-import {COHDBIcon} from "../components/other/COHDB-icon";
-import {showNotification} from "../utils/notifications";
-import {cohdbBaseUrl, cohdbPlayerOverView} from "../utils/external-routes";
-import HelperIcon from "../components/other/helper-icon";
+import { invoke } from "@tauri-apps/api/tauri"
+import { emit, listen } from "@tauri-apps/api/event"
+import { COHDBIcon } from "../components/other/COHDB-icon"
+import { showNotification } from "../utils/notifications"
+import { cohdbBaseUrl, cohdbPlayerOverView } from "../utils/external-routes"
+import HelperIcon from "../components/other/helper-icon"
 
 interface CohdbUser {
   name: string
@@ -41,11 +45,9 @@ export const Replays: React.FC = () => {
   const [autoSyncReplays, setAutoSyncReplays] = useAutoSyncReplays()
   const [cohdbUser, setCohdbUser] = useState<CohdbUser | null>(null)
 
-
   useEffect(() => {
     events.open_replays().then()
   }, [])
-
 
   useEffect(() => {
     const getCohdbUser = async () => {
@@ -88,40 +90,50 @@ export const Replays: React.FC = () => {
 
   return (
     <>
-
       <Box p="xl">
-        <Flex
-          justify="space-between"
-          align="flex-start"
-        >
+        <Flex justify="space-between" align="flex-start">
           <Paper p="xs" pt={0} w={450}>
-            <Title order={3}>Replay integration with <Anchor
-              onClick={() =>
-                openLink(
-                  cohdbBaseUrl
-                )
-              }
-            >cohdb.com</Anchor></Title>
-            <Text>Automatically upload replays to cohdb for replay analysis</Text>
+            <Title order={3}>
+              Replay integration with{" "}
+              <Anchor onClick={() => openLink(cohdbBaseUrl)}>cohdb.com</Anchor>
+            </Title>
+            <Text>
+              Automatically upload replays to cohdb for replay analysis
+            </Text>
             <List type="ordered" withPadding>
               <List.Item>Authenticate with cohdb</List.Item>
               <List.Item>Validate path to replay folder</List.Item>
-              <List.Item><Group spacing={4}>Enjoy automatic upload to cohdb.com<HelperIcon
-                content={<><Text>It automatically syncs replays only when the game ends.</Text><Text>Currently you can't
-                  sync past replays. Only replays where the player played can be
-                  synced.</Text></>}/></Group></List.Item>
+              <List.Item>
+                <Group spacing={4}>
+                  Enjoy automatic upload to cohdb.com
+                  <HelperIcon
+                    content={
+                      <>
+                        <Text>
+                          It automatically syncs replays only when the game
+                          ends.
+                        </Text>
+                        <Text>
+                          Currently you can't sync past replays. Only replays
+                          where the player played can be synced.
+                        </Text>
+                      </>
+                    }
+                  />
+                </Group>
+              </List.Item>
             </List>
           </Paper>
           <Group>
             {cohdbUser != null ? (
               <Stack>
-                <Title order={4}>Connected as <Anchor
-                  onClick={() =>
-                    openLink(
-                      cohdbPlayerOverView()
-                    )
-                  }
-                >{cohdbUser.name}</Anchor> at <COHDBIcon size={18}/></Title>
+                <Title order={4}>
+                  Connected as{" "}
+                  <Anchor onClick={() => openLink(cohdbPlayerOverView())}>
+                    {cohdbUser.name}
+                  </Anchor>{" "}
+                  at <COHDBIcon size={18} />
+                </Title>
 
                 <Button
                   variant="default"
@@ -142,35 +154,53 @@ export const Replays: React.FC = () => {
                   events.connect_coh_db()
                 }}
               >
-                <span style={{paddingRight: 10}}><COHDBIcon/></span> Authenticate with cohdb
+                <span style={{ paddingRight: 10 }}>
+                  <COHDBIcon />
+                </span>{" "}
+                Authenticate with cohdb
               </Button>
             )}
           </Group>
         </Flex>
         <Stack>
-          <Space/>
-          <Divider/>
+          <Space />
+          <Divider />
 
           {cohdbUser != null && (
             <div>
               <Group>
-                <Group spacing={4}><>Path to playback directory:</>
-                  <HelperIcon toolTipWidth={650} content={<>
-                    <Text>This is the path to the folder, where your game store replays file.</Text>
-                    <Text>
-                      The default path is <Code>C:\Users\{"<YOUR USERNAME>"}\Documents\My Games\Company of Heroes
-                      3\playback</Code></Text>
-                    <Text>
-                      However sometimes when you have (OneDrive / Dropbox) installed on your system, this path might be
-                      different.
-                    </Text>
-                  </>}/></Group>
+                <Group spacing={4}>
+                  <>Path to playback directory:</>
+                  <HelperIcon
+                    toolTipWidth={650}
+                    content={
+                      <>
+                        <Text>
+                          This is the path to the folder, where your game store
+                          replays file.
+                        </Text>
+                        <Text>
+                          The default path is{" "}
+                          <Code>
+                            C:\Users\{"<YOUR USERNAME>"}\Documents\My
+                            Games\Company of Heroes 3\playback
+                          </Code>
+                        </Text>
+                        <Text>
+                          However sometimes when you have (OneDrive / Dropbox)
+                          installed on your system, this path might be
+                          different.
+                        </Text>
+                      </>
+                    }
+                  />
+                </Group>
                 <div>
                   <Group spacing="xs">
                     <Group spacing={3}>
                       <Input
                         value={playbackPath ? playbackPath : ""}
-                        style={{width: 500}}
+                        style={{ width: 500 }}
                         readOnly
                       />
                       <Button variant="default" onClick={openPlaybackDialog}>
@@ -190,17 +220,16 @@ export const Replays: React.FC = () => {
                         radius="xl"
                       >
                         {playbackPath !== undefined ? (
-                          <IconCheck size="1.125rem"/>
+                          <IconCheck size="1.125rem" />
                         ) : (
-                          <IconX size="1.125rem"/>
+                          <IconX size="1.125rem" />
                         )}
                       </ActionIcon>
                     </Tooltip>
                   </Group>
-
                 </div>
               </Group>
-              <Space h={"xs"}/>
+              <Space h={"xs"} />
               <Group>
                 <div>AutoSync Replays:</div>
                 <div>
@@ -218,7 +247,6 @@ export const Replays: React.FC = () => {
                   />
                 </div>
               </Group>
-
             </div>
           )}
         </Stack>

@@ -6,7 +6,7 @@ import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay"
 import events from "./mixpanel/mixpanel"
 import { listen } from "@tauri-apps/api/event"
 import { info } from "tauri-plugin-log-api"
-import {UploadNotifications} from "./components/UploadNotifications";
+import { UploadNotifications } from "./components/UploadNotifications"
 
 info("Start frontend")
 
@@ -40,7 +40,7 @@ listen("single-instance", () => {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Providers>
-      <UploadNotifications/>
+      <UploadNotifications />
       <Router />
     </Providers>
   </React.StrictMode>
