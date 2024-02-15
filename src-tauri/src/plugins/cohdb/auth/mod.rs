@@ -203,8 +203,10 @@ pub async fn upload<R: Runtime>(
     let upload = UploadResponse::from_response(res).await?;
     if let UploadResponse::Ok(replay) = upload.clone() {
         info!("upload successful, got replay: {replay:?}");
-        handle.emit_all("cohdb:upload", replay).unwrap();
+        handle.emit_all("cohdb:upload:success", replay).unwrap();
     } else {
+        let err = format!("error uploading replay: {upload:?}");
+        handle.emit_all("cohdb:upload:failure", err).unwrap();
         warn!("error uploading replay: {upload:?}");
     }
 
