@@ -6,6 +6,8 @@ import {
 import { useLocalStorage } from "@mantine/hooks"
 import { useState } from "react"
 import { GameDataProvider } from "./game-data-provider/GameDataProvider"
+import { Notifications } from '@mantine/notifications';
+
 
 interface ProvidersProps {
   children?: React.ReactNode
@@ -31,6 +33,7 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
           withGlobalStyles
           withNormalizeCSS
         >
+          <Notifications />
           <GameDataProvider>{children}</GameDataProvider>
         </MantineProvider>
       </ColorSchemeProvider>

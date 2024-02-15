@@ -91,6 +91,14 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
               Settings
             </Link>
             <Link
+              to={Routes.REPLAYS}
+              className={cx(classes.link, {
+                [classes.selectedLink]: location.pathname === Routes.REPLAYS,
+              })}
+            >
+              Replays
+            </Link>
+            <Link
               to={Routes.ABOUT}
               className={cx(classes.link, {
                 [classes.selectedLink]: location.pathname === Routes.ABOUT,

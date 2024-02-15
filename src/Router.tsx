@@ -1,13 +1,15 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { About } from "./About"
-import { Game } from "./Game"
-import { Root } from "./Root"
-import { Settings } from "./Settings"
+import { About } from "./views/About"
+import { Game } from "./views/Game"
+import { Root } from "./views/Root"
+import { Settings } from "./views/Settings"
+import {Replays} from "./views/Replays";
 
 export enum Routes {
   GAME = "/",
   SETTINGS = "/settings",
   ABOUT = "/about",
+  REPLAYS = "/replays",
 }
 
 const router = createBrowserRouter([
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: Routes.SETTINGS,
         element: <Settings />,
+      },
+      {
+        path: Routes.REPLAYS,
+        element: <Replays />,
       },
       {
         path: Routes.ABOUT,

@@ -45,4 +45,10 @@ const [getPlaybackPath, usePlaybackPath] = configValueFactory<
   }
 )
 
-export { getPlaybackPath, usePlaybackPath, getLogFilePath, useLogFilePath }
+const [getAutoSyncReplays, useAutoSyncReplays] = configValueFactory<boolean>(
+  "autoSyncReplays",
+  async () => true
+)
+
+
+export { getPlaybackPath, usePlaybackPath, getLogFilePath, useLogFilePath, useAutoSyncReplays }
