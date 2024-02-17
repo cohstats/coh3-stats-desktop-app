@@ -7,25 +7,28 @@ use tauri::{
     plugin::{Builder, TauriPlugin},
     AppHandle, EventHandler, Manager, Runtime,
 };
-use tauri_plugin_store::StoreBuilder;
+use tauri_plugin_store::{Store, StoreBuilder};
 use vault::{GameType, Replay};
 
 use super::auth;
 
 #[derive(Debug)]
-pub struct State {
+pub struct State<R: Runtime> {
     playback_watcher: Mutex<Option<RecommendedWatcher>>,
+    store: Store<R>,
 }
 
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("cohdbsync")
         .invoke_handler(tauri::generate_handler![])
         .setup(|app| {
-            let path = PathBuf::from(load_playback_path(app.clone()));
+            let store = load_store(app.clone());
+            let path = PathBuf::from(load_playback_path(&store));
             let watcher = init_watcher(path, app.clone());
 
             app.manage(State {
                 playback_watcher: Mutex::new(watcher),
+                store,
             });
 
             listen_for_changes(app.clone());
@@ -42,7 +45,7 @@ pub fn listen_for_changes<R: Runtime>(handle: AppHandle<R>) -> EventHandler {
 
         info!("playback directory changed to {dir}");
 
-        *handle_.state::<State>().playback_watcher.lock().unwrap() =
+        *handle_.state::<State<R>>().playback_watcher.lock().unwrap() =
             init_watcher(PathBuf::from(dir), handle_.clone());
     })
 }
@@ -74,9 +77,16 @@ fn watch<R: Runtime>(path: PathBuf, handle: AppHandle<R>) -> notify::Result<Reco
 
 async fn handle_modify_event<R: Runtime>(event: Event, handle: AppHandle<R>) {
     let Some(user) = auth::connected_user(handle.clone()).await else {
-        error!("cohdb user not connected, skipping sync");
+        info!("cohdb user not connected, skipping sync");
         return;
     };
+
+    if let Some(enabled) = handle.state::<State<R>>().store.get("autoSyncReplays") {
+        if !serde_json::from_value::<bool>(enabled.clone()).unwrap() {
+            info!("auto-sync disabled, skipping sync");
+            return;
+        }
+    }
 
     let path = event.paths[0].clone();
     let bytes = match std::fs::read(path.clone()) {
@@ -126,20 +136,25 @@ fn includes_user(replay: &Replay, user: &User) -> bool {
         .any(|player| player.profile_id().is_some() && player.profile_id() == user.profile_id)
 }
 
-fn load_playback_path<R: Runtime>(handle: AppHandle<R>) -> String {
-    let mut store = StoreBuilder::new(handle, "config.dat".parse().unwrap()).build();
-    match store.load() {
-        Ok(()) => {
-            if let Some(path) = store.get("playbackPath") {
-                serde_json::from_value(path.clone()).unwrap()
-            } else {
-                default_playback_path()
-            }
+fn load_store<R: Runtime>(handle: AppHandle<R>) -> Store<R> {
+    let mut store = StoreBuilder::new(handle, PathBuf::from("config.dat")).build();
+
+    if let Err(err) = store.load() {
+        warn!("error loading store from disk: {err}");
+        info!("saving store file to disk");
+        if let Err(err) = store.save() {
+            warn!("error saving store file to disk: {err}");
         }
-        Err(err) => {
-            warn!("error loading store: {err}");
-            default_playback_path()
-        }
+    }
+
+    store
+}
+
+fn load_playback_path<R: Runtime>(store: &Store<R>) -> String {
+    if let Some(path) = store.get("playbackPath") {
+        serde_json::from_value(path.clone()).unwrap()
+    } else {
+        default_playback_path()
     }
 }
 
