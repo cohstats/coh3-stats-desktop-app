@@ -22,6 +22,7 @@ use tauri::{
     plugin::{Builder, TauriPlugin},
     AppHandle, Manager, Runtime,
 };
+use tokio::time::{interval, Duration};
 
 #[derive(Debug)]
 struct ActiveRequestState {
@@ -132,6 +133,11 @@ pub async fn retrieve_token<R: Runtime>(request: &str, handle: &AppHandle<R>) ->
         if let MeResponse::Ok(user) = me {
             info!("retrieved user: {user:?}");
 
+            if user.profile_id.is_none() {
+                info!("no profile ID found for user, querying till we get one");
+                init_user(handle.clone());
+            }
+
             *state.http_client.lock().await = Some(client);
             *state.user.lock().await = Some(user.clone());
 
@@ -236,19 +242,30 @@ pub fn init<R: Runtime>(client_id: String, redirect_uri: String) -> TauriPlugin<
 
 fn init_user<R: Runtime>(handle: AppHandle<R>) -> JoinHandle<()> {
     tauri::async_runtime::spawn(async move {
-        let state = handle.state::<PluginState>();
-        let client_option = state.http_client.lock().await;
-        if let Some(client) = client_option.as_ref() {
-            match query_user(client).await {
-                Ok(MeResponse::Ok(user)) => {
-                    info!("got user on init: {:?}", user);
-                    *state.user.lock().await = Some(user);
+        let mut ticker = interval(Duration::from_secs(5));
+
+        loop {
+            ticker.tick().await;
+
+            let state = handle.state::<PluginState>();
+            let client_option = state.http_client.lock().await;
+            if let Some(client) = client_option.as_ref() {
+                match query_user(client).await {
+                    Ok(MeResponse::Ok(user)) => {
+                        info!("got user: {:?}", user);
+                        *state.user.lock().await = Some(user.clone());
+
+                        if user.profile_id.is_some() {
+                            break;
+                        }
+                    }
+                    Ok(res) => warn!("there was a problem loading the user: {res:?}"),
+                    Err(err) => error!("failed to query user: {err}"),
                 }
-                Ok(res) => warn!("there was a problem loading the user: {res:?}"),
-                Err(err) => error!("failed to query user: {err}"),
+            } else {
+                info!("not connected, skipping user query");
+                break;
             }
-        } else {
-            info!("not connected, skipping user query");
         }
     })
 }
@@ -274,6 +291,7 @@ async fn query_user(client: &Client) -> Result<MeResponse> {
 
     MeResponse::from_response(res).await
 }
+
 fn set_focus<R: Runtime>(handle: &AppHandle<R>) {
     for (_, val) in handle.windows().iter() {
         val.set_focus().ok();

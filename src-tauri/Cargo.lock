@@ -729,6 +729,7 @@ dependencies = [
  "tauri-plugin-store",
  "tauri-plugin-window-state",
  "thiserror",
+ "tokio",
  "vault",
  "window-shadows",
 ]
