@@ -200,7 +200,7 @@ pub async fn upload<R: Runtime>(
         .text("replay[public]", "false")
         .part("replay[file]", Part::bytes(data).file_name(file_name));
     let res = client
-        .post("https://cohdb.com/api/v1/replays/upload")
+        .post("http://localhost:3000/api/v1/replays/upload")
         .multipart(form)
         .send()
         .await
@@ -284,7 +284,7 @@ fn build_client(secret: &String) -> Result<Client> {
 
 async fn query_user(client: &Client) -> Result<MeResponse> {
     let res = client
-        .get("https://cohdb.com/api/v1/users/me")
+        .get("https://cohdb.com/api/v1/users/me?source=coh3stats")
         .send()
         .await
         .map_err(Http)?;
