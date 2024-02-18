@@ -21,6 +21,12 @@ struct Payload {
 fn main() {
     tauri_plugin_deep_link::prepare("com.coh3stats.desktop");
 
+    // Add monitoring using sentry
+    let _guard = sentry::init(("https://5a9a5418c06b995fe1c6221c83451612@o4504995920543744.ingest.sentry.io/4506676182646784", sentry::ClientOptions {
+      release: sentry::release_name!(),
+      ..Default::default()
+    }));
+
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             default_log_file_path,
