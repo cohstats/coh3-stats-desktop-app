@@ -3,15 +3,15 @@ import { invoke } from "@tauri-apps/api/tauri"
 
 const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
   "logFilePath",
-  async () => (await invoke("get_default_log_file_path")) as string,
+  async () => (await invoke("default_log_file_path")) as string,
   async (value, store, defaultValue) => {
-    const logFileExists = (await invoke("check_log_file_exists", {
+    const logFileExists = (await invoke("check_path_exists", {
       path: value,
     })) as boolean
     if (logFileExists) {
       return value
     }
-    const defaultLogFileExists = (await invoke("check_log_file_exists", {
+    const defaultLogFileExists = (await invoke("check_path_exists", {
       path: defaultValue,
     })) as boolean
     if (defaultLogFileExists) {
@@ -22,4 +22,38 @@ const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
   }
 )
 
-export { getLogFilePath, useLogFilePath }
+const [getPlaybackPath, usePlaybackPath] = configValueFactory<
+  string | undefined
+>(
+  "playbackPath",
+  async () => (await invoke("default_playback_path")) as string,
+  async (value, store, defaultValue) => {
+    const logFileExists = (await invoke("check_path_exists", {
+      path: value,
+    })) as boolean
+    if (logFileExists) {
+      return value
+    }
+    const defaultPlaybackExists = (await invoke("check_path_exists", {
+      path: defaultValue,
+    })) as boolean
+    if (defaultPlaybackExists) {
+      return defaultValue
+    }
+
+    return undefined
+  }
+)
+
+const [getAutoSyncReplays, useAutoSyncReplays] = configValueFactory<boolean>(
+  "autoSyncReplays",
+  async () => true
+)
+
+export {
+  getPlaybackPath,
+  usePlaybackPath,
+  getLogFilePath,
+  useLogFilePath,
+  useAutoSyncReplays,
+}

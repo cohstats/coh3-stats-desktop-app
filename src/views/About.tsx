@@ -16,8 +16,8 @@ import {
   Box,
   Grid,
 } from "@mantine/core"
-import logoBig from "./assets/logo/Square310x310Logo.png"
-import events from "./mixpanel/mixpanel"
+import logoBig from "../assets/logo/Square310x310Logo.png"
+import events from "../mixpanel/mixpanel"
 
 export const About: React.FC = () => {
   const [appVersion, setAppVersion] = useState<string>()

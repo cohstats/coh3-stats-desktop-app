@@ -22,6 +22,7 @@ import { PlayerWins } from "./PlayerWins"
 import { open } from "@tauri-apps/api/shell"
 import { getFactionName, getCountryName } from "../utils/renameLabels"
 import RankIcon from "./other/rank-icon"
+import { coh3statsPlayerProfile } from "../utils/external-routes"
 
 export interface PlayerCardProps extends FullPlayerData {}
 
@@ -71,9 +72,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
 
                   <Title
                     size="h3"
-                    onClick={() =>
-                      open("https://coh3stats.com/players/" + relicID)
-                    }
+                    onClick={() => open(coh3statsPlayerProfile(relicID))}
                   >
                     <Anchor>{name}</Anchor> {self ? <>(You)</> : null}
                   </Title>

@@ -7,7 +7,6 @@ import {
   Input,
   ActionIcon,
   Text,
-  List,
   Button,
   Tooltip,
   Checkbox,
@@ -20,18 +19,18 @@ import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
 import { open as openLink } from "@tauri-apps/api/shell"
-import { useLogFilePath } from "./game-data-provider/configValues"
+import { useLogFilePath } from "../game-data-provider/configValues"
 import {
   usePlaySound,
   usePlaySoundVolume,
-} from "./game-found-sound/configValues"
+} from "../game-found-sound/configValues"
 import {
   useShowFlagsOverlay,
   useAlwaysShowOverlay,
-} from "./streamer-overlay/configValues"
-import { playSound as playSoundFunc } from "./game-found-sound/playSound"
-import events from "./mixpanel/mixpanel"
-import { useGameData } from "./game-data-provider/GameDataProvider"
+} from "../streamer-overlay/configValues"
+import { playSound as playSoundFunc } from "../game-found-sound/playSound"
+import events from "../mixpanel/mixpanel"
+import { useGameData } from "../game-data-provider/GameDataProvider"
 
 export const Settings: React.FC = () => {
   const gameData = useGameData()
@@ -55,8 +54,7 @@ export const Settings: React.FC = () => {
       getAppDataPath()
     }
   }, [appDataPath])
-
-  const openDialog = async () => {
+  const openLogfileDialog = async () => {
     const selected = await open({
       title: "Select Coh3 warnings.log file",
       multiple: false,
@@ -95,7 +93,7 @@ export const Settings: React.FC = () => {
                     style={{ width: 500 }}
                     readOnly
                   />
-                  <Button variant="default" onClick={openDialog}>
+                  <Button variant="default" onClick={openLogfileDialog}>
                     Select
                   </Button>
                 </Group>
@@ -228,20 +226,20 @@ export const Settings: React.FC = () => {
                 Custom CSS instructions
               </Anchor>
             </Text>
-            <Group pt="md">
-              <Text>Path to streamerOverlay.html:</Text>
-              <Input value={appDataPath} style={{ width: 500 }} readOnly />
-              <Tooltip label="Copy">
-                <ActionIcon
-                  onClick={() => {
-                    writeText(appDataPath)
-                  }}
-                >
-                  <IconCopy size="1.125rem" />
-                </ActionIcon>
-              </Tooltip>
-            </Group>
           </div>
+          <Group>
+            <Text>Path to streamerOverlay.html:</Text>
+            <Input value={appDataPath} style={{ width: 500 }} readOnly />
+            <Tooltip label="Copy">
+              <ActionIcon
+                onClick={() => {
+                  writeText(appDataPath)
+                }}
+              >
+                <IconCopy size="1.125rem" />
+              </ActionIcon>
+            </Tooltip>
+          </Group>
         </Stack>
       </Box>
     </>
