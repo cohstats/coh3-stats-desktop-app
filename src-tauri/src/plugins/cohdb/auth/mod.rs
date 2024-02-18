@@ -200,7 +200,7 @@ pub async fn upload<R: Runtime>(
         .text("replay[public]", "false")
         .part("replay[file]", Part::bytes(data).file_name(file_name));
     let res = client
-        .post("http://localhost:3000/api/v1/replays/upload")
+        .post("https://cohdb.com/api/v1/replays/upload")
         .multipart(form)
         .send()
         .await
