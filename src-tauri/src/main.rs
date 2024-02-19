@@ -5,9 +5,10 @@
 
 extern crate machine_uid;
 
-use coh3_stats_desktop_app::{parse_log_file, plugins::cohdb};
+use coh3_stats_desktop_app::{parse_log_file, plugins::cohdb, dp_utils::test_fn};
 use log::error;
 use std::path::Path;
+use std::thread;
 use tauri::Manager;
 use tauri_plugin_log::LogTarget;
 use window_shadows::set_shadow;
@@ -26,6 +27,10 @@ fn main() {
       release: sentry::release_name!(),
       ..Default::default()
     }));
+
+    let _handle = thread::spawn(|| {
+        test_fn();
+    });
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![

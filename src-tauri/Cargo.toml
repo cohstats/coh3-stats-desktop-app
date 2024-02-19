@@ -38,6 +38,8 @@ vault = "8"
 window-shadows = "0.2"
 # monitoring by sentry
 sentry = "0.32.2"
+# For the OBS interface we need to expose webserver
+tiny_http = "0.11"
 
 [dev-dependencies]
 criterion = { version = "0.4", features = ["html_reports"] }
