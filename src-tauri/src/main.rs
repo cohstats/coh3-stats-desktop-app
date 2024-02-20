@@ -53,6 +53,7 @@ fn main() {
                 .unwrap();
         }))
         .plugin(tauri_plugin_fs_watch::init())
+        // You need to comment out this line to run the app on MacOS
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(cohdb::auth::init(
