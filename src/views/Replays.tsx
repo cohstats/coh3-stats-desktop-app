@@ -84,7 +84,7 @@ export const Replays: React.FC = () => {
     if (selected !== null) {
       events.settings_changed("playbackPath", selected as string)
       setPlaybackPath(selected as string).then(() =>
-        emit("playback-dir-changed", selected),
+        emit("playback-dir-changed", selected)
       )
     }
   }
@@ -156,23 +156,25 @@ export const Replays: React.FC = () => {
 
                   showNotification({
                     title: "Opening browser window",
-                    message: <>
-                      If it didn't open, please copy this url into your browser:
-                      <Space h={"xs"} />
-                      <Group spacing={"xs"} noWrap>
-                        <Tooltip label="Copy">
-                          <ActionIcon
-                            onClick={() => {
-                              writeText(`${authUrl}`)
-                            }}
-                          >
-                            <IconCopy size="22" />
-                          </ActionIcon>
-                        </Tooltip>
-                        <Code block>{`${authUrl}`}</Code>
-                      </Group>
-
-                    </>,
+                    message: (
+                      <>
+                        If it didn't open, please copy this url into your
+                        browser:
+                        <Space h={"xs"} />
+                        <Group spacing={"xs"} noWrap>
+                          <Tooltip label="Copy">
+                            <ActionIcon
+                              onClick={() => {
+                                writeText(`${authUrl}`)
+                              }}
+                            >
+                              <IconCopy size="22" />
+                            </ActionIcon>
+                          </Tooltip>
+                          <Code block>{`${authUrl}`}</Code>
+                        </Group>
+                      </>
+                    ),
                     type: "info",
                     autoCloseInMs: 20000,
                   })
@@ -264,7 +266,7 @@ export const Replays: React.FC = () => {
                     onChange={(event) => {
                       events.settings_changed(
                         "autoSyncReplays",
-                        `${!event.currentTarget.checked}`,
+                        `${!event.currentTarget.checked}`
                       )
                       setAutoSyncReplays(event.currentTarget.checked)
                     }}
