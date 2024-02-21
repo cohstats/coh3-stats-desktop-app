@@ -81,7 +81,7 @@ impl PluginState {
 }
 
 #[tauri::command]
-async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<()> {
+async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String> {
     let state = handle.state::<PluginState>();
     let request = ActiveRequestState::new();
 
@@ -96,7 +96,8 @@ async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<()> {
     *state.request.lock().await = Some(request);
 
     info!("redirecting to auth URL: {auth_url}");
-    open(&handle.shell_scope(), auth_url, None).map_err(Shell)
+    open(&handle.shell_scope(), auth_url.clone(), None).map_err(Shell);
+    Ok(auth_url.to_string())
 }
 
 pub async fn retrieve_token<R: Runtime>(request: &str, handle: &AppHandle<R>) -> Result<()> {

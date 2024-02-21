@@ -18,7 +18,7 @@ import {
   Code,
 } from "@mantine/core"
 import { useEffect, useState } from "react"
-import { IconCheck, IconX } from "@tabler/icons-react"
+import { IconCheck, IconCopy, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
 import { open as openLink } from "@tauri-apps/api/shell"
 import {
@@ -33,6 +33,7 @@ import { COHDBIcon } from "../components/other/COHDB-icon"
 import { showNotification } from "../utils/notifications"
 import { cohdbBaseUrl, cohdbPlayerOverView } from "../utils/external-routes"
 import HelperIcon from "../components/other/helper-icon"
+import { writeText } from "@tauri-apps/api/clipboard"
 
 interface CohdbUser {
   name: string
@@ -149,9 +150,34 @@ export const Replays: React.FC = () => {
             ) : (
               <Button
                 variant="default"
-                onClick={() => {
-                  invoke("plugin:cohdb|authenticate")
+                onClick={async () => {
+                  const authUrl = await invoke("plugin:cohdb|authenticate")
                   events.connect_coh_db()
+
+                  showNotification({
+                    title: "Opening browser window",
+                    message: (
+                      <>
+                        If it didn't open, please copy this url into your
+                        browser:
+                        <Space h={"xs"} />
+                        <Group spacing={"xs"} noWrap>
+                          <Tooltip label="Copy">
+                            <ActionIcon
+                              onClick={() => {
+                                writeText(`${authUrl}`)
+                              }}
+                            >
+                              <IconCopy size="22" />
+                            </ActionIcon>
+                          </Tooltip>
+                          <Code block>{`${authUrl}`}</Code>
+                        </Group>
+                      </>
+                    ),
+                    type: "info",
+                    autoCloseInMs: 20000,
+                  })
                 }}
               >
                 <span style={{ paddingRight: 10 }}>
