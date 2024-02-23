@@ -139,7 +139,11 @@ fn includes_user(replay: &Replay, user: &User) -> bool {
 
 fn load_from_store<R: Runtime, T: DeserializeOwned>(handle: AppHandle<R>, key: &str) -> Option<T> {
     let stores = handle.state::<StoreCollection<R>>();
-    let path = PathBuf::from("config.dat");
+    let path = handle
+        .path_resolver()
+        .app_data_dir()
+        .unwrap()
+        .join("config.dat");
 
     match with_store(handle.clone(), stores, path, |store| {
         Ok(store.get(key).cloned())
