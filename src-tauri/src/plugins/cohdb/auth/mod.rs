@@ -96,7 +96,7 @@ async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String> {
     *state.request.lock().await = Some(request);
 
     info!("redirecting to auth URL: {auth_url}");
-    open(&handle.shell_scope(), auth_url.clone(), None).map_err(Shell);
+    open(&handle.shell_scope(), auth_url.clone(), None).map_err(Shell)?;
     Ok(auth_url.to_string())
 }
 
