@@ -67,12 +67,17 @@ fn main() {
 }
 
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
+    let handle = app.handle();
+
+    // Set up sync handling
+    // This needs to happen here because it depends on other plugins
+    cohdb::sync::setup(handle.clone());
+
     // Add window shadows
     let window = app.get_window("main").unwrap();
     set_shadow(&window, true).expect("Unsupported platform!");
 
     // Set up deep link
-    let handle = app.handle();
     tauri_plugin_deep_link::register("coh3stats", move |request| {
         if let Err(err) =
             tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle))
