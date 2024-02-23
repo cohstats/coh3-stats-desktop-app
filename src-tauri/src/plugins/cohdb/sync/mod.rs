@@ -13,7 +13,7 @@ use vault::{GameType, Replay};
 
 use super::auth;
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct State {
     playback_watcher: Mutex<Option<RecommendedWatcher>>,
 }
@@ -22,18 +22,19 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("cohdbsync")
         .invoke_handler(tauri::generate_handler![])
         .setup(|app| {
-            let path = PathBuf::from(load_playback_path(app.clone()));
-            let watcher = init_watcher(path, app.clone());
-
-            app.manage(State {
-                playback_watcher: Mutex::new(watcher),
-            });
-
-            listen_for_changes(app.clone());
-
+            app.manage(State::default());
             Ok(())
         })
         .build()
+}
+
+pub fn setup<R: Runtime>(handle: AppHandle<R>) {
+    let state = handle.state::<State>();
+    let path = PathBuf::from(load_playback_path(handle.clone()));
+    let watcher = init_watcher(path, handle.clone());
+
+    *state.playback_watcher.lock().unwrap() = watcher;
+    listen_for_changes(handle.clone());
 }
 
 pub fn listen_for_changes<R: Runtime>(handle: AppHandle<R>) -> EventHandler {
