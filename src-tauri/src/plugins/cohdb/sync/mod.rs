@@ -81,14 +81,11 @@ async fn handle_modify_event<R: Runtime>(event: Event, handle: AppHandle<R>) {
     };
 
     if let Some(enabled) = load_from_store::<R, bool>(handle.clone(), "autoSyncReplays") {
-        info!("sync enabled: {enabled}");
         if !enabled {
             info!("auto-sync disabled, skipping sync");
             return;
         }
-    } else {
-        warn!("could not find store key autoSyncReplays");
-    }
+    };
 
     let path = event.paths[0].clone();
     let bytes = match std::fs::read(path.clone()) {
