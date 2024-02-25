@@ -14,11 +14,18 @@ info("Start frontend")
 Sentry.init({
   dsn: "https://88e8a309f91b8b5bb9a41dd14ff775b9@o4504995920543744.ingest.sentry.io/4506752563019776",
   integrations: [Sentry.browserTracingIntegration()],
-  // Performance Monitoring
-  tracesSampleRate: 0.1, //  Capture 100% of the transactions
-  // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+  tracesSampleRate: 0.1,
   tracePropagationTargets: ["localhost"],
-})
+  beforeSend(event, hint) {
+    // On macOS we do only development, we can ignore all development errors
+    if (event.contexts?.os?.name === 'macOS') {
+      // Ignore the event
+      return null;
+    }
+    // Otherwise, return the event as is
+    return event;
+  },
+});
 
 events.init()
 
