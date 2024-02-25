@@ -95,19 +95,19 @@ fn setup_web_server(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Erro
 
     let store = load_store(app_handle.clone());
     let is_enabled = is_streamer_overlay_enabled(&store);
-    //print is enabled   
+    //print is enabled
     if is_enabled {
         info!("Streamer overlay is enabled");
         let mut file_path =  app_handle.path_resolver().app_data_dir().unwrap();
         file_path.push("streamerOverlay.html");
         info!("Expecting the streamerOverlay at {:?}", file_path);
-    
+
           let _handle = thread::spawn(|| {
               run_http_server(file_path);
           });
     } else {
         info!("Streamer overlay is disabled");
-    }  
+    }
 
     Ok(())
 }
