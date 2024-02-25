@@ -18,14 +18,14 @@ Sentry.init({
   tracePropagationTargets: ["localhost"],
   beforeSend(event, hint) {
     // On macOS we do only development, we can ignore all development errors
-    if (event.contexts?.os?.name === 'macOS') {
+    if (event.contexts?.os?.name === "macOS") {
       // Ignore the event
-      return null;
+      return null
     }
     // Otherwise, return the event as is
-    return event;
+    return event
   },
-});
+})
 
 events.init()
 
