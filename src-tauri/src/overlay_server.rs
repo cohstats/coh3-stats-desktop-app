@@ -1,7 +1,6 @@
 use std::fs::File;
-use std::path::Path;
 use std::panic;
-use log::{error, info, warn};
+use log::{error, info};
 use std::path::PathBuf;
 
 use tiny_http::{Server, Response, StatusCode};
@@ -10,8 +9,9 @@ pub fn run_http_server(streamer_overlay_path: PathBuf) {
 
     let result = panic::catch_unwind(|| {
 
-       info!("Starting streamer overlay server on port 8000");
-       let server = Server::http("127.0.0.1:8000").unwrap();
+       // Ideally we would allow setting up port in the settings
+       info!("Starting streamer overlay server on port 47824");
+       let server = Server::http("127.0.0.1:47824").unwrap();
 
        for request in server.incoming_requests() {
 

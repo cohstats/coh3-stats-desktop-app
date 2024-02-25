@@ -1,4 +1,5 @@
 import { getVersion } from "@tauri-apps/api/app"
+import { appDataDir } from "@tauri-apps/api/path"
 import { open } from "@tauri-apps/api/shell"
 import { useState, useEffect } from "react"
 import {
@@ -21,9 +22,12 @@ import events from "../mixpanel/mixpanel"
 
 export const About: React.FC = () => {
   const [appVersion, setAppVersion] = useState<string>()
+  const [pathToLogs, setPathToLogs] = useState<string>()
+
   useEffect(() => {
     getVersion().then((version) => setAppVersion(version))
     events.open_about()
+    appDataDir().then((path) => setPathToLogs(path))
   }, [])
 
   return (
@@ -80,6 +84,12 @@ export const About: React.FC = () => {
               C:\Users\Username\Documents\My Games\Company of Heroes
               3\warnings.log
             </Code>
+            <br />
+            <br />
+            You can also provide the logs from the COH3 Stats Desktop app which
+            are located here:
+            <br />
+            <Code>{pathToLogs}logs</Code>
           </Text>
           <Button onClick={() => open("https://ko-fi.com/cohstats")}>
             <Group spacing="xs">

@@ -8,9 +8,14 @@ const [getShowFlagsOverlay, useShowFlagsOverlay] = configValueFactory<boolean>(
 const [getAlwaysShowOverlay, useAlwaysShowOverlay] =
   configValueFactory<boolean>("alwaysShowOverlay", async () => false)
 
+const [getStreamerOverlayEnabled, useStreamerOverlayEnabled] =
+  configValueFactory<boolean>("streamerOverlayEnabled", async () => false)
+
 export {
   getShowFlagsOverlay,
   useShowFlagsOverlay,
   getAlwaysShowOverlay,
   useAlwaysShowOverlay,
+  getStreamerOverlayEnabled,
+  useStreamerOverlayEnabled,
 }

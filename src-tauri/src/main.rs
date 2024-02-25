@@ -5,6 +5,7 @@
 
 extern crate machine_uid;
 
+use coh3_stats_desktop_app::dp_utils::{is_streamer_overlay_enabled, load_store};
 use coh3_stats_desktop_app::{parse_log_file, plugins::cohdb, overlay_server::run_http_server};
 use log::{error, info};
 use std::path::Path;
@@ -12,8 +13,6 @@ use std::thread;
 use tauri::Manager;
 use tauri_plugin_log::LogTarget;
 use window_shadows::set_shadow;
-use tauri::api::path::app_data_dir;
-use tauri::Config;
 
 #[derive(Clone, serde::Serialize)]
 struct Payload {
@@ -91,15 +90,24 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn setup_web_server(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
-      let app_handle = app.handle();
+    let app_handle = app.handle();
 
-      let mut file_path =  app_handle.path_resolver().app_data_dir().unwrap();
-      file_path.push("streamerOverlay.html");
-      info!("Expecting the streamerOverlay at {:?}", file_path);
 
-      let _handle = thread::spawn(|| {
-          run_http_server(file_path);
-      });
+    let store = load_store(app_handle.clone());
+    let is_enabled = is_streamer_overlay_enabled(&store);
+    //print is enabled   
+    if is_enabled {
+        info!("Streamer overlay is enabled");
+        let mut file_path =  app_handle.path_resolver().app_data_dir().unwrap();
+        file_path.push("streamerOverlay.html");
+        info!("Expecting the streamerOverlay at {:?}", file_path);
+    
+          let _handle = thread::spawn(|| {
+              run_http_server(file_path);
+          });
+    } else {
+        info!("Streamer overlay is disabled");
+    }  
 
     Ok(())
 }
