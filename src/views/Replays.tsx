@@ -256,23 +256,19 @@ export const Replays: React.FC = () => {
                 </div>
               </Group>
               <Space h={"xs"} />
-              <Group>
-                <div>AutoSync Replays:</div>
-                <div>
-                  <Checkbox
-                    checked={
-                      autoSyncReplays === undefined ? true : autoSyncReplays
-                    }
-                    onChange={(event) => {
-                      events.settings_changed(
-                        "autoSyncReplays",
-                        `${!event.currentTarget.checked}`
-                      )
-                      setAutoSyncReplays(event.currentTarget.checked)
-                    }}
-                  />
-                </div>
-              </Group>
+              <Checkbox
+                label="AutoSync Replays"
+                labelPosition="left"
+                size={"md"}
+                checked={autoSyncReplays === undefined ? true : autoSyncReplays}
+                onChange={(event) => {
+                  events.settings_changed(
+                    "autoSyncReplays",
+                    `${!event.currentTarget.checked}`
+                  )
+                  setAutoSyncReplays(event.currentTarget.checked)
+                }}
+              />
             </div>
           )}
         </Stack>

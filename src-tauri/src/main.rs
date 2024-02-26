@@ -5,9 +5,11 @@
 
 extern crate machine_uid;
 
-use coh3_stats_desktop_app::{parse_log_file, plugins::cohdb};
-use log::error;
+use coh3_stats_desktop_app::dp_utils::load_from_store;
+use coh3_stats_desktop_app::{parse_log_file, plugins::cohdb, overlay_server::run_http_server};
+use log::{error, info};
 use std::path::Path;
+use std::thread;
 use tauri::Manager;
 use tauri_plugin_log::LogTarget;
 use window_shadows::set_shadow;
@@ -62,8 +64,10 @@ fn main() {
         ))
         .plugin(coh3_stats_desktop_app::plugins::cohdb::sync::init())
         .setup(setup)
+        .setup(setup_web_server)
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+
 }
 
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
@@ -90,11 +94,30 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
+fn setup_web_server(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
+    let app_handle = app.handle();
+
+    if load_from_store(app_handle.clone(), "streamerOverlayEnabled").unwrap_or(false) {
+        info!("Streamer overlay is enabled");
+        let mut file_path =  app_handle.path_resolver().app_data_dir().unwrap();
+        file_path.push("streamerOverlay.html");
+        info!("Expecting the streamerOverlay at {:?}", file_path);
+
+          let _handle = thread::spawn(|| {
+              run_http_server(file_path);
+          });
+    } else {
+        info!("Streamer overlay is disabled");
+    }
+
+    Ok(())
+}
+
 /// returns the default expected log file path
 #[tauri::command]
 fn default_log_file_path() -> String {
     let mut path = tauri::api::path::document_dir().unwrap();
-    path.push("My Games");
+    path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?
     path.push("Company of Heroes 3");
     path.push("warnings.log");
     path.display().to_string()
@@ -103,7 +126,7 @@ fn default_log_file_path() -> String {
 #[tauri::command]
 fn default_playback_path() -> String {
     let mut path = tauri::api::path::document_dir().unwrap();
-    path.push("My Games");
+    path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?
     path.push("Company of Heroes 3");
     path.push("playback");
     path.display().to_string()

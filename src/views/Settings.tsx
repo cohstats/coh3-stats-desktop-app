@@ -12,6 +12,8 @@ import {
   Checkbox,
   Slider,
   Anchor,
+  Switch,
+  Spoiler,
 } from "@mantine/core"
 import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
@@ -27,10 +29,12 @@ import {
 import {
   useShowFlagsOverlay,
   useAlwaysShowOverlay,
+  useStreamerOverlayEnabled,
 } from "../streamer-overlay/configValues"
 import { playSound as playSoundFunc } from "../game-found-sound/playSound"
 import events from "../mixpanel/mixpanel"
 import { useGameData } from "../game-data-provider/GameDataProvider"
+import { relaunch } from "@tauri-apps/api/process"
 
 export const Settings: React.FC = () => {
   const gameData = useGameData()
@@ -39,7 +43,10 @@ export const Settings: React.FC = () => {
   const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume()
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay()
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay()
+  const [streamerOverlayEnabled, setStreamerOverlayEnabled] =
+    useStreamerOverlayEnabled()
   const [appDataPath, setAppDataPath] = useState<string>("")
+  const [restartRequired, setRestartRequired] = useState<boolean>(false)
 
   useEffect(() => {
     events.open_settings()
@@ -54,6 +61,7 @@ export const Settings: React.FC = () => {
       getAppDataPath()
     }
   }, [appDataPath])
+
   const openLogfileDialog = async () => {
     const selected = await open({
       title: "Select Coh3 warnings.log file",
@@ -162,11 +170,59 @@ export const Settings: React.FC = () => {
             </div>
           </Group>
           <Divider />
-          <Text weight={700}>OBS Streamer Overlay:</Text>
           <Group>
-            <div>Only show stats when loading / ingame:</div>
+            <Text weight={700}>OBS Streamer Overlay</Text>
+            <Switch
+              onLabel="ON"
+              offLabel="OFF"
+              size="md"
+              checked={
+                streamerOverlayEnabled === undefined
+                  ? false
+                  : streamerOverlayEnabled
+              }
+              onChange={(event) => {
+                events.settings_changed(
+                  "streamerOverlayEnabled",
+                  `${event.currentTarget.checked}`
+                )
+                setStreamerOverlayEnabled(event.currentTarget.checked)
+                setRestartRequired(true)
+              }}
+            />
+          </Group>
+          <Group>
+            <div>
+              {restartRequired ? (
+                <Group>
+                  <Text color="red">
+                    Restart required to enable / disable streamer overlay
+                  </Text>
+                  <Button
+                    variant="outline"
+                    color="red"
+                    compact
+                    onClick={async () => {
+                      // Relaunch doesn't work well in dev mode
+                      await relaunch()
+                    }}
+                  >
+                    Restart
+                  </Button>
+                </Group>
+              ) : null}
+            </div>
+          </Group>
+          <Group>
             <div>
               <Checkbox
+                labelPosition="left"
+                label="Only show stats when loading / ingame:"
+                disabled={
+                  streamerOverlayEnabled === undefined
+                    ? false
+                    : !streamerOverlayEnabled
+                }
                 checked={
                   alwaysShowOverlay === undefined ? true : !alwaysShowOverlay
                 }
@@ -184,9 +240,15 @@ export const Settings: React.FC = () => {
             </div>
           </Group>
           <Group>
-            <div>Show flags:</div>
             <div>
               <Checkbox
+                labelPosition="left"
+                label="Show flags"
+                disabled={
+                  streamerOverlayEnabled === undefined
+                    ? false
+                    : !streamerOverlayEnabled
+                }
                 checked={
                   showFlagsOverlay === undefined ? false : showFlagsOverlay
                 }
@@ -228,18 +290,71 @@ export const Settings: React.FC = () => {
             </Text>
           </div>
           <Group>
-            <Text>Path to streamerOverlay.html:</Text>
-            <Input value={appDataPath} style={{ width: 500 }} readOnly />
+            <Text>Streamer overlay avaliable at:</Text>
+            <Input
+              value={"http://localhost:47824"}
+              style={{ width: 250 }}
+              readOnly
+              disabled={
+                streamerOverlayEnabled === undefined
+                  ? false
+                  : !streamerOverlayEnabled
+              }
+            />
             <Tooltip label="Copy">
               <ActionIcon
+                disabled={
+                  streamerOverlayEnabled === undefined
+                    ? false
+                    : !streamerOverlayEnabled
+                }
                 onClick={() => {
-                  writeText(appDataPath)
+                  writeText("http://localhost:47824")
                 }}
               >
                 <IconCopy size="1.125rem" />
               </ActionIcon>
             </Tooltip>
           </Group>
+          <Spoiler
+            maxHeight={0}
+            showLabel="Depreacated - local file streamerOverlay.html"
+            hideLabel="Hide"
+          >
+            <div style={{ paddingLeft: 10 }}>
+              <Text>
+                Local file has issue with refresh flicker, we recommend local
+                web server to avoid this issue.
+              </Text>
+              <Group>
+                <Text>Path to streamerOverlay.html:</Text>
+                <Input
+                  value={appDataPath}
+                  style={{ width: 500 }}
+                  readOnly
+                  disabled={
+                    streamerOverlayEnabled === undefined
+                      ? false
+                      : !streamerOverlayEnabled
+                  }
+                />
+                <Tooltip label="Copy">
+                  <ActionIcon
+                    disabled={
+                      streamerOverlayEnabled === undefined
+                        ? false
+                        : !streamerOverlayEnabled
+                    }
+                    onClick={() => {
+                      writeText(appDataPath)
+                    }}
+                  >
+                    <IconCopy size="1.125rem" />
+                  </ActionIcon>
+                </Tooltip>
+              </Group>
+            </div>
+          </Spoiler>
         </Stack>
       </Box>
     </>
