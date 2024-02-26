@@ -3,12 +3,10 @@ use std::{path::PathBuf, sync::Mutex};
 use auth::responses::User;
 use log::{debug, error, info, warn};
 use notify::{Config, Event, RecommendedWatcher, RecursiveMode, Watcher};
-// use serde::de::DeserializeOwned;
 use tauri::{
     plugin::{Builder, TauriPlugin},
     AppHandle, EventHandler, Manager, Runtime,
 };
-// use tauri_plugin_store::{with_store, StoreCollection};
 use vault::{GameType, Replay};
 
 use crate::dp_utils::load_from_store;
