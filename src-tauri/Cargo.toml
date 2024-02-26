@@ -1,6 +1,6 @@
 [package]
 name = "coh3-stats-desktop-app"
-version = "1.2.7"
+version = "1.2.8"
 description = "COH3 Stats Desktop App"
 authors = ["coh3stats team"]
 license = ""
