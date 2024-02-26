@@ -5,7 +5,7 @@
 
 extern crate machine_uid;
 
-use coh3_stats_desktop_app::dp_utils::is_streamer_overlay_enabled;
+use coh3_stats_desktop_app::dp_utils::load_from_store;
 use coh3_stats_desktop_app::{parse_log_file, plugins::cohdb, overlay_server::run_http_server};
 use log::{error, info};
 use std::path::Path;
@@ -97,10 +97,7 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
 fn setup_web_server(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let app_handle = app.handle();
 
-
-    // Check if streamer overlay is enabled
-    let is_enabled = is_streamer_overlay_enabled(app_handle.clone());
-    if is_enabled {
+    if load_from_store(app_handle.clone(), "streamerOverlayEnabled").unwrap_or(false) {
         info!("Streamer overlay is enabled");
         let mut file_path =  app_handle.path_resolver().app_data_dir().unwrap();
         file_path.push("streamerOverlay.html");

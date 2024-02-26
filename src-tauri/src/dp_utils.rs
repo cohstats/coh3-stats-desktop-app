@@ -1,10 +1,10 @@
 use serde::de::DeserializeOwned;
 // COH3 Desktop App Utils
 use tauri_plugin_store::{StoreCollection, with_store};
-use log::{info, warn, error};
+use log::{error};
 use tauri::{AppHandle, Manager, Runtime};
 
-fn load_from_store<R: Runtime, T: DeserializeOwned>(handle: AppHandle<R>, key: &str) -> Option<T> {
+pub fn load_from_store<R: Runtime, T: DeserializeOwned>(handle: AppHandle<R>, key: &str) -> Option<T> {
     let stores = handle.state::<StoreCollection<R>>();
     let path = handle
         .path_resolver()
@@ -27,13 +27,5 @@ fn load_from_store<R: Runtime, T: DeserializeOwned>(handle: AppHandle<R>, key: &
             error!("error retrieving store value at {key}: {err}");
             None
         }
-    }
-}
-
-pub fn is_streamer_overlay_enabled<R: Runtime>(handle: AppHandle<R>) -> bool {
-    if let Some(enabled) = load_from_store::<R, bool>(handle, "streamerOverlayEnabled") {
-        enabled
-    } else {
-       false
     }
 }

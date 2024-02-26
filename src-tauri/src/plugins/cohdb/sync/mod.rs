@@ -3,13 +3,15 @@ use std::{path::PathBuf, sync::Mutex};
 use auth::responses::User;
 use log::{debug, error, info, warn};
 use notify::{Config, Event, RecommendedWatcher, RecursiveMode, Watcher};
-use serde::de::DeserializeOwned;
+// use serde::de::DeserializeOwned;
 use tauri::{
     plugin::{Builder, TauriPlugin},
     AppHandle, EventHandler, Manager, Runtime,
 };
-use tauri_plugin_store::{with_store, StoreCollection};
+// use tauri_plugin_store::{with_store, StoreCollection};
 use vault::{GameType, Replay};
+
+use crate::dp_utils::load_from_store;
 
 use super::auth;
 
@@ -133,32 +135,6 @@ fn includes_user(replay: &Replay, user: &User) -> bool {
         .players()
         .iter()
         .any(|player| player.profile_id().is_some() && player.profile_id() == user.profile_id)
-}
-
-fn load_from_store<R: Runtime, T: DeserializeOwned>(handle: AppHandle<R>, key: &str) -> Option<T> {
-    let stores = handle.state::<StoreCollection<R>>();
-    let path = handle
-        .path_resolver()
-        .app_data_dir()
-        .unwrap()
-        .join("config.dat");
-
-    match with_store(handle.clone(), stores, path, |store| {
-        Ok(store.get(key).cloned())
-    }) {
-        Ok(Some(value)) => match serde_json::from_value(value.clone()) {
-            Ok(result) => Some(result),
-            Err(err) => {
-                error!("error deserializing store value at {key}: {err}");
-                None
-            }
-        },
-        Ok(None) => None,
-        Err(err) => {
-            error!("error retrieving store value at {key}: {err}");
-            None
-        }
-    }
 }
 
 fn load_playback_path<R: Runtime>(handle: AppHandle<R>) -> String {
