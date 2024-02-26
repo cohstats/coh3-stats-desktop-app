@@ -1,40 +1,39 @@
-use std::path::PathBuf;
-
+use serde::de::DeserializeOwned;
 // COH3 Desktop App Utils
-use tauri_plugin_store::{Store, StoreBuilder};
-use log::{info, warn};
-use tauri::{AppHandle, Runtime};
+use tauri_plugin_store::{StoreCollection, with_store};
+use log::{info, warn, error};
+use tauri::{AppHandle, Manager, Runtime};
 
+fn load_from_store<R: Runtime, T: DeserializeOwned>(handle: AppHandle<R>, key: &str) -> Option<T> {
+    let stores = handle.state::<StoreCollection<R>>();
+    let path = handle
+        .path_resolver()
+        .app_data_dir()
+        .unwrap()
+        .join("config.dat");
 
-pub fn load_store<R: Runtime>(handle: AppHandle<R>) -> Store<R> {
-    let mut store = StoreBuilder::new(handle, PathBuf::from("config.dat")).build();
-
-    if let Err(err) = store.load() {
-        warn!("error loading store from disk: {err}");
-        info!("saving store file to disk");
-        if let Err(err) = store.save() {
-            warn!("error saving store file to disk: {err}");
+    match with_store(handle.clone(), stores, path, |store| {
+        Ok(store.get(key).cloned())
+    }) {
+        Ok(Some(value)) => match serde_json::from_value(value.clone()) {
+            Ok(result) => Some(result),
+            Err(err) => {
+                error!("error deserializing store value at {key}: {err}");
+                None
+            }
+        },
+        Ok(None) => None,
+        Err(err) => {
+            error!("error retrieving store value at {key}: {err}");
+            None
         }
     }
-
-    store
 }
 
-
-// This is stupid I can't figure out how to return different types from a function and work with it correctly :'(
-// fn get_value_from_store<R: Runtime>(store: &Store<R>, key: String) -> Option<Result<String, bool>> {
-//     match store.get(key) {
-//         Some(value) => {
-//             Some(serde_json::from_value(value.clone()).map_err(|_| false))
-//         },
-//         None => None,
-//     }
-// }
-
-
-pub fn is_streamer_overlay_enabled<R: Runtime>(store: &Store<R>) -> bool {
-    match store.get("streamerOverlayEnabled".to_string()) {
-        Some(value) => serde_json::from_value(value.clone()).unwrap_or(false),
-        None => false,
+pub fn is_streamer_overlay_enabled<R: Runtime>(handle: AppHandle<R>) -> bool {
+    if let Some(enabled) = load_from_store::<R, bool>(handle, "streamerOverlayEnabled") {
+        enabled
+    } else {
+       false
     }
 }
