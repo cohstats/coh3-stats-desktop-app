@@ -64,7 +64,6 @@ fn main() {
         ))
         .plugin(coh3_stats_desktop_app::plugins::cohdb::sync::init())
         .setup(setup)
-        .setup(setup_web_server)
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 
@@ -72,6 +71,19 @@ fn main() {
 
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let handle = app.handle();
+
+     if load_from_store(handle.clone(), "streamerOverlayEnabled").unwrap_or(false) {
+        info!("Streamer overlay server is enabled");
+        let mut file_path =  handle.path_resolver().app_data_dir().unwrap();
+        file_path.push("streamerOverlay.html");
+        info!("Expecting the streamerOverlay at {:?}", file_path);
+
+          let _handle = thread::spawn(|| {
+            run_http_server(file_path);
+          });
+        } else {
+        info!("Streamer overlay server is disabled");
+    }
 
     // Set up sync handling
     // This needs to happen here because it depends on other plugins
@@ -90,25 +102,6 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
         }
     })
     .unwrap();
-
-    Ok(())
-}
-
-fn setup_web_server(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
-    let app_handle = app.handle();
-
-    if load_from_store(app_handle.clone(), "streamerOverlayEnabled").unwrap_or(false) {
-        info!("Streamer overlay is enabled");
-        let mut file_path =  app_handle.path_resolver().app_data_dir().unwrap();
-        file_path.push("streamerOverlay.html");
-        info!("Expecting the streamerOverlay at {:?}", file_path);
-
-          let _handle = thread::spawn(|| {
-              run_http_server(file_path);
-          });
-    } else {
-        info!("Streamer overlay is disabled");
-    }
 
     Ok(())
 }
