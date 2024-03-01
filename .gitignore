@@ -7,6 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+!src-tauri/test_assets/**.log
+
 node_modules
 dist
 dist-ssr

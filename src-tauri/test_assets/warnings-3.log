@@ -1,0 +1,1383 @@
+RelicCoH3 started at 2024-01-07 19:33 [Paris, Madrid UTC 01:00]
+OS Win 10.0.19045, 32685MB Physical Memory, 22672 Physical Available, 44973 Virtual Total, 29359 Virtual Available, 12288 Page file.
+RUN-OPTIONS [-crash_on_initlist_failure]
+WORKING-DIR [C:\Program Files (x86)\Steam\steamapps\common\Company of Heroes 3\]
+USER [Cutil]
+COMPUTER [DESKTOP-TQF4QTI]
+LOCALE [fr-FR]
+
+(I) [19:33:18.391] [000010680]: Version.cpp - translation info queried modulefilename C:\Program Files (x86)\Steam\steamapps\common\Company of Heroes 3\RelicCoH3.exe, len 1604
+(I) [19:33:18.391] [000010680]: Version [1.4.3.21751] Info [[Anvil][anvil][stable][rtm][4092130]]
+(I) [19:33:18.464] [000010680]: GameApp::SetState : new (Uninitialized) old (Uninitialized)
+(I) [19:33:18.464] [000010680]: Loading step: [Platform]
+(I) [19:33:18.465] [000010680]: Loading step: [Logger thread]
+(I) [19:33:18.465] [000010680]: Loading step: [TimeStamp]
+(I) [19:33:18.465] [000010680]: Loading step: [Timeout thread]
+(I) [19:33:18.465] [000010680]: Loading step: [CorruptInstallNotifier]
+(I) [19:33:18.465] [000010680]: Loading step: [CoInitialize]
+(I) [19:33:18.465] [000010680]: Loading step: [Process setup]
+(I) [19:33:18.465] [000010680]: Loading step: [MemoryEnvironment]
+(I) [19:33:18.822] [000010680]: Loading step: [InitReflectSystem]
+(I) [19:33:18.865] [000010680]: Loading step: [InitGameActivator]
+(I) [19:33:18.865] [000010680]: Loading step: [InitThreadingModel]
+(I) [19:33:18.865] [000010680]: Primary CPU is a 3792MHz [Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz] running at 3792MHz
+(I) [19:33:18.865] [000010680]: Architecture [9], Level [6], Revision [42245].
+(I) [19:33:18.865] [000010680]: 16 logical processor(s) detected.
+(I) [19:33:18.865] [000010680]: 8 physical processor(s) detected.
+(I) [19:33:18.865] [000010680]: 1 processor(s) nodes detected.
+(I) [19:33:18.865] [000010680]: Threading system initialized to [16]/[16] cores
+(I) [19:33:18.865] [000010680]: Loading step: [ThreadingModel Main thread]
+(I) [19:33:18.865] [000010680]: Registered essence thread: [Main_Thread] usesRcssWorkerThreads: [true]
+(I) [19:33:18.865] [000010680]: Loading step: [Taskbar]
+(I) [19:33:18.867] [000010680]: Loading step: [Additional crash information]
+(I) [19:33:18.867] [000010680]: Loading step: [Single Instance Check]
+(I) [19:33:18.867] [000010680]: Loading step: [Config File]
+(I) [19:33:18.903] [000010680]: GAME -- Current Steam name is [UMirinBrah?]
+(I) [19:33:18.903] [000010680]: GAME -- steam returned language 'french'
+(I) [19:33:18.907] [000010680]: GAME -- [Company of Heroes 3] set to language [fr]
+(I) [19:33:18.920] [000010680]: Loading step: [Render Window]
+(I) [19:33:18.920] [000010680]: Loading step: [Statgraph]
+(I) [19:33:18.920] [000010680]: Loading step: [StatGraph Stats]
+(I) [19:33:18.920] [000010680]: Loading step: [ArchiveManager]
+(I) [19:33:18.920] [000010680]: Loading step: [Filesystem]
+(I) [19:33:18.920] [000010680]: Using [C:\Users\Cutil\Documents\My Games\Company of Heroes 3\] as base writable folder
+(I) [19:33:18.920] [000010680]: Game -- System temp path is [C:\Users\Cutil\AppData\Local\Temp\]
+(I) [19:33:18.924] [000010680]: Loading step: [FileLogger]
+(I) [19:33:18.924] [000010680]: Loading step: [Lua GameBinding Traits]
+(I) [19:33:18.924] [000010680]: Loading step: [Lua Libraries]
+(I) [19:33:18.924] [000010680]: Loading step: [System Config]
+(I) [19:33:18.924] [000010680]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:configuration_user.lua'
+(I) [19:33:18.932] [000010680]: Loading step: [TelemetryController]
+(I) [19:33:18.932] [000010680]: Loading step: [User Folder Unloader]
+(I) [19:33:18.932] [000010680]: Loading step: [Load/Save Config Settings]
+(I) [19:33:18.933] [000010680]: Loading step: [Warnings]
+(I) [19:33:18.933] [000010680]: Loading step: [Load Debug Symbols]
+(I) [19:33:18.933] [000010680]: Loading step: [InitStateTreeManager]
+(I) [19:33:18.933] [000010680]: Loading step: [Prerequisite Manager]
+(I) [19:33:18.933] [000010680]: Loading step: [Prerequisite Entries]
+(I) [19:33:18.933] [000010680]: Loading step: [GameModule Pre Mod Interface Init]
+(I) [19:33:18.933] [000010680]: Loading step: [ModManager]
+(I) [19:33:18.933] [000010680]: MODULE -- Creating module 'RelicGame'.
+(I) [19:33:18.933] [000011860]: DB -- Unable to load symbols.
+(I) [19:33:18.951] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\attrib.sga 66719345 B [ID:cc658689e8327aa213f047ca598ee0c9] [Ver:6bf0b2092c6a7202b3ceb293df9fc291] [Sig:9408311714722883917]
+(I) [19:33:18.977] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\engine\archives\data.sga 31094659 B [ID:16c0f95516b6bd76239a8a743a290dba] [Ver:cb8ce9137b7fdfe9c1515d3248a46caa] [Sig:17630469950595459034]
+(I) [19:33:18.982] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\engine\archives\ui.sga 1115557 B [ID:09480279ef1f221e1467f0feeeb28aa2] [Ver:7ead600abc5691f8935583abec64e527] [Sig:9847253243097634741]
+(I) [19:33:18.987] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\common\archives\data.sga 92639 B [ID:16c0f95516b6bd76239a8a743a290dba] [Ver:13a054cf58402ebb44182403cfe05038] [Sig:15853610410799954909]
+(I) [19:33:18.997] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\data.sga 22871903 B [ID:91eb1b764829dce596439b0b53d5d902] [Ver:aba524cfec6d5b3d14812d950d294d44] [Sig:7933954907331426874]
+(I) [19:33:19.017] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\art.sga 3641933888 B [ID:335f6c45d2d00556a1b300110fb67f63] [Ver:d9dba04c524949cb9e9ff9555e756601] [Sig:6660836011918620638]
+(I) [19:33:19.042] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\artbuildings.sga 1611227763 B [ID:e630934e80bb0be959ddfc54da7e1e54] [Ver:c59e3f7fb56de91dbf66dab3dfc50d06] [Sig:10873428813784370760]
+(I) [19:33:19.065] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\artenvironment.sga 2111293604 B [ID:a8353aa1bdde46ced0f67029944c406c] [Ver:866fae38d40a59ded1ca098bf5b4b081] [Sig:13885138885561321702]
+(I) [19:33:19.080] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\artscenarios.sga 2983004081 B [ID:ffdeb91fab5122cf1ab7c37d119dc5d5] [Ver:b5f02069e032162bcf743bc621c731fd] [Sig:13040434594592207785]
+(I) [19:33:19.093] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\scenarios.sga 11054312 B [ID:4f6bed42a792fb5b9eae14472a7e901c] [Ver:69fa57ff0012843c55f23eb040a6e02b] [Sig:3832209442905318666]
+(I) [19:33:19.099] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\scenariosmp.sga 551899439 B [ID:709197811710287335bf21d3f3e018fe] [Ver:07605cabd2e148c3b7bbed70a81f5750] [Sig:3926167057041245161]
+(I) [19:33:19.106] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\scenariossp.sga 1782472601 B [ID:cb1eb03a442e23d7da269decdebfe11b] [Ver:60600e84309058b177ac014a5ff8162a] [Sig:1003042867983300798]
+(I) [19:33:19.114] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\ui.sga 981272195 B [ID:33a67d1cab1e8601f71ae7973f75c08b] [Ver:40ea75e88baaffaefff169fc8c8acfd3] [Sig:15086663737845354599]
+(I) [19:33:19.123] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\tools\archives\data.sga 2029 B [ID:94195021539650ebc2111161f08a5693] [Ver:fd9902f3003e0e0354394aa79a61a133] [Sig:13413823260693370305]
+(I) [19:33:19.123] [000010680]: Archive [DevOnly] is [missing]! [Skipping.]
+(I) [19:33:19.123] [000010680]: Archive [DevOnly] is [missing]! [Skipping.]
+(I) [19:33:19.123] [000010680]: Archive [ScenariosDev] is [missing]! [Skipping.]
+(I) [19:33:19.128] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\localefrench.sga 853155 B [ID:11902a9015b2b64dbc05d7d28aa60ed1] [Ver:5e51976741b9308d6b7bf0b4fc0f557e] [Sig:10604888670939368510]
+(I) [19:33:19.133] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\movies.sga 53841 B [ID:34a3a1146f0574f5dc457975826e2333] [Ver:e7ca9ae4970695598679ed054c53c46f] [Sig:2931587433704792017]
+(I) [19:33:19.139] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\engine\archives\reflect.sga 1735952 B [ID:cf317ce4d037d959d1f61ec4ba4b95da] [Ver:00f1447fee77dab77b92de0fc7850d76] [Sig:7070158052410442678]
+(I) [19:33:19.143] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\engine\archives\dx12shadersandedfs.sga 45213 B [ID:f5a37cc293ebf676913da1bdd46d163b] [Ver:5aa66687f8bfb3aeb12d74f1a1bfecb2] [Sig:11297108563025375450]
+(I) [19:33:19.148] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\engine\archives\dx12assets.sga 7852637 B [ID:6dee0a72320066df084864e3fd8db247] [Ver:b5199b08c33346f4156215f12b155586] [Sig:1424078468205146338]
+(I) [19:33:19.154] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\common\archives\dx12shadersandedfs.sga 4364748 B [ID:bcff99d52833fd8459ed8d990c584b6d] [Ver:30b026a80a47e510da777debef15e57d] [Sig:16191790684321451989]
+(I) [19:33:19.160] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\common\archives\dx12assets.sga 1233892 B [ID:2916e14abbb8c29a770cabc48186eae9] [Ver:904fea0e86224b0a27774a9adee1ee6a] [Sig:202420786684442498]
+(I) [19:33:19.165] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\dx12shadersandedfs.sga 13306449 B [ID:17b342a4951806a6286037aad597bfb4] [Ver:9f9f587aa570e9147796a36fe02873cc] [Sig:4764293413785222189]
+(I) [19:33:19.165] [000010680]: Loading step: [Localization]
+(I) [19:33:19.183] [000010680]: Loading step: [Game]
+(I) [19:33:19.183] [000010680]: Loading step: [SimStaticApp]
+(I) [19:33:19.184] [000010680]: Loading step: [Family Manager]
+(I) [19:33:19.192] [000010680]: UTIL -- Throwing 'Unable to open file' exception on 'Attrib:Attrib\frontend_lockout.rgd'
+(I) [19:33:19.193] [000010680]: UTIL -- Failed to Load BinaryConfig file: 'Attrib:Attrib\frontend_lockout.rgd', error: 'Unable to open file!'
+(I) [19:33:19.194] [000010680]: Loading step: [SimApp]
+(I) [19:33:19.194] [000010680]: Loading step: [Property Bag Registration]
+(I) [19:33:19.198] [000010680]: Loading step: [State Tree Manager]
+(I) [19:33:19.380] [000010680]: Loading step: [Sound - Rtpc Event Database Init]
+(I) [19:33:19.380] [000010680]: Loading step: [Property Bag Manager]
+(I) [19:33:19.770] [000010680]: MapGen - Failed to load: m_defaultCampaignPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [19:33:19.770] [000010680]: MapGen - Failed to load: m_defaultMultiplayerPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [19:33:19.770] [000010680]: MapGen - Failed to load: m_defaultOtherPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [19:33:22.755] [000010680]: PropertyBagManager Loaded in 3.376000s
+(I) [19:33:22.755] [000010680]: Loading step: [Modifier Callbacks Initialize]
+(I) [19:33:22.755] [000010680]: Loading step: [HandleIndex Manager]
+(I) [19:33:22.755] [000010680]: Loading step: [EntityBlueprintManager]
+(I) [19:33:22.756] [000010680]: Loading step: [ReflectPostExternalSystemsInited]
+(I) [19:33:22.764] [000010680]: Loading step: [ModPackManager]
+(I) [19:33:22.765] [000010680]: Loading step: [ModDllSetup]
+(I) [19:33:22.765] [000010680]: Loading step: [FilePath Filter]
+(I) [19:33:22.765] [000010680]: Loading step: [Locale System]
+(I) [19:33:22.765] [000010680]: Loading step: [Compatible Architecture Check]
+(I) [19:33:22.765] [000010680]: Loading step: [Compatible OS Check]
+(I) [19:33:22.765] [000010680]: Loading step: [Multicore Check]
+(I) [19:33:22.765] [000010680]: Loading step: [Parental Control]
+(I) [19:33:22.769] [000010680]: Loading step: [NetworkGlobal]
+(I) [19:33:22.770] [000010680]: AppID: 1677280
+(I) [19:33:22.771] [000010680]: WorldwideLoginService::WorldwideLoginService - initializing
+(I) [19:33:22.773] [000010680]: SystemCertsWin: Opened the CA system store.
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=California/L=Irvine/O=Blizzard Entertainment/OU=Battle.net/CN=Blizzard Battle.net Local Cert issuer=/C=US/ST=California/L=Irvine/O=Blizzard Entertainment/OU=Battle.net/CN=Blizzard Battle.net Local Cert
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/DC=com/DC=microsoft/CN=Microsoft Root Certificate Authority issuer=/DC=com/DC=microsoft/CN=Microsoft Root Certificate Authority
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/C=ZA/ST=Western Cape/L=Durbanville/O=Thawte/OU=Thawte Certification/CN=Thawte Timestamping CA issuer=/C=ZA/ST=Western Cape/L=Durbanville/O=Thawte/OU=Thawte Certification/CN=Thawte Timestamping CA
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/OU=Copyright (c) 1997 Microsoft Corp./OU=Microsoft Corporation/CN=Microsoft Root Authority issuer=/OU=Copyright (c) 1997 Microsoft Corp./OU=Microsoft Corporation/CN=Microsoft Root Authority
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Symantec Corporation/CN=Symantec Enterprise Mobile Root for Microsoft issuer=/C=US/O=Symantec Corporation/CN=Symantec Enterprise Mobile Root for Microsoft
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2011 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2011
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=MSFT/CN=Microsoft Authenticode(tm) Root Authority issuer=/C=US/O=MSFT/CN=Microsoft Authenticode(tm) Root Authority
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/CN=Razer Chroma SDK Local Cert/OU=Chroma/O=Razer Inc issuer=/CN=Razer Chroma SDK Local Cert/OU=Chroma/O=Razer Inc
+(I) [19:33:22.773] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2010 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2010
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC TS Root Certificate Authority 2018 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC TS Root Certificate Authority 2018
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/O=Microsoft Trust Network/OU=Microsoft Corporation/OU=Microsoft Time Stamping Service Root/OU=Copyright (c) 1997 Microsoft Corp. issuer=/O=Microsoft Trust Network/OU=Microsoft Corporation/OU=Microsoft Time Stamping Service Root/OU=Copyright (c) 1997 Microsoft Corp.
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/O=VeriSign Trust Network/OU=VeriSign, Inc./OU=VeriSign Time Stamping Service Root/OU=NO LIABILITY ACCEPTED, (c)97 VeriSign, Inc. issuer=/O=VeriSign Trust Network/OU=VeriSign, Inc./OU=VeriSign Time Stamping Service Root/OU=NO LIABILITY ACCEPTED, (c)97 VeriSign, Inc.
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC Product Root Certificate Authority 2018 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC Product Root Certificate Authority 2018
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Time Stamp Root Certificate Authority 2014 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Time Stamp Root Certificate Authority 2014
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=IT/L=Milan/O=Actalis S.p.A./03358520967/CN=Actalis Authentication Root CA issuer=/C=IT/L=Milan/O=Actalis S.p.A./03358520967/CN=Actalis Authentication Root CA
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=http://www.usertrust.com/CN=UTN-USERFirst-Object issuer=/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=http://www.usertrust.com/CN=UTN-USERFirst-Object
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G2 issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G2
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=BM/O=QuoVadis Limited/OU=Root Certification Authority/CN=QuoVadis Root Certification Authority issuer=/C=BM/O=QuoVadis Limited/OU=Root Certification Authority/CN=QuoVadis Root Certification Authority
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Trusted Root G4 issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Trusted Root G4
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/O=Digital Signature Trust Co./CN=DST Root CA X3 issuer=/O=Digital Signature Trust Co./CN=DST Root CA X3
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign Root CA - R3/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign Root CA - R3/O=GlobalSign/CN=GlobalSign
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=IE/O=Baltimore/OU=CyberTrust/CN=Baltimore CyberTrust Root issuer=/C=IE/O=Baltimore/OU=CyberTrust/CN=Baltimore CyberTrust Root
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Equifax/OU=Equifax Secure Certificate Authority issuer=/C=US/O=Equifax/OU=Equifax Secure Certificate Authority
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services issuer=/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services
+(I) [19:33:22.774] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Internet Security Research Group/CN=ISRG Root X1 issuer=/C=US/O=Internet Security Research Group/CN=ISRG Root X1
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=CN/O=WoSign CA Limited/CN=Certification Authority of WoSign issuer=/C=CN/O=WoSign CA Limited/CN=Certification Authority of WoSign
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Root Certificate Authority - G2 issuer=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Root Certificate Authority - G2
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Entrust, Inc./OU=www.entrust.net/CPS is incorporated by reference/OU=(c) 2006 Entrust, Inc./CN=Entrust Root Certification Authority issuer=/C=US/O=Entrust, Inc./OU=www.entrust.net/CPS is incorporated by reference/OU=(c) 2006 Entrust, Inc./CN=Entrust Root Certification Authority
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA issuer=/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=FR/O=Dhimyotis/CN=Certigna issuer=/C=FR/O=Dhimyotis/CN=Certigna
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=GB/ST=Greater Manchester/L=Salford/O=COMODO CA Limited/CN=COMODO RSA Certification Authority issuer=/C=GB/ST=Greater Manchester/L=Salford/O=COMODO CA Limited/CN=COMODO RSA Certification Authority
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Starfield Technologies, Inc./OU=Starfield Class 2 Certification Authority issuer=/C=US/O=Starfield Technologies, Inc./OU=Starfield Class 2 Certification Authority
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root CA issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root CA
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Entrust, Inc./OU=See www.entrust.net/legal-terms/OU=(c) 2009 Entrust, Inc. - for authorized use only/CN=Entrust Root Certification Authority - G2 issuer=/C=US/O=Entrust, Inc./OU=See www.entrust.net/legal-terms/OU=(c) 2009 Entrust, Inc. - for authorized use only/CN=Entrust Root Certification Authority - G2
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=SecureTrust Corporation/CN=SecureTrust CA issuer=/C=US/O=SecureTrust Corporation/CN=SecureTrust CA
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign Root CA - R6/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign Root CA - R6/O=GlobalSign/CN=GlobalSign
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G3 issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G3
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign Root CA - R2/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign Root CA - R2/O=GlobalSign/CN=GlobalSign
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Texas/L=Houston/O=SSL Corporation/CN=SSL.com EV Root Certification Authority RSA R2 issuer=/C=US/ST=Texas/L=Houston/O=SSL Corporation/CN=SSL.com EV Root Certification Authority RSA R2
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority issuer=/C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=PL/O=Unizeto Sp. z o.o./CN=Certum CA issuer=/C=PL/O=Unizeto Sp. z o.o./CN=Certum CA
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert High Assurance EV Root CA issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert High Assurance EV Root CA
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=JP/O=SECOM Trust Systems CO.,LTD./OU=Security Communication RootCA2 issuer=/C=JP/O=SECOM Trust Systems CO.,LTD./OU=Security Communication RootCA2
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert, Inc./CN=DigiCert CS RSA4096 Root G5 issuer=/C=US/O=DigiCert, Inc./CN=DigiCert CS RSA4096 Root G5
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=WFA Hotspot 2.0/CN=Hotspot 2.0 Trust Root CA - 03 issuer=/C=US/O=WFA Hotspot 2.0/CN=Hotspot 2.0 Trust Root CA - 03
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/O=Entrust.net/OU=www.entrust.net/CPS_2048 incorp. by ref. (limits liab.)/OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Certification Authority (2048) issuer=/O=Entrust.net/OU=www.entrust.net/CPS_2048 incorp. by ref. (limits liab.)/OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Certification Authority (2048)
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=BE/O=GlobalSign nv-sa/CN=GlobalSign Code Signing Root R45 issuer=/C=BE/O=GlobalSign nv-sa/CN=GlobalSign Code Signing Root R45
+(I) [19:33:22.775] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2006 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G5 issuer=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2006 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G5
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./CN=Go Daddy Root Certificate Authority - G2 issuer=/C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./CN=Go Daddy Root Certificate Authority - G2
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing/CN=StartCom Certification Authority issuer=/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing/CN=StartCom Certification Authority
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=JP/O=SECOM Trust.net/OU=Security Communication RootCA1 issuer=/C=JP/O=SECOM Trust.net/OU=Security Communication RootCA1
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2008 VeriSign, Inc. - For authorized use only/CN=VeriSign Universal Root Certification Authority issuer=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2008 VeriSign, Inc. - For authorized use only/CN=VeriSign Universal Root Certification Authority
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=FR/O=Dhimyotis/OU=0002 48146308100036/CN=Certigna Root CA issuer=/C=FR/O=Dhimyotis/OU=0002 48146308100036/CN=Certigna Root CA
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/ST=New Jersey/L=Jersey City/O=The USERTRUST Network/CN=USERTrust RSA Certification Authority issuer=/C=US/ST=New Jersey/L=Jersey City/O=The USERTRUST Network/CN=USERTrust RSA Certification Authority
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Google Trust Services LLC/CN=GTS Root R4 issuer=/C=US/O=Google Trust Services LLC/CN=GTS Root R4
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority issuer=/C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=Entrust, Inc./OU=See www.entrust.net/legal-terms/OU=(c) 2012 Entrust, Inc. - for authorized use only/CN=Entrust Root Certification Authority - EC1 issuer=/C=US/O=Entrust, Inc./OU=See www.entrust.net/legal-terms/OU=(c) 2012 Entrust, Inc. - for authorized use only/CN=Entrust Root Certification Authority - EC1
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign ECC Root CA - R5/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign ECC Root CA - R5/O=GlobalSign/CN=GlobalSign
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=BM/O=QuoVadis Limited/CN=QuoVadis Root CA 2 G3 issuer=/C=BM/O=QuoVadis Limited/CN=QuoVadis Root CA 2 G3
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=PL/O=Unizeto Technologies S.A./OU=Certum Certification Authority/CN=Certum Trusted Network CA issuer=/C=PL/O=Unizeto Technologies S.A./OU=Certum Certification Authority/CN=Certum Trusted Network CA
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Assured ID Root CA issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Assured ID Root CA
+(I) [19:33:22.776] [000010680]: WindowsCertificates: Adding certificate; subject=/C=SE/O=AddTrust AB/OU=AddTrust External TTP Network/CN=AddTrust External CA Root issuer=/C=SE/O=AddTrust AB/OU=AddTrust External TTP Network/CN=AddTrust External CA Root
+(I) [19:33:22.776] [000010680]: SystemCertsWin: 62 certificates loaded
+(I) [19:33:22.805] [000010680]: AutomatchInternal: Instantiating
+(I) [19:33:22.816] [000010680]: NetworkLoadCallback not able to open file CloudGetFileURLCache-coh3-coh3.dat
+(I) [19:33:22.816] [000010680]: NetworkLoadCallback not able to open file CloudFileMetadataCache-coh3-coh3.dat
+(I) [19:33:22.816] [000010680]: WindowsCertificates: Adding certificate; subject=/C=CA/ST=British Columbia/L=Vancouver/O=Relic Entertainment/CN=RelicLink Root CA issuer=/C=CA/ST=British Columbia/L=Vancouver/O=Relic Entertainment/CN=RelicLink Root CA
+(I) [19:33:22.816] [000010680]: Original Server Settings before command line args: server=coh3, title=coh3
+(I) [19:33:22.816] [000010680]: Applied Server Settings after command line args: liveServer=coh3, devServer=coh3, certServer=coh3, title=coh3
+(I) [19:33:22.817] [000010680]: Loading step: [Telemetry]
+(I) [19:33:22.817] [000010680]: Loading step: [Lua Libraries]
+(I) [19:33:22.817] [000010680]: Loading step: [Lua Tools]
+(I) [19:33:22.817] [000010680]: Loading step: [System Tests]
+(I) [19:33:22.820] [000010680]: Enumerating Graphics Adapters
+(I) [19:33:22.820] [000010680]: Choosing first adapter
+(I) [19:33:22.820] [000010680]: Adapter: NVIDIA GeForce RTX 3090 Ti video dedicated: 25508708352 shared: 17136746496 system dedicated: 0
+(I) [19:33:22.820] [000010680]: Checking against Adapter: Microsoft Basic Render Driver video dedicated: 0 shared: 17136746496 system dedicated: 0
+(I) [19:33:23.144] [000010680]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [19:33:23.144] [000010680]: Chosen adapter: NVIDIA GeForce RTX 3090 Ti video dedicated: 25508708352 shared: 17136746496 system dedicated: 0
+(I) [19:33:23.144] [000010680]: Loading step: [Command DB]
+(I) [19:33:23.162] [000010680]: Loading step: [Game Command DB]
+(I) [19:33:23.162] [000010680]: Loading step: [InitComponentFactory]
+(I) [19:33:23.162] [000010680]: Loading step: [Inventory]
+(I) [19:33:23.162] [000010680]: Loading step: [AI subsystem]
+(I) [19:33:23.162] [000010680]: Loading step: [Game Hooks]
+(I) [19:33:23.162] [000010680]: RPC -- Initializing RpcFramework
+(I) [19:33:23.162] [000010680]: Loading step: [Game Modules Init]
+(I) [19:33:23.163] [000010680]: Loading step: [App Init Complete]
+(I) [19:33:23.163] [000010680]: Loading step: [dbImGui]
+(I) [19:33:23.163] [000010680]: Loading step: [Havok]
+(I) [19:33:23.218] [000010680]: Loading step: [User Data Shutdown]
+(I) [19:33:23.218] [000006648]: Registered essence thread: [Simulation_Thread] usesRcssWorkerThreads: [true]
+(I) [19:33:23.219] [000019272]: Registered essence thread: [Render_Thread] usesRcssWorkerThreads: [true]
+(I) [19:33:23.220] [000010680]: NvAPI initialized with reported interface version: NVidia Complete Version 1.10
+(I) [19:33:23.220] [000010680]: NvAPI initialization reports installed display driver version: r545_00
+(I) [19:33:23.459] [000010680]: Enumerating Graphics Adapters
+(I) [19:33:23.459] [000010680]: Choosing first adapter
+(I) [19:33:23.459] [000010680]: Adapter: NVIDIA GeForce RTX 3090 Ti video dedicated: 25508708352 shared: 17136746496 system dedicated: 0
+(I) [19:33:23.459] [000010680]: Checking against Adapter: Microsoft Basic Render Driver video dedicated: 0 shared: 17136746496 system dedicated: 0
+(I) [19:33:23.672] [000010680]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [19:33:23.672] [000010680]: Chosen adapter: NVIDIA GeForce RTX 3090 Ti video dedicated: 25508708352 shared: 17136746496 system dedicated: 0
+(I) [19:33:23.850] [000010680]: RR Feature Level is SM6_2
+(I) [19:33:23.885] [000010680]: -------- GPU and Output INFO --------
+(I) [19:33:23.885] [000010680]: NVIDIA GeForce RTX 3090 Ti -- 24327MB dedicated video memory, 0MB dedicated system memory and 16342MB shared system memory available.
+(I) [19:33:23.885] [000010680]: Primary Output Device is \\.\DISPLAY1, Resolution is 2560x1440
+(I) [19:33:23.886] [000010680]: Microsoft Basic Render Driver -- 0MB dedicated video memory, 0MB dedicated system memory and 16342MB shared system memory available.
+(I) [19:33:24.705] [000010680]: Loading step: [Render Anim]
+(I) [19:33:24.705] [000010680]: Loading step: [Alias]
+(I) [19:33:24.706] [000010680]: Loading step: [Hotswapping]
+(I) [19:33:24.706] [000010680]: Loading step: [ITextureUtil]
+(I) [19:33:24.706] [000010680]: Loading step: [TextureManager]
+(I) [19:33:24.706] [000010680]: Loading step: [Loaders]
+(I) [19:33:24.706] [000010680]: Loading step: [ActionCommandFunction]
+(I) [19:33:24.706] [000010680]: Loading step: [TeamColourCommandFunction]
+(I) [19:33:24.706] [000010680]: Loading step: [SetShaderVariableCommandFunction]
+(I) [19:33:24.706] [000010680]: Loading step: [IntersectUtil]
+(I) [19:33:24.706] [000010680]: Loading step: [ShadowManager]
+(I) [19:33:24.706] [000010680]: Loading step: [Debug Render]
+(I) [19:33:24.706] [000010680]: Loading step: [Autodetect Settings]
+(I) [19:33:24.706] [000010680]: -------- Display Adapter Driver Information --------
+(I) [19:33:24.706] [000010680]: Vendor: NVIDIA (0x10de)
+(I) [19:33:24.706] [000010680]: Installed Driver Version: r545_00 (54633)
+(I) [19:33:24.706] [000010680]: Required Driver Version: 512.15 (51215)
+(I) [19:33:24.706] [000010680]: ----------------------------------------------------
+(I) [19:33:26.127] [000010680]: Results of 8 GPU performance test frames: Median = 13.160959ms, average = 13.202688ms, min = 12.989440ms, max = 13.641728ms
+(I) [19:33:26.129] [000010680]: Detected: CPU [Max][Score: 819.87][RAM: 32], GPU [Max][Score: 300.24][VRAM: 24]
+(I) [19:33:26.134] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundcommon.sga 13907 B [ID:70641d3636c52218e9ecf2aba8a04c76] [Ver:6ce6f847b872a13b2607b00732f917f6] [Sig:12479356171490108550]
+(I) [19:33:26.140] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundspeechallies.sga 225891908 B [ID:a3d79f90e4bdec5cb47a67abda5a2793] [Ver:b95949b3ad86404dd9e507400e47c55c] [Sig:7176493672085207988]
+(I) [19:33:26.150] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundspeechalliesuk.sga 1641388214 B [ID:ed506ab18d21f2ffe3194169ba1d9a3c] [Ver:e182d4f2746628c519bd7a560e177efd] [Sig:16733140244779250900]
+(I) [19:33:26.169] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundspeechalliesus.sga 987745819 B [ID:7a1866d3e9d2d1e3cd91cf5ac53deaa9] [Ver:df1339dfe6c8ce82b873166e1b635557] [Sig:8178343946498814655]
+(I) [19:33:26.183] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxis.sga 798933411 B [ID:44d5e1d8695f153cc8d01842ce4013df] [Ver:c48b9d05badb8218bd47208dc7f2d4ca] [Sig:7177455968363307143]
+(I) [19:33:26.196] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxisdak.sga 957509857 B [ID:7c9beb5bbe4c6377f9af4992656de107] [Ver:310ca6356650cfc2cede31dac5538a5b] [Sig:1308138538130272606]
+(I) [19:33:26.210] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxiswehr.sga 1154234810 B [ID:86c53ff39ed7cba5c213d242f3da1e68] [Ver:66e6870b96609bde60c5400008e3b0e9] [Sig:3237122929350076478]
+(I) [19:33:26.224] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundspeechcampaign.sga 1045369919 B [ID:622fb949ed9a0aec199fafdfb5e30bb7] [Ver:5875f8c0808291ac54a172ee3b68e6b6] [Sig:4506384843269190941]
+(I) [19:33:26.233] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\anvil\archives\soundhigh.sga 973453032 B [ID:95a11ec6fbb00f11e9eef24ff8ae22e5] [Ver:c0c25d61721f21c1fdecdb51e84eff6c] [Sig:11089065236804819891]
+(I) [19:33:26.237] [000010680]: ARC -- c:\program files (x86)\steam\steamapps\common\company of heroes 3\engine\archives\arthigh.sga 6678 B [ID:e8f87e4ac202807565d2b4980453804d] [Ver:2687154863f6a8aae64a123d657f5735] [Sig:6704931815395175266]
+(I) [19:33:26.237] [000010680]: Loading step: [Sound]
+(I) [19:33:27.537] [000010680]: Loading step: [Fonts]
+(I) [19:33:27.538] [000010680]: Loading step: [Statgraph]
+(I) [19:33:27.538] [000010680]: Loading step: [Debug Console]
+(I) [19:33:27.539] [000010680]: Loading step: [Movie Manager]
+(I) [19:33:27.539] [000010680]: Loading step: [Flush Inventory]
+(I) [19:33:27.539] [000010680]: Loading step: [Purge BackgroundLoader]
+(I) [19:33:27.539] [000010680]: Loading step: [Unload inventory]
+(I) [19:33:27.539] [000010680]: Loading step: [Cancel Pending Soundbank Loads]
+(I) [19:33:27.791] [000010680]: Loading step: [Init Screen Background]
+(I) [19:33:27.791] [000010680]: Loading step: [Cursor]
+(I) [19:33:27.876] [000010680]: Loading step: [Presentation App]
+(I) [19:33:27.876] [000010680]: Loading step: [Presentation Static App]
+(I) [19:33:27.876] [000010680]: Loading step: [DestinationFormationManager]
+(I) [19:33:27.877] [000010680]: Loading step: [Campaign Manager]
+(I) [19:33:27.877] [000010680]: Loading step: [Mods]
+(I) [19:33:27.883] [000010680]: ARC -- C:\Users\Cutil\Documents\My Games\Company of Heroes 3\mods\extension\subscriptions\2937361544\ccm.sga 374107 B [ID:385d981096ba4ece90408281db65174e] [Ver:4d4d39c656149004ee556defd90c4aeb] [Sig:0]
+(I) [19:33:27.888] [000010680]: ARC -- C:\Users\Cutil\Documents\My Games\Company of Heroes 3\mods\extension\subscriptions\2937817031\CameraMod.sga 24794 B [ID:eb7ff9b03e6746d1ad875c105cb32558] [Ver:c9116bde6e8e314221ce3a5194d04802] [Sig:0]
+(I) [19:33:27.894] [000010680]: ARC -- C:\Users\Cutil\Documents\My Games\Company of Heroes 3\mods\extension\subscriptions\2939650220\Tunisian_Pass.sga 8223159 B [ID:74bac07e339342b1bfc2c0a712a244c0] [Ver:92dfb7054f1a4a97fcad76e61b4947ab] [Sig:0]
+(I) [19:33:27.899] [000010680]: ARC -- C:\Users\Cutil\Documents\My Games\Company of Heroes 3\mods\extension\subscriptions\2940153801\2_Crossroads.sga 4218946 B [ID:098a5aad6c714469a3a26c3b52f30922] [Ver:e5186367b15f8b43a87817b5a307c927] [Sig:0]
+(I) [19:33:27.904] [000010680]: ARC -- C:\Users\Cutil\Documents\My Games\Company of Heroes 3\mods\extension\subscriptions\2961426505\Faymonville_ML.sga 8394864 B [ID:80ccc23d5687493a9fbac8dc81cf1022] [Ver:c565ad4906a6dd0615b5ae5076a00ac6] [Sig:0]
+(I) [19:33:27.909] [000010680]: ARC -- C:\Users\Cutil\Documents\My Games\Company of Heroes 3\mods\extension\subscriptions\2972576904\twin_beach_2p_mkii.sga 7010009 B [ID:4c42c4d9d6d0474ba3feade1c80553a0] [Ver:1061b65e374d8b51dccb1b3baad963fd] [Sig:0]
+(I) [19:33:27.995] [000010680]: GAME -- (WorldManager) Cannot find original scenario "po_valley_4p" referenced from data:scenarios\missions\skirmish\po_valley_sp\po_valley_sp.scenref
+(I) [19:33:27.995] [000010680]: GAME -- (WorldManager) Could not load scenario reference file data:scenarios\missions\skirmish\po_valley_sp\po_valley_sp.scenref. Please check syntax.
+(I) [19:33:28.005] [000010680]: Loading step: [Item Manager]
+(I) [19:33:28.005] [000010680]: Loading step: [Loadout Manager]
+(I) [19:33:28.005] [000010680]: Loading step: [Chat Manager]
+(I) [19:33:28.007] [000010680]: Loading step: [Squad Command Processor Types]
+(I) [19:33:28.007] [000010680]: Loading step: [Squad Command Processor Types from Games]
+(I) [19:33:28.007] [000010680]: Loading step: [IEngineInitializable]
+(I) [19:33:28.020] [000010680]: default binding was not found for command [focus_next_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [focus_next_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_next_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [focus_next_idle_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_next_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_all_emplacements] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_next_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_all_idle_emplacements] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_next_idle_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [focus_next_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_next_idle_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_all_on_screen] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_next_idle_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [focus_next_idle_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [focus_next_idle_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: default binding was not found for command [pick_all] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.020] [000010680]: Invalid group observer_replay found in profile TEST. Ignoring
+(I) [19:33:28.021] [000010680]: default binding was not found for command [zoom] in [TEST]. The command could be deleted. Ignored
+(I) [19:33:28.022] [000010680]: CRC & Version Info : exe 0x000054f7:data 0xb8c96154:flags 0
+(I) [19:33:28.027] [000010680]: GameApp::SetState : new (Unloaded) old (Uninitialized)
+(I) [19:33:30.962] [000010680]: GameApp::SetState : new (FrontEnd) old (Unloaded)
+(I) [19:33:30.962] [000010680]: GameApp::SetTargetState : new (Uninitialized) old (FrontEnd)
+(I) [19:33:30.963] [000010680]: FILESYSTEM -- filepath failure, missing alias 'Save:Campaign\*.rlt'
+(I) [19:33:30.963] [000010680]: FILESYSTEM -- filepath failure, missing alias 'Save:AutoSave\Campaign\*.rlt'
+(I) [19:33:30.963] [000010680]: FILESYSTEM -- filepath failure, missing alias 'Save:Operations\*.sav'
+(I) [19:33:30.963] [000010680]: FILESYSTEM -- filepath failure, missing alias 'Save:Skirmish\*.sav'
+(I) [19:33:30.963] [000010680]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:datastore/ftue.rlt'
+(I) [19:33:30.963] [000010680]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:datastore/ftue.rlt'
+(I) [19:33:30.981] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:33:30.981] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:33:31.139] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:33:31.144] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:33:31.144] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:33:31.191] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:33:31.191] [000019272]: RENDERING - resize request clobbering old request [2560, 1440] reason [WindowSizeEvent]
+(I) [19:33:31.191] [000019272]: RENDERING - new resize requested [2560, 1440] reason [DisplayChange]
+(I) [19:33:31.191] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [DisplayChange]
+(I) [19:33:31.194] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [DisplayChange]
+(I) [19:33:31.194] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:33:31.196] [000010680]: Requesting ticket
+(I) [19:33:31.549] [000010680]: OnRequest app ticket returned N
+(I) [19:33:31.549] [000010680]: SteamAuth received ticket at t=5122389
+(I) [19:33:32.632] [000010680]: Found 1 profiles for account /steam/76561198005864560
+(I) [19:33:32.632] [000010680]: Found profile: /steam/76561198005864560
+(I) [19:33:32.634] [000010680]: Client is using WebSockets to receive updates from the server
+(I) [19:33:32.636] [000010680]: Login attempt: C00T01R00X-01 52656C69008C
+(I) [19:33:32.656] [000015544]: WebSocketConnection::Process: Creating a websocket connection; host=coh3-api.reliclink.com port=443
+(I) [19:33:32.722] [000010680]: System was measured to be capable of copying [17866] MB/sec.
+(I) [19:33:33.414] [000015544]: WebSocketConnection::OnConnect; m_resumeState=0
+(I) [19:33:33.414] [000015544]: WebSocketConnection::Process: Sending session token; clientLibVersion=184 sessionToken=wsuvtcop0raccmb25ltu0pmmyb8vp6
+(I) [19:33:35.565] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:33:36.743] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12022,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],1,"En ligne",[[1409823,""]]]]]
+(I) [19:33:40.643] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:33:44.750] [000010680]: GetPartyStatsByID found 1 teams for user ID 16432
+(I) [19:33:48.718] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:33:58.765] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:33:58.786] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:33:58.814] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:35:20.954] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:20.990] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:20.990] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.026] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.055] [000010680]: GAME -- ValidateScenarioDesc(): Gamesave app version mismatch (data:scenarios\missions\skirmish\rural_1_sp\rural_1_sp ver binary version stamp or crc/data crc:8849/-1813185163) required:21751/-1194761900
+(I) [19:35:21.061] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.092] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.092] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.386] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.418] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.418] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.471] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.503] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.503] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.546] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.577] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.577] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.622] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.654] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.654] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.699] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.730] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.730] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.774] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.807] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.807] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.851] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.883] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.883] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:21.927] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:21.959] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:21.959] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.002] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.047] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.047] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.092] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.124] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.124] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.169] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.201] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.201] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.245] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.277] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.277] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.321] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.353] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.353] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.398] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.429] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.429] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.474] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.505] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.505] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.550] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.582] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.582] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.627] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.659] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.659] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.704] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.736] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.736] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.781] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.813] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.813] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.858] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.890] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.890] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:22.935] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:22.967] [000010680]: LuaMap::GetData_CS - Error: variable [metamap_save_hash] not found in data store
+(I) [19:35:22.967] [000010680]: LuaMap::GetData_CS - Error: variable [mission_save_hash] not found in data store
+(I) [19:35:23.013] [000010680]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [19:35:23.032] [000010680]: GAME -- ValidateScenarioDesc(): Gamesave app version mismatch (data:scenarios\missions\africa\archetype\destroy\desert_route_tank_battle ver binary version stamp or crc/data crc:8369/-2068725181) required:21751/-1194761900
+(I) [19:35:23.251] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:35:23.324] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:35:30.091] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12023,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],2,"En ligne",[[1409823,""]]]]]
+(I) [19:38:33.708] [000010680]: GetPartyStatsByID found 1 teams for user ID 16432
+(I) [19:40:24.802] [000010680]: Invalid group observer_replay found in profile TEST. Ignoring
+(I) [19:40:24.802] [000010680]: default binding was not found for command [focus_next_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.802] [000010680]: default binding was not found for command [focus_next_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.802] [000010680]: default binding was not found for command [pick_next_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.802] [000010680]: default binding was not found for command [focus_next_idle_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.802] [000010680]: default binding was not found for command [pick_next_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_all_emplacements] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_next_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_all_idle_emplacements] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_next_idle_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [focus_next_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_next_idle_emplacement] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_all_on_screen] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_next_idle_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [focus_next_idle_vehicle] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [focus_next_idle_infantry] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.803] [000010680]: default binding was not found for command [pick_all] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:24.804] [000010680]: default binding was not found for command [zoom] in [TEST]. The command could be deleted. Ignored
+(I) [19:40:28.398] [000010680]: starting online hosting
+(I) [19:40:31.772] [000010680]: OnlineHostAsync success
+(I) [19:40:31.772] [000010680]: Created Matchinfo for sessionID 17367142
+(I) [19:40:31.772] [000010680]: OnJoinAdvertisementSuccess - joined online match, server leave notification required
+(I) [19:40:31.772] [000010680]: starting local hosting
+(I) [19:40:31.772] [000010680]: ValidateCustomData: called with 5250 bytes of custom data
+(I) [19:40:31.772] [000010680]: WorldwideAdvertisementService::Process - EVENT_NEWPEER
+(I) [19:40:31.775] [000010680]: Sending matchinfo change #2
+(I) [19:40:31.775] [000010680]: HostAsync - got operation info 0:SessionOperationInfo::SUCCESS
+(I) [19:40:31.777] [000010680]: hosting - Session is connected
+(I) [19:40:31.785] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=1/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=1/0, Pdel=0/0, drop=0/0, data=1/0, mdat=0/0, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=3/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=3/0, lb_p=0/1, lb_c=0/0, cast=0/0, cdat=0/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=1/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(E) [19:40:31.894] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:32.014] [000010680]: CreateSteamSessionAsync::Process: Successfully created lobby; lobbyId=109775241669588183
+(I) [19:40:32.951] [000015544]: Read bytes [0,"PlatformSessionUpdateMessage",16432,[17367142,"0",109775241669588183,0,"",""]]
+(I) [19:40:32.951] [000010680]: Sending matchinfo change #3
+(I) [19:40:32.961] [000010680]: HostAsync - completed with HostResult = 0
+(I) [19:40:32.961] [000010680]: Party::SetHostJoinResult - 0
+(I) [19:40:32.961] [000010680]: Party::SetStatus - S_CONFIGURING
+(I) [19:40:32.961] [000010680]: WorldwideAutomatchService::OnHostComplete - automatcher is no longer active - stopPollPending 0 automatchPollID 18446744073709551615
+(E) [19:40:33.025] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:33.076] [000010680]: Sending matchinfo change #4
+(E) [19:40:33.146] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:34.540] [000010680]: Sending matchinfo change #5
+(E) [19:40:34.647] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:34.797] [000010680]: Sending matchinfo change #6
+(E) [19:40:34.898] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:35.797] [000010680]: Sending matchinfo change #7
+(E) [19:40:35.896] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:39.201] [000010680]: SessionID : 1090066 - Disconnect called with reasonID 1000 - Destroying Party
+(I) [19:40:39.206] [000010680]: Sending matchinfo change #8
+(E) [19:40:39.212] [000010680]: SetVisible called while !IsConnected
+(E) [19:40:39.274] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:39.333] [000010680]: Sending matchinfo change #9
+(E) [19:40:39.396] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:39.456] [000010680]: WorldwideAdvertisementService::Process - EVENT_DESTROYPEER
+(I) [19:40:39.456] [000010680]: WorldwidePartyService::PeerRemove, Removing peer ID: 1
+(I) [19:40:39.456] [000010680]: peerremove - peerIDRemoved=16432, reasonID=1000, reason debug hint - Destroying Party
+(E) [19:40:39.459] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.470] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.481] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.492] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.503] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.514] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.525] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.536] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.547] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.558] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.569] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.580] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.591] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.602] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.613] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.624] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.635] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.646] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.657] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.668] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.679] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.690] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.701] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.712] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.722] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.733] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.744] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.755] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.766] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.777] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.788] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.799] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:40:39.810] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(I) [19:40:39.810] [000010680]: PeerRemoveAll - flushing local session peer data
+(I) [19:40:39.810] [000010680]: LeaveSessionInternal - no action taken, needLeave=0, service=0
+(I) [19:40:39.810] [000010680]: Destroyed Matchinfo for sessionID 17367142
+(E) [19:40:39.811] [000010680]: Socks::Free: Socket 0/5588 did not close properly before being freed.
+(I) [19:40:39.811] [000010680]: OnDestroyPartyNotification - partyID = 17367142, prevID = -1
+(I) [19:40:39.811] [000010680]: OnDestroyPartyNotification - partyID = 17367142, prevID = -1
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 0 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 1 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 2 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 3 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 4 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 5 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 6 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 7 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 8 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 9 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 10 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 11 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 12 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 13 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 14 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.873] [000010680]: MatchSetupManager -- RACE for slot 15 was INVALID, assigning arbitrary race and faction.
+(I) [19:40:41.875] [000010680]: starting online hosting
+(I) [19:40:44.690] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12024,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],1409814,"Parcourt les parties",[[1409823,""]]]]]
+(I) [19:40:45.647] [000010680]: OnlineHostAsync success
+(I) [19:40:45.647] [000010680]: Created Matchinfo for sessionID 17367150
+(I) [19:40:45.647] [000010680]: OnJoinAdvertisementSuccess - joined online match, server leave notification required
+(I) [19:40:45.647] [000010680]: starting local hosting
+(I) [19:40:45.648] [000010680]: ValidateCustomData: called with 5306 bytes of custom data
+(I) [19:40:45.648] [000010680]: WorldwideAdvertisementService::Process - EVENT_NEWPEER
+(I) [19:40:45.651] [000010680]: Sending matchinfo change #2
+(I) [19:40:45.654] [000010680]: HostAsync - got operation info 0:SessionOperationInfo::SUCCESS
+(I) [19:40:45.657] [000010680]: hosting - Session is connected
+(I) [19:40:45.663] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=1/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=1/0, Pdel=0/0, drop=0/0, data=1/0, mdat=0/0, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=3/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=3/0, lb_p=0/0, lb_c=0/0, cast=0/0, cdat=0/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=1/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(E) [19:40:45.795] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:45.915] [000010680]: CreateSteamSessionAsync::Process: Successfully created lobby; lobbyId=109775241669588763
+(I) [19:40:46.883] [000015544]: Read bytes [0,"PlatformSessionUpdateMessage",16432,[17367150,"0",109775241669588763,0,"",""]]
+(I) [19:40:46.885] [000010680]: Sending matchinfo change #3
+(I) [19:40:46.899] [000010680]: HostAsync - completed with HostResult = 0
+(I) [19:40:46.899] [000010680]: Publishing Visible match
+(I) [19:40:46.899] [000010680]: WorldwidePartyService::SetMatchState - state 0 unchanged ignoring
+(I) [19:40:46.900] [000010680]: WorldwideAutomatchService::OnHostComplete - automatcher is no longer active - stopPollPending 0 automatchPollID 18446744073709551615
+(I) [19:40:47.015] [000010680]: Sending matchinfo change #24
+(E) [19:40:47.024] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(E) [19:40:47.153] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:51.227] [000010680]: Sending matchinfo change #26
+(E) [19:40:51.271] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:52.939] [000010680]: Sending matchinfo change #27
+(E) [19:40:53.022] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:54.223] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12025,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],1526767,"Dans l'accueil de la partie personnalisée",[[1409823,"17367150"]]]]]
+(I) [19:40:55.596] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [None]
+(I) [19:40:55.607] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [None]
+(I) [19:40:55.607] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:40:55.948] [000010680]: Sending matchinfo change #28
+(I) [19:40:55.990] [000010680]: WorldwidePartyService::SetMatchState - state 1 - updating server
+(E) [19:40:56.021] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:57.129] [000010680]: Sending matchinfo change #29
+(I) [19:40:57.129] [000010680]: WorldwideAutomatchService::OnStartComplete - detected successful game start
+(I) [19:40:57.129] [000010680]: Match Started - [16432 /steam/76561198005864560], slot =  0, ranking =   -1
+(E) [19:40:57.271] [000010680]: Rejecting packet type 0 that claims to come from ourself
+(I) [19:40:57.631] [000015544]: Read bytes [0,"MatchStartMessage",16432,[[[16432,["2068341","2068340","2068342"]]],[["16432","129494"]],1704652858,[["16432",[[1543315,212,451707,16432,1,0,"{}",1677175591,2,-1,19,2147483647],[1543351,1,453412,16432,1,0,"{}",1677175591,4,-1,3,2147483647],[1543317,206,451861,16432,1,0,"{}",1677175591,6,-1,19,2147483647],[1543180,212,453392,16432,1,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"6\",\"eslot\":\"6\",\"dlc\":1}",1677175591,1543315,-1,19,-1],[1543185,212,453358,16432,1,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"3\",\"eslot\":\"3\",\"dlc\":1}",1677175591,1543315,-1,19,-1],[1543319,215,453171,16432,1,0,"{\"epos\":\"0\",\"eslot\":\"0\"}",1677175591,1543315,-1,19,2147483647],[1543320,214,453172,16432,1,0,"{\"epos\":\"2\",\"eslot\":\"2\"}",1677175591,1543315,-1,19,2147483647],[1543353,197,453623,16432,1,0,"{\"epos\":\"8\",\"eslot\":\"8\"}",1677175591,1543315,-1,19,2147483647],[1543355,197,453954,16432,1,0,"{\"epos\":\"5\",\"eslot\":\"5\"}",1677175591,1543315,-1,19,2147483647],[1543358,212,454056,16432,1,0,"{\"epos\":\"13\",\"eslot\":\"13\"}",1677175591,1543315,-1,19,2147483647],[1543359,212,454057,16432,1,0,"{\"epos\":\"12\",\"eslot\":\"12\"}",1677175591,1543315,-1,19,2147483647],[1543360,212,454058,16432,1,0,"{\"epos\":\"17\",\"eslot\":\"17\"}",1677175591,1543315,-1,19,2147483647],[1543361,212,454059,16432,1,0,"{\"epos\":\"16\",\"eslot\":\"16\"}",1677175591,1543315,-1,19,2147483647],[1543362,212,454060,16432,1,0,"{\"epos\":\"15\",\"eslot\":\"15\"}",1677175591,1543315,-1,19,2147483647],[1543368,212,454061,16432,1,0,"{\"epos\":\"20\",\"eslot\":\"20\"}",1677175591,1543315,-1,19,2147483647],[49038922,201,454905,16432,1,0,"{\"epos\":\"21\",\"att\":{\"is_new\":{\"val\":\"0\"}},\"eslot\":\"21\"}",1685118658,1543315,-1,51,-1],[49038923,201,454903,16432,1,0,"{\"epos\":\"18\",\"att\":{\"is_new\":{\"val\":\"0\"}},\"eslot\":\"18\"}",1685118658,1543315,-1,51,-1],[49038924,201,454900,16432,1,0,"{\"epos\":\"14\",\"att\":{\"is_new\":{\"val\":\"0\"}},\"eslot\":\"14\"}",1685118658,1543315,-1,51,-1],[55985661,89,457990,16432,1,0,"{\"epos\":\"10\",\"att\":{\"is_new\":{\"val\":\"0\"}},\"eslot\":\"10\"}",1697205524,1543315,-1,51,-1],[57412989,16,454899,16432,1,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"9\",\"eslot\":\"9\"}",1700427631,1543315,-1,51,-1],[57412990,16,454902,16432,1,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"7\",\"eslot\":\"7\"}",1700427631,1543315,-1,51,-1],[57412991,31,458001,16432,1,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"11\",\"eslot\":\"11\"}",1700427631,1543315,-1,51,-1],[58672163,31,453173,16432,1,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"1\",\"eslot\":\"1\",\"dlc\":1}",1701811414,1543315,-1,19,-1],[58672231,22,456444,16432,7,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"19\",\"eslot\":\"19\"}",1701811429,1543315,-1,51,-1],[58672232,22,456445,16432,7,0,"{\"att\":{\"is_new\":{\"val\":\"0\"}},\"epos\":\"4\",\"eslot\":\"4\"}",1701811429,1543315,-1,51,-1],[1543187,1,454524,16432,1,0,"{\"epos\":\"0\",\"eslot\":\"0\",\"dlc\":1}",1677175591,1543351,-1,19,-1],[1543191,1,454522,16432,1,0,"{\"epos\":\"10\",\"eslot\":\"10\",\"dlc\":1}",1677175591,1543351,-1,19,-1]]]],[17367150,109775241669588763,0,"","","0",16432,1,"unnamed_session","unnamed_session",0,"desert_village_2p_mkiii","eNq1Vd9v2jAQ3p9S5XWdFkIIDVIfoLQVbddSYO2kqrKMY8INx04dB0or/vfZiaEBQfey5SHK3Xff3dn3I+9OghKcjpYpdVrusZYWwM8Ej0CB4Nd06bRq+gmCsBnWDRzjhHZhMgGSM2VQoyRTilVmBe1uqLBUN4Jg4ySzjg1zmFIaOS1vN9Bdai3fNSAKYUjJRgcZmogYiQlaYIkox2Nm3BwEaqtjA8VMjDFDGHYoe/SWMX1BOFcCSQp8IiShKIKsSv3MwPoAninMFcJjYKCW2pRMsYzpThJ/N3O3/RF9GUrmxa0c8LXfZCevVIroUy/7DKwPSTORm1MDJyLZPdJB1LBTkeasaAhEcIrEnEoJETXUg1DNdc0lZGUroMy0FfB4E6hojrJdqroqRwGZUVU13GgapfO1U51ygnlEJUoF8JLyCbjF3Upon7a2Wq1M09tql/1uByPnoLYVaSxxRLd0UkcXybAYH9+tN09c3/WaBmFCnydaU0F/BaEfnASunUZFpsUcO85G1nM3gfiC4Vin5p0EBsiYUFt6px+32+2ur1/tr+b1T+T26elHHn19Q1T1O5c9nbXz3TyLDZ7e6oWh1ZG2kQrNgem8KPJSlMwAoLBieEnlqEj36dnSLikfwptm+l7oh0HTCxsfyA1eilztxzogkgO0fhGoWGuVNaeBQaUs7of6zrZweaFdrHC52qLiy3FWlVyJHhMJolzBhWvMmFiUIc9fFeWZboM+JrOsig9oyjChCeWqiiUiMuLWQrW6Qv
+(I) [19:40:57.632] [000010680]: Match start message slots; slots=0
+(I) [19:40:57.632] [000010680]: Match start message members; members=1
+(I) [19:40:57.632] [000010680]:  0: sessionId:17367150 profileId:16432 statGroupId:11893 raceId:129494 teamId:0 ranking:-1 url:/10.0.70.34
+(I) [19:40:57.632] [000010680]: Match start message; id=17367150 state=1 encodedSlots=eNrtVl2TmzYU7W/x86YjhNmUzORhbSMMXbOL+BCo0wdAONh8LF0wNu70v1eAvcGbbpsmfUg6+8AgdCXde4/uuQcBXv3y+6R8fFhvslgr1g8/btjknXA9FeHVpKqDevNQaAs+czWp4yDvhuBqsg6is4EvewyiuF8D5ak87b6L9DZu4qxf232tgjpK7Lbsl73pztrk8X38iB6DPF5Z/bpNheOAtf24c7yr+mEe18EiqIPJu0nc6rUHsx2GqKaWdr2a7zehK5dhQbOwwE1UZBYlKI07m9Xb9qGKJOrpH+eHPa1PpDSEgs1U1DI0ayKYgYDIO237sL+dcz+iAXxP53NS4ajyMfBwGcLp5m4DDr0dCg1Fs8SH9X207GzSUduWb7VcWIdETh0VbQNxtbkravnZeoV6syzMMX+Mknp8TVaz9RBvHUJs+sR4xPkhod3+7U11cSbADYNSFUKUOku9oaKeRcO63Wpxs++ewZ+UUYIzqnC/S2MRiu6OzZ9w2VHiptxucH9HrMpimB8av1s/f8LoKRaLSCgq9CbaaNfnO6CqOx3P39rKszj5PXl6G4oax0yfmQ568bm3weaUfxK4sywqjCbMUcUxl/h9bLTNyeb0MTbMM3m+Zntnm5Kxjfjb6X0z1U1CB1WhmiUc26zbe9v+1Ny2stj5GHBBbehlbqSytss3arVrIlbd+anv4aTbY0KGMNkDJiRPMcZbWpCnmBNkEh13Yyt3DVyw07xyYGCUm/cAqZCdvxUzvcgbX+IwnGEtjZJkyZzlhmTZVA9SVNqK8XOortp4SVMTpNAi5Swg1KaeJq1SYdhPqnG8ypD36RETY+yrn4NUPMUsn/DVRzzSOZa1Aw8NW57r89DXNlUR8DmPtNQosOPWlsf8p7Ptm3G+GnbQxunHZWk7Z39otiJslLeyN3JGz99YuawV57JWlif8j4Fb+mZBt7HT46Hz2lhY+WG7KhJIFUM30uw3i2S5A11eH/o5/0dj+TFePB9h1MpTe+zL6ufy833eW1pfY7zmISUSCEVdsjzOYdeoQhF33A89D1QDP3DCVKWr+wUFLrLsmXUL0BnvwzhfS3FnftaPF3bqcn/CucbEMQ4re1x/eH5RO+4ln/AQs8Z7WkAUHfpi1uOBSbYyQVn5R33KcrwY6sstaY4Tl2ite9ofHLFIlPN5ZjOupVgRxnd3YbtbnDjGuc9y3m9UuY2dDFAi2KEqg55rgiB7A9fTEEgNQzrnKm5Ckl33PX0JbiZ/XH0qSZ1qjPTozUiQhAtBEkaCJL4VoHghSMLXCRL8ckGavwrSXwrS/J8FiYuLsLJTYbVI4d3iw8tCU1QD/jyXWBkL0CcY6WHqtlEut33D/xtxMm0gawXoffokM/ndHTm2CRcZ0N2fxn3RHAnhEnf2daTyc6G888mhZMv0LDqlrcoJVWWhz3l7IxqLD9NT7pwgqDbJoQoI2vnQ4fFqp8YdyefGw+++jl13z/Hl57h9w3nWbOYMZMh0Dd4AePOwP4+Mt8tn4lcwnTdux/EyjYEvFQddtBx35iquZC3ZZzZPgQ1Y4cbOZeDkiP9kyHXglZ2Q79fmzft/2xhe/FMF/+VPqnDRE76ueYFvMkbwUoP9ZnGE3wGO4DvAUfgOcHzl9SuvX3n9yuv/M69//eFP41ZOpA== options=eNq1Vd9v2jAQ3p9S5XWdFkIIDVIfoLQVbddSYO2kqrKMY8INx04dB0or/vfZiaEBQfey5SHK3Xff3dn3I+9OghKcjpYpdVrusZYWwM8Ej0CB4Nd06bRq+gmCsBnWDRzjhHZhMgGSM2VQoyRTilVmBe1uqLBUN4Jg4ySzjg1zmFIaOS1vN9Bdai3fNSAKYUjJRgcZmogYiQlaYIkox2Nm3BwEaqtjA8VMjDFDGHYoe/SWMX1BOFcCSQp8IiShKIKsSv3MwPoAninMFcJjYKCW2pRMsYzpThJ/N3O3/RF9GUrmxa0c8LXfZCevVIroUy/7DKwPSTORm1MDJyLZPdJB1LBTkeasaAhEcIrEnEoJETXUg1DNdc0lZGUroMy0FfB4E6hojrJdqroqRwGZUVU13GgapfO1U51ygnlEJUoF8JLyCbjF3Upon7a2Wq1M09tql/1uByPnoLYVaSxxRLd0UkcXybAYH9+tN09c3/WaBmFCnydaU0F/BaEfnASunUZFpsUcO85G1nM3gfiC4Vin5p0EBsiYUFt6px+32+2ur1/tr+b1T+T26elHHn19Q1T1O5c9nbXz3TyLDZ7e6oWh1ZG2kQrNgem8KPJSlMwAoLBieEnlqEj36dnSLikfwptm+l7oh0HTCxsfyA1eilztxzogkgO0fhGoWGuVNaeBQaUs7of6zrZweaFdrHC52qLiy3FWlVyJHhMJolzBhWvMmFiUIc9fFeWZboM+JrOsig9oyjChCeWqiiUiMuLWQrW6QvpWD+o1zw/DRq2hj6nfbqO0wpJMYU57XZ3g+dU0urt5eXybBff3veuO5/38NYptaazhA5VZ0Z/O6292OxoMHjtX3fzhsT737l+vg3UheVnFM/OLOCunKDv6IaLWUZtzmEI5+E45HjbTLk2pHjZOwMzO03/Mzgas/P/SfMwgm9LoAlgZzgvrzXqgr8svKLob50BMrVbPRdK6DssJHvf4HFTJcCrqW6oWQuojZWSNQNal4zz+YUbALJIvfwBorJzW
+(I) [19:40:57.632] [000010680]: WorldwideAutomatchService::OnStartComplete - detected successful game start
+(I) [19:40:57.632] [000010680]: Match start notification slots; slots=16
+(I) [19:40:57.632] [000010680]:  0: [16432 /steam/76561198005864560] Status:0 Team:  0 Faction:  2 Race:129494 Level:  0 Rdy=0 Perf=0 Ack=29 metaDataSize=1134
+(I) [19:40:57.632] [000010680]:  1: [-1 ] Status:2 Team:  1 Faction:  1 Race:137123 Level:  1 Rdy=0 Perf=0 Ack=0 metaDataSize=659
+(I) [19:40:57.632] [000010680]:  2: [-1 ] Status:1 Team:  0 Faction:  2 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]:  3: [-1 ] Status:1 Team:  1 Faction:  0 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]:  4: [-1 ] Status:1 Team:  0 Faction:  1 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]:  5: [-1 ] Status:1 Team:  1 Faction:  2 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]:  6: [-1 ] Status:1 Team:  0 Faction:  0 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]:  7: [-1 ] Status:1 Team:  1 Faction:  1 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]:  8: [-1 ] Status:1 Team:  0 Faction:  2 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]:  9: [-1 ] Status:1 Team:  1 Faction:  0 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]: 10: [-1 ] Status:1 Team:  0 Faction:  1 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]: 11: [-1 ] Status:1 Team:  1 Faction:  2 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]: 12: [-1 ] Status:1 Team:  0 Faction:  0 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]: 13: [-1 ] Status:1 Team:  1 Faction:  1 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]: 14: [-1 ] Status:1 Team:  0 Faction:  2 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]: 15: [-1 ] Status:1 Team:  1 Faction:  0 Race:  0 Level:  0 Rdy=0 Perf=0 Ack=0 metaDataSize=0
+(I) [19:40:57.632] [000010680]: Match start notification members; members=1
+(I) [19:40:57.632] [000010680]:  0: sessionId:17367150 profileId:16432 statGroupId:11893 raceId:129494 teamId:0 ranking:-1 url:/10.0.70.34
+(I) [19:40:57.632] [000010680]: Match start notification; id=17367150 state=1 encodedSlots=eNrtVl2TmzYU7W/x86YjhNmUzORhbSMMXbOL+BCo0wdAONh8LF0wNu70v1eAvcGbbpsmfUg6+8AgdCXde4/uuQcBXv3y+6R8fFhvslgr1g8/btjknXA9FeHVpKqDevNQaAs+czWp4yDvhuBqsg6is4EvewyiuF8D5ak87b6L9DZu4qxf232tgjpK7Lbsl73pztrk8X38iB6DPF5Z/bpNheOAtf24c7yr+mEe18EiqIPJu0nc6rUHsx2GqKaWdr2a7zehK5dhQbOwwE1UZBYlKI07m9Xb9qGKJOrpH+eHPa1PpDSEgs1U1DI0ayKYgYDIO237sL+dcz+iAXxP53NS4ajyMfBwGcLp5m4DDr0dCg1Fs8SH9X207GzSUduWb7VcWIdETh0VbQNxtbkravnZeoV6syzMMX+Mknp8TVaz9RBvHUJs+sR4xPkhod3+7U11cSbADYNSFUKUOku9oaKeRcO63Wpxs++ewZ+UUYIzqnC/S2MRiu6OzZ9w2VHiptxucH9HrMpimB8av1s/f8LoKRaLSCgq9CbaaNfnO6CqOx3P39rKszj5PXl6G4oax0yfmQ568bm3weaUfxK4sywqjCbMUcUxl/h9bLTNyeb0MTbMM3m+Zntnm5Kxjfjb6X0z1U1CB1WhmiUc26zbe9v+1Ny2stj5GHBBbehlbqSytss3arVrIlbd+anv4aTbY0KGMNkDJiRPMcZbWpCnmBNkEh13Yyt3DVyw07xyYGCUm/cAqZCdvxUzvcgbX+IwnGEtjZJkyZzlhmTZVA9SVNqK8XOortp4SVMTpNAi5Swg1KaeJq1SYdhPqnG8ypD36RETY+yrn4NUPMUsn/DVRzzSOZa1Aw8NW57r89DXNlUR8DmPtNQosOPWlsf8p7Ptm3G+GnbQxunHZWk7Z39otiJslLeyN3JGz99YuawV57JWlif8j4Fb+mZBt7HT46Hz2lhY+WG7KhJIFUM30uw3i2S5A11eH/o5/0dj+TFePB9h1MpTe+zL6ufy833eW1pfY7zmISUSCEVdsjzOYdeoQhF33A89D1QDP3DCVKWr+wUFLrLsmXUL0BnvwzhfS3FnftaPF3bqcn/CucbEMQ4re1x/eH5RO+4ln/AQs8Z7WkAUHfpi1uOBSbYyQVn5R33KcrwY6sstaY4Tl2ite9ofHLFIlPN5ZjOupVgRxnd3YbtbnDjGuc9y3m9UuY2dDFAi2KEqg55rgiB7A9fTEEgNQzrnKm5Ckl33PX0JbiZ/XH0qSZ1qjPTozUiQhAtBEkaCJL4VoHghSMLXCRL8ckGavwrSXwrS/J8FiYuLsLJTYbVI4d3iw8tCU1QD/jyXWBkL0CcY6WHqtlEut33D/xtxMm0gawXoffokM/ndHTm2CRcZ0N2fxn3RHAnhEnf2daTyc6G888mhZMv0LDqlrcoJVWWhz3l7IxqLD9NT7pwgqDbJoQoI2vnQ4fFqp8YdyefGw+++jl13z/Hl57h9w3nWbOYMZMh0Dd4AePOwP4+Mt8tn4lcwnTdux/EyjYEvFQddtBx35iquZC3ZZzZPgQ1Y4cbOZeDkiP9kyHXglZ2Q79fmzft/2xhe/FMF/+VPqnDRE76ueYFvMkbwUoP9ZnGE3wGO4DvAUfgOcHzl9SuvX3n9yuv/M69//eFP41ZOpA== options=eNq1Vd9v2jAQ3p9S5XWdFkIIDVIfoLQVbddSYO2kqrKMY8INx04dB0or/vfZiaEBQfey5SHK3Xff3dn3I+9OghKcjpYpdVrusZYWwM8Ej0CB4Nd06bRq+gmCsBnWDRzjhHZhMgGSM2VQoyRTilVmBe1uqLBUN4Jg4ySzjg1zmFIaOS1vN9Bdai3fNSAKYUjJRgcZmogYiQlaYIkox2Nm3BwEaqtjA8VMjDFDGHYoe/SWMX1BOFcCSQp8IiShKIKsSv3MwPoAninMFcJjYKCW2pRMsYzpThJ/N3O3/RF9GUrmxa0c8LXfZCevVIroUy/7DKwPSTORm1MDJyLZPdJB1LBTkeasaAhEcIrEnEoJETXUg1DNdc0lZGUroMy0FfB4E6hojrJdqroqRwGZUVU13GgapfO1U51ygnlEJUoF8JLyCbjF3Upon7a2Wq1M09tql/1uByPnoLYVaSxxRLd0UkcXybAYH9+tN09c3/WaBmFCnydaU0F/BaEfnASunUZFpsUcO85G1nM3gfiC4Vin5p0EBsiYUFt6px+32+2ur1/tr+b1T+T26elHHn19Q1T1O5c9nbXz3TyLDZ7e6oWh1ZG2kQrNgem8KPJSlMwAoLBieEnlqEj36dnSLikfwptm+l7oh0HTCxsfyA1eilztxzogkgO0fhGoWGuVNaeBQaUs7of6zrZweaFdrHC52qLiy3FWlVyJHhMJolzBhWvMmFiUIc9fFeWZboM+JrOsig9oyjChCeWqiiUiMuLWQrW6QvpWD+o1zw/DRq2hj6nfbqO0wpJMYU57XZ3g+dU0urt5eXybBff3veuO5/38NYptaazhA5VZ0Z/O6292OxoMHjtX3fzhsT737l+vg3UheVnFM/OLOCunKDv6IaLWUZtzmEI5+E45HjbTLk2pHjZOwMzO03/Mzgas/P/SfMwgm9LoAlgZzgvrzXqgr8svKLob50BMrVbPRdK6DssJHvf4HFTJcCrqW6oWQuojZWSNQNal4zz+YUbALJIvfwBorJzW
+(I) [19:40:57.632] [000010680]: [MatchAd] Received MatchStartNotify.
+(I) [19:40:57.632] [000010680]: [MatchAd] PlayerCount: 16
+(I) [19:40:57.632] [000010680]: ProfileID: 16432, slot: 0, ProfileName: /
+(I) [19:40:57.632] [000010680]: [MatchAd] MatchAdvertisement from AdvertisementInterface not ready yet
+(I) [19:40:57.632] [000010680]: GameApp::SetTargetState : new (Game) old (Uninitialized)
+(I) [19:40:57.636] [000010680]: MOD - Setting player [0] race to: [129494]
+(I) [19:40:57.636] [000010680]: MOD - Setting player [1] race to: [137123]
+(I) [19:40:57.637] [000010680]: ModDllSetup: SetStatsGameUID=69468601
+(I) [19:40:57.637] [000010680]: GAME -- Scenario: data:scenarios\multiplayer\desert_village_2p_mkiii\desert_village_2p_mkiii
+(I) [19:40:57.637] [000010680]: GAME -- Win Condition Qualified Name: 385d981096ba4ece90408281db65174e:1111669793
+(I) [19:40:57.637] [000010680]: GAME -- Win Condition Name: ccm_annihilation
+(I) [19:40:57.637] [000010680]: GAME -- Mod Pack: 0 385d981096ba4ece90408281db65174e 4d4d39c656149004ee556defd90c4aeb WinConditionExtensionPackPart
+(I) [19:40:57.637] [000010680]: GAME -- Human Player: 0 UMirinBrah? 16432 0 americans
+(I) [19:40:57.637] [000010680]: GAME -- AI Player: 1 IA normale -1 1 germans
+(I) [19:40:57.637] [000010680]: GameApp::SetState : new (LoadingGame) old (FrontEnd)
+(I) [19:40:58.445] [000010680]: GameObj::StartGameObj - info, network session GUID set to [69468601].
+(I) [19:40:58.446] [000009120]: Loading step: [OnBeginLoad]
+(I) [19:40:58.446] [000009120]: Loading step: [Assign Players]
+(I) [19:40:58.446] [000009120]: Loading step: [FXReflection]
+(I) [19:40:58.446] [000009120]: Loading step: [FXDataContext]
+(I) [19:40:58.446] [000009120]: Loading step: [FX Texture Pack]
+(I) [19:40:58.447] [000009120]: Loading step: [Run Havok Garbage Collection]
+(I) [19:40:58.447] [000009120]: Loading step: [Flush Inventory On Application Exit]
+(I) [19:40:58.447] [000009120]: Loading step: [Default World]
+(I) [19:40:58.456] [000009120]: Loading step: [FX Command Function]
+(I) [19:40:58.456] [000009120]: Loading step: [AnimatorCommandFunction]
+(I) [19:40:58.456] [000009120]: Loading step: [MemShrink]
+(I) [19:40:58.456] [000009120]: Loading step: [Sync Checking]
+(I) [19:40:58.456] [000009120]: Loading step: [Tuning Variant]
+(I) [19:40:58.456] [000009120]: Using scenario tuning variant [default]
+(I) [19:40:58.456] [000009120]: Loading step: [Load Mod Packs]
+(I) [19:40:58.456] [000009120]: Loading step: [Map Mod Packs]
+(I) [19:40:58.456] [000009120]: Loading step: [SimVis System]
+(I) [19:40:58.456] [000009120]: Loading step: [DefaultWorld]
+(I) [19:40:58.456] [000009120]: Loading step: [Visual Physics ME]
+(I) [19:40:58.456] [000009120]: Loading step: [Deferred Decal Manager]
+(I) [19:40:58.456] [000009120]: Loading step: [FogVolumeManager]
+(I) [19:40:58.456] [000009120]: Loading step: [Vehicle Physics Function]
+(I) [19:40:58.456] [000009120]: Loading step: [Unit Occlusion Function]
+(I) [19:40:58.456] [000009120]: Loading step: [Splat Function]
+(I) [19:40:58.456] [000009120]: Loading step: [Grass Function]
+(I) [19:40:58.456] [000009120]: Loading step: [Object Alpha Factor Function]
+(I) [19:40:58.456] [000009120]: Loading step: [Renderable Managers]
+(I) [19:40:58.456] [000009120]: Loading step: [Setup Skins]
+(I) [19:40:58.456] [000009120]: Loading step: [AnimEventSetup]
+(I) [19:40:58.456] [000009120]: Loading step: [Session Precache]
+(I) [19:40:58.647] [000009120]: Loading step: [Precache core resources]
+(I) [19:40:58.648] [000009120]: Loading step: [Precache EBPs]
+(I) [19:40:58.833] [000009120]: LuaMap::GetData_CS - Error: variable [player_data] not found in data store
+(I) [19:40:58.833] [000009120]: LuaMap::GetData_CS - Error: variable [player_data] not found in data store
+(I) [19:40:58.833] [000009120]: LuaMap::GetData_CS - Error: variable [player_data] not found in data store
+(I) [19:40:58.833] [000009120]: LuaMap::GetData_CS - Error: variable [player_data] not found in data store
+(I) [19:40:59.051] [000009120]: Loading step: [Precache State Tree references]
+(I) [19:40:59.061] [000009120]: Loading step: [Load Actions]
+(I) [19:40:59.063] [000009120]: Loading step: [Load Resources from Precache]
+(I) [19:41:02.356] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:41:02.356] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:41:02.356] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:41:02.460] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:41:02.463] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:41:02.463] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:41:02.466] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:41:02.466] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:41:02.500] [000019272]: RENDERING - new resize requested [2578, 1487] reason [WindowSizeEvent]
+(I) [19:41:02.500] [000019272]: RENDERING - resize request clobbering old request [2578, 1487] reason [WindowSizeEvent]
+(I) [19:41:02.500] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:41:02.501] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:41:02.509] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:41:02.509] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:41:05.276] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12026,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],1409815,"En jeu",[[1409823,"17367150"]]]]]
+(I) [19:41:06.311] [000009120]: Loading step: [GEWorld]
+(I) [19:41:06.311] [000009120]: GAME - InitializeGEWorld
+(I) [19:41:06.474] [000009120]: Re-winding a compressed stream for file 'data:scenarios\multiplayer\desert_village_2p_mkiii\desert_village_2p_mkiii.scenario'.  Expensive operation
+(I) [19:41:07.156] [000009120]: Regenerating ImpassMap data...
+(I) [19:41:07.297] [000009120]: Regenerating SimTerrainCoverMap data...
+(I) [19:41:07.318] [000009120]: SimTerrainCoverMap generation took 0.020683 seconds.
+(I) [19:41:07.775] [000009120]: Pathfinding::Regenerate()...
+(I) [19:41:07.878] [000009120]: Pathfinding::Regenerate() Done.
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.024] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.025] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.044] [000009120]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [19:41:08.053] [000009120]: GAME - CreateGEWorld in 1742 ms
+(I) [19:41:08.053] [000009120]: SIM -- Setting SyncErrorChecking level to Low
+(I) [19:41:08.053] [000009120]: Loading step: [Load Resources from GEWorld]
+(I) [19:41:08.137] [000009120]: Loading step: [Sound Banks]
+(I) [19:41:08.137] [000009120]: Loading step: [Session]
+(I) [19:41:08.137] [000009120]: GAME - SessionSetup
+(I) [19:41:08.138] [000009120]: GAME - SessionSetup finished in 0 ms
+(I) [19:41:08.138] [000009120]: Loading step: [Player Setup]
+(I) [19:41:08.147] [000009120]: GAME -- Recording game
+(I) [19:41:08.147] [000009120]: Loading step: [Scenario Lua System]
+(I) [19:41:08.202] [000009120]: Loading step: [Diplomacy Init]
+(I) [19:41:08.202] [000009120]: Loading step: [Race Precaching Event Listener Registration]
+(I) [19:41:08.202] [000009120]: Loading step: [Simulation]
+(I) [19:41:08.256] [000009120]: LoadWinCondition: - [winconditions\ccm\entrypoints\ccm_annihilation] succeeded.
+(I) [19:41:08.500] [000009120]: Player [1002] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1003] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1004] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1005] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1006] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1007] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1008] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1009] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1010] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1011] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1012] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1013] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1014] killed on game tick [0] due to [unused player]
+(I) [19:41:08.500] [000009120]: Player [1015] killed on game tick [0] due to [unused player]
+(I) [19:41:08.813] [000009120]: Loading step: [GameUICore System]
+(I) [19:41:08.922] [000009120]: Loading step: [Team Colour Init]
+(I) [19:41:08.922] [000009120]: Loading step: [UI System]
+(I) [19:41:08.923] [000009120]: Loading step: [LUA]
+(I) [19:41:08.923] [000009120]: Loading step: [Game Event Listener Registration]
+(I) [19:41:08.923] [000009120]: Loading step: [CPU AI]
+(I) [19:41:08.926] [000004748]: Registered essence thread: [AI_Thread] usesRcssWorkerThreads: [true]
+(I) [19:41:08.993] [000009120]: Loading step: [Scar Init]
+(I) [19:41:08.993] [000009120]: Loading step: [FX System]
+(I) [19:41:08.993] [000009120]: Loading step: [Cheat Menu]
+(I) [19:41:08.997] [000009120]: Loading step: [Scar Start]
+(I) [19:41:08.999] [000009120]: Loading step: [Load resources]
+(I) [19:41:09.005] [000009120]: Loading step: [PreDisplay]
+(I) [19:41:09.005] [000009120]: Loading step: [Free Loading Data]
+(I) [19:41:09.005] [000009120]: PreloadResources took 0ms.
+(I) [19:41:09.005] [000009120]: Loading step: [MemShrink]
+(I) [19:41:09.005] [000009120]: Loading step: [Flush Inventory]
+(I) [19:41:09.009] [000009120]: Loading step: [Resolve Impasse Blockers]
+(I) [19:41:09.009] [000009120]: Loading step: [Content Access Setup]
+(I) [19:41:09.009] [000009120]: Loading step: [Convert OOB Static Entities to Visual Only Objects]
+(I) [19:41:09.009] [000009120]: Loading step: [DefaultWorld Begin Play]
+(I) [19:41:09.036] [000009120]: Loading step: [Preparing game]
+(I) [19:41:09.036] [000009120]: Loading step: [Start Renderer]
+(I) [19:41:09.036] [000009120]: Loading step: [FrontEnd simulation initialization]
+(I) [19:41:09.036] [000009120]: Loading step: [WPFGFrontEnd loading]
+(I) [19:41:09.038] [000009120]: Loading step: [OnEndLoad]
+(I) [19:41:09.842] [000010680]: LoadArbitrator::UpdateLoadProgress - info, player "[0:1]" finished loading with checksum [4153774063].
+(E) [19:41:10.331] [000010680]: TelemetryRow::addString : Key: (match_settings), Value length (359) is larger than Column length (256)
+(E) [19:41:10.331] [000010680]: TelemetryRow::addString : Key: (match_settings), Value length (359) is larger than Column length (256)
+(I) [19:41:10.332] [000010680]: PerformanceRecorder::StartRecording for game size 2
+(I) [19:41:10.332] [000010680]: GAME -- Starting mission: data:scenarios\multiplayer\desert_village_2p_mkiii\desert_village_2p_mkiii
+(I) [19:41:10.332] [000010680]: MEM -- available page 15091 mb, total page 44974 mb
+(I) [19:41:10.348] [000010680]: GameApp::SetState : new (Game) old (LoadingGame)
+(I) [19:41:10.348] [000010680]: GameApp::SetTargetState : new (Uninitialized) old (Game)
+(I) [19:41:13.841] [000010680]: MOD -- Player IA normale set to AI Type: AI Player (frame 17) (CmdAI)
+(I) [19:41:16.636] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12027,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],1526767,"Dans l'accueil de la partie personnalisée",[[1409823,"17367150"]]]]]
+(I) [19:41:19.004] [000010680]: Local user framerate is [0.000000]
+(I) [19:41:19.004] [000010680]: Local user MinDelay=[1ms], MaxDelay=[1277ms], AvgDelay=[766ms], minRTT[44ms], maxRTT[163ms], avgRTT[101ms]
+(I) [19:41:27.769] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12028,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],1409815,"En jeu",[[1409823,"17367150"]]]]]
+(I) [19:41:40.001] [000010680]: Local user framerate is [146.570679]
+(I) [19:41:40.001] [000010680]: Local user MinDelay=[1ms], MaxDelay=[1277ms], AvgDelay=[317ms], minRTT[34ms], maxRTT[163ms], avgRTT[108ms]
+(I) [19:41:46.009] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/2, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/2, Pdel=0/0, drop=0/0, data=165/34, mdat=284/568, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=16/38, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=16/18, lb_p=9/4, lb_c=0/1, cast=0/0, cdat=131/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=1/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:42:01.003] [000010680]: Local user framerate is [178.573212]
+(I) [19:42:01.003] [000010680]: Local user MinDelay=[1ms], MaxDelay=[1277ms], AvgDelay=[229ms], minRTT[34ms], maxRTT[163ms], avgRTT[115ms]
+(I) [19:42:11.949] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [None]
+(I) [19:42:11.960] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [None]
+(I) [19:42:11.960] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:42:22.000] [000010680]: Local user framerate is [190.300003]
+(I) [19:42:22.000] [000010680]: Local user MinDelay=[16ms], MaxDelay=[215ms], AvgDelay=[114ms], minRTT[76ms], maxRTT[136ms], avgRTT[115ms]
+(I) [19:42:43.002] [000010680]: Local user framerate is [204.489761]
+(I) [19:42:43.002] [000010680]: Local user MinDelay=[16ms], MaxDelay=[215ms], AvgDelay=[112ms], minRTT[76ms], maxRTT[140ms], avgRTT[122ms]
+(I) [19:42:47.000] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=125/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=118/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:42:47.734] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:42:47.735] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:42:47.735] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:42:47.834] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:42:47.836] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:42:47.836] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:42:47.838] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:42:47.838] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:42:47.862] [000019272]: RENDERING - new resize requested [2578, 1487] reason [WindowSizeEvent]
+(I) [19:42:47.862] [000019272]: RENDERING - resize request clobbering old request [2578, 1487] reason [WindowSizeEvent]
+(I) [19:42:47.862] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:42:47.862] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:42:47.870] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:42:47.870] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:43:04.002] [000010680]: Local user framerate is [202.889847]
+(I) [19:43:04.002] [000010680]: Local user MinDelay=[1ms], MaxDelay=[215ms], AvgDelay=[108ms], minRTT[50ms], maxRTT[146ms], avgRTT[126ms]
+(I) [19:43:25.000] [000010680]: Local user framerate is [171.224319]
+(I) [19:43:25.000] [000010680]: Local user MinDelay=[88ms], MaxDelay=[111ms], AvgDelay=[101ms], minRTT[39ms], maxRTT[150ms], avgRTT[119ms]
+(I) [19:43:46.010] [000010680]: Local user framerate is [178.223267]
+(I) [19:43:46.010] [000010680]: Local user MinDelay=[72ms], MaxDelay=[114ms], AvgDelay=[100ms], minRTT[34ms], maxRTT[161ms], avgRTT[122ms]
+(I) [19:43:48.000] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=191/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=169/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:43:49.600] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [None]
+(I) [19:43:49.611] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [None]
+(I) [19:43:49.611] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:44:07.010] [000010680]: Local user framerate is [181.050003]
+(I) [19:44:07.010] [000010680]: Local user MinDelay=[2ms], MaxDelay=[114ms], AvgDelay=[99ms], minRTT[34ms], maxRTT[161ms], avgRTT[124ms]
+(I) [19:44:28.009] [000010680]: Local user framerate is [197.699997]
+(I) [19:44:28.009] [000010680]: Local user MinDelay=[84ms], MaxDelay=[108ms], AvgDelay=[98ms], minRTT[109ms], maxRTT[149ms], avgRTT[135ms]
+(I) [19:44:49.001] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=130/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=123/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:44:49.010] [000010680]: Local user framerate is [199.020142]
+(I) [19:44:49.010] [000010680]: Local user MinDelay=[84ms], MaxDelay=[109ms], AvgDelay=[99ms], minRTT[109ms], maxRTT[149ms], avgRTT[134ms]
+(I) [19:44:56.414] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:44:56.414] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:44:56.414] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:44:56.514] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:44:56.516] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:44:56.516] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:44:56.519] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:44:56.519] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:44:56.542] [000019272]: RENDERING - new resize requested [2578, 1487] reason [WindowSizeEvent]
+(I) [19:44:56.542] [000019272]: RENDERING - resize request clobbering old request [2578, 1487] reason [WindowSizeEvent]
+(I) [19:44:56.542] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:44:56.542] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:44:56.551] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:44:56.551] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:45:10.002] [000010680]: Local user framerate is [192.011581]
+(I) [19:45:10.002] [000010680]: Local user MinDelay=[16ms], MaxDelay=[203ms], AvgDelay=[101ms], minRTT[50ms], maxRTT[171ms], avgRTT[129ms]
+(I) [19:45:31.011] [000010680]: Local user framerate is [164.741745]
+(I) [19:45:31.011] [000010680]: Local user MinDelay=[93ms], MaxDelay=[116ms], AvgDelay=[104ms], minRTT[43ms], maxRTT[151ms], avgRTT[124ms]
+(I) [19:45:50.000] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=182/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=158/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:45:52.013] [000010680]: Local user framerate is [147.820419]
+(I) [19:45:52.013] [000010680]: Local user MinDelay=[78ms], MaxDelay=[116ms], AvgDelay=[102ms], minRTT[37ms], maxRTT[151ms], avgRTT[120ms]
+(I) [19:46:02.145] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [None]
+(I) [19:46:02.160] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [None]
+(I) [19:46:02.160] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:46:13.000] [000010680]: Local user framerate is [173.600006]
+(I) [19:46:13.000] [000010680]: Local user MinDelay=[102ms], MaxDelay=[120ms], AvgDelay=[109ms], minRTT[109ms], maxRTT[131ms], avgRTT[124ms]
+(I) [19:46:32.608] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:46:32.609] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:46:32.609] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:46:32.707] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:46:32.709] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:46:32.709] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:46:32.712] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:46:32.712] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:46:32.736] [000019272]: RENDERING - new resize requested [2578, 1487] reason [WindowSizeEvent]
+(I) [19:46:32.736] [000019272]: RENDERING - resize request clobbering old request [2578, 1487] reason [WindowSizeEvent]
+(I) [19:46:32.736] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:46:32.736] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:46:32.745] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:46:32.745] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:46:34.004] [000010680]: Local user framerate is [185.940689]
+(I) [19:46:34.004] [000010680]: Local user MinDelay=[32ms], MaxDelay=[214ms], AvgDelay=[110ms], minRTT[62ms], maxRTT[144ms], avgRTT[120ms]
+(I) [19:46:51.001] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=186/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=164/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:46:55.005] [000010680]: Local user framerate is [165.100006]
+(I) [19:46:55.005] [000010680]: Local user MinDelay=[8ms], MaxDelay=[214ms], AvgDelay=[103ms], minRTT[54ms], maxRTT[157ms], avgRTT[128ms]
+(I) [19:47:16.004] [000010680]: Local user framerate is [180.731918]
+(I) [19:47:16.004] [000010680]: Local user MinDelay=[89ms], MaxDelay=[105ms], AvgDelay=[96ms], minRTT[131ms], maxRTT[148ms], avgRTT[140ms]
+(I) [19:47:37.007] [000010680]: Local user framerate is [186.375443]
+(I) [19:47:37.007] [000010680]: Local user MinDelay=[84ms], MaxDelay=[106ms], AvgDelay=[96ms], minRTT[120ms], maxRTT[150ms], avgRTT[138ms]
+(I) [19:47:52.006] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=159/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=143/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:47:58.036] [000010680]: Local user framerate is [181.390915]
+(I) [19:47:58.036] [000010680]: Local user MinDelay=[84ms], MaxDelay=[106ms], AvgDelay=[96ms], minRTT[36ms], maxRTT[159ms], avgRTT[132ms]
+(I) [19:48:19.021] [000010680]: Local user framerate is [169.566071]
+(I) [19:48:19.021] [000010680]: Local user MinDelay=[60ms], MaxDelay=[105ms], AvgDelay=[97ms], minRTT[35ms], maxRTT[154ms], avgRTT[118ms]
+(I) [19:48:40.009] [000010680]: Local user framerate is [137.701797]
+(I) [19:48:40.009] [000010680]: Local user MinDelay=[60ms], MaxDelay=[151ms], AvgDelay=[96ms], minRTT[35ms], maxRTT[164ms], avgRTT[121ms]
+(I) [19:48:53.000] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=296/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=253/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:49:01.008] [000010680]: Local user framerate is [113.644310]
+(I) [19:49:01.008] [000010680]: Local user MinDelay=[60ms], MaxDelay=[151ms], AvgDelay=[95ms], minRTT[35ms], maxRTT[165ms], avgRTT[121ms]
+(I) [19:49:10.917] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [None]
+(I) [19:49:10.933] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [None]
+(I) [19:49:10.933] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:49:20.910] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:49:20.910] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:49:20.910] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:49:21.011] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:49:21.013] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:49:21.013] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:49:21.016] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:49:21.016] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:49:21.072] [000019272]: RENDERING - new resize requested [2578, 1487] reason [WindowSizeEvent]
+(I) [19:49:21.072] [000019272]: RENDERING - resize request clobbering old request [2578, 1487] reason [WindowSizeEvent]
+(I) [19:49:21.072] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:49:21.072] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:49:21.087] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:49:21.087] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:49:22.001] [000010680]: Local user framerate is [107.750000]
+(I) [19:49:22.001] [000010680]: Local user MinDelay=[1ms], MaxDelay=[184ms], AvgDelay=[81ms], minRTT[33ms], maxRTT[162ms], avgRTT[126ms]
+(I) [19:49:43.005] [000010680]: Local user framerate is [111.500000]
+(I) [19:49:43.005] [000010680]: Local user MinDelay=[1ms], MaxDelay=[184ms], AvgDelay=[77ms], minRTT[33ms], maxRTT[164ms], avgRTT[128ms]
+(I) [19:49:54.002] [000002600]: MessageCounts: inval=0/0, seek=0/0, join=0/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/0, Pdel=0/0, drop=0/0, data=203/0, mdat=488/976, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=0/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=0/0, lb_p=6/4, lb_c=0/0, cast=0/0, cdat=179/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [19:50:04.004] [000010680]: Local user framerate is [111.077774]
+(I) [19:50:04.004] [000010680]: Local user MinDelay=[1ms], MaxDelay=[184ms], AvgDelay=[78ms], minRTT[33ms], maxRTT[187ms], avgRTT[130ms]
+(I) [19:50:10.605] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [None]
+(I) [19:50:10.620] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [None]
+(I) [19:50:10.620] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:50:25.000] [000010680]: Local user framerate is [108.117561]
+(I) [19:50:25.000] [000010680]: Local user MinDelay=[23ms], MaxDelay=[180ms], AvgDelay=[111ms], minRTT[87ms], maxRTT[160ms], avgRTT[122ms]
+(I) [19:50:28.178] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:50:28.178] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:50:28.179] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:50:28.279] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:50:28.281] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:50:28.281] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:50:28.284] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:50:28.284] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:50:28.340] [000019272]: RENDERING - new resize requested [2578, 1487] reason [WindowSizeEvent]
+(I) [19:50:28.340] [000019272]: RENDERING - resize request clobbering old request [2578, 1487] reason [WindowSizeEvent]
+(I) [19:50:28.340] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:50:28.341] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:50:28.360] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:50:28.360] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:50:38.341] [000010680]: Player [1001] killed on game tick [4542] due to [loss]
+(I) [19:50:38.362] [000010680]: REC -- Validating replay [playback:temp.rec]...
+(I) [19:50:38.362] [000010680]: REC -- Invalid version [19658]! current build is [21751]
+(I) [19:50:38.362] [000010680]: GAME -- Replay playback:temp.rec is invalid, it is included but marked as disabled, reason: 3
+(I) [19:50:38.367] [000010680]: REC -- Validating replay [playback:temp_04_01_2024__23_37.rec]...
+(I) [19:50:38.382] [000010680]: REC -- Validating replay [playback:temp_05_01_2024__14_29.rec]...
+(I) [19:50:38.405] [000010680]: REC -- Validating replay [playback:temp_05_01_2024__17_24.rec]...
+(I) [19:50:38.436] [000010680]: REC -- Validating replay [playback:temp_05_01_2024__17_42.rec]...
+(I) [19:50:38.461] [000010680]: REC -- Validating replay [playback:temp_05_01_2024__18_07.rec]...
+(I) [19:50:38.484] [000010680]: REC -- Validating replay [playback:temp_05_01_2024__18_29.rec]...
+(I) [19:50:38.502] [000010680]: REC -- Validating replay [playback:temp_05_01_2024__18_41.rec]...
+(I) [19:50:38.521] [000010680]: REC -- Validating replay [playback:temp_06_01_2024__14_31.rec]...
+(I) [19:50:38.539] [000010680]: REC -- Validating replay [playback:temp_06_01_2024__14_53.rec]...
+(I) [19:50:38.564] [000010680]: REC -- Validating replay [playback:temp_06_01_2024__15_12.rec]...
+(I) [19:50:38.578] [000010680]: REC -- Validating replay [playback:temp_07_01_2024__19_41.rec]...
+(I) [19:50:38.592] [000010680]: REC -- Validating replay [playback:temp_campaign.rec]...
+(I) [19:50:38.617] [000010680]: REC -- Validating replay [playback:temp_mod.rec]...
+(I) [19:50:38.617] [000010680]: REC -- Invalid version [62368]! current build is [21751]
+(I) [19:50:38.617] [000010680]: GAME -- Replay playback:temp_mod.rec is invalid, it is included but marked as disabled, reason: 3
+(I) [19:50:38.620] [000010680]: GAME -- Frame 4542 - SimKillPlayer - Destroying SimPlayer 1001, reason 3
+(I) [19:50:38.620] [000010680]: Report sent for profileID[16432] -> race=[129494], result=[3], XP Gain=[1818]
+(I) [19:50:38.670] [000010680]: ReportResultsAsync: skipping because the result is not the final match result
+(I) [19:50:38.710] [000008804]: REC -- Validating replay [playback:temp.rec]...
+(I) [19:50:38.710] [000008804]: REC -- Invalid version [19658]! current build is [21751]
+(I) [19:50:38.710] [000008804]: GAME -- Replay playback:temp.rec is invalid, it is included but marked as disabled, reason: 3
+(I) [19:50:38.710] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__14_29.rec]...
+(I) [19:50:38.723] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__17_24.rec]...
+(I) [19:50:38.744] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__17_42.rec]...
+(I) [19:50:38.764] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__18_07.rec]...
+(I) [19:50:38.778] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__18_29.rec]...
+(I) [19:50:38.791] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__18_41.rec]...
+(I) [19:50:38.803] [000008804]: REC -- Validating replay [playback:temp_06_01_2024__14_31.rec]...
+(I) [19:50:38.816] [000008804]: REC -- Validating replay [playback:temp_06_01_2024__14_53.rec]...
+(I) [19:50:38.836] [000008804]: REC -- Validating replay [playback:temp_06_01_2024__15_12.rec]...
+(I) [19:50:38.850] [000008804]: REC -- Validating replay [playback:temp_07_01_2024__19_41.rec]...
+(I) [19:50:38.861] [000008804]: REC -- Validating replay [playback:temp_campaign.rec]...
+(I) [19:50:38.881] [000008804]: REC -- Validating replay [playback:temp_mod.rec]...
+(I) [19:50:38.881] [000008804]: REC -- Invalid version [62368]! current build is [21751]
+(I) [19:50:38.881] [000008804]: GAME -- Replay playback:temp_mod.rec is invalid, it is included but marked as disabled, reason: 3
+(I) [19:50:39.131] [000008804]: REC -- Validating replay [playback:temp.rec]...
+(I) [19:50:39.131] [000008804]: REC -- Invalid version [19658]! current build is [21751]
+(I) [19:50:39.131] [000008804]: GAME -- Replay playback:temp.rec is invalid, it is included but marked as disabled, reason: 3
+(I) [19:50:39.131] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__14_29.rec]...
+(I) [19:50:39.144] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__17_24.rec]...
+(I) [19:50:39.164] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__17_42.rec]...
+(I) [19:50:39.185] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__18_07.rec]...
+(I) [19:50:39.199] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__18_29.rec]...
+(I) [19:50:39.212] [000008804]: REC -- Validating replay [playback:temp_05_01_2024__18_41.rec]...
+(I) [19:50:39.224] [000008804]: REC -- Validating replay [playback:temp_06_01_2024__14_31.rec]...
+(I) [19:50:39.237] [000008804]: REC -- Validating replay [playback:temp_06_01_2024__14_53.rec]...
+(I) [19:50:39.257] [000008804]: REC -- Validating replay [playback:temp_06_01_2024__15_12.rec]...
+(I) [19:50:39.271] [000008804]: REC -- Validating replay [playback:temp_07_01_2024__19_41.rec]...
+(I) [19:50:39.282] [000008804]: REC -- Validating replay [playback:temp_campaign.rec]...
+(I) [19:50:39.302] [000008804]: REC -- Validating replay [playback:temp_mod.rec]...
+(I) [19:50:39.302] [000008804]: REC -- Invalid version [62368]! current build is [21751]
+(I) [19:50:39.302] [000008804]: GAME -- Replay playback:temp_mod.rec is invalid, it is included but marked as disabled, reason: 3
+(I) [19:50:39.432] [000010680]: MPMatchSetup::OnMatchEvent - MET_ReportResults - result [0]
+(I) [19:50:39.432] [000010680]: GameObjController - OnMatchEvent: event type 9
+(I) [19:50:40.271] [000010680]: GameApp::SetTargetState : new (UnloadedGame) old (Uninitialized)
+(I) [19:50:40.280] [000010680]: GameApp::SetState : new (UnloadingGame) old (Game)
+(I) [19:50:41.354] [000010680]: GameObj::ShutdownGameObj
+(I) [19:50:41.354] [000010680]: GetMaxFrameTimeFromProfile: players=2 expected FPS=100.000000, bars=0, max avg=0.000, sd=0.000, 0 samples = 
+(I) [19:50:41.354] [000010680]: PerformanceRecorder::EndRecording - game size=2, max average=0.009281, worst frame=0.010000
+(I) [19:50:41.354] [000010680]:  Recording: No [2 players]
+
+(I) [19:50:41.354] [000010680]:  Max/Avg: 0.01, 0.01 sec (fps=107.75, 163.27) (28 samples)
+
+(I) [19:50:41.354] [000010680]:  Bars: 0
+
+(I) [19:50:41.354] [000010680]: GameObj -- RLink::NetworkManager::Get()->GetAchievementInterface().DeltaPlatformStat() failed. statName[mp_seconds_played]
+(I) [19:50:41.354] [000010680]: GameObj -- RLink::NetworkManager::Get()->GetAchievementInterface().DeltaPlatformStat() failed. statName[mp_units_produced]
+(I) [19:50:41.355] [000010680]: GameObj -- RLink::NetworkManager::Get()->GetAchievementInterface().DeltaPlatformStat() failed. statName[mp_units_killed]
+(I) [19:50:41.355] [000010680]: GameObj -- RLink::NetworkManager::Get()->GetAchievementInterface().DeltaPlatformStat() failed. statName[mp_units_lost]
+(I) [19:50:41.367] [000010680]: StatArtWarningsCount 0
+(I) [19:50:41.367] [000010680]: StatDataWarningsCount 0
+(I) [19:50:41.668] [000010680]: GameApp::SetState : new (UnloadedGame) old (UnloadingGame)
+(I) [19:50:41.668] [000010680]: GameApp::SetTargetState : new (Uninitialized) old (UnloadedGame)
+(I) [19:50:41.688] [000010680]: SessionID : 109006e - Disconnect called with reasonID 1000 - MatchSetup::Disconnect
+(I) [19:50:41.688] [000010680]: MatchSetupManager: Removed queued match [desert_village_2p_mkiii] Queue is now [0]
+(I) [19:50:41.688] [000010680]: SessionID : 109006e - Disconnect called with reasonID 1000 - MatchSetup::Disconnect
+(I) [19:50:41.700] [000010680]: Disconnect process already running
+(E) [19:50:41.714] [000010680]: SetVisible called while !IsConnected
+(I) [19:50:41.853] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:50:41.918] [000010680]: Movie Manager -- No movies with locale [fr] exist on disk. Switching to fallback locale [en].
+(I) [19:50:44.898] [000010680]: GetPartyStatsByID found 1 teams for user ID 16432
+(I) [19:50:48.281] [000010680]: WorldwideAdvertisementService::Process - EVENT_DESTROYPEER
+(I) [19:50:48.281] [000010680]: WorldwidePartyService::PeerRemove, Removing peer ID: 1
+(I) [19:50:48.281] [000010680]: peerremove - peerIDRemoved=16432, reasonID=1000, reason debug hint - MatchSetup::Disconnect
+(E) [19:50:48.284] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.295] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.306] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.317] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.328] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.338] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.349] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.360] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.371] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.382] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.393] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.404] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.415] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.426] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.437] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.448] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.459] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.470] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.481] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.492] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.503] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.514] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.525] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.536] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.547] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.558] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.569] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.580] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.591] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.602] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.613] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.624] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.635] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.646] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.657] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.668] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(E) [19:50:48.679] [000002600]: Session::SendQueuedMessagesToRelay local peer is missing, not sending
+(I) [19:50:48.681] [000010680]: PeerRemoveAll - flushing local session peer data
+(I) [19:50:48.681] [000010680]: LeaveSessionInternal - no action taken, needLeave=0, service=0
+(I) [19:50:48.681] [000010680]: Destroyed Matchinfo for sessionID 17367150
+(E) [19:50:48.681] [000010680]: Socks::Free: Socket 0/5360 did not close properly before being freed.
+(I) [19:50:48.681] [000010680]: OnDestroyPartyNotification - partyID = 17367150, prevID = -1
+(I) [19:50:48.681] [000010680]: OnDestroyPartyNotification - partyID = 17367150, prevID = -1
+(I) [19:50:49.117] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12029,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],1526767,"Dans l'accueil de la partie personnalisée",[[1409823,"17367150"]]]]]
+(I) [19:50:52.376] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [None]
+(I) [19:50:52.390] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [None]
+(I) [19:50:52.390] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:50:55.858] [000015544]: Read bytes [0,"PresenceMessage",16432,[[12030,16432,"/steam/76561198005864560","","UMirinBrah?","",11893,11551,11551,2074389,null,"76561198005864560",3,[],2,"En ligne",[[1409823,"17367150"]]]]]
+(I) [19:54:44.263] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:54:44.263] [000019272]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [19:54:44.263] [000019272]: RENDERING - Setting Fullscreen On
+(I) [19:54:44.370] [000019272]: RENDERING - state Size [2560 x 1440], fullscreen size[2560 x 1440]
+(I) [19:54:44.372] [000019272]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [19:54:44.372] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:54:44.375] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:54:44.375] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:54:44.437] [000019272]: RENDERING - new resize requested [2578, 1487] reason [WindowSizeEvent]
+(I) [19:54:44.437] [000019272]: RENDERING - resize request clobbering old request [2578, 1487] reason [WindowSizeEvent]
+(I) [19:54:44.437] [000019272]: RENDERING - new resize requested [2560, 1440] reason [WindowSizeEvent]
+(I) [19:54:44.438] [000019272]: RENDERING - Starting compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:54:44.449] [000019272]: RENDERING - Finished compositor resize to [2560 x 1440] for reason [WindowSizeEvent]
+(I) [19:54:44.449] [000019272]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [19:54:47.258] [000010680]: GameApp::SetTargetState : new (Quit) old (Uninitialized)
+(I) [19:54:47.261] [000010680]: GameApp::SetState : new (FrontEnd) old (UnloadedGame)
+(I) [19:54:47.346] [000010680]: GameApp::SetState : new (Unloaded) old (FrontEnd)
+(I) [19:54:47.415] [000010680]: GameApp::SetState : new (Quit) old (Unloaded)
+(I) [19:54:47.754] [000010680]: WWise Terminating
+(I) [19:54:47.755] [000010680]: Terminating SoundEngine
+(I) [19:54:47.799] [000010680]: Terminating Streaming Manager
+(I) [19:54:47.800] [000010680]: Terminating Memory Manager
+(I) [19:54:47.895] [000019272]: Unregistered essence thread: [Render_Thread]
+(I) [19:54:49.412] [000006648]: Unregistered essence thread: [Simulation_Thread]
+(I) [19:54:49.578] [000010680]: RPC -- Stopping RpcServer
+(I) [19:54:49.578] [000004748]: Unregistered essence thread: [AI_Thread]
+(I) [19:54:49.582] [000010680]: call to FlushJobs
+(I) [19:54:50.556] [000010680]: call to FlushJobs
+(I) [19:54:51.926] [000010680]: Beginning call to ~NetworkManagerInternal
+(I) [19:54:51.926] [000010680]: ~NetworkManagerInternal is about to join threads
+(I) [19:54:51.975] [000010680]: We have reached the end of ~NetworkManagerInternal
+(E) [19:54:51.975] [000010680]: Socks::Free: Socket 0/1732 did not close properly before being freed.
+(E) [19:54:51.975] [000010680]: Socks::Free: Socket 0/4748 did not close properly before being freed.
+(I) [19:54:51.978] [000010680]: Automatch2Internal: Fade to black
+(I) [19:54:51.978] [000010680]: AutomatchInternal: Fade to black
+(I) [19:54:52.356] [000010680]: NOTIFIER -- Notification terminated for directory c:\users\cutil\documents\my games\company of heroes 3\playback\ - HANDLE: 0000000000000644 - after 0 milliseconds
+(I) [19:54:52.357] [000010680]: FILESYSTEM -- filepath failed to remove alias, missing alias 'stats'
+(I) [19:54:52.358] [000010680]: Unregistered essence thread: [Main_Thread]
+(I) [19:54:52.360] [000010680]: Threading system shutdown
+
+Application closed without errors

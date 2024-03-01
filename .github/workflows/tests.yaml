@@ -76,6 +76,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
           TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+
+      - name: Run Rust tests
+        run: |
+          cd src-tauri
+          cargo test --package coh3-stats-desktop-app --lib
+          
       - name: Upload Tauri app artifacts
         uses: actions/upload-artifact@v3
         with:
