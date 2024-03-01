@@ -157,12 +157,14 @@ To build the app and an installer run:
 yarn tauri build
 ```
 
+Running tests:
+```
+cargo test --package coh3-stats-desktop-app --lib
+```
+
 The build output can be found in `src-tauri/target/release`. The installer can be found in `src-tauri/target/release/bundle/msi`.
 
 Don't forget to run prettier with `yarn fix`. 
-
-On MacOS you need to comment out this line in main.rs around line 57
-```.plugin(tauri_plugin_window_state::Builder::default().build())```
 
 ### Release
 - Increase the version in files:

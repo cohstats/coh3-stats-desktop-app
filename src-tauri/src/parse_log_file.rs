@@ -2,8 +2,10 @@ use log::info;
 use rev_lines::RawRevLines;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
+#[cfg(test)]
+mod tests;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum GameState {
     Closed,
     Menu,
@@ -11,21 +13,21 @@ pub enum GameState {
     InGame,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub enum GameType {
     Classic,
     AI,
     Custom,
 }
 
-#[derive(Serialize, Deserialize, Clone, PartialEq)]
+#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub enum TeamSide {
     Axis,
     Allies,
     Mixed,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct PlayerData {
     pub ai: bool,
     pub faction: String,
@@ -36,13 +38,13 @@ pub struct PlayerData {
     pub rank: i64,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct TeamData {
     pub players: Vec<PlayerData>,
     pub side: TeamSide,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct LogFileData {
     pub game_state: GameState,
     pub game_type: GameType,
@@ -446,20 +448,3 @@ fn get_without_leading_space(line: &str) -> nom::IResult<&str, ()> {
   };
   Ok(("without_space", ()))
 }*/
-
-#[cfg(test)]
-mod tests {
-    use super::parse_log_file_reverse;
-
-    #[test]
-    fn test_parse_log_file_reverse() {
-        println!("{}", file!());
-        parse_log_file_reverse("tests/warnings.log".to_string());
-    }
-
-    #[test]
-    fn test_parse_log_file_reverse_big_file() {
-        println!("{}", file!());
-        parse_log_file_reverse("tests/warnings-2mb.log".to_string());
-    }
-}
