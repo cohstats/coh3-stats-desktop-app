@@ -12,7 +12,12 @@ export const Game: React.FC = () => {
       <>
         <Group position={"apart"}>
           <Box pt="xs" px="md">
-            Game State {gameData ? <Badge> {gameData.gameData.state} </Badge> : <Loader variant="dots" size="md" />}
+            Game State{" "}
+            {gameData ? (
+              <Badge> {gameData.gameData.state} </Badge>
+            ) : (
+              <Loader variant="dots" size="md" />
+            )}
           </Box>
           <Box pt="xs" px="md">
             <OnlinePlayers />
