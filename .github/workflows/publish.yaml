@@ -9,10 +9,10 @@ jobs:
         runs-on: windows-latest
         steps:
             - uses: actions/checkout@v4
-            - name: setup node
+            - name: Setup node
               uses: actions/setup-node@v4
               with:
-                  node-version: 18
+                  node-version: 20
 
             - name: Cache node modules
               uses: actions/cache@v4

@@ -43,6 +43,13 @@ const events = {
       version: await getVersion(),
     })
   },
+  replay_uploaded: async (status: string): Promise<void> => {
+    mixpanel.track("replays_uploaded", {
+      distinct_id: await getClientId(),
+      version: await getVersion(),
+      status,
+    })
+  },
   settings_changed: async (
     setting: string,
     value?: string | number

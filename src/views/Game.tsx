@@ -9,18 +9,21 @@ export const Game: React.FC = () => {
   const logFilePath = useLogFilePath()
   return (
     <>
-      {gameData ? (
-        <>
-          <Group position={"apart"}>
-            <Box pt="xs" px="md">
-              Game State <Badge>{gameData.gameData.state}</Badge>
-            </Box>
-            <Box pt="xs" px="md">
-              <OnlinePlayers />
-            </Box>
-          </Group>
-        </>
-      ) : null}
+      <>
+        <Group position={"apart"}>
+          <Box pt="xs" px="md">
+            Game State{" "}
+            {gameData ? (
+              <Badge> {gameData.gameData.state} </Badge>
+            ) : (
+              <Loader variant="dots" size="md" />
+            )}
+          </Box>
+          <Box pt="xs" px="md">
+            <OnlinePlayers />
+          </Box>
+        </Group>
+      </>
       {logFilePath !== undefined ? (
         <>
           {gameData && gameData.gameData.map.length > 0 ? (

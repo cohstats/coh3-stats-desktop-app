@@ -12,9 +12,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Cache node modules
         uses: actions/cache@v4
@@ -45,10 +46,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: setup node
+      - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Cache node modules
         uses: actions/cache@v4
@@ -61,7 +62,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: install Rust stable
+      - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
       - name: Rust cache
@@ -81,7 +82,7 @@ jobs:
         run: |
           cd src-tauri
           cargo test --package coh3-stats-desktop-app --lib
-          
+
       - name: Upload Tauri app artifacts
         uses: actions/upload-artifact@v3
         with:
