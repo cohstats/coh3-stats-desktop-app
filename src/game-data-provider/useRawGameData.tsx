@@ -7,7 +7,7 @@ import { useLogFilePath } from "./configValues"
 export const useRawGameData = () => {
   const [logFilePath] = useLogFilePath()
   const [rawGameData, setRawGameData] = useState<RawGameData>()
-  const intervalRef = useRef<number>()
+  const intervalRef = useRef<NodeJS.Timeout | undefined>()
   const getLogFileData = async (path: string) => {
     const data = (await invoke("parse_log_file_reverse", {
       path,
