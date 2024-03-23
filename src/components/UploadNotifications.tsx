@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { listen } from "@tauri-apps/api/event"
 import { showNotification } from "../utils/notifications"
+import events from "../mixpanel/mixpanel"
 
 export const UploadNotifications = () => {
   useEffect(() => {
@@ -8,6 +9,7 @@ export const UploadNotifications = () => {
       "cohdb:upload:success",
       (event) => {
         if (event.payload != null) {
+          events.replay_uploaded("success")
           showNotification({
             title: "Successfully uploaded latest replay to cohdb!",
             message: "Your last game has been uploaded to cohdb",
@@ -21,6 +23,7 @@ export const UploadNotifications = () => {
       "cohdb:upload:failure",
       (event) => {
         if (event.payload != null) {
+          events.replay_uploaded("failure")
           showNotification({
             title: "Error uploading replay to cohdb!",
             message:
