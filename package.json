@@ -20,7 +20,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx,yml}": [
+    "*.{js,ts,jsx,tsx,yml,css}": [
       "prettier --log-level warn --write"
     ],
     "*.md": [
