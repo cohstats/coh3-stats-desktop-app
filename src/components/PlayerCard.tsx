@@ -1,15 +1,12 @@
 import {
   Anchor,
-  ColorSwatch,
   Group,
   Paper,
   Stack,
-  Text,
   Title,
   Image,
   Tooltip,
   Grid,
-  Col,
 } from "@mantine/core"
 import React from "react"
 import { FullPlayerData } from "../game-data-provider/GameData"
@@ -47,25 +44,25 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
     <>
       <Paper shadow="xs" withBorder p="xs" mb={"xs"}>
         <Grid>
-          <Col span="content">
+          <Grid.Col span="content">
             <Tooltip label={factionName}>
               <Image
                 src={"/factions/" + faction + ".webp"}
                 alt={faction}
-                width={60}
+                w={60}
               />
             </Tooltip>
-          </Col>
-          <Col span="auto">
+          </Grid.Col>
+          <Grid.Col span="auto">
             <Stack align="stretch">
-              <Group position={"apart"}>
+              <Group justify={"space-between"}>
                 <Group>
                   {!ai ? (
                     <Tooltip label={countryName}>
                       <Image
                         src={"/flags/4x3/" + country + ".svg"}
                         alt={country}
-                        width={35}
+                        w={35}
                       />
                     </Tooltip>
                   ) : null}
@@ -74,14 +71,14 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                     size="h3"
                     onClick={() => open(coh3statsPlayerProfile(relicID))}
                   >
-                    <Anchor>{name}</Anchor> {self ? <>(You)</> : null}
+                    <Anchor inherit>{name}</Anchor> {self ? <>(You)</> : null}
                   </Title>
-                  {/*<ColorSwatch color={color} />*/}
+                  {/*<Grid.ColorSwatch color={color} />*/}
                 </Group>
                 <RankIcon size={35} rank={rank || 0} rating={rating || 0} />
               </Group>
 
-              <Group position="apart" grow>
+              <Group justify="space-between" grow>
                 <PlayerRank rank={rank} />
                 <PlayerELO rating={!rank || rank < 1 ? undefined : rating} />
 
@@ -91,7 +88,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                 <PlayerLosses losses={losses} />
               </Group>
             </Stack>
-          </Col>
+          </Grid.Col>
         </Grid>
       </Paper>
     </>

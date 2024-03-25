@@ -24,7 +24,7 @@ export const PlayerStreak: React.FC<PlayerStreakProps> = ({ streak }) => {
   return (
     <>
       <Tooltip label="Win streak">
-        <Text color={color}>{content}</Text>
+        <Text c={color}>{content}</Text>
       </Tooltip>
     </>
   )
