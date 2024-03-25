@@ -18,7 +18,7 @@ export const PlayerLosses: React.FC<PlayerLossesProps> = ({ losses }) => {
   return (
     <>
       <Tooltip label="Losses">
-        <Text color={color}>{content}</Text>
+        <Text c={color}>{content}</Text>
       </Tooltip>
     </>
   )

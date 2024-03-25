@@ -10,15 +10,15 @@ export const Game: React.FC = () => {
   return (
     <>
       <>
-        <Group position={"apart"}>
-          <Box pt="xs" px="md">
+        <Group justify={"space-between"}>
+          <Group pt="xs" px="md" gap={"xs"}>
             Game State{" "}
             {gameData ? (
               <Badge> {gameData.gameData.state} </Badge>
             ) : (
-              <Loader variant="dots" size="md" />
+              <Loader type="dots" size="md" />
             )}
-          </Box>
+          </Group>
           <Box pt="xs" px="md">
             <OnlinePlayers />
           </Box>
@@ -28,7 +28,7 @@ export const Game: React.FC = () => {
         <>
           {gameData && gameData.gameData.map.length > 0 ? (
             <>
-              <Grid gutter={0} p={"md"}>
+              <Grid gutter={0} p={"md"} pt={0}>
                 <Grid.Col span="auto" pt={40}>
                   {gameData.gameData.left.players.map((player, index) => (
                     <PlayerCard
@@ -38,7 +38,7 @@ export const Game: React.FC = () => {
                   ))}
                 </Grid.Col>
                 <Grid.Col span="content">
-                  <Title align="center" mx="sm">
+                  <Title style={{ textAlign: "center" }} mx="sm">
                     VS
                   </Title>
                 </Grid.Col>
@@ -53,7 +53,7 @@ export const Game: React.FC = () => {
               </Grid>
             </>
           ) : (
-            <Group position="center" mt={50}>
+            <Group justify="center" mt={50}>
               <Title>
                 <Loader mr="md" />
                 Waiting for a game
@@ -62,7 +62,7 @@ export const Game: React.FC = () => {
           )}
         </>
       ) : (
-        <Group position="center" mt={50}>
+        <Group justify="center" mt={50}>
           <Title>
             <Loader mr="md" />
             Waiting for logfile

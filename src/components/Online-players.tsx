@@ -67,11 +67,11 @@ export const OnlinePlayers: React.FC = () => {
         onlinePlayersData?.timeStampMs || ""
       ).toLocaleString()}`}
       multiline
-      width={250}
+      w={300}
       withArrow
     >
       <div>
-        <Group spacing={6}>
+        <Group gap={6}>
           <SteamIcon size={20} />
           Players in game
           <Badge

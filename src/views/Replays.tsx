@@ -96,7 +96,9 @@ export const Replays: React.FC = () => {
           <Paper p="xs" pt={0} w={450}>
             <Title order={3}>
               Replay integration with{" "}
-              <Anchor onClick={() => openLink(cohdbBaseUrl)}>cohdb.com</Anchor>
+              <Anchor inherit onClick={() => openLink(cohdbBaseUrl)}>
+                cohdb.com
+              </Anchor>
             </Title>
             <Text>
               Automatically upload replays to cohdb for replay analysis
@@ -105,7 +107,7 @@ export const Replays: React.FC = () => {
               <List.Item>Authenticate with cohdb</List.Item>
               <List.Item>Validate path to replay folder</List.Item>
               <List.Item>
-                <Group spacing={4}>
+                <Group gap={4}>
                   Enjoy automatic upload to cohdb.com
                   <HelperIcon
                     content={
@@ -130,7 +132,10 @@ export const Replays: React.FC = () => {
               <Stack>
                 <Title order={4}>
                   Connected as{" "}
-                  <Anchor onClick={() => openLink(cohdbPlayerOverView())}>
+                  <Anchor
+                    inherit
+                    onClick={() => openLink(cohdbPlayerOverView())}
+                  >
                     {cohdbUser.name}
                   </Anchor>{" "}
                   at <COHDBIcon size={18} />
@@ -142,7 +147,7 @@ export const Replays: React.FC = () => {
                     invoke("plugin:cohdb|disconnect")
                     events.disconnect_coh_db()
                   }}
-                  compact
+                  size={"compact-md"}
                 >
                   Disconnect
                 </Button>
@@ -161,7 +166,7 @@ export const Replays: React.FC = () => {
                         If it didn't open, please copy this url into your
                         browser:
                         <Space h={"xs"} />
-                        <Group spacing={"xs"} noWrap>
+                        <Group gap={"xs"} wrap="nowrap">
                           <Tooltip label="Copy">
                             <ActionIcon
                               onClick={() => {
@@ -195,7 +200,7 @@ export const Replays: React.FC = () => {
           {cohdbUser != null && (
             <div>
               <Group>
-                <Group spacing={4}>
+                <Group gap={4}>
                   <>Path to playback directory:</>
                   <HelperIcon
                     toolTipWidth={650}
@@ -222,8 +227,8 @@ export const Replays: React.FC = () => {
                   />
                 </Group>
                 <div>
-                  <Group spacing="xs">
-                    <Group spacing={3}>
+                  <Group gap="xs">
+                    <Group gap={3}>
                       <Input
                         value={playbackPath ? playbackPath : ""}
                         style={{ width: 500 }}

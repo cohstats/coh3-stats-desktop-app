@@ -1,11 +1,8 @@
 import { getVersion } from "@tauri-apps/api/app"
 import { appDataDir } from "@tauri-apps/api/path"
 import { open } from "@tauri-apps/api/shell"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import {
-  Navbar,
-  AppShell,
-  Stack,
   Title,
   Code,
   Text,
@@ -13,9 +10,8 @@ import {
   Anchor,
   Divider,
   Button,
-  Space,
-  Box,
   Grid,
+  Space,
 } from "@mantine/core"
 import logoBig from "../assets/logo/Square310x310Logo.png"
 import events from "../mixpanel/mixpanel"
@@ -41,8 +37,8 @@ export const About: React.FC = () => {
           <img src={logoBig} alt="Coh3Stats Logo" width={200} />
         </Grid.Col>
         <Grid.Col span="auto" pt="md">
-          <Group spacing="xs">
-            <Text fw={600}>Version </Text>
+          <Group gap="xs">
+            <Title order={4}>Version </Title>
             <Code color="green">{appVersion}</Code>
           </Group>
           <Text component="p" size="sm">
@@ -72,7 +68,8 @@ export const About: React.FC = () => {
               join our discord and get involved!
             </Anchor>
           </Text>
-          <Title order={5}>Reporting a bug</Title>
+          <Space h={"xs"} />
+          <Title order={4}>Reporting a bug</Title>
           <Text component="p" size="sm">
             In case of issues please, please try to report them in Discord
             sections bugs-and-questions with as much details as possible.
@@ -91,8 +88,9 @@ export const About: React.FC = () => {
             <br />
             <Code>{pathToLogs}logs</Code>
           </Text>
+          <Space h={"xs"} />
           <Button onClick={() => open("https://ko-fi.com/cohstats")}>
-            <Group spacing="xs">
+            <Group gap="xs">
               <img
                 src="https://storage.ko-fi.com/cdn/cup-border.png"
                 alt="Ko-fi donations"

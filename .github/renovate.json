@@ -21,5 +21,5 @@
       "groupSlug": "actions-updates"
     }
   ],
-  "schedule": ["before 4am on Monday"]
+  "schedule": ["0 1 * * 1 "]
 }

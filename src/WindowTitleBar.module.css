@@ -1,0 +1,64 @@
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+}
+
+.header {
+    background-color: light-dark(
+            lighten(var(--mantine-color-gray-3),0.7),
+            darken(var(--mantine-color-blue-9),0.9)
+    );
+    flex: 0 1 auto;
+}
+
+.children {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+.link {
+    display: block;
+    line-height: 1;
+    padding: 10px 8px;
+    border-radius: 0;
+    height: 35px;
+    text-decoration: none;
+    color: light-dark(
+            var(--mantine-color-black),
+            var(--mantine-color-white)
+    );
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 500;
+    user-select: none;
+    cursor: pointer;
+}
+
+.link:hover {
+    background-color: light-dark(
+            lighten(var(--mantine-color-blue-3),0.7),
+            darken(var(--mantine-color-blue-9),0.7)
+    )
+}
+
+.selectedLink {
+    background-color: light-dark(
+            lighten(var(--mantine-color-blue-3),0.7),
+            darken(var(--mantine-color-blue-9),0.7)
+    )
+}
+
+.windowButton {
+    padding: 10px 12px;
+}
+
+.closeButton {
+    padding: 10px 14px;
+}
+
+.closeButton:hover {
+    background-color: light-dark(
+            var(--mantine-color-red-7),
+            var(--mantine-color-red-8)
+    );
+}

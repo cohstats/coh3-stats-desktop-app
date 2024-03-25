@@ -8,6 +8,7 @@ import { listen } from "@tauri-apps/api/event"
 import { info } from "tauri-plugin-log-api"
 import { UploadNotifications } from "./components/UploadNotifications"
 import * as Sentry from "@sentry/react"
+import "@mantine/core/styles.css"
 
 info("Start frontend")
 
@@ -16,6 +17,7 @@ Sentry.init({
   integrations: [Sentry.browserTracingIntegration()],
   tracesSampleRate: 0.1,
   tracePropagationTargets: ["localhost"],
+  ignoreErrors: ["window.__TAURI_IPC__ is not a function"],
   beforeSend(event, hint) {
     // On macOS we do only development, we can ignore all development errors
     if (event.contexts?.os?.name === "macOS") {

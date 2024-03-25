@@ -94,8 +94,8 @@ export const Settings: React.FC = () => {
           <Group>
             <div>Path to warnings.log:</div>
             <div>
-              <Group spacing="xs">
-                <Group spacing={3}>
+              <Group gap="xs">
+                <Group gap={3}>
                   <Input
                     value={logFilePath ? logFilePath : ""}
                     style={{ width: 500 }}
@@ -171,7 +171,7 @@ export const Settings: React.FC = () => {
           </Group>
           <Divider />
           <Group>
-            <Text weight={700}>OBS Streamer Overlay</Text>
+            <Text fw={700}>OBS Streamer Overlay</Text>
             <Switch
               onLabel="ON"
               offLabel="OFF"
@@ -201,7 +201,7 @@ export const Settings: React.FC = () => {
                   <Button
                     variant="outline"
                     color="red"
-                    compact
+                    size="compact-md"
                     onClick={async () => {
                       // Relaunch doesn't work well in dev mode
                       await relaunch()
@@ -266,7 +266,7 @@ export const Settings: React.FC = () => {
             </div>
           </Group>
           <div>
-            <Text weight={700}>
+            <Text fw={700}>
               Follow the{" "}
               <Anchor
                 onClick={() =>

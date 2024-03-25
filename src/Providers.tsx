@@ -1,10 +1,4 @@
-import {
-  MantineProvider,
-  ColorScheme,
-  ColorSchemeProvider,
-} from "@mantine/core"
-import { useLocalStorage } from "@mantine/hooks"
-import { useState } from "react"
+import { MantineProvider, localStorageColorSchemeManager } from "@mantine/core"
 import { GameDataProvider } from "./game-data-provider/GameDataProvider"
 import { Notifications } from "@mantine/notifications"
 
@@ -13,29 +7,22 @@ interface ProvidersProps {
 }
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+  const colorSchemeManager = localStorageColorSchemeManager({
     key: "mantine-color-scheme",
-    defaultValue: "dark",
-    getInitialValueInEffect: true,
   })
 
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"))
   return (
     <>
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
+      <MantineProvider
+        // theme={{ colorScheme }}
+        defaultColorScheme="dark"
+        colorSchemeManager={colorSchemeManager}
+        // withGlobalStyles
+        // withNormalizeCSS
       >
-        <MantineProvider
-          theme={{ colorScheme }}
-          withGlobalStyles
-          withNormalizeCSS
-        >
-          <Notifications />
-          <GameDataProvider>{children}</GameDataProvider>
-        </MantineProvider>
-      </ColorSchemeProvider>
+        <Notifications />
+        <GameDataProvider>{children}</GameDataProvider>
+      </MantineProvider>
     </>
   )
 }
