@@ -84,7 +84,7 @@ jobs:
           cargo test --package coh3-stats-desktop-app --lib
 
       - name: Upload Tauri app artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coh3-stats-desktop-app
           path: src-tauri/target/release/bundle/*
