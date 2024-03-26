@@ -85,6 +85,14 @@ jobs:
           cd src-tauri
           cargo test --package coh3-stats-desktop-app --lib
 
+      - name: Install tauri-driver
+        run: |
+          cargo install tauri-driver
+
+      - name: Run e2e tests
+        run: |
+          yarn test:e2e
+
       - name: Upload Tauri app artifacts
         uses: actions/upload-artifact@v4
         with:
