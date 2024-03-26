@@ -12,7 +12,7 @@ exports.config = {
     {
       maxInstances: 1,
       'tauri:options': {
-        application: './src-tauri/target/release/coh3-stats-desktop-app.exe',        
+        application: './src-tauri/target/release/Coh3 Stats Desktop App.exe',        
         webviewOptions: {},
       },
     },
