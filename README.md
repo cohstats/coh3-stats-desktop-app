@@ -171,10 +171,15 @@ The build output can be found in `src-tauri/target/release`. The installer can b
 Don't forget to run prettier with `yarn fix`. Should be covered by husky.
 
 Running e2e tests:
+
+```
+yarn test:e2e
+```
+
 https://tauri.app/v1/guides/testing/webdriver/introduction
 
 - Install tauri driver `cargo install tauri-driver`
-- Get
+- Get msedgedriver.exe to your path https://tauri.app/v1/guides/testing/webdriver/introduction/#windows
 
 ### Release
 
