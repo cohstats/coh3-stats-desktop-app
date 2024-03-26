@@ -89,6 +89,11 @@ jobs:
         run: |
           cargo install tauri-driver
 
+      - name: debug commands
+        run: |
+          dir src-tauri/target/release/
+          where msedgedriver.exe
+
       - name: Run e2e tests
         run: |
           yarn test:e2e
