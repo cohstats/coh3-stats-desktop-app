@@ -37,7 +37,7 @@ jobs:
           yarn lint:prettier
 
   test-tauri:
-    name: Test Tauri build
+    name: Test Tauri build    
     runs-on: windows-latest
 
     concurrency:
@@ -62,6 +62,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
+      # - name: Update to Evergreen WebView2 Runtime
+      #   shell: pwsh
+      #   # See here: https://developer.microsoft.com/en-us/microsoft-edge/webview2/
+      #    # https://github.com/actions/runner-images/issues/9538
+      #   run: |          
+      #     Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile 'setup.exe'
+      #     Start-Process -FilePath setup.exe -Verb RunAs -Wait
+
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
@@ -84,6 +92,21 @@ jobs:
         run: |
           cd src-tauri
           cargo test --package coh3-stats-desktop-app --lib
+
+      - name: Install tauri-driver
+        run: |
+          cargo install tauri-driver
+
+      # - name: debug commands
+      #   run: |
+      #     dir src-tauri/target/release/
+
+
+      # If the test fails with invalid MS Edge browser it's highly possible a bug at GitHub
+      # https://github.com/actions/runner-images/issues/9538
+      - name: Run e2e tests
+        run: |
+          yarn test:e2e
 
       - name: Upload Tauri app artifacts
         uses: actions/upload-artifact@v4

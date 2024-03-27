@@ -9,6 +9,7 @@ import { info } from "tauri-plugin-log-api"
 import { UploadNotifications } from "./components/UploadNotifications"
 import * as Sentry from "@sentry/react"
 import "@mantine/core/styles.css"
+import "@mantine/notifications/styles.css"
 
 info("Start frontend")
 

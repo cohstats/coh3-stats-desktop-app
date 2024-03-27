@@ -52,6 +52,16 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
             >
               About
             </Link>
+            {process.env.NODE_ENV === "development" && (
+              <Link
+                to={Routes.DEBUG}
+                className={`${classes.link} ${
+                  location.pathname === Routes.DEBUG ? classes.selectedLink : ""
+                }`}
+              >
+                Debug
+              </Link>
+            )}
           </Group>
           <Group data-tauri-drag-region gap={0}>
             <a

@@ -100,7 +100,7 @@ export const Replays: React.FC = () => {
                 cohdb.com
               </Anchor>
             </Title>
-            <Text>
+            <Text data-testid="replays-description">
               Automatically upload replays to cohdb for replay analysis
             </Text>
             <List type="ordered" withPadding>
