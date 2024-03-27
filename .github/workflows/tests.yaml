@@ -37,10 +37,8 @@ jobs:
           yarn lint:prettier
 
   test-tauri:
-    name: Test Tauri build
-    # Change this to windows-2022 when 
-    # https://github.com/actions/runner-images/issues/9538 is fixed 
-    runs-on: windows-2019
+    name: Test Tauri build    
+    runs-on: windows-latest
 
     concurrency:
       group: tests-tauri-build-${{ github.ref }}
@@ -63,6 +61,14 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - name: Update to Evergreen WebView2 Runtime
+        shell: pwsh
+        # See here: https://developer.microsoft.com/en-us/microsoft-edge/webview2/
+         # https://github.com/actions/runner-images/issues/9538
+        run: |          
+          Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile 'setup.exe'
+          Start-Process -FilePath setup.exe -Verb RunAs -Wait
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
