@@ -1,6 +1,7 @@
 import { getVersion } from "@tauri-apps/api/app"
 import { appDataDir } from "@tauri-apps/api/path"
 import { open } from "@tauri-apps/api/shell"
+import { fetch } from "@tauri-apps/api/http"
 import React, { useState, useEffect } from "react"
 import {
   Title,
@@ -20,10 +21,23 @@ export const About: React.FC = () => {
   const [appVersion, setAppVersion] = useState<string>()
   const [pathToLogs, setPathToLogs] = useState<string>()
 
+  const [latestVersion, setLatestVersion] = useState<string>()
+
   useEffect(() => {
-    getVersion().then((version) => setAppVersion(version))
-    events.open_about()
-    appDataDir().then((path) => setPathToLogs(path))
+    ;(async () => {
+      getVersion().then((version) => setAppVersion(version))
+      events.open_about()
+      appDataDir().then((path) => setPathToLogs(path))
+
+      fetch("https://coh3stats.com/api/appUpdateRoute")
+        .then((response) => {
+          // @ts-ignore
+          setLatestVersion(response.data.version.replace("v", ""))
+        })
+        .catch((error) => {
+          console.error("Error:", error)
+        })
+    })()
   }, [])
 
   return (
@@ -39,8 +53,29 @@ export const About: React.FC = () => {
         <Grid.Col span="auto" pt="md">
           <Group gap="xs">
             <Title order={4}>Version </Title>
-            <Code color="green">{appVersion}</Code>
+            <Code color="green" data-testid="app-version">
+              {appVersion}
+            </Code>
           </Group>
+          {latestVersion !== appVersion && (
+            <>
+              <Space h="xs" />
+              <Text component="p" size="sm" c={"red"}>
+                The latest production version is reported as {latestVersion}. If
+                the autoupdater doesn't work pelase download the new version
+                manually{" "}
+                <Anchor
+                  href="https://coh3stats.com/desktop-app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  coh3stats.com/desktop-app
+                </Anchor>{" "}
+                and reinstall the application.
+              </Text>
+              <Space h="xs" />
+            </>
+          )}
           <Text component="p" size="sm">
             Visit our website{" "}
             <Anchor onClick={() => open("https://coh3stats.com/")}>

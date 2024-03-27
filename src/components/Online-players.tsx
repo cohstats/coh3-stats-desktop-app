@@ -79,6 +79,7 @@ export const OnlinePlayers: React.FC = () => {
             variant="filled"
             size="md"
             style={{ minWidth: 60, marginBottom: -1 }}
+            data-testid="online-players-badge"
           >
             {onlinePlayersData?.playerCount}
           </Badge>

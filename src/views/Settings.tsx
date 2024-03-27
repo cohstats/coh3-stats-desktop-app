@@ -87,7 +87,7 @@ export const Settings: React.FC = () => {
         <Stack>
           <Group>
             <div>Color Theme:</div>
-            <div>
+            <div data-testid="color-scheme-toggle">
               <ColorSchemeToggle />
             </div>
           </Group>

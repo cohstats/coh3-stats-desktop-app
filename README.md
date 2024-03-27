@@ -154,23 +154,24 @@ yarn tauri dev
 
 The first execution takes a bit longer as the rust libraries have to be compiled once. Any future restarts will be much faster!
 
-To build the app and an installer run:
+#### To build the app and an installer run:
 
 ```
 yarn tauri build
 ```
 
-Running tests:
+The build output can be found in `src-tauri/target/release`. The installer can be found in `src-tauri/target/release/bundle/msi`. We distribute the app with msi installer, so
+let's keep that consitent.
+
+#### Running Rust BE Tests:
 
 ```
 cargo test --package coh3-stats-desktop-app --lib
 ```
 
-The build output can be found in `src-tauri/target/release`. The installer can be found in `src-tauri/target/release/bundle/msi`.
+#### Running e2e tests:
 
-Don't forget to run prettier with `yarn fix`. Should be covered by husky.
-
-Running e2e tests:
+Build the app and run
 
 ```
 yarn test:e2e
@@ -180,6 +181,8 @@ https://tauri.app/v1/guides/testing/webdriver/introduction
 
 - Install tauri driver `cargo install tauri-driver`
 - Get msedgedriver.exe to your path https://tauri.app/v1/guides/testing/webdriver/introduction/#windows
+
+Don't forget to run prettier with `yarn fix`. Should be covered by husky.
 
 ### Release
 
