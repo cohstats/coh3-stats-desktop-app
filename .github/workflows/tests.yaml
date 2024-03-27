@@ -38,7 +38,9 @@ jobs:
 
   test-tauri:
     name: Test Tauri build
-    runs-on: windows-latest
+    # Change this to windows-2022 when 
+    # https://github.com/actions/runner-images/issues/9538 is fixed 
+    runs-on: windows-2019
 
     concurrency:
       group: tests-tauri-build-${{ github.ref }}
@@ -89,11 +91,13 @@ jobs:
         run: |
           cargo install tauri-driver
 
-      - name: debug commands
-        run: |
-          dir src-tauri/target/release/
-          where msedgedriver.exe
+      # - name: debug commands
+      #   run: |
+      #     dir src-tauri/target/release/
 
+
+      # If the test fails with invalid MS Edge browser it's highly possible a bug at GitHub
+      # https://github.com/actions/runner-images/issues/9538
       - name: Run e2e tests
         run: |
           yarn test:e2e
