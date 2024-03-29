@@ -93,7 +93,7 @@ export const Replays: React.FC = () => {
     <>
       <Box p="xl">
         <Flex justify="space-between" align="flex-start">
-          <Paper p="xs" pt={0} w={450}>
+          <Paper p="xs" pt={0} w={570}>
             <Title order={3}>
               Replay integration with{" "}
               <Anchor inherit onClick={() => openLink(cohdbBaseUrl)}>
@@ -126,6 +126,11 @@ export const Replays: React.FC = () => {
                 </Group>
               </List.Item>
             </List>
+            <Text fs="italic" size="sm" pt="xs">
+              It's recommended to enable autosync even when you don't want to
+              share it with anyone. If we gather enough replays, we could start
+              providing new types of statistics and analysis.
+            </Text>
           </Paper>
           <Group>
             {cohdbUser != null ? (
