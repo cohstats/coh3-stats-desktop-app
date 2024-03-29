@@ -50,10 +50,16 @@ const [getAutoSyncReplays, useAutoSyncReplays] = configValueFactory<boolean>(
   async () => true
 )
 
+const [getMapViewSettings, useMapViewSettings] = configValueFactory<string>(
+  "mapViewSettings",
+  async () => "default"
+)
+
 export {
   getPlaybackPath,
   usePlaybackPath,
   getLogFilePath,
   useLogFilePath,
   useAutoSyncReplays,
+  useMapViewSettings,
 }

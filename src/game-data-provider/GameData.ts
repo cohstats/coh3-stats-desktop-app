@@ -92,3 +92,5 @@ export interface LogFileFoundGameData {
 }
 
 export type GameData = LogFileFoundGameData | undefined
+
+export type MapViewSettings = "default" | "tm" | "colored" | "none"

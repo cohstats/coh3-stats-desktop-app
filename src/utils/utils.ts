@@ -1,4 +1,5 @@
-import { PlayerRanks } from "./coh3-data"
+import { MapViewSettings } from "../game-data-provider/GameData"
+import { PlayerRanks, maps } from "./coh3-data"
 
 export const calculatePlayerTier = (rank: number, rating: number) => {
   if (!rank || rank <= 0) {
@@ -38,4 +39,26 @@ export const calculatePlayerTier = (rank: number, rating: number) => {
   }
 
   return PlayerRanks.NO_RANK
+}
+
+export const getMapName = (map: string) => {
+  return maps[map]?.name || map
+}
+
+export const getMapUrl = (map: string, markingStyle?: MapViewSettings) => {
+  if (!markingStyle || markingStyle === "none") return maps[map]?.url || null
+
+  if (markingStyle === "tm") {
+    return `/icons/maps-marked/${map}.tm.webp`
+  }
+
+  if (markingStyle === "colored") {
+    return `/icons/maps-marked/${map}.colored.webp`
+  }
+
+  if (markingStyle === "default") {
+    return `/icons/maps-marked/${map}.webp`
+  }
+
+  return null
 }

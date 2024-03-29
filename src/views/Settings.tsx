@@ -14,6 +14,9 @@ import {
   Anchor,
   Switch,
   Spoiler,
+  Select,
+  Image,
+  Title,
 } from "@mantine/core"
 import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
@@ -21,7 +24,10 @@ import { useEffect, useState } from "react"
 import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react"
 import { open } from "@tauri-apps/api/dialog"
 import { open as openLink } from "@tauri-apps/api/shell"
-import { useLogFilePath } from "../game-data-provider/configValues"
+import {
+  useLogFilePath,
+  useMapViewSettings,
+} from "../game-data-provider/configValues"
 import {
   usePlaySound,
   usePlaySoundVolume,
@@ -35,6 +41,8 @@ import { playSound as playSoundFunc } from "../game-found-sound/playSound"
 import events from "../mixpanel/mixpanel"
 import { useGameData } from "../game-data-provider/GameDataProvider"
 import { relaunch } from "@tauri-apps/api/process"
+import { getMapUrl } from "../utils/utils"
+import { MapViewSettings } from "../game-data-provider/GameData"
 
 export const Settings: React.FC = () => {
   const gameData = useGameData()
@@ -43,6 +51,8 @@ export const Settings: React.FC = () => {
   const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume()
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay()
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay()
+  const [mapViewSettings, setMapViewSettings] = useMapViewSettings()
+
   const [streamerOverlayEnabled, setStreamerOverlayEnabled] =
     useStreamerOverlayEnabled()
   const [appDataPath, setAppDataPath] = useState<string>("")
@@ -168,6 +178,39 @@ export const Settings: React.FC = () => {
                 </Tooltip>
               </Group>
             </div>
+          </Group>
+          <Group>
+            <Select
+              label={<Text>Select map view markings</Text>}
+              allowDeselect={false}
+              withCheckIcon={false}
+              value={mapViewSettings}
+              data={[
+                { value: "default", label: "Default" },
+                { value: "tm", label: "TM" },
+                { value: "colored", label: "Colored" },
+                { value: "none", label: "None" },
+              ]}
+              onChange={(value) => {
+                events.settings_changed("mapViewSettings", `${value}`)
+                setMapViewSettings(value as "string")
+              }}
+            />
+            <img
+              src={
+                getMapUrl(
+                  "catania_crossing_6p",
+                  mapViewSettings as MapViewSettings
+                ) || ""
+              }
+              alt="MapExample"
+              width={250}
+              height={80}
+              style={{
+                objectFit: "cover",
+                borderRadius: 7,
+              }}
+            />
           </Group>
           <Divider />
           <Group>
