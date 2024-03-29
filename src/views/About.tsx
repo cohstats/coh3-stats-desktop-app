@@ -57,7 +57,7 @@ export const About: React.FC = () => {
               {appVersion}
             </Code>
           </Group>
-          {latestVersion !== appVersion && (
+          {latestVersion !== appVersion && latestVersion !== undefined && (
             <>
               <Space h="xs" />
               <Text component="p" size="sm" c={"red"}>
