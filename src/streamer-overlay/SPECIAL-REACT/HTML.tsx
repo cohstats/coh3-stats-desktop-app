@@ -41,7 +41,7 @@ export const HTML: React.FC<HTMLProps> = ({ html }) => {
                             position: absolute;
                             left: calc((100vw / 2) - 485px);
                             right: calc((100vw / 2) - 485px);
-                            top: 65px;
+                            top: 65px;            
                         }
 
                         .coh3stats-overlay-left {
@@ -80,14 +80,14 @@ export const HTML: React.FC<HTMLProps> = ({ html }) => {
                           padding-right: 10px;
                           min-width: 4ch;
                           display: inline-block;
-                          text-align: center;
+                          overflow: auto;
                         }
 
                         .coh3stats-overlay-player-rating {
                           padding-right: 10px;
                           min-width: 4ch;
                           display: inline-block;
-                          text-align: center;
+                          overflow: auto;
                         }
 
                         .coh3stats-overlay-player-name {

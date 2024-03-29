@@ -86,14 +86,14 @@ All the elements in the overlay have CSS classes assigned. The styling is as fol
   padding-right: 10px;
   min-width: 4ch;
   display: inline-block;
-  text-align: center;
+  overflow: auto;
 }
 
 .coh3stats-overlay-player-rating {
   padding-right: 10px;
   min-width: 4ch;
   display: inline-block;
-  text-align: center;
+  overflow: auto;
 }
 
 .coh3stats-overlay-player-name {
