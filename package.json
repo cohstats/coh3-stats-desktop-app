@@ -34,7 +34,7 @@
     "@mantine/core": "7.7.1",
     "@mantine/hooks": "7.7.1",
     "@mantine/notifications": "7.7.1",
-    "@sentry/react": "7.109.0",
+    "@sentry/react": "7.110.0",
     "@tabler/icons-react": "3.1.0",
     "@tauri-apps/api": "1.5.3",
     "axios": "1.6.8",
