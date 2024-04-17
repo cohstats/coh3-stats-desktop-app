@@ -29,28 +29,31 @@ export const OnlinePlayers: React.FC = () => {
         }
 
         // Update the data every 5 minutes
-        const intervalId = setInterval(async () => {
-          try {
-            if (
-              (onlinePlayersData &&
-                onlinePlayersData.timeStampMs <
-                  new Date().getTime() - 1000 * 60 * 4) ||
-              !onlinePlayersData
-            ) {
-              const fetchResponse = await fetch(
-                getNumberOfOnlinePlayersSteamUrl()
-              )
-              // @ts-ignore
-              const { response } = fetchResponse.data
-              setOnlinePlayersData({
-                playerCount: response.player_count,
-                timeStampMs: new Date().getTime(),
-              })
+        const intervalId = setInterval(
+          async () => {
+            try {
+              if (
+                (onlinePlayersData &&
+                  onlinePlayersData.timeStampMs <
+                    new Date().getTime() - 1000 * 60 * 4) ||
+                !onlinePlayersData
+              ) {
+                const fetchResponse = await fetch(
+                  getNumberOfOnlinePlayersSteamUrl()
+                )
+                // @ts-ignore
+                const { response } = fetchResponse.data
+                setOnlinePlayersData({
+                  playerCount: response.player_count,
+                  timeStampMs: new Date().getTime(),
+                })
+              }
+            } catch (e) {
+              console.error(e)
             }
-          } catch (e) {
-            console.error(e)
-          }
-        }, 1000 * 60 * 5)
+          },
+          1000 * 60 * 5
+        )
 
         return () => {
           clearInterval(intervalId)
