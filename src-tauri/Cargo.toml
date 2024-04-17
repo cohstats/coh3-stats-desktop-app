@@ -37,7 +37,7 @@ tokio = { version = "=1.37.0", features = ["time"] }
 vault = "=8.0.0"
 window-shadows = "=0.2.2"
 # monitoring by sentry
-sentry = "=0.32.2"
+sentry = "=0.32.3"
 # For the OBS interface we need to expose webserver
 tiny_http = "=0.12.0"
 
