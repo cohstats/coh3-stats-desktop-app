@@ -14,7 +14,7 @@ rust-version = "1.75"
 tauri-build = { version = "=1.5.1", features = [] }
 
 [dependencies]
-keyring = "=2.3.2"
+keyring = "=2.3.3"
 log = "=0.4.21"
 machine-uid = "=0.5.1"
 nom = "=7.1.3"
