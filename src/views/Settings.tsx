@@ -361,7 +361,7 @@ export const Settings: React.FC = () => {
           </Group>
           <Spoiler
             maxHeight={0}
-            showLabel="Depreacated - local file streamerOverlay.html"
+            showLabel="Deprecated - local file streamerOverlay.html"
             hideLabel="Hide"
           >
             <div style={{ paddingLeft: 10 }}>
