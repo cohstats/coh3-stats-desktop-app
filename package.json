@@ -60,7 +60,7 @@
     "@wdio/mocha-framework": "^7",
     "@wdio/spec-reporter": "^7",
     "husky": "9.0.11",
-    "lint-staged": "15.2.2",
+    "lint-staged": "15.2.7",
     "postcss": "8.4.38",
     "postcss-preset-mantine": "1.14.4",
     "postcss-simple-vars": "7.0.1",
