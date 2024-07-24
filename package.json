@@ -19,7 +19,8 @@
     "tauri": "tauri",
     "prepare": "husky",
     "test:e2e": "wdio run wdio.conf.cjs",
-    "test:be": "cd src-tauri && cargo test --package coh3-stats-desktop-app --lib"
+    "test:be": "cd src-tauri && cargo test --package coh3-stats-desktop-app --lib",
+    "reinstall": "rm -rf node_modules && rm -fr dist && rm -fr src-tauri/target && yarn install"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,yml,css}": [

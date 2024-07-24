@@ -54,7 +54,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
             </Tooltip>
           </Grid.Col>
           <Grid.Col span="auto">
-            <Stack align="stretch">
+            <Stack align="stretch" gap={"xs"}>
               <Group justify={"space-between"}>
                 <Group>
                   {!ai ? (
@@ -62,7 +62,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                       <Image
                         src={"/flags/4x3/" + country + ".svg"}
                         alt={country}
-                        w={35}
+                        w={30}
                       />
                     </Tooltip>
                   ) : null}

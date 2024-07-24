@@ -1,5 +1,5 @@
-import { Card, Title, Image, Space, Center, Flex } from "@mantine/core"
-import { getMapName, getMapUrl } from "../utils/utils"
+import { Card, Title, Image, Paper } from "@mantine/core"
+import { getMapName, getMapsUrlOnCDN } from "../utils/utils"
 import { GameData, MapViewSettings } from "../game-data-provider/GameData"
 import { useMapViewSettings } from "../game-data-provider/configValues"
 
@@ -13,25 +13,24 @@ const MapCard: React.FC<MapCardProps> = ({ gameData }) => {
   if (!gameData) return null
 
   return (
-    <Card padding={"md"} w="300" h="320" withBorder shadow="xs">
-      <Title order={4}>Map - {getMapName(gameData.gameData.map)}</Title>
-      <Card.Section w="280" h="280" p="xs">
-        <Image
-          p="xs"
-          w="auto"
-          h="100%"
-          fit="contain"
-          fallbackSrc={
-            getMapUrl(gameData.gameData.map, "none") || "icons/placeholder.svg"
-          }
-          src={getMapUrl(
-            gameData.gameData.map,
-            mapViewSettings as MapViewSettings
-          )}
-          alt="Map"
-        />
-      </Card.Section>
-    </Card>
+    <Paper pl={"xs"} w="auto" h="320">
+      <Title order={3}>Map - {getMapName(gameData.gameData.map)}</Title>
+      <Image
+        p="xs"
+        w="auto"
+        h="270"
+        // fit="contain"
+        fallbackSrc={
+          getMapsUrlOnCDN(gameData.gameData.map, "none") ||
+          "icons/placeholder.svg"
+        }
+        src={getMapsUrlOnCDN(
+          gameData.gameData.map,
+          mapViewSettings as MapViewSettings
+        )}
+        alt={gameData.gameData.map}
+      />
+    </Paper>
   )
 }
 
