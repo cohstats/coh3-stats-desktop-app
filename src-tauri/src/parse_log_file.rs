@@ -313,7 +313,8 @@ fn get_team_data(players: Vec<PlayerData>) -> TeamData {
     let mut mixed = false;
     let mut last = TeamSide::Mixed;
     for player in &players {
-        if player.faction == "german" || player.faction == "west_german" {
+        // For some reason the logs now produce faction as germans instead of german
+        if  player.faction == "germans" || player.faction == "german" || player.faction == "west_german" {
             if last == TeamSide::Allies {
                 mixed = true;
                 break;

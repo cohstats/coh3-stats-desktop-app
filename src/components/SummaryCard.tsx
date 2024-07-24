@@ -8,8 +8,9 @@ import { Card, Divider, Flex, Grid, Image, Paper, Text } from "@mantine/core"
 import { getMapName, getMapsUrlOnCDN } from "../utils/utils"
 import { IconSwords } from "@tabler/icons-react"
 import { PlayerCard } from "./PlayerCard"
-import React from "react"
+import React, { useContext } from "react"
 import { getFactionName } from "../utils/renameLabels"
+import { MapStatsContext } from "../map-stats-provider"
 
 interface MapCardProps {
   gameData: GameData
@@ -26,6 +27,45 @@ const CalculateWinRate = (players: FullPlayerData[]) => {
   )
   const totalWins = players.reduce((acc, player) => acc + (player.wins || 0), 0)
   return totalWins / totalGames
+}
+
+const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
+  const { data, error, loading } = useContext(MapStatsContext)
+
+  if (!gameData) return null
+
+  const leftFactionString = gameData.gameData.left.players.reduce(
+    (acc, player) => acc + (player.faction || ""),
+    ""
+  )
+  //D,W || B, A
+
+  console.log(gameData)
+
+  // console.log(data.latestPatchInfo, error, loading)
+  console.log(data.mapStats)
+
+  return (
+    <>
+      <Grid>
+        <Grid.Col span={4}>
+          <Text c={5 >= 0.5 ? "green" : "red"} ta={"right"}>
+            LEFT
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <Text fw={700} ta={"center"}>
+            Map WinRate Composition
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <Text c={5 >= 0.5 ? "green" : "red"} ta={"left"}>
+            RIGHT
+          </Text>
+        </Grid.Col>
+      </Grid>
+    </>
+  )
 }
 
 const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
@@ -45,7 +85,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
 
   return (
     <Paper p={"xs"}>
-      <Grid>
+      <Grid key={"faction-grid"}>
         <Grid.Col span={5}>
           <Flex justify={"right"} gap={"5"}>
             {localGameData.left.players.map((player, index) => (
@@ -53,6 +93,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
                 src={"/factions/" + player.faction + ".webp"}
                 alt={player.faction}
                 w={35}
+                key={player.relicID + "_" + index}
               />
             ))}
           </Flex>
@@ -69,13 +110,14 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
                 src={"/factions/" + player.faction + ".webp"}
                 alt={player.faction}
                 w={35}
+                key={player.relicID + "_" + index}
               />
             ))}
           </Flex>
         </Grid.Col>
       </Grid>
       <Divider my="md" m={"xs"} />
-      <Grid>
+      <Grid key={"elo-grid"}>
         <Grid.Col span={4}>
           <Text c={biggerTotalEloLeft ? "green" : "red"} ta={"right"}>
             {totalEloLeft}
@@ -91,7 +133,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
         </Grid.Col>
       </Grid>
       <Divider my="md" m={"xs"} />
-      <Grid>
+      <Grid key={"average-elo-grid"}>
         <Grid.Col span={4}>
           <Text c={biggerAverageEloLeft ? "green" : "red"} ta={"right"}>
             {averageEloLeft.toFixed(0)}
@@ -109,7 +151,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
         </Grid.Col>
       </Grid>
       <Divider my="md" m={"xs"} />
-      <Grid>
+      <Grid key={"win-rate-grid"}>
         <Grid.Col span={4}>
           <Text c={averageWinRateLeft >= 0.5 ? "green" : "red"} ta={"right"}>
             {(averageWinRateLeft * 100).toFixed(1)} %
@@ -117,7 +159,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
         </Grid.Col>
         <Grid.Col span={4}>
           <Text fw={700} ta={"center"}>
-            Average Team WinRate
+            Average WinRate
           </Text>
         </Grid.Col>
         <Grid.Col span={4}>
@@ -127,6 +169,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
         </Grid.Col>
       </Grid>
       <Divider my="md" m={"xs"} />
+      <MapStatsGrid gameData={gameData} />
     </Paper>
   )
 }

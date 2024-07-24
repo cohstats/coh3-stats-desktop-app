@@ -31,9 +31,10 @@ import { invoke } from "@tauri-apps/api/tauri"
 import { emit, listen } from "@tauri-apps/api/event"
 import { COHDBIcon } from "../components/other/COHDB-icon"
 import { showNotification } from "../utils/notifications"
-import { cohdbBaseUrl, cohdbPlayerOverView } from "../utils/external-routes"
+import { cohdbPlayerOverView } from "../utils/external-routes"
 import HelperIcon from "../components/other/helper-icon"
 import { writeText } from "@tauri-apps/api/clipboard"
+import config from "../config"
 
 interface CohdbUser {
   name: string
@@ -96,7 +97,7 @@ export const Replays: React.FC = () => {
           <Paper p="xs" pt={0} w={570}>
             <Title order={3}>
               Replay integration with{" "}
-              <Anchor inherit onClick={() => openLink(cohdbBaseUrl)}>
+              <Anchor inherit onClick={() => openLink(config.COHDB_BASE_URL)}>
                 cohdb.com
               </Anchor>
             </Title>

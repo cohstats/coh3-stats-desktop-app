@@ -136,6 +136,7 @@ export const useFullGameData = () => {
       })
       return refinedPlayerData
     }
+
     const swapTeamsBasedOnGamePlayer = (
       teams: [FullPlayerData[], FullPlayerData[]],
       rawGameData: RawGameData
@@ -145,6 +146,7 @@ export const useFullGameData = () => {
       }
       return [teams[0], teams[1]]
     }
+
     const refineLogFileData = async (rawGameData: RawGameData) => {
       const playSound = await getPlaySound()
       if (playSound && rawGameData.game_state === "Loading") {
@@ -182,6 +184,7 @@ export const useFullGameData = () => {
         console.error(e)
       }
     }
+
     // when raw data from log file changes check if its a new game with the generated unique key and refine data external api data
     if (logFilePath !== undefined && rawGameData) {
       if (lastGameUniqueKeyRef.current !== generateUniqueGameKey(rawGameData)) {
