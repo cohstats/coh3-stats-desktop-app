@@ -1,10 +1,13 @@
 import { Card, Title, Image, Paper } from "@mantine/core"
 import { getMapName, getMapsUrlOnCDN } from "../utils/utils"
-import { GameData, MapViewSettings } from "../game-data-provider/GameData"
+import {
+  GameDataTypes,
+  MapViewSettings,
+} from "../game-data-provider/GameData-types"
 import { useMapViewSettings } from "../game-data-provider/configValues"
 
 interface MapCardProps {
-  gameData: GameData
+  gameData: GameDataTypes
 }
 
 const MapCard: React.FC<MapCardProps> = ({ gameData }) => {

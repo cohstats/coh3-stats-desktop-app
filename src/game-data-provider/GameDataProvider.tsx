@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
 import { useLogFilePath } from "./configValues"
-import { GameData } from "./GameData"
+import { GameDataTypes } from "./GameData-types"
 import { useFullGameData } from "./useFullGameData"
 
-const GameDataContext = React.createContext<GameData>(undefined)
+const GameDataContext = React.createContext<GameDataTypes>(undefined)
 export const useGameData = () => useContext(GameDataContext)
 
 export interface GameDataProviderProps {

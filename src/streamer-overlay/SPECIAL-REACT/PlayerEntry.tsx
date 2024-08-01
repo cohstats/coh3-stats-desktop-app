@@ -1,5 +1,5 @@
 import React from "react"
-import { FullPlayerData } from "../../game-data-provider/GameData"
+import { FullPlayerData } from "../../game-data-provider/GameData-types"
 
 export interface PlayerEntryProps {
   playerData: FullPlayerData

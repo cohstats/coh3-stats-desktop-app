@@ -16,6 +16,7 @@ import {
 } from "@mantine/core"
 import logoBig from "../assets/logo/Square310x310Logo.png"
 import events from "../mixpanel/mixpanel"
+import config from "../config"
 
 export const About: React.FC = () => {
   const [appVersion, setAppVersion] = useState<string>()
@@ -46,7 +47,7 @@ export const About: React.FC = () => {
         About the App
       </Title>
       <Divider p="xs" />
-      <Grid style={{ margin: 0 }}>
+      <Grid style={{ margin: 0 }} p={"xs"}>
         <Grid.Col span="content">
           <img src={logoBig} alt="Coh3Stats Logo" width={200} />
         </Grid.Col>
@@ -78,7 +79,7 @@ export const About: React.FC = () => {
           )}
           <Text component="p" size="sm">
             Visit our website{" "}
-            <Anchor onClick={() => open("https://coh3stats.com/")}>
+            <Anchor onClick={() => open(config.COH3STATS_BASE_ULR)}>
               coh3stats.com
             </Anchor>
             .
@@ -99,7 +100,7 @@ export const About: React.FC = () => {
               make a donation
             </Anchor>{" "}
             or{" "}
-            <Anchor onClick={() => open("https://discord.gg/jRrnwqMfkr")}>
+            <Anchor onClick={() => open(config.DISCORD_JOIN_LINK)}>
               join our discord and get involved!
             </Anchor>
           </Text>

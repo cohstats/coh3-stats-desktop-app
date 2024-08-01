@@ -8,6 +8,13 @@ export type GameType = "Classic" | "AI" | "Custom"
 
 export type TeamSide = "Axis" | "Allies" | "Mixed"
 
+export const factionShortcuts: Record<raceType, string> = {
+  american: "A",
+  british: "B",
+  german: "W",
+  dak: "D",
+}
+
 export interface RawPlayerData {
   ai: boolean
   faction: logFileRaceType
@@ -91,6 +98,6 @@ export interface LogFileFoundGameData {
   reloadLogFile: () => void
 }
 
-export type GameData = LogFileFoundGameData | undefined
+export type GameDataTypes = LogFileFoundGameData | undefined
 
 export type MapViewSettings = "default" | "tm" | "colored" | "none"

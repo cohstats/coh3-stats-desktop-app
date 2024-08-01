@@ -9,7 +9,7 @@ import {
   Grid,
 } from "@mantine/core"
 import React from "react"
-import { FullPlayerData } from "../game-data-provider/GameData"
+import { FullPlayerData } from "../game-data-provider/GameData-types"
 import { PlayerELO } from "./PlayerELO"
 import { PlayerLosses } from "./PlayerLosses"
 import { PlayerRank } from "./PlayerRank"

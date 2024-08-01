@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { invoke } from "@tauri-apps/api/tauri"
-import { RawGameData } from "./GameData"
+import { RawGameData } from "./GameData-types"
 import { useLogFilePath } from "./configValues"
 
 /** This hook handles the collection of raw game data from the log file */

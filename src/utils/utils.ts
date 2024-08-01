@@ -1,4 +1,4 @@
-import { MapViewSettings } from "../game-data-provider/GameData"
+import { MapViewSettings } from "../game-data-provider/GameData-types"
 import { PlayerRanks, maps } from "./coh3-data"
 import config from "../config"
 

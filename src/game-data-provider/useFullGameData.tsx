@@ -6,7 +6,7 @@ import {
   GameState,
   RawGameData,
   RawTeamData,
-} from "./GameData"
+} from "./GameData-types"
 import { useRawGameData } from "./useRawGameData"
 import { fetch } from "@tauri-apps/api/http"
 import {
