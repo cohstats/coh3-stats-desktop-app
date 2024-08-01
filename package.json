@@ -67,6 +67,6 @@
     "postcss-simple-vars": "7.0.1",
     "prettier": "3.3.3",
     "typescript": "5.5.4",
-    "vite": "5.2.11"
+    "vite": "5.3.5"
   }
 }
