@@ -37,7 +37,7 @@
     "@mantine/notifications": "7.11.2",
     "@sentry/react": "7.118.0",
     "@tabler/icons-react": "3.11.0",
-    "@tauri-apps/api": "1.5.6",
+    "@tauri-apps/api": "1.6.0",
     "axios": "1.7.2",
     "coh-stats-components": "github:cohstats/coh-stats-components#0.0.7",
     "coh3-data-types-library": "github:cohstats/coh3-data-types-library#0.0.2",
@@ -50,7 +50,7 @@
     "tauri-plugin-store-api": "https://github.com/tauri-apps/tauri-plugin-store"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "1.5.14",
+    "@tauri-apps/cli": "1.6.0",
     "@types/mixpanel-browser": "2.49.0",
     "@types/node": "^20.14.13",
     "@types/react": "18.3.3",
