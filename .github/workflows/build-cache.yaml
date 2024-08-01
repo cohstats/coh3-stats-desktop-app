@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
       - name: Yarn install
-        run: yarn --prefer-offline --frozen-lockfile install
+        run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
       - name: Check JS build
         run: yarn build
 
