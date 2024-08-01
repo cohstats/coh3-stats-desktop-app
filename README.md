@@ -1,3 +1,5 @@
+CHAHMAHMEWAMHWMHWh
+
 # COH3 Stats Desktop App
 
 View stats of players in the current game of Company of Heroes 3.  
