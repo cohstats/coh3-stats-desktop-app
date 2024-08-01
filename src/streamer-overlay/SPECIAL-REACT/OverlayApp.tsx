@@ -1,5 +1,5 @@
 import React from "react"
-import { FullGameData } from "../../game-data-provider/GameData"
+import { FullGameData } from "../../game-data-provider/GameData-types"
 import { PlayerEntry } from "./PlayerEntry"
 
 export interface OverlayAppProps {

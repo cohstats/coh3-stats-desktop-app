@@ -34,7 +34,7 @@ jobs:
                 workspaces: './src-tauri -> target'
 
             - name: Yarn install FE dependencies
-              run: yarn --prefer-offline --frozen-lockfile install
+              run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
 
             - name: Build it
               run: yarn build

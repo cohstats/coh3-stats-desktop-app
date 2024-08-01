@@ -1,4 +1,4 @@
-import { FullGameData } from "../game-data-provider/GameData"
+import { FullGameData } from "../game-data-provider/GameData-types"
 import { BaseDirectory, writeTextFile } from "@tauri-apps/api/fs"
 import { renderToStaticMarkup, renderToString } from "react-dom/server"
 import { OverlayApp } from "./SPECIAL-REACT/OverlayApp"

@@ -1,25 +1,16 @@
 import { useGameData } from "../game-data-provider/GameDataProvider"
-import {
-  Title,
-  Grid,
-  Loader,
-  Group,
-  Box,
-  Badge,
-  Card,
-  Image,
-} from "@mantine/core"
+import { Title, Grid, Loader, Group, Box, Badge, Flex } from "@mantine/core"
 import { PlayerCard } from "../components/PlayerCard"
 import { useLogFilePath } from "../game-data-provider/configValues"
 import { OnlinePlayers } from "../components/Online-players"
-import { getMapName, getMapUrl } from "../utils/utils"
+
 import MapCard from "../components/MapCard"
+import { IconSwords } from "@tabler/icons-react"
+import SummaryCard from "../components/SummaryCard"
 
 export const Game: React.FC = () => {
   const gameData = useGameData()
   const logFilePath = useLogFilePath()
-
-  console.log("GAMEDATA", gameData)
 
   return (
     <>
@@ -43,7 +34,7 @@ export const Game: React.FC = () => {
           {gameData && gameData.gameData.map.length > 0 ? (
             <>
               <Grid gutter={0} p={"md"} pt={0}>
-                <Grid.Col span="auto" pt={40}>
+                <Grid.Col span="auto" pt={10}>
                   {gameData.gameData.left.players.map((player, index) => (
                     <PlayerCard
                       key={player.relicID + " " + index}
@@ -51,12 +42,10 @@ export const Game: React.FC = () => {
                     />
                   ))}
                 </Grid.Col>
-                <Grid.Col span="content">
-                  <Title style={{ textAlign: "center" }} mx="sm">
-                    VS
-                  </Title>
+                <Grid.Col span="content" mx={"sm"} pt={0}>
+                  <IconSwords size={55} />
                 </Grid.Col>
-                <Grid.Col span="auto" pt={40}>
+                <Grid.Col span="auto" pt={10}>
                   {gameData.gameData.right.players.map((player, index) => (
                     <PlayerCard
                       key={player.relicID + " " + index}
@@ -66,7 +55,12 @@ export const Game: React.FC = () => {
                 </Grid.Col>
               </Grid>
               <Grid gutter={0} p={"md"} pt={0}>
-                <MapCard gameData={gameData} />
+                <Grid.Col span={6} pr={"xl"}>
+                  <MapCard gameData={gameData} />
+                </Grid.Col>
+                <Grid.Col span={6} pl={"xl"}>
+                  <SummaryCard gameData={gameData} />
+                </Grid.Col>
               </Grid>
             </>
           ) : (

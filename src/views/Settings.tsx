@@ -41,8 +41,8 @@ import { playSound as playSoundFunc } from "../game-found-sound/playSound"
 import events from "../mixpanel/mixpanel"
 import { useGameData } from "../game-data-provider/GameDataProvider"
 import { relaunch } from "@tauri-apps/api/process"
-import { getMapUrl } from "../utils/utils"
-import { MapViewSettings } from "../game-data-provider/GameData"
+import { getMapsUrlOnCDN } from "../utils/utils"
+import { MapViewSettings } from "../game-data-provider/GameData-types"
 
 export const Settings: React.FC = () => {
   const gameData = useGameData()
@@ -198,7 +198,7 @@ export const Settings: React.FC = () => {
             />
             <img
               src={
-                getMapUrl(
+                getMapsUrlOnCDN(
                   "catania_crossing_6p",
                   mapViewSettings as MapViewSettings
                 ) || ""

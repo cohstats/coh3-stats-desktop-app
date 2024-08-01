@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
       - name: Yarn install
-        run: yarn --prefer-offline --frozen-lockfile install
+        run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
       - name: Check JS build
         run: yarn build
       - name: Run prettier
@@ -37,7 +37,7 @@ jobs:
           yarn lint:prettier
 
   test-tauri:
-    name: Test Tauri build    
+    name: Test Tauri build
     runs-on: windows-latest
 
     concurrency:
@@ -66,7 +66,7 @@ jobs:
       #   shell: pwsh
       #   # See here: https://developer.microsoft.com/en-us/microsoft-edge/webview2/
       #    # https://github.com/actions/runner-images/issues/9538
-      #   run: |          
+      #   run: |
       #     Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile 'setup.exe'
       #     Start-Process -FilePath setup.exe -Verb RunAs -Wait
 
@@ -79,7 +79,7 @@ jobs:
           workspaces: './src-tauri -> target'
 
       - name: Yarn install FE dependencies
-        run: yarn --prefer-offline --frozen-lockfile install
+        run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
 
       - name: Build tauri App
         uses: tauri-apps/tauri-action@v0
