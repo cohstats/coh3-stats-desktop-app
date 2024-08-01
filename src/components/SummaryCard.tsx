@@ -2,9 +2,7 @@ import {
   factionShortcuts,
   FullPlayerData,
   GameDataTypes,
-  MapViewSettings,
 } from "../game-data-provider/GameData-types"
-import { useMapViewSettings } from "../game-data-provider/configValues"
 import {
   Anchor,
   Card,
@@ -18,13 +16,9 @@ import {
   Text,
   Tooltip,
 } from "@mantine/core"
-import { getMapName, getMapsUrlOnCDN } from "../utils/utils"
 import { IconInfoCircle, IconSwords } from "@tabler/icons-react"
-import { PlayerCard } from "./PlayerCard"
 import React, { useContext } from "react"
-import { getFactionName } from "../utils/renameLabels"
 import { MapStatsContext } from "../map-stats-provider"
-import HelperIcon from "./other/helper-icon"
 import { open as openLink } from "@tauri-apps/api/shell"
 import config from "../config"
 
