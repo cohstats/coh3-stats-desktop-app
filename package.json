@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "1.6.0",
-    "@types/mixpanel-browser": "2.49.0",
+    "@types/mixpanel-browser": "2.49.1",
     "@types/node": "^20.14.13",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
