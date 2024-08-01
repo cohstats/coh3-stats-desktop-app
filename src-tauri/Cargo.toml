@@ -15,7 +15,7 @@ tauri-build = { version = "=1.5.2", features = [] }
 
 [dependencies]
 keyring = "=2.3.3"
-log = "=0.4.21"
+log = "=0.4.22"
 machine-uid = "=0.5.2"
 nom = "=7.1.3"
 notify = "=6.1.1"
