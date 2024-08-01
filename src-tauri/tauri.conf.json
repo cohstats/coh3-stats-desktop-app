@@ -7,7 +7,7 @@
     },
     "package": {
         "productName": "Coh3 Stats Desktop App",
-        "version": "1.4.0"
+        "version": "1.5.0"
     },
     "tauri": {
         "allowlist": {
@@ -87,7 +87,7 @@
                 "resizable": true,
                 "focus": true,
                 "title": "COH3 Stats Desktop App",
-                "width": 1200,
+                "width": 1000,
                 "minWidth": 900,
                 "height": 600,
                 "minHeight": 200,
