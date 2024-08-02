@@ -14,23 +14,13 @@ View stats of players in the current game of Company of Heroes 3.
    <a href="url"><img src="https://user-images.githubusercontent.com/25324640/227333226-2b0315c0-0e2c-4972-bb10-ffc1d98bc25c.png" height="400" ></a>
 5. Create a new Browser Source with any name you want
    <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227333417-64f4cca3-0bd0-48aa-9de7-2e72d1dfc168.png" height="400" ></a>
-6. In the browser properties select local file
-   <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227333676-94a10104-23f8-41ff-8b60-26b34eac698c.png" height="400" ></a>
-7. In the Coh3 Stats Desktop App go into settings
-   <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227334078-e975b12a-6730-4afd-9be1-3ed160371661.png" height="400" ></a>
-8. Copy the path to the streamerOverlay.html
-   <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227336591-6eba8879-ddd7-4f38-ab22-31573e4df8df.png" height="400" ></a>
-9. In the OBS properties window click on browse to set the path to the streamerOverlay.html
-   <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227336733-aee8ac78-e076-4077-a756-e463752fae0c.png" height="400" ></a>
-10. An explorer window opens. Paste the copied path into the path field and hit enter
-    <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227337198-3058a4cc-94b8-45e1-b059-9edd1ca98b6a.png" height="400" ></a>
-11. Select the streamerOverlay.html file and click open
-    <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227337374-e2ded687-1cdb-442d-b384-0f9c5fd8cb43.png" height="400" ></a>
-12. Set the resolution to the same resolution Coh3 is running at. E.G 1920 Width and 1080 Height
-    <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227337508-78e625e2-e72b-42d7-87fd-811a02c7e5e4.png" height="400" ></a>
-13. Click Ok to finish creating the source
-    <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227337725-c9f9d443-1611-4765-94a6-5411c2032c86.png" height="400" ></a>
-14. Scale the source to match the Coh3 source size
+6. Open the App, Go to Settings, Copy the path to localhost server http://localhost:47824
+   <br/><a href="url"><img src="https://github.com/user-attachments/assets/6c683a12-3bfe-436e-aab3-2e503dab4302" height="400" ></a>
+7. In the browser properties add URL from the app 
+   <br/><a href="url"><img src="https://github.com/user-attachments/assets/555acf06-d597-4e03-bc8f-3ac2b88c8236" height="400" ></a>
+8. Set the resolution to the resolution of the stream 
+    <br/><a href="url"><img src="https://github.com/user-attachments/assets/dfd7ec05-c113-4687-80cf-82768ea7fd12" height="400" ></a>
+9. Click OK and you are set! You can optionally setup a custom CSS to change the visual style / or move it. 
 
 ## Custom CSS for the overlay
 
@@ -38,7 +28,6 @@ If you don't like the default style of overlay, you can modify it with custom CS
 All the elements in the overlay have CSS classes assigned. The styling is as follows:
 
 ```
-
 .coh3stats-overlay {
   display: flex;
   flex-wrap: wrap;
@@ -130,7 +119,6 @@ Let's say I want to move it lower and change the color to red.
 ```
 
 2. Open the configuration of "Overlay" in OBS
-   ![image](https://github.com/cohstats/coh3-stats-desktop-app/assets/8086995/fa62f8df-0c08-4a1f-a12b-ca1598b2deb6)
 3. Paste the 2 modified classes into the box Custom CSS
    ![image](https://github.com/cohstats/coh3-stats-desktop-app/assets/8086995/c6f4cb56-f250-40f9-be93-5f65fefe8421)
 4. Click OK and observe the changes
