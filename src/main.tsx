@@ -17,7 +17,7 @@ Sentry.init({
   dsn: "https://88e8a309f91b8b5bb9a41dd14ff775b9@o4504995920543744.ingest.sentry.io/4506752563019776",
   integrations: [Sentry.browserTracingIntegration()],
   tracesSampleRate: 0.1,
-  tracePropagationTargets: ["localhost"],
+  tracePropagationTargets: [],
   ignoreErrors: ["window.__TAURI_IPC__ is not a function"],
   beforeSend(event, hint) {
     // On macOS we do only development, we can ignore all development errors

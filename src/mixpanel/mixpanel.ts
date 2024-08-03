@@ -61,6 +61,21 @@ const events = {
       value,
     })
   },
+  map_stats: async (
+    matchup: string,
+    map_name: string,
+    factionMatrixString: string,
+    displayed: boolean
+  ): Promise<void> => {
+    mixpanel.track("map_stats", {
+      distinct_id: await getClientId(),
+      version: await getVersion(),
+      matchup,
+      map_name,
+      factionMatrixString,
+      displayed,
+    })
+  },
 }
 
 export default events

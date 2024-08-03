@@ -5,22 +5,20 @@ import {
 } from "../game-data-provider/GameData-types"
 import {
   Anchor,
-  Card,
   Divider,
   Flex,
   Grid,
-  Group,
   HoverCard,
   Image,
   Paper,
   Text,
-  Tooltip,
 } from "@mantine/core"
 import { IconInfoCircle, IconSwords } from "@tabler/icons-react"
 import React, { useContext } from "react"
 import { MapStatsContext } from "../map-stats-provider"
 import { open as openLink } from "@tauri-apps/api/shell"
 import config from "../config"
+import events from "../mixpanel/mixpanel"
 
 interface MapCardProps {
   gameData: GameDataTypes
@@ -60,39 +58,59 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
   let right = 0
   const latestPatchInfo = data.latestPatchInfo
 
-  const leftFactionString = gameData.gameData.left.players.reduce(
-    (acc, player) => acc + (factionShortcuts[player.faction] || ""),
-    ""
-  )
-  const rightFactionString = gameData.gameData.right.players.reduce(
-    (acc, player) => acc + (factionShortcuts[player.faction] || ""),
-    ""
-  )
+  const leftFactionString = gameData.gameData.left.players
+    .reduce((acc, player) => acc + (factionShortcuts[player.faction] || ""), "")
+    .split("")
+    .sort()
+    .join("")
 
-  const factionMatrix = (() => {
-    if (gameData.gameData.left.side === "Axis") {
-      return `${leftFactionString}x${rightFactionString}`
-    } else {
-      return `${rightFactionString}x${leftFactionString}`
-    }
-  })()
+  const rightFactionString = gameData.gameData.right.players
+    .reduce((acc, player) => acc + (factionShortcuts[player.faction] || ""), "")
+    .split("")
+    .sort()
+    .join("")
 
   const matchup = matchType(
     gameData.gameData.left.players.length,
     gameData.gameData.right.players.length
   )
+
+  let factionMatrixString = ""
+
+  if (gameData.gameData.left.side === "Axis") {
+    factionMatrixString = `${leftFactionString}x${rightFactionString}`
+  } else if (gameData.gameData.left.side === "Allies") {
+    factionMatrixString = `${rightFactionString}x${leftFactionString}`
+  } else {
+    events.map_stats(matchup, gameData.gameData.map, factionMatrixString, false)
+    console.log("Mixed matchup not supported")
+    return null
+  }
+
   if (matchup === "mixed") {
     left = 0
     right = 0
   } else {
+    if (!data.mapStats.analysis[matchup][gameData.gameData.map]) {
+      console.log(`Map stats not found for map ${gameData.gameData.map}`)
+
+      events.map_stats(
+        matchup,
+        gameData.gameData.map,
+        factionMatrixString,
+        false
+      )
+
+      return null
+    }
     const wins =
       data.mapStats.analysis[matchup][gameData.gameData.map]?.factionMatrix[
-        factionMatrix
-      ].wins || 0
+        factionMatrixString
+      ]?.wins || 0
     const losses =
       data.mapStats.analysis[matchup][gameData.gameData.map]?.factionMatrix[
-        factionMatrix
-      ].losses || 0
+        factionMatrixString
+      ]?.losses || 0
 
     if (gameData.gameData.left.side === "Axis") {
       left = wins / (wins + losses)
@@ -101,6 +119,8 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
       left = losses / (wins + losses)
       right = wins / (wins + losses)
     }
+
+    events.map_stats(matchup, gameData.gameData.map, factionMatrixString, true)
   }
 
   return (
@@ -120,7 +140,7 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
               </HoverCard.Target>
               <HoverCard.Dropdown>
                 <Text>
-                  Based on team composition {factionMatrix}.
+                  Based on team composition {factionMatrixString}.
                   <br />
                   Map game analysis from patch
                   <br /> {latestPatchInfo.group} -{" "}
