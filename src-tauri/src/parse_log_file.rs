@@ -249,8 +249,8 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     let right_team = get_team_data(right);
 
     info!(
-        "Log file parsed: Found {} players",
-        left_team.players.len() + right_team.players.len()
+        "Log file parsed: Found {} players. Left team {:?}, right team {:?}.",
+        left_team.players.len() + right_team.players.len(), left_team.side, right_team.side
     );
 
     LogFileData {
@@ -310,33 +310,29 @@ fn get_ai_count(team: &TeamData) -> usize {
 }
 
 fn get_team_data(players: Vec<PlayerData>) -> TeamData {
-    let mut mixed = false;
-    let mut last = TeamSide::Mixed;
+    let mut team_side = TeamSide::Mixed;
+    let mut is_axis = false;
+    let mut is_allies = false;
+
     for player in &players {
-        // For some reason the logs now produce faction as germans instead of german
-        if  player.faction == "germans" || player.faction == "german" || player.faction == "west_german" {
-            if last == TeamSide::Allies {
-                mixed = true;
-                break;
-            }
-            last = TeamSide::Axis;
-        } else {
-            if last == TeamSide::Axis {
-                mixed = true;
-                break;
-            }
-            last = TeamSide::Allies;
+        if player.faction == "germans" || player.faction == "afrika_korps" {
+            is_axis = true;          
+        } else if player.faction == "americans" || player.faction == "british_africa" {
+            is_allies = true;         
         }
     }
-    if mixed {
-        return TeamData {
-            players,
-            side: TeamSide::Mixed,
-        };
+
+    if is_axis && is_allies {
+        team_side = TeamSide::Mixed;
+    } else if is_axis {
+        team_side = TeamSide::Axis;
+    } else if is_allies {
+        team_side = TeamSide::Allies;        
     }
+
     TeamData {
         players,
-        side: last,
+        side: team_side,
     }
 }
 

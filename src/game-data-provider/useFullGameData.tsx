@@ -55,6 +55,7 @@ export const useFullGameData = () => {
         "v" +
         side.players.length) as leaderBoardType
       const onlyRealPlayers = side.players.filter((player) => !player.ai)
+
       let responses = await Promise.all(
         onlyRealPlayers.map((player) =>
           fetch(
@@ -68,7 +69,7 @@ export const useFullGameData = () => {
           )
         )
       )
-      console.log("FETCH DATA")
+
       let mergedResponses = responses.map((response, index) => ({
         response,
         relicID: onlyRealPlayers[index].relic_id,
@@ -137,29 +138,17 @@ export const useFullGameData = () => {
       return refinedPlayerData
     }
 
-    const swapTeamsBasedOnGamePlayer = (
-      teams: [FullPlayerData[], FullPlayerData[]],
-      rawGameData: RawGameData
-    ) => {
-      if (teams[1].find((player) => player.name === rawGameData.player_name)) {
-        return [teams[1], teams[0]]
-      }
-      return [teams[0], teams[1]]
-    }
-
     const refineLogFileData = async (rawGameData: RawGameData) => {
       const playSound = await getPlaySound()
       if (playSound && rawGameData.game_state === "Loading") {
         playSoundFunc()
       }
       try {
-        const [leftRefined, rightRefined] = swapTeamsBasedOnGamePlayer(
-          await Promise.all([
-            refineSide(rawGameData.left, true, rawGameData),
-            refineSide(rawGameData.right, false, rawGameData),
-          ]),
-          rawGameData
-        )
+        const [leftRefined, rightRefined] = await Promise.all([
+          refineSide(rawGameData.left, true, rawGameData),
+          refineSide(rawGameData.right, false, rawGameData),
+        ])
+
         const newGameData: FullGameData = {
           uniqueID: generateUniqueGameKey(rawGameData),
           state: rawGameData.game_state,
