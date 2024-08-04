@@ -51,7 +51,9 @@ jobs:
 
 
             - name: "Full Bundle Tauri Release"
-              run: mv --force ./src-tauri/full-bundle-tauri.conf.json ./src-tauri/tauri.conf.json
+              run: |
+                rm ./src-tauri/tauri.conf.json
+                mv ./src-tauri/full-bundle-tauri.conf.json ./src-tauri/tauri.conf.json
 
             - name: "Build and release the app"
               uses: tauri-apps/tauri-action@v0
