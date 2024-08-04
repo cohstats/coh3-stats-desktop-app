@@ -36,9 +36,8 @@ jobs:
             - name: Yarn install FE dependencies
               run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
 
-            - name: Build it
-              run: yarn build
-            - uses: tauri-apps/tauri-action@v0
+            - name: "Build and release the app"
+              uses: tauri-apps/tauri-action@v0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
@@ -49,3 +48,21 @@ jobs:
                   releaseBody: "See the assets to download this version and install."
                   releaseDraft: true
                   prerelease: false
+
+
+            - name: "Full Bundle Tauri Release"
+              run: mv ./src-tauri/full-bundle-tauri.conf.json ./src-tauri/tauri.conf.json
+
+            - name: "Build and release the app"
+              uses: tauri-apps/tauri-action@v0
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+                TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+              with:
+                tagName: __VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+                releaseName: "__VERSION__"
+                releaseBody: "See the assets to download this version and install."
+                releaseDraft: true
+                prerelease: false
+                includeUpdaterJson: false
