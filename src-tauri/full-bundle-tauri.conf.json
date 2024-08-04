@@ -6,7 +6,7 @@
         "distDir": "../dist"
     },
     "package": {
-        "productName": "Coh3 Stats Desktop App",
+        "productName": "Coh3 Stats Desktop App - full bundle",
         "version": "../package.json"
     },
     "tauri": {
@@ -70,7 +70,7 @@
                 "digestAlgorithm": "sha256",
                 "timestampUrl": "",
                 "webviewInstallMode": {
-                  "type": "embedBootstrapper"
+                  "type": "offlineInstaller"
                 }
             }
         },
