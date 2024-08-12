@@ -781,7 +781,7 @@ dependencies = [
 
 [[package]]
 name = "coh3-stats-desktop-app"
-version = "1.5.1"
+version = "1.5.2"
 dependencies = [
  "criterion",
  "keyring",
@@ -5730,9 +5730,9 @@ checksum = "5a84c137d37ab0142f0f2ddfe332651fdbf252e7b7dbb4e67b6c1f1b2e925101"
 
 [[package]]
 name = "vault"
-version = "8.0.0"
+version = "8.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "401c25d59ac1ca36a13d384627e8e86b425524f08f69d9eace9b4aa45ddcd88a"
+checksum = "a5a50439bc89d725b8d00da69ee3cdb7a18dc7b940e5f53417e131ccce7e450b"
 dependencies = [
  "byteorder",
  "nom",

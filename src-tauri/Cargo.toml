@@ -34,7 +34,7 @@ tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", 
 tauri-plugin-window-state = "=0.1.1"
 thiserror = "=1.0.63"
 tokio = { version = "=1.37.0", features = ["time"] }
-vault = "=8.0.0"
+vault = "=8.0.1"
 window-shadows = "=0.2.2"
 # monitoring by sentry
 sentry = "=0.34.0"
