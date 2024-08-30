@@ -4,6 +4,7 @@ import config from "../config"
 
 // We are sending analytics only in prod or if it's enabled here
 const shouldSendAnalytics =
+  // process is accessible only thanks to VITE env replacement
   process.env.NODE_ENV === "development" ? config.SEND_ANALYTICS_IN_DEV : true
 
 if (shouldSendAnalytics) {
