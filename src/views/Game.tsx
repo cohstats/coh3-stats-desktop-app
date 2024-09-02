@@ -7,79 +7,102 @@ import { OnlinePlayers } from "../components/Online-players"
 import MapCard from "../components/MapCard"
 import { IconSwords } from "@tabler/icons-react"
 import SummaryCard from "../components/SummaryCard"
+import { memo } from "react"
+import { GameDataTypes } from "../game-data-provider/GameData-types"
 
+const GameContent = memo(
+  ({
+    gameData,
+    logFilePath,
+  }: {
+    gameData: GameDataTypes
+    logFilePath: string | undefined | any
+  }) => {
+    return (
+      <>
+        <>
+          <Group justify={"space-between"}>
+            <Group pt="xs" px="md" gap={"xs"}>
+              Game State{" "}
+              {gameData ? (
+                <Badge> {gameData.gameData.state} </Badge>
+              ) : (
+                <Loader type="dots" size="md" />
+              )}
+            </Group>
+            <Box pt="xs" px="md">
+              <OnlinePlayers />
+            </Box>
+          </Group>
+        </>
+        {logFilePath !== undefined ? (
+          <>
+            {gameData && gameData.gameData.map.length > 0 ? (
+              <>
+                <Grid gutter={0} p={"md"} pt={0}>
+                  <Grid.Col span="auto" pt={10}>
+                    {gameData.gameData.left.players.map((player, index) => (
+                      <PlayerCard
+                        key={player.relicID + " " + index}
+                        {...player}
+                      />
+                    ))}
+                  </Grid.Col>
+                  <Grid.Col span="content" mx={"sm"} pt={0}>
+                    <IconSwords size={55} />
+                  </Grid.Col>
+                  <Grid.Col span="auto" pt={10}>
+                    {gameData.gameData.right.players.map((player, index) => (
+                      <PlayerCard
+                        key={player.relicID + " " + index}
+                        {...player}
+                      />
+                    ))}
+                  </Grid.Col>
+                </Grid>
+                <Grid gutter={0} p={"md"} pt={0}>
+                  <Grid.Col span={6} pr={"xl"}>
+                    <MapCard gameData={gameData} />
+                  </Grid.Col>
+                  <Grid.Col span={6} pl={"xl"}>
+                    <SummaryCard gameData={gameData} />
+                  </Grid.Col>
+                </Grid>
+              </>
+            ) : (
+              <Group justify="center" mt={50}>
+                <Title>
+                  <Loader mr="md" />
+                  Waiting for a game
+                </Title>
+              </Group>
+            )}
+          </>
+        ) : (
+          <Group justify="center" mt={50}>
+            <Title>
+              <Loader mr="md" />
+              Waiting for logfile
+            </Title>
+          </Group>
+        )}
+      </>
+    )
+  },
+  (prevProps, nextProps) => {
+    // TODO: Needed because of https://github.com/cohstats/coh3-stats-desktop-app/issues/156
+    return JSON.stringify(prevProps) === JSON.stringify(nextProps)
+  }
+)
+
+// TODO: We need to fix this https://github.com/cohstats/coh3-stats-desktop-app/issues/156
 export const Game: React.FC = () => {
   const gameData = useGameData()
-  const logFilePath = useLogFilePath()
+  const [logFilePath] = useLogFilePath()
 
-  return (
-    <>
-      <>
-        <Group justify={"space-between"}>
-          <Group pt="xs" px="md" gap={"xs"}>
-            Game State{" "}
-            {gameData ? (
-              <Badge> {gameData.gameData.state} </Badge>
-            ) : (
-              <Loader type="dots" size="md" />
-            )}
-          </Group>
-          <Box pt="xs" px="md">
-            <OnlinePlayers />
-          </Box>
-        </Group>
-      </>
-      {logFilePath !== undefined ? (
-        <>
-          {gameData && gameData.gameData.map.length > 0 ? (
-            <>
-              <Grid gutter={0} p={"md"} pt={0}>
-                <Grid.Col span="auto" pt={10}>
-                  {gameData.gameData.left.players.map((player, index) => (
-                    <PlayerCard
-                      key={player.relicID + " " + index}
-                      {...player}
-                    />
-                  ))}
-                </Grid.Col>
-                <Grid.Col span="content" mx={"sm"} pt={0}>
-                  <IconSwords size={55} />
-                </Grid.Col>
-                <Grid.Col span="auto" pt={10}>
-                  {gameData.gameData.right.players.map((player, index) => (
-                    <PlayerCard
-                      key={player.relicID + " " + index}
-                      {...player}
-                    />
-                  ))}
-                </Grid.Col>
-              </Grid>
-              <Grid gutter={0} p={"md"} pt={0}>
-                <Grid.Col span={6} pr={"xl"}>
-                  <MapCard gameData={gameData} />
-                </Grid.Col>
-                <Grid.Col span={6} pl={"xl"}>
-                  <SummaryCard gameData={gameData} />
-                </Grid.Col>
-              </Grid>
-            </>
-          ) : (
-            <Group justify="center" mt={50}>
-              <Title>
-                <Loader mr="md" />
-                Waiting for a game
-              </Title>
-            </Group>
-          )}
-        </>
-      ) : (
-        <Group justify="center" mt={50}>
-          <Title>
-            <Loader mr="md" />
-            Waiting for logfile
-          </Title>
-        </Group>
-      )}
-    </>
-  )
+  // useEffect(() => {
+  //   console.log("GAME RENDER cos of game data WHY HERE???")
+  // }, [gameData])
+
+  return <GameContent gameData={gameData} logFilePath={logFilePath} />
 }

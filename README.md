@@ -1,7 +1,15 @@
 # COH3 Stats Desktop App
 
 View stats of players in the current game of Company of Heroes 3.  
-**Download from https://coh3stats.com/desktop-app**
+**Download from https://coh3stats.com/desktop-app** or from [release page](https://github.com/cohstats/coh3-stats-desktop-app/releases).
+
+#### WebView Bundle
+
+This application needs WebView2 Runtime. This is by default part of Windows 10 and 11.
+If you are missing the runtime, the installer will be automatically triggered.
+But if for any reason you don't want to install the WebView into your system, you can donwload
+the release called "fullBundle" which has all deps included.
+**Download Full Bundle from [releases](https://github.com/cohstats/coh3-stats-desktop-app/releases/tag/webview-full-bundle)**
 
 ## Setup OBS Streamer Overlay
 
@@ -16,11 +24,11 @@ View stats of players in the current game of Company of Heroes 3.
    <br/><a href="url"><img src="https://user-images.githubusercontent.com/25324640/227333417-64f4cca3-0bd0-48aa-9de7-2e72d1dfc168.png" height="400" ></a>
 6. Open the App, Go to Settings, Copy the path to localhost server http://localhost:47824
    <br/><a href="url"><img src="https://github.com/user-attachments/assets/6c683a12-3bfe-436e-aab3-2e503dab4302" height="400" ></a>
-7. In the browser properties add URL from the app 
+7. In the browser properties add URL from the app
    <br/><a href="url"><img src="https://github.com/user-attachments/assets/555acf06-d597-4e03-bc8f-3ac2b88c8236" height="400" ></a>
-8. Set the resolution to the resolution of the stream 
-    <br/><a href="url"><img src="https://github.com/user-attachments/assets/dfd7ec05-c113-4687-80cf-82768ea7fd12" height="400" ></a>
-9. Click OK and you are set! You can optionally setup a custom CSS to change the visual style / or move it. 
+8. Set the resolution to the resolution of the stream
+   <br/><a href="url"><img src="https://github.com/user-attachments/assets/dfd7ec05-c113-4687-80cf-82768ea7fd12" height="400" ></a>
+9. Click OK and you are set! You can optionally setup a custom CSS to change the visual style / or move it.
 
 ## Custom CSS for the overlay
 
@@ -176,7 +184,6 @@ Don't forget to run prettier with `yarn fix`. Should be covered by husky.
 
 - Increase the version in files:
   - `package.json`
-  - `src-tauri/tauri.conf.json`
   - `src-tauri/Cargo.toml`
 - Commit the updated version
 - Make a new tag on master

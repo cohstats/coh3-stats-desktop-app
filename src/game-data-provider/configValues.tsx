@@ -8,12 +8,15 @@ const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
     const logFileExists = (await invoke("check_path_exists", {
       path: value,
     })) as boolean
+
     if (logFileExists) {
       return value
     }
+
     const defaultLogFileExists = (await invoke("check_path_exists", {
       path: defaultValue,
     })) as boolean
+
     if (defaultLogFileExists) {
       return defaultValue
     }
