@@ -90,19 +90,13 @@ const GameContent = memo(
     )
   },
   (prevProps, nextProps) => {
-    // TODO: Needed because of https://github.com/cohstats/coh3-stats-desktop-app/issues/156
     return JSON.stringify(prevProps) === JSON.stringify(nextProps)
   }
 )
 
-// TODO: We need to fix this https://github.com/cohstats/coh3-stats-desktop-app/issues/156
 export const Game: React.FC = () => {
   const gameData = useGameData()
   const [logFilePath] = useLogFilePath()
-
-  // useEffect(() => {
-  //   console.log("GAME RENDER cos of game data WHY HERE???")
-  // }, [gameData])
 
   return <GameContent gameData={gameData} logFilePath={logFilePath} />
 }
