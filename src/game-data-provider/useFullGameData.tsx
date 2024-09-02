@@ -191,9 +191,9 @@ export const useFullGameData = () => {
     }
   }, [logFilePath, rawGameData])
 
-  const reloadLogFile = () => {
+  const reloadLogFile = useCallback(() => {
     lastGameUniqueKeyRef.current = ""
-  }
+  }, [])
 
   return {
     rawGameData,

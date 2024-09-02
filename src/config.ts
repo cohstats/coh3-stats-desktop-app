@@ -4,6 +4,7 @@ const config = {
   COH3STATS_BASE_ULR: "https://coh3stats.com",
   COH3STATS_STATS_MAPS: "https://coh3stats.com/stats/maps",
   DISCORD_JOIN_LINK: "https://discord.gg/4Bj2y84WAR",
+  SEND_ANALYTICS_IN_DEV: false,
 }
 
 export default config
