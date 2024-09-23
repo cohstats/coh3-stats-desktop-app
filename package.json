@@ -60,7 +60,7 @@
     "@wdio/local-runner": "^7",
     "@wdio/mocha-framework": "^7",
     "@wdio/spec-reporter": "^7",
-    "husky": "9.1.5",
+    "husky": "9.1.6",
     "lint-staged": "15.2.10",
     "postcss": "8.4.43",
     "postcss-preset-mantine": "1.17.0",
