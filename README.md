@@ -9,7 +9,7 @@ This application needs WebView2 Runtime. This is by default part of Windows 10 a
 If you are missing the runtime, the installer will be automatically triggered.
 But if for any reason you don't want to install the WebView into your system, you can donwload
 the release called "fullBundle" which has all deps included.
-**Download Full Bundle from [releases](https://github.com/cohstats/coh3-stats-desktop-app/releases/tag/webview-full-bundle)**
+**Download Full Bundle from [releases](https://github.com/cohstats/coh3-stats-desktop-app/releases/)**
 
 ## Setup OBS Streamer Overlay
 
