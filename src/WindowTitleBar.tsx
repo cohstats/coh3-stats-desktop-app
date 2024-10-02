@@ -5,6 +5,7 @@ import logo from "./assets/logo/32x32.png"
 import { Routes } from "./Router"
 import classes from "./WindowTitleBar.module.css"
 import React from "react"
+import { saveWindowState, StateFlags } from "tauri-plugin-window-state-api"
 
 export interface WindowTitleBarProps {
   children?: React.ReactNode
@@ -77,7 +78,10 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
               ☐
             </a>
             <a
-              onClick={() => appWindow.close()}
+              onClick={async () => {
+                await saveWindowState(StateFlags.ALL)
+                await appWindow.close()
+              }}
               className={`${classes.link} ${classes.closeButton} ${classes.windowButton}`}
             >
               X

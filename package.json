@@ -47,7 +47,8 @@
     "react-router-dom": "6.26.0",
     "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch",
     "tauri-plugin-log-api": "https://github.com/tauri-apps/tauri-plugin-log",
-    "tauri-plugin-store-api": "https://github.com/tauri-apps/tauri-plugin-store"
+    "tauri-plugin-store-api": "https://github.com/tauri-apps/tauri-plugin-store",
+    "tauri-plugin-window-state-api": "https://github.com/tauri-apps/tauri-plugin-window-state#v1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "1.6.1",
