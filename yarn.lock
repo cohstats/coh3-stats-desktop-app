@@ -4316,6 +4316,12 @@ tar-stream@^2.1.4, tar-stream@^2.2.0:
   dependencies:
     "@tauri-apps/api" "1.5.3"
 
+"tauri-plugin-window-state-api@https://github.com/tauri-apps/tauri-plugin-window-state#v1":
+  version "0.0.0"
+  resolved "https://github.com/tauri-apps/tauri-plugin-window-state#aa0b2a9cbf96f87a172e999670be79c4bb5d67dd"
+  dependencies:
+    "@tauri-apps/api" "1.6.0"
+
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
