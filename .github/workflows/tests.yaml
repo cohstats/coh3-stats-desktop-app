@@ -81,6 +81,18 @@ jobs:
       - name: Yarn install FE dependencies
         run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
 
+      - name: Cargo Check
+        run: cargo check
+        working-directory: src-tauri
+
+      - name: Cargo Fmt
+        run: cargo fmt -- --check
+        working-directory: src-tauri
+
+      - name: Cargo Clippy
+        run: cargo clippy -- -D warnings
+        working-directory: src-tauri
+
       - name: Build tauri App
         uses: tauri-apps/tauri-action@v0
         env:
@@ -89,9 +101,8 @@ jobs:
           TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
 
       - name: Run Rust tests
-        run: |
-          cd src-tauri
-          cargo test --package coh3-stats-desktop-app --lib
+        run: cargo test --package coh3-stats-desktop-app --lib
+        working-directory: src-tauri
 
       - name: Install tauri-driver
         run: |
