@@ -41,7 +41,7 @@
     "axios": "1.7.7",
     "coh-stats-components": "github:cohstats/coh-stats-components#0.0.7",
     "coh3-data-types-library": "github:cohstats/coh3-data-types-library#0.0.2",
-    "mixpanel-browser": "2.54.1",
+    "mixpanel-browser": "2.55.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.26.0",
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "1.6.1",
-    "@types/mixpanel-browser": "2.49.1",
+    "@types/mixpanel-browser": "2.50.1",
     "@types/node": "^20.14.13",
     "@types/react": "18.3.10",
     "@types/react-dom": "18.3.0",
