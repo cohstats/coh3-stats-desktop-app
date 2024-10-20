@@ -51,7 +51,7 @@
     "tauri-plugin-window-state-api": "https://github.com/tauri-apps/tauri-plugin-window-state#v1"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "1.6.1",
+    "@tauri-apps/cli": "1.6.3",
     "@types/mixpanel-browser": "2.50.1",
     "@types/node": "^20.14.13",
     "@types/react": "18.3.10",
