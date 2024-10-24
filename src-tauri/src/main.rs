@@ -89,7 +89,6 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
         let _handle = thread::spawn(|| {
             run_http_server(file_path);
         });
-
     } else {
         info!("Streamer overlay server is disabled");
     }

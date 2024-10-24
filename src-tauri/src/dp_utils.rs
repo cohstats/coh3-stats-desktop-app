@@ -1,10 +1,13 @@
 use serde::de::DeserializeOwned;
 // COH3 Desktop App Utils
-use tauri_plugin_store::{StoreCollection, with_store};
-use log::{error};
+use log::error;
 use tauri::{AppHandle, Manager, Runtime};
+use tauri_plugin_store::{with_store, StoreCollection};
 
-pub fn load_from_store<R: Runtime, T: DeserializeOwned>(handle: AppHandle<R>, key: &str) -> Option<T> {
+pub fn load_from_store<R: Runtime, T: DeserializeOwned>(
+    handle: AppHandle<R>,
+    key: &str,
+) -> Option<T> {
     let stores = handle.state::<StoreCollection<R>>();
     let path = handle
         .path_resolver()
