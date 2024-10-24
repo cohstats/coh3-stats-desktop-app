@@ -250,7 +250,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
 
     info!(
         "Log file parsed: Found {} players. Left team {:?}, right team {:?}.",
-        left_team.players.len() + right_team.players.len(), left_team.side, right_team.side
+        left_team.players.len() + right_team.players.len(),
+        left_team.side,
+        right_team.side
     );
 
     LogFileData {
@@ -316,9 +318,9 @@ fn get_team_data(players: Vec<PlayerData>) -> TeamData {
 
     for player in &players {
         if player.faction == "germans" || player.faction == "afrika_korps" {
-            is_axis = true;          
+            is_axis = true;
         } else if player.faction == "americans" || player.faction == "british_africa" {
-            is_allies = true;         
+            is_allies = true;
         }
     }
 
@@ -327,7 +329,7 @@ fn get_team_data(players: Vec<PlayerData>) -> TeamData {
     } else if is_axis {
         team_side = TeamSide::Axis;
     } else if is_allies {
-        team_side = TeamSide::Allies;        
+        team_side = TeamSide::Allies;
     }
 
     TeamData {
