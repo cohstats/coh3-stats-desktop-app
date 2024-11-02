@@ -38,7 +38,9 @@ const CalculateWinRate = (players: FullPlayerData[]) => {
 }
 
 const matchType = (leftPlayerLength: number, rightPlayerLength: number) => {
-  if (leftPlayerLength === 2 && rightPlayerLength === 2) {
+  if (leftPlayerLength === 1 && rightPlayerLength === 1) {
+    return "1v1"
+  } else if (leftPlayerLength === 2 && rightPlayerLength === 2) {
     return "2v2"
   } else if (leftPlayerLength === 3 && rightPlayerLength === 3) {
     return "3v3"
@@ -53,7 +55,7 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
   const { data, error, loading } = useContext(MapStatsContext)
 
   if (!gameData) return null
-  if (loading || error) return null
+  if (loading || error || !data) return null
   const latestPatchInfo = data.latestPatchInfo
 
   const [mapTeamWinRate, setLeftRight] = React.useState<{
@@ -127,6 +129,7 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
 
           return null
         }
+
         const wins =
           data.mapStats.analysis[matchup][gameData.gameData.map]?.factionMatrix[
             factionMatrixString

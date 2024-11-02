@@ -5,19 +5,22 @@ import {
   MapViewSettings,
 } from "../game-data-provider/GameData-types"
 import { useMapViewSettings } from "../game-data-provider/configValues"
+import { useContext } from "react"
+import { MapStatsContext } from "../map-stats-provider"
 
 interface MapCardProps {
   gameData: GameDataTypes
 }
 
 const MapCard: React.FC<MapCardProps> = ({ gameData }) => {
-  const [mapViewSettings, setMapViewSettings] = useMapViewSettings()
+  const { data } = useContext(MapStatsContext)
+  const [mapViewSettings] = useMapViewSettings()
 
   if (!gameData) return null
 
   return (
     <Paper pl={"xs"} w="auto" h="320">
-      <Title order={3}>Map - {getMapName(gameData.gameData.map)}</Title>
+      <Title order={3}>Map - {getMapName(gameData.gameData.map, data)}</Title>
       <Image
         p="xs"
         w="auto"
