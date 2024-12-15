@@ -748,7 +748,7 @@ dependencies = [
  "notify 6.1.1",
  "oauth2",
  "regex",
- "reqwest 0.12.7",
+ "reqwest 0.12.9",
  "rev_lines",
  "sentry",
  "serde",
@@ -4038,9 +4038,9 @@ dependencies = [
 
 [[package]]
 name = "reqwest"
-version = "0.12.7"
+version = "0.12.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f8f4955649ef5c38cc7f9e8aa41761d48fb9677197daea9984dc54f56aad5e63"
+checksum = "a77c62af46e79de0a562e1a9849205ffcb7fc1238876e9bd743357570e04046f"
 dependencies = [
  "base64 0.22.1",
  "bytes",
@@ -4373,7 +4373,7 @@ checksum = "5484316556650182f03b43d4c746ce0e3e48074a21e2f51244b648b6542e1066"
 dependencies = [
  "httpdate",
  "native-tls",
- "reqwest 0.12.7",
+ "reqwest 0.12.9",
  "sentry-backtrace",
  "sentry-contexts",
  "sentry-core",
