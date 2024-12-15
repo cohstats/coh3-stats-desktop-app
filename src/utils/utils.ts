@@ -1,6 +1,7 @@
 import { MapViewSettings } from "../game-data-provider/GameData-types"
-import { PlayerRanks, maps } from "./coh3-data"
+import { PlayerRanks } from "./coh3-data"
 import config from "../config"
+import { MapStatsDataType } from "./data-types"
 
 export const calculatePlayerTier = (rank: number, rating: number) => {
   if (!rank || rank <= 0) {
@@ -42,8 +43,12 @@ export const calculatePlayerTier = (rank: number, rating: number) => {
   return PlayerRanks.NO_RANK
 }
 
-export const getMapName = (map: string) => {
-  return maps[map]?.name || map
+export const getMapName = (mapCode: string, data: MapStatsDataType | null) => {
+  if (!data) {
+    return mapCode
+  }
+
+  return data.mapInfo[mapCode].name || mapCode
 }
 
 export const getMapsUrlOnCDN = (mapName: string, mapType?: MapViewSettings) => {

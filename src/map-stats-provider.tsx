@@ -1,21 +1,22 @@
 import React, { createContext, useState, useEffect } from "react"
 import { fetch } from "@tauri-apps/api/http"
 import config from "./config"
+import { MapStatsDataType } from "./utils/data-types"
 
 // Create the context with types
 const MapStatsContext = createContext<{
-  data: any
+  data: MapStatsDataType | null
   loading: boolean
   error: string | null
 }>({
-  data: {},
+  data: null,
   loading: true,
   error: null,
 })
 
 // Create the provider component
 const MapStatsProvider = ({ children }: React.PropsWithChildren) => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
