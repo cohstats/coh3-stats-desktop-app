@@ -59,16 +59,18 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
             games |{" "}
           </span>
         </Tooltip>
-        Total WR{" "}
-        <b>
-          {(
-            ((totalGames?.totalWins || 0) /
-              ((totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0))) *
-            100
-          ).toFixed(0)}
-          %
-        </b>{" "}
-        in <b>{(totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0)}</b> games
+        <span style={{ whiteSpace: "nowrap" }}>
+          Total WR{" "}
+          <b>
+            {(
+              ((totalGames?.totalWins || 0) /
+                ((totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0))) *
+              100
+            ).toFixed(0)}
+            %
+          </b>{" "}
+          in <b>{(totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0)}</b> games
+        </span>
       </Text>
     </>
   ) : (

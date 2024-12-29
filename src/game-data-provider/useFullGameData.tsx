@@ -31,7 +31,7 @@ export const useFullGameData = () => {
   const { rawGameData } = useRawGameData();
   const [logFilePath] = useLogFilePath();
   const lastGameUniqueKeyRef = useRef<string>("");
-  const lastGameStateRef = useRef<GameState>();
+  const lastGameStateRef = useRef<GameState>(null);
   const [gameData, setGameData] = useState<FullGameData>();
 
   const generateUniqueGameKey = useCallback((rawGameData: RawGameData) => {
