@@ -1,23 +1,23 @@
-import { MantineColor, Text, Tooltip } from "@mantine/core"
-import React from "react"
+import { MantineColor, Text, Tooltip } from "@mantine/core";
+import React from "react";
 
 export interface PlayerStreakProps {
-  streak: unknown
+  streak: unknown;
 }
 
 export const PlayerStreak: React.FC<PlayerStreakProps> = ({ streak }) => {
-  let content = "-"
-  let color: MantineColor | undefined
+  let content = "-";
+  let color: MantineColor | undefined;
   if (streak !== undefined && streak !== null) {
-    const streakNumber = Number(streak)
+    const streakNumber = Number(streak);
     if (!isNaN(streakNumber)) {
-      content = "" + streakNumber
+      content = "" + streakNumber;
       if (streakNumber > 0) {
-        color = "green"
-        content = "+" + streakNumber
+        color = "green";
+        content = "+" + streakNumber;
       }
       if (streakNumber < 0) {
-        color = "red"
+        color = "red";
       }
     }
   }
@@ -27,5 +27,5 @@ export const PlayerStreak: React.FC<PlayerStreakProps> = ({ streak }) => {
         <Text c={color}>{content}</Text>
       </Tooltip>
     </>
-  )
-}
+  );
+};

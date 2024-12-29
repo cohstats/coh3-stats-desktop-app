@@ -1,6 +1,6 @@
-import { notifications } from "@mantine/notifications"
-import { IconCheck } from "@tabler/icons-react"
-import React from "react"
+import { notifications } from "@mantine/notifications";
+import { IconCheck } from "@tabler/icons-react";
+import React from "react";
 
 const showNotification = ({
   title,
@@ -8,10 +8,10 @@ const showNotification = ({
   type = "success",
   autoCloseInMs = 10000,
 }: {
-  title: string
-  message: string | React.ReactNode
-  type?: "success" | "error" | "info"
-  autoCloseInMs?: number // Default is 10 seconds
+  title: string;
+  message: string | React.ReactNode;
+  type?: "success" | "error" | "info";
+  autoCloseInMs?: number; // Default is 10 seconds
 }) => {
   if (type === "success") {
     notifications.show({
@@ -21,14 +21,14 @@ const showNotification = ({
       // 10 seconds
       autoClose: autoCloseInMs,
       icon: <IconCheck />,
-    })
+    });
   } else if (type === "info") {
     notifications.show({
       title: title,
       message: message,
       color: "blue",
       autoClose: autoCloseInMs,
-    })
+    });
   } else {
     notifications.show({
       title: title,
@@ -36,8 +36,8 @@ const showNotification = ({
       color: "red",
       // 3 minutes
       autoClose: 180000,
-    })
+    });
   }
-}
+};
 
-export { showNotification }
+export { showNotification };

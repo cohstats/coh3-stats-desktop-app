@@ -1,41 +1,38 @@
-import { useCallback, useEffect, useRef, useState } from "react"
-import { RawLaddersObject } from "coh3-data-types-library"
+import { useCallback, useEffect, useRef, useState } from "react";
+import { RawLaddersObject } from "coh3-data-types-library";
 import {
   FullGameData,
   FullPlayerData,
   GameState,
   RawGameData,
   RawTeamData,
-} from "./GameData-types"
-import { useRawGameData } from "./useRawGameData"
-import { fetch } from "@tauri-apps/api/http"
+} from "./GameData-types";
+import { useRawGameData } from "./useRawGameData";
+import { fetch } from "@tauri-apps/api/http";
 import {
   BASE_RELIC_API_URL,
   leaderboardsIDAsObject,
   leaderBoardType,
   logFileRaceTypeToRaceType,
-} from "coh3-data-types-library"
-import { MantineColor } from "@mantine/core"
-import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay"
-import { useLogFilePath } from "./configValues"
-import { playSound as playSoundFunc } from "../game-found-sound/playSound"
-import { getPlaySound } from "../game-found-sound/configValues"
-import {
-  calculatePlayerPlayedFactionStats,
-  calculateTotalGamesForPlayer,
-} from "../utils/utils"
+} from "coh3-data-types-library";
+import { MantineColor } from "@mantine/core";
+import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay";
+import { useLogFilePath } from "./configValues";
+import { playSound as playSoundFunc } from "../game-found-sound/playSound";
+import { getPlaySound } from "../game-found-sound/configValues";
+import { calculatePlayerPlayedFactionStats, calculateTotalGamesForPlayer } from "../utils/utils";
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
   left: ["blue", "blue", "blue", "blue"],
   right: ["pink", "green", "red", "purple"],
-}
+};
 
 export const useFullGameData = () => {
-  const { rawGameData } = useRawGameData()
-  const [logFilePath] = useLogFilePath()
-  const lastGameUniqueKeyRef = useRef<string>("")
-  const lastGameStateRef = useRef<GameState>()
-  const [gameData, setGameData] = useState<FullGameData>()
+  const { rawGameData } = useRawGameData();
+  const [logFilePath] = useLogFilePath();
+  const lastGameUniqueKeyRef = useRef<string>("");
+  const lastGameStateRef = useRef<GameState>();
+  const [gameData, setGameData] = useState<FullGameData>();
 
   const generateUniqueGameKey = useCallback((rawGameData: RawGameData) => {
     return (
@@ -46,19 +43,13 @@ export const useFullGameData = () => {
         .concat(rawGameData.right.players)
         .map((player) => player.relic_id)
         .join()
-    )
-  }, [])
+    );
+  }, []);
 
   useEffect(() => {
-    const refineSide = async (
-      side: RawTeamData,
-      left: boolean,
-      rawGameData: RawGameData
-    ) => {
-      const gameMode = (side.players.length +
-        "v" +
-        side.players.length) as leaderBoardType
-      const onlyRealPlayers = side.players.filter((player) => !player.ai)
+    const refineSide = async (side: RawTeamData, left: boolean, rawGameData: RawGameData) => {
+      const gameMode = (side.players.length + "v" + side.players.length) as leaderBoardType;
+      const onlyRealPlayers = side.players.filter((player) => !player.ai);
 
       let responses = await Promise.all(
         onlyRealPlayers.map((player) =>
@@ -69,16 +60,16 @@ export const useFullGameData = () => {
               "]&title=coh3",
             {
               method: "GET",
-            }
-          )
-        )
-      )
+            },
+          ),
+        ),
+      );
 
       let mergedResponses = responses.map((response, index) => ({
         response,
         relicID: onlyRealPlayers[index].relic_id,
         faction: logFileRaceTypeToRaceType[onlyRealPlayers[index].faction],
-      }))
+      }));
 
       let refinedPlayerData = side.players.map(
         (player, index): FullPlayerData => ({
@@ -87,88 +78,78 @@ export const useFullGameData = () => {
           relicID: player.relic_id,
           name: player.name,
           position: player.position,
-          color: left
-            ? PLAYER_COLOR_OBJECT.left[index]
-            : PLAYER_COLOR_OBJECT.right[index],
+          color: left ? PLAYER_COLOR_OBJECT.left[index] : PLAYER_COLOR_OBJECT.right[index],
           self: player.name === rawGameData.player_name,
-        })
-      )
+        }),
+      );
 
       mergedResponses.forEach((response) => {
-        const data = response.response.data as RawLaddersObject
+        const data = response.response.data as RawLaddersObject;
         if (data.result && data.result.message === "SUCCESS") {
           const refinedPlayerIndex = refinedPlayerData.findIndex(
-            (player) => player.relicID === response.relicID
-          )
+            (player) => player.relicID === response.relicID,
+          );
           if (refinedPlayerIndex === -1) {
-            return
+            return;
           }
           const member = data.statGroups[0].members.find(
-            (member) => member.profile_id + "" === response.relicID
-          )
+            (member) => member.profile_id + "" === response.relicID,
+          );
           if (member) {
-            refinedPlayerData[refinedPlayerIndex].country = member.country
-            refinedPlayerData[refinedPlayerIndex].steamID = member.name
-              .split("/")
-              .at(-1)
-            refinedPlayerData[refinedPlayerIndex].level = member.level
-            refinedPlayerData[refinedPlayerIndex].xp = member.xp
+            refinedPlayerData[refinedPlayerIndex].country = member.country;
+            refinedPlayerData[refinedPlayerIndex].steamID = member.name.split("/").at(-1);
+            refinedPlayerData[refinedPlayerIndex].level = member.level;
+            refinedPlayerData[refinedPlayerIndex].xp = member.xp;
           }
           const leaderBoardsAsObject = data.leaderboardStats.reduce(
             (acc, leaderboard) => {
-              acc[leaderboard.leaderboard_id] = leaderboard
-              return acc
+              acc[leaderboard.leaderboard_id] = leaderboard;
+              return acc;
             },
-            {} as Record<string, RawLaddersObject["leaderboardStats"][0]>
-          )
+            {} as Record<string, RawLaddersObject["leaderboardStats"][0]>,
+          );
 
-          const leaderboardID =
-            leaderboardsIDAsObject[gameMode][response.faction]
-          const leaderboard = leaderBoardsAsObject[leaderboardID]
+          const leaderboardID = leaderboardsIDAsObject[gameMode][response.faction];
+          const leaderboard = leaderBoardsAsObject[leaderboardID];
 
           refinedPlayerData[refinedPlayerIndex].totalGames =
-            calculateTotalGamesForPlayer(leaderBoardsAsObject)
-          refinedPlayerData[refinedPlayerIndex].factionStats =
-            calculatePlayerPlayedFactionStats(
-              leaderBoardsAsObject,
-              response.faction
-            )
+            calculateTotalGamesForPlayer(leaderBoardsAsObject);
+          refinedPlayerData[refinedPlayerIndex].factionStats = calculatePlayerPlayedFactionStats(
+            leaderBoardsAsObject,
+            response.faction,
+          );
 
           if (leaderboard) {
-            refinedPlayerData[refinedPlayerIndex].disputes =
-              leaderboard.disputes
-            refinedPlayerData[refinedPlayerIndex].drops = leaderboard.drops
-            refinedPlayerData[refinedPlayerIndex].lastMatchDate =
-              leaderboard.lastmatchdate
-            refinedPlayerData[refinedPlayerIndex].losses = leaderboard.losses
-            refinedPlayerData[refinedPlayerIndex].rank = leaderboard.rank
-            refinedPlayerData[refinedPlayerIndex].rankLevel =
-              leaderboard.ranklevel
-            refinedPlayerData[refinedPlayerIndex].rankTotal =
-              leaderboard.ranktotal
-            refinedPlayerData[refinedPlayerIndex].rating = leaderboard.rating
+            refinedPlayerData[refinedPlayerIndex].disputes = leaderboard.disputes;
+            refinedPlayerData[refinedPlayerIndex].drops = leaderboard.drops;
+            refinedPlayerData[refinedPlayerIndex].lastMatchDate = leaderboard.lastmatchdate;
+            refinedPlayerData[refinedPlayerIndex].losses = leaderboard.losses;
+            refinedPlayerData[refinedPlayerIndex].rank = leaderboard.rank;
+            refinedPlayerData[refinedPlayerIndex].rankLevel = leaderboard.ranklevel;
+            refinedPlayerData[refinedPlayerIndex].rankTotal = leaderboard.ranktotal;
+            refinedPlayerData[refinedPlayerIndex].rating = leaderboard.rating;
             // refinedPlayerData[refinedPlayerIndex].regionRank =
             //   leaderboard.regionrank
             // refinedPlayerData[refinedPlayerIndex].regionRankTotal =
             //   leaderboard.regionranktotal
-            refinedPlayerData[refinedPlayerIndex].streak = leaderboard.streak
-            refinedPlayerData[refinedPlayerIndex].wins = leaderboard.wins
+            refinedPlayerData[refinedPlayerIndex].streak = leaderboard.streak;
+            refinedPlayerData[refinedPlayerIndex].wins = leaderboard.wins;
           }
         }
-      })
-      return refinedPlayerData
-    }
+      });
+      return refinedPlayerData;
+    };
 
     const refineLogFileData = async (rawGameData: RawGameData) => {
-      const playSound = await getPlaySound()
+      const playSound = await getPlaySound();
       if (playSound && rawGameData.game_state === "Loading") {
-        playSoundFunc()
+        playSoundFunc();
       }
       try {
         const [leftRefined, rightRefined] = await Promise.all([
           refineSide(rawGameData.left, true, rawGameData),
           refineSide(rawGameData.right, false, rawGameData),
-        ])
+        ]);
 
         const newGameData: FullGameData = {
           uniqueID: generateUniqueGameKey(rawGameData),
@@ -187,38 +168,38 @@ export const useFullGameData = () => {
             players: rightRefined,
           },
           language_code: rawGameData.language_code,
-        }
-        renderStreamerHTML(newGameData)
-        setGameData(newGameData)
+        };
+        renderStreamerHTML(newGameData);
+        setGameData(newGameData);
       } catch (e: any) {
-        console.error(e)
+        console.error(e);
       }
-    }
+    };
 
     // when raw data from log file changes check if its a new game with the generated unique key and refine data external api data
     if (logFilePath !== undefined && rawGameData) {
       if (lastGameUniqueKeyRef.current !== generateUniqueGameKey(rawGameData)) {
-        refineLogFileData(rawGameData)
-        lastGameUniqueKeyRef.current = generateUniqueGameKey(rawGameData)
+        refineLogFileData(rawGameData);
+        lastGameUniqueKeyRef.current = generateUniqueGameKey(rawGameData);
       } else if (lastGameStateRef.current !== rawGameData.game_state) {
         if (gameData) {
-          lastGameStateRef.current = rawGameData.game_state
-          const newGameData = gameData
-          newGameData.state = rawGameData.game_state
-          renderStreamerHTML(newGameData)
-          setGameData(newGameData)
+          lastGameStateRef.current = rawGameData.game_state;
+          const newGameData = gameData;
+          newGameData.state = rawGameData.game_state;
+          renderStreamerHTML(newGameData);
+          setGameData(newGameData);
         }
       }
     }
-  }, [logFilePath, rawGameData])
+  }, [logFilePath, rawGameData]);
 
   const reloadLogFile = useCallback(() => {
-    lastGameUniqueKeyRef.current = ""
-  }, [])
+    lastGameUniqueKeyRef.current = "";
+  }, []);
 
   return {
     rawGameData,
     gameData,
     reloadLogFile,
-  }
-}
+  };
+};

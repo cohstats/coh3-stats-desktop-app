@@ -1,16 +1,16 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { About } from "./views/About"
-import { Game } from "./views/Game"
-import { Root } from "./views/Root"
-import { Settings } from "./views/Settings"
-import { Replays } from "./views/Replays"
-import { Debug } from "./views/Debug"
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { About } from "./views/About";
+import { Game } from "./views/Game";
+import { Root } from "./views/Root";
+import { Settings } from "./views/Settings";
+import { Replays } from "./views/Replays";
+import { Debug } from "./views/Debug";
 import {
   AboutErrorBoundary,
   GameErrorBoundary,
   ReplaysErrorBoundary,
   SettingsErrorBoundary,
-} from "./components/ErrorBoundary"
+} from "./components/ErrorBoundary";
 
 export enum Routes {
   GAME = "/",
@@ -63,6 +63,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-])
+]);
 
-export const Router: React.FC = () => <RouterProvider router={router} />
+export const Router: React.FC = () => <RouterProvider router={router} />;

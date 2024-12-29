@@ -1,16 +1,16 @@
-import { Text, Tooltip } from "@mantine/core"
-import React from "react"
+import { Text, Tooltip } from "@mantine/core";
+import React from "react";
 
 export interface PlayerELOProps {
-  rating: unknown
+  rating: unknown;
 }
 
 export const PlayerELO: React.FC<PlayerELOProps> = ({ rating }) => {
-  let content = "-"
+  let content = "-";
   if (rating !== undefined && rating !== null) {
-    const ratingNumber = Number(rating)
+    const ratingNumber = Number(rating);
     if (!isNaN(ratingNumber) && ratingNumber > -1) {
-      content = "" + ratingNumber
+      content = "" + ratingNumber;
     }
   }
   return (
@@ -19,5 +19,5 @@ export const PlayerELO: React.FC<PlayerELOProps> = ({ rating }) => {
         <Text>{content}</Text>
       </Tooltip>
     </>
-  )
-}
+  );
+};

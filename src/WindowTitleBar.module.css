@@ -54,8 +54,5 @@
 }
 
 .closeButton:hover {
-  background-color: light-dark(
-    var(--mantine-color-red-7),
-    var(--mantine-color-red-8)
-  );
+  background-color: light-dark(var(--mantine-color-red-7), var(--mantine-color-red-8));
 }

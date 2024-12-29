@@ -1,5 +1,5 @@
-import { configValueFactory } from "../config-store/configValueFactory"
-import { invoke } from "@tauri-apps/api/tauri"
+import { configValueFactory } from "../config-store/configValueFactory";
+import { invoke } from "@tauri-apps/api/tauri";
 
 const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
   "logFilePath",
@@ -7,59 +7,59 @@ const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
   async (value, store, defaultValue) => {
     const logFileExists = (await invoke("check_path_exists", {
       path: value,
-    })) as boolean
+    })) as boolean;
 
     if (logFileExists) {
-      return value
+      return value;
     }
 
     const defaultLogFileExists = (await invoke("check_path_exists", {
       path: defaultValue,
-    })) as boolean
+    })) as boolean;
 
     if (defaultLogFileExists) {
-      return defaultValue
+      return defaultValue;
     }
 
-    return undefined
-  }
-)
+    return undefined;
+  },
+);
 
-const [getPlaybackPath, usePlaybackPath] = configValueFactory<
-  string | undefined
->(
+const [getPlaybackPath, usePlaybackPath] = configValueFactory<string | undefined>(
   "playbackPath",
   async () => (await invoke("default_playback_path")) as string,
   async (value, store, defaultValue) => {
     const logFileExists = (await invoke("check_path_exists", {
       path: value,
-    })) as boolean
+    })) as boolean;
     if (logFileExists) {
-      return value
+      return value;
     }
     const defaultPlaybackExists = (await invoke("check_path_exists", {
       path: defaultValue,
-    })) as boolean
+    })) as boolean;
     if (defaultPlaybackExists) {
-      return defaultValue
+      return defaultValue;
     }
 
-    return undefined
-  }
-)
+    return undefined;
+  },
+);
 
 const [getAutoSyncReplays, useAutoSyncReplays] = configValueFactory<boolean>(
   "autoSyncReplays",
-  async () => true
-)
+  async () => true,
+);
 
 const [getMapViewSettings, useMapViewSettings] = configValueFactory<string>(
   "mapViewSettings",
-  async () => "default"
-)
+  async () => "default",
+);
 
-const [getShowExtendedPlayerInfo, useShowExtendedPlayerInfo] =
-  configValueFactory<boolean>("showExtendedPlayerInfo", async () => false)
+const [getShowExtendedPlayerInfo, useShowExtendedPlayerInfo] = configValueFactory<boolean>(
+  "showExtendedPlayerInfo",
+  async () => false,
+);
 
 export {
   getPlaybackPath,
@@ -69,4 +69,4 @@ export {
   useAutoSyncReplays,
   useMapViewSettings,
   useShowExtendedPlayerInfo,
-}
+};

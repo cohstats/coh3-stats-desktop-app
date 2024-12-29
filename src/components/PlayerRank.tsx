@@ -1,16 +1,16 @@
-import { Text, Tooltip } from "@mantine/core"
-import React from "react"
+import { Text, Tooltip } from "@mantine/core";
+import React from "react";
 
 export interface PlayerRankProps {
-  rank: unknown
+  rank: unknown;
 }
 
 export const PlayerRank: React.FC<PlayerRankProps> = ({ rank }) => {
-  let content = "-"
+  let content = "-";
   if (rank !== undefined && rank !== null) {
-    const rankNumber = Number(rank)
+    const rankNumber = Number(rank);
     if (!isNaN(rankNumber) && rankNumber > -1) {
-      content = "#" + rankNumber
+      content = "#" + rankNumber;
     }
   }
   return (
@@ -19,5 +19,5 @@ export const PlayerRank: React.FC<PlayerRankProps> = ({ rank }) => {
         <Text>{content}</Text>
       </Tooltip>
     </>
-  )
-}
+  );
+};

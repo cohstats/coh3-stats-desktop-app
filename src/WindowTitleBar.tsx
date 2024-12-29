@@ -1,18 +1,18 @@
-import { Box, Group } from "@mantine/core"
-import { appWindow } from "@tauri-apps/api/window"
-import { Link, useLocation } from "react-router-dom"
-import logo from "./assets/logo/32x32.png"
-import { Routes } from "./Router"
-import classes from "./WindowTitleBar.module.css"
-import React from "react"
-import { saveWindowState, StateFlags } from "tauri-plugin-window-state-api"
+import { Box, Group } from "@mantine/core";
+import { appWindow } from "@tauri-apps/api/window";
+import { Link, useLocation } from "react-router-dom";
+import logo from "./assets/logo/32x32.png";
+import { Routes } from "./Router";
+import classes from "./WindowTitleBar.module.css";
+import React from "react";
+import { saveWindowState, StateFlags } from "tauri-plugin-window-state-api";
 
 export interface WindowTitleBarProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
-  const location = useLocation()
+  const location = useLocation();
   return (
     <div className={classes.wrapper}>
       <div className={classes.header} data-tauri-drag-region>
@@ -30,9 +30,7 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
             <Link
               to={Routes.SETTINGS}
               className={`${classes.link} ${
-                location.pathname === Routes.SETTINGS
-                  ? classes.selectedLink
-                  : ""
+                location.pathname === Routes.SETTINGS ? classes.selectedLink : ""
               }`}
             >
               Settings
@@ -79,8 +77,8 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
             </a>
             <a
               onClick={async () => {
-                await saveWindowState(StateFlags.ALL)
-                await appWindow.close()
+                await saveWindowState(StateFlags.ALL);
+                await appWindow.close();
               }}
               className={`${classes.link} ${classes.closeButton} ${classes.windowButton}`}
             >
@@ -91,5 +89,5 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
       </div>
       <Box className={classes.children}>{children}</Box>
     </div>
-  )
-}
+  );
+};

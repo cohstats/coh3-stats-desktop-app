@@ -1,18 +1,18 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import { Providers } from "./Providers"
-import { Router } from "./Router"
-import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay"
-import events from "./mixpanel/mixpanel"
-import { listen } from "@tauri-apps/api/event"
-import { info } from "tauri-plugin-log-api"
-import { UploadNotifications } from "./components/UploadNotifications"
-import * as Sentry from "@sentry/react"
-import "@mantine/core/styles.css"
-import "@mantine/notifications/styles.css"
-import { ErrorBoundary } from "./components/ErrorBoundary"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Providers } from "./Providers";
+import { Router } from "./Router";
+import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay";
+import events from "./mixpanel/mixpanel";
+import { listen } from "@tauri-apps/api/event";
+import { info } from "tauri-plugin-log-api";
+import { UploadNotifications } from "./components/UploadNotifications";
+import * as Sentry from "@sentry/react";
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
-info("Start frontend")
+info("Start frontend");
 
 Sentry.init({
   dsn: "https://88e8a309f91b8b5bb9a41dd14ff775b9@o4504995920543744.ingest.sentry.io/4506752563019776",
@@ -24,14 +24,14 @@ Sentry.init({
     // On macOS we do only development, we can ignore all development errors
     if (event.contexts?.os?.name === "macOS") {
       // Ignore the event
-      return null
+      return null;
     }
     // Otherwise, return the event as is
-    return event
+    return event;
   },
-})
+});
 
-events.init()
+events.init();
 
 // make sure an html file exists
 renderStreamerHTML({
@@ -51,12 +51,12 @@ renderStreamerHTML({
     side: "Mixed",
   },
   language_code: "",
-})
+});
 
 listen("single-instance", () => {
   //appWindow.requestUserAttention(2)
   //appWindow.setFocus()
-})
+});
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -66,5 +66,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Router />
       </Providers>
     </ErrorBoundary>
-  </React.StrictMode>
-)
+  </React.StrictMode>,
+);

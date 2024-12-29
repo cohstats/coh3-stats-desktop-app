@@ -1,45 +1,35 @@
-import { getVersion } from "@tauri-apps/api/app"
-import { appDataDir } from "@tauri-apps/api/path"
-import { open } from "@tauri-apps/api/shell"
-import { fetch } from "@tauri-apps/api/http"
-import React, { useState, useEffect } from "react"
-import {
-  Title,
-  Code,
-  Text,
-  Group,
-  Anchor,
-  Divider,
-  Button,
-  Grid,
-  Space,
-} from "@mantine/core"
-import logoBig from "../assets/logo/Square310x310Logo.png"
-import events from "../mixpanel/mixpanel"
-import config from "../config"
+import { getVersion } from "@tauri-apps/api/app";
+import { appDataDir } from "@tauri-apps/api/path";
+import { open } from "@tauri-apps/api/shell";
+import { fetch } from "@tauri-apps/api/http";
+import React, { useState, useEffect } from "react";
+import { Title, Code, Text, Group, Anchor, Divider, Button, Grid, Space } from "@mantine/core";
+import logoBig from "../assets/logo/Square310x310Logo.png";
+import events from "../mixpanel/mixpanel";
+import config from "../config";
 
 export const About: React.FC = () => {
-  const [appVersion, setAppVersion] = useState<string>()
-  const [pathToLogs, setPathToLogs] = useState<string>()
+  const [appVersion, setAppVersion] = useState<string>();
+  const [pathToLogs, setPathToLogs] = useState<string>();
 
-  const [latestVersion, setLatestVersion] = useState<string>()
+  const [latestVersion, setLatestVersion] = useState<string>();
 
   useEffect(() => {
-    ;(async () => {
-      getVersion().then((version) => setAppVersion(version))
-      events.open_about()
-      appDataDir().then((path) => setPathToLogs(path))
+    (async () => {
+      getVersion().then((version) => setAppVersion(version));
+      events.open_about();
+      appDataDir().then((path) => setPathToLogs(path));
 
       fetch("https://coh3stats.com/api/appUpdateRoute")
         .then((response) => {
           // @ts-ignore
-          setLatestVersion(response.data.version.replace("v", ""))
+          setLatestVersion(response.data.version.replace("v", ""));
         })
         .catch((error) => {
-          console.error("Error:", error)
-        })
-    })()
-  }, [])
+          console.error("Error:", error);
+        });
+    })();
+  }, []);
 
   return (
     <>
@@ -62,9 +52,8 @@ export const About: React.FC = () => {
             <>
               <Space h="xs" />
               <Text component="p" size="sm" c={"red"}>
-                The latest production version is reported as {latestVersion}. If
-                the autoupdater doesn't work pelase download the new version
-                manually{" "}
+                The latest production version is reported as {latestVersion}. If the autoupdater
+                doesn't work pelase download the new version manually{" "}
                 <Anchor
                   href="https://coh3stats.com/desktop-app"
                   target="_blank"
@@ -79,26 +68,16 @@ export const About: React.FC = () => {
           )}
           <Text component="p" size="sm">
             Visit our website{" "}
-            <Anchor onClick={() => open(config.COH3STATS_BASE_ULR)}>
-              coh3stats.com
-            </Anchor>
-            .
+            <Anchor onClick={() => open(config.COH3STATS_BASE_ULR)}>coh3stats.com</Anchor>.
           </Text>
           <Text component="p" size="sm">
             Want to help?{" "}
             <Anchor
-              onClick={() =>
-                open(
-                  "https://github.com/cohstats/coh3-stats-desktop-app/issues"
-                )
-              }
+              onClick={() => open("https://github.com/cohstats/coh3-stats-desktop-app/issues")}
             >
               Report a bug
             </Anchor>
-            ,{" "}
-            <Anchor onClick={() => open("https://coh3stats.com/about")}>
-              make a donation
-            </Anchor>{" "}
+            , <Anchor onClick={() => open("https://coh3stats.com/about")}>make a donation</Anchor>{" "}
             or{" "}
             <Anchor onClick={() => open(config.DISCORD_JOIN_LINK)}>
               join our discord and get involved!
@@ -107,20 +86,15 @@ export const About: React.FC = () => {
           <Space h={"xs"} />
           <Title order={4}>Reporting a bug</Title>
           <Text component="p" size="sm">
-            In case of issues please, please try to report them in Discord
-            sections bugs-and-questions with as much details as possible.
+            In case of issues please, please try to report them in Discord sections
+            bugs-and-questions with as much details as possible.
             <br />
             Also try to provide the warnings.log file from:
             <br />{" "}
-            <Code>
-              {" "}
-              C:\Users\Username\Documents\My Games\Company of Heroes
-              3\warnings.log
-            </Code>
+            <Code> C:\Users\Username\Documents\My Games\Company of Heroes 3\warnings.log</Code>
             <br />
             <br />
-            You can also provide the logs from the COH3 Stats Desktop app which
-            are located here:
+            You can also provide the logs from the COH3 Stats Desktop app which are located here:
             <br />
             <Code>{pathToLogs}logs</Code>
           </Text>
@@ -138,5 +112,5 @@ export const About: React.FC = () => {
         </Grid.Col>
       </Grid>
     </>
-  )
-}
+  );
+};

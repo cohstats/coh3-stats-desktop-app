@@ -1,15 +1,19 @@
-import { configValueFactory } from "../config-store/configValueFactory"
+import { configValueFactory } from "../config-store/configValueFactory";
 
 const [getShowFlagsOverlay, useShowFlagsOverlay] = configValueFactory<boolean>(
   "showFlagsOverlay",
-  async () => false
-)
+  async () => false,
+);
 
-const [getAlwaysShowOverlay, useAlwaysShowOverlay] =
-  configValueFactory<boolean>("alwaysShowOverlay", async () => false)
+const [getAlwaysShowOverlay, useAlwaysShowOverlay] = configValueFactory<boolean>(
+  "alwaysShowOverlay",
+  async () => false,
+);
 
-const [getStreamerOverlayEnabled, useStreamerOverlayEnabled] =
-  configValueFactory<boolean>("streamerOverlayEnabled", async () => false)
+const [getStreamerOverlayEnabled, useStreamerOverlayEnabled] = configValueFactory<boolean>(
+  "streamerOverlayEnabled",
+  async () => false,
+);
 
 export {
   getShowFlagsOverlay,
@@ -18,4 +22,4 @@ export {
   useAlwaysShowOverlay,
   getStreamerOverlayEnabled,
   useStreamerOverlayEnabled,
-}
+};
