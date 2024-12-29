@@ -32,9 +32,9 @@
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
-    "@mantine/core": "7.15.1",
-    "@mantine/hooks": "7.15.1",
-    "@mantine/notifications": "7.15.1",
+    "@mantine/core": "7.15.2",
+    "@mantine/hooks": "7.15.2",
+    "@mantine/notifications": "7.15.2",
     "@sentry/react": "8.45.0",
     "@tabler/icons-react": "3.26.0",
     "@tauri-apps/api": "1.6.0",
