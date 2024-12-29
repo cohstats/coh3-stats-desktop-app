@@ -1030,10 +1030,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-5.1.2.tgz#07508b45797cb81ec3f273011b054cd0755eddca"
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
-"@types/mixpanel-browser@2.50.1":
-  version "2.50.1"
-  resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.50.1.tgz#e93b8754893369bd0a9eae61ce2a45f392ca4e7f"
-  integrity sha512-Z9QnzNIZtsyhc0tvGFeaYCo2NJTGwWi8pqLMB3z/BnGUdEpr3x2qK28KKTjVH31DMbQ0IwqjNQElwJP+XpmeMQ==
+"@types/mixpanel-browser@2.50.2":
+  version "2.50.2"
+  resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.50.2.tgz#148eea1ef0970d2d915a570be674a4e48345a35d"
+  integrity sha512-Iw8cBzplUPfHoeYuasqeYwdbGTNXhN+5kFT9kU+C7zm0NtaiPpKoiuzITr2ZH9KgBsWi2MbG0FOzIg9sQepauQ==
 
 "@types/mocha@^10.0.0":
   version "10.0.6"
@@ -3183,10 +3183,10 @@ mitt@^3.0.0:
   resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.1.tgz#ea36cf0cc30403601ae074c8f77b7092cdab36d1"
   integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
 
-mixpanel-browser@2.56.0:
-  version "2.56.0"
-  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.56.0.tgz#6eba36f8cdcca7e9921a2e6951563cf23864ac44"
-  integrity sha512-GYeEz58pV2M9MZtK8vSPL4oJmCwGS08FDDRZvZwr5VJpWdT4Lgyg6zXhmNfCmSTEIw2coaarm7HZ4FL9dAVvnA==
+mixpanel-browser@2.58.0:
+  version "2.58.0"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.58.0.tgz#bf2e7575152f6e43b78194bb4a2d38558dc726c0"
+  integrity sha512-ZayNE4augjSJh5RxYKRPhFe1jzS9HZnoowvZaN4DaUeCezbLGVck46L+N9X8VLtK74UgLUYfehPgCr41rtgpRA==
   dependencies:
     rrweb "2.0.0-alpha.13"
 
