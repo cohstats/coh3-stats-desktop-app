@@ -14,6 +14,7 @@ export const UploadNotifications = () => {
             title: "Successfully uploaded latest replay to cohdb!",
             message: "Your last game has been uploaded to cohdb",
             type: "success",
+            autoCloseInMs: 20000,
           })
         }
       }

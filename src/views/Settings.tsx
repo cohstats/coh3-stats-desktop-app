@@ -15,8 +15,6 @@ import {
   Switch,
   Spoiler,
   Select,
-  Image,
-  Title,
 } from "@mantine/core"
 import { appDataDir } from "@tauri-apps/api/path"
 import { writeText } from "@tauri-apps/api/clipboard"
@@ -27,6 +25,7 @@ import { open as openLink } from "@tauri-apps/api/shell"
 import {
   useLogFilePath,
   useMapViewSettings,
+  useShowExtendedPlayerInfo,
 } from "../game-data-provider/configValues"
 import {
   usePlaySound,
@@ -52,6 +51,8 @@ export const Settings: React.FC = () => {
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay()
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay()
   const [mapViewSettings, setMapViewSettings] = useMapViewSettings()
+  const [showExtendedPlayerInfo, setShowExtendedPlayerInfo] =
+    useShowExtendedPlayerInfo()
 
   const [streamerOverlayEnabled, setStreamerOverlayEnabled] =
     useStreamerOverlayEnabled()
@@ -176,6 +177,37 @@ export const Settings: React.FC = () => {
                     <IconPlayerPlay size="1.125rem" />
                   </ActionIcon>
                 </Tooltip>
+              </Group>
+            </div>
+          </Group>
+          <Group>
+            <div>Show extended player info:</div>
+            <div>
+              <Group>
+                <Checkbox
+                  checked={
+                    showExtendedPlayerInfo === undefined
+                      ? false
+                      : showExtendedPlayerInfo
+                  }
+                  onChange={(event) => {
+                    events.settings_changed(
+                      "show_extended_player_info",
+                      `${event.currentTarget.checked}`
+                    )
+                    setShowExtendedPlayerInfo(event.currentTarget.checked)
+                  }}
+                />
+                <img
+                  src={`example-extended-player-${showExtendedPlayerInfo ? "" : "no"}info.webp`}
+                  alt="MapExample"
+                  // width={250}
+                  height={70}
+                  style={{
+                    // objectFit: "cover",
+                    borderRadius: 7,
+                  }}
+                />
               </Group>
             </div>
           </Group>

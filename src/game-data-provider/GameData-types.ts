@@ -65,11 +65,18 @@ export interface FullPlayerData {
   rankLevel?: number
   rankTotal?: number
   rating?: number
-  regionRank?: number
-  regionRankTotal?: number
+  // regionRank?: number
+  // regionRankTotal?: number
   streak?: number
   wins?: number
   color: MantineColor
+  factionStats?: {
+    bestRank: number | null
+    inMode: string | null
+    factionWins: number
+    factionLosses: number
+  }
+  totalGames?: { totalWins: number; totalLosses: number }
 }
 
 export interface FullTeamData {

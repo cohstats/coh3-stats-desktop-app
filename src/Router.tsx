@@ -5,6 +5,12 @@ import { Root } from "./views/Root"
 import { Settings } from "./views/Settings"
 import { Replays } from "./views/Replays"
 import { Debug } from "./views/Debug"
+import {
+  AboutErrorBoundary,
+  GameErrorBoundary,
+  ReplaysErrorBoundary,
+  SettingsErrorBoundary,
+} from "./components/ErrorBoundary"
 
 export enum Routes {
   GAME = "/",
@@ -21,19 +27,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: Routes.GAME,
-        element: <Game />,
+        element: (
+          <GameErrorBoundary>
+            <Game />
+          </GameErrorBoundary>
+        ),
       },
       {
         path: Routes.SETTINGS,
-        element: <Settings />,
+        element: (
+          <SettingsErrorBoundary>
+            <Settings />
+          </SettingsErrorBoundary>
+        ),
       },
       {
         path: Routes.REPLAYS,
-        element: <Replays />,
+        element: (
+          <ReplaysErrorBoundary>
+            <Replays />
+          </ReplaysErrorBoundary>
+        ),
       },
       {
         path: Routes.ABOUT,
-        element: <About />,
+        element: (
+          <AboutErrorBoundary>
+            <About />
+          </AboutErrorBoundary>
+        ),
       },
       {
         path: Routes.DEBUG,

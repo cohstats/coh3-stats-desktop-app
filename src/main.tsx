@@ -10,6 +10,7 @@ import { UploadNotifications } from "./components/UploadNotifications"
 import * as Sentry from "@sentry/react"
 import "@mantine/core/styles.css"
 import "@mantine/notifications/styles.css"
+import { ErrorBoundary } from "./components/ErrorBoundary"
 
 info("Start frontend")
 
@@ -59,9 +60,11 @@ listen("single-instance", () => {
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Providers>
-      <UploadNotifications />
-      <Router />
-    </Providers>
+    <ErrorBoundary>
+      <Providers>
+        <UploadNotifications />
+        <Router />
+      </Providers>
+    </ErrorBoundary>
   </React.StrictMode>
 )

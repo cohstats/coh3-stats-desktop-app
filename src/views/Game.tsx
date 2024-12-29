@@ -1,5 +1,5 @@
 import { useGameData } from "../game-data-provider/GameDataProvider"
-import { Title, Grid, Loader, Group, Box, Badge, Flex } from "@mantine/core"
+import { Title, Grid, Loader, Group, Box, Badge, Stack } from "@mantine/core"
 import { PlayerCard } from "../components/PlayerCard"
 import { useLogFilePath } from "../game-data-provider/configValues"
 import { OnlinePlayers } from "../components/Online-players"
@@ -7,7 +7,7 @@ import { OnlinePlayers } from "../components/Online-players"
 import MapCard from "../components/MapCard"
 import { IconSwords } from "@tabler/icons-react"
 import SummaryCard from "../components/SummaryCard"
-import { memo } from "react"
+import React, { memo } from "react"
 import { GameDataTypes } from "../game-data-provider/GameData-types"
 
 const GameContent = memo(
@@ -70,12 +70,10 @@ const GameContent = memo(
                 </Grid>
               </>
             ) : (
-              <Group justify="center" mt={50}>
-                <Title>
-                  <Loader mr="md" />
-                  Waiting for a game
-                </Title>
-              </Group>
+              <Stack mt={50} align="center" justify="center" gap={"xl"}>
+                <Title>Waiting for a game</Title>
+                <Loader mr="md" />
+              </Stack>
             )}
           </>
         ) : (
