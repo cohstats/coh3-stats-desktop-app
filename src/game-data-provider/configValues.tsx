@@ -58,6 +58,9 @@ const [getMapViewSettings, useMapViewSettings] = configValueFactory<string>(
   async () => "default"
 )
 
+const [getShowExtendedPlayerInfo, useShowExtendedPlayerInfo] =
+  configValueFactory<boolean>("showExtendedPlayerInfo", async () => false)
+
 export {
   getPlaybackPath,
   usePlaybackPath,
@@ -65,4 +68,5 @@ export {
   useLogFilePath,
   useAutoSyncReplays,
   useMapViewSettings,
+  useShowExtendedPlayerInfo,
 }

@@ -20,6 +20,10 @@ import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay"
 import { useLogFilePath } from "./configValues"
 import { playSound as playSoundFunc } from "../game-found-sound/playSound"
 import { getPlaySound } from "../game-found-sound/configValues"
+import {
+  calculatePlayerPlayedFactionStats,
+  calculateTotalGamesForPlayer,
+} from "../utils/utils"
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
   left: ["blue", "blue", "blue", "blue"],
@@ -75,6 +79,7 @@ export const useFullGameData = () => {
         relicID: onlyRealPlayers[index].relic_id,
         faction: logFileRaceTypeToRaceType[onlyRealPlayers[index].faction],
       }))
+
       let refinedPlayerData = side.players.map(
         (player, index): FullPlayerData => ({
           ai: player.ai,
@@ -88,6 +93,7 @@ export const useFullGameData = () => {
           self: player.name === rawGameData.player_name,
         })
       )
+
       mergedResponses.forEach((response) => {
         const data = response.response.data as RawLaddersObject
         if (data.result && data.result.message === "SUCCESS") {
@@ -108,11 +114,26 @@ export const useFullGameData = () => {
             refinedPlayerData[refinedPlayerIndex].level = member.level
             refinedPlayerData[refinedPlayerIndex].xp = member.xp
           }
+          const leaderBoardsAsObject = data.leaderboardStats.reduce(
+            (acc, leaderboard) => {
+              acc[leaderboard.leaderboard_id] = leaderboard
+              return acc
+            },
+            {} as Record<string, RawLaddersObject["leaderboardStats"][0]>
+          )
+
           const leaderboardID =
             leaderboardsIDAsObject[gameMode][response.faction]
-          const leaderboard = data.leaderboardStats.find(
-            (leaderboard) => leaderboard.leaderboard_id === leaderboardID
-          )
+          const leaderboard = leaderBoardsAsObject[leaderboardID]
+
+          refinedPlayerData[refinedPlayerIndex].totalGames =
+            calculateTotalGamesForPlayer(leaderBoardsAsObject)
+          refinedPlayerData[refinedPlayerIndex].factionStats =
+            calculatePlayerPlayedFactionStats(
+              leaderBoardsAsObject,
+              response.faction
+            )
+
           if (leaderboard) {
             refinedPlayerData[refinedPlayerIndex].disputes =
               leaderboard.disputes
@@ -126,10 +147,10 @@ export const useFullGameData = () => {
             refinedPlayerData[refinedPlayerIndex].rankTotal =
               leaderboard.ranktotal
             refinedPlayerData[refinedPlayerIndex].rating = leaderboard.rating
-            refinedPlayerData[refinedPlayerIndex].regionRank =
-              leaderboard.regionrank
-            refinedPlayerData[refinedPlayerIndex].regionRankTotal =
-              leaderboard.regionranktotal
+            // refinedPlayerData[refinedPlayerIndex].regionRank =
+            //   leaderboard.regionrank
+            // refinedPlayerData[refinedPlayerIndex].regionRankTotal =
+            //   leaderboard.regionranktotal
             refinedPlayerData[refinedPlayerIndex].streak = leaderboard.streak
             refinedPlayerData[refinedPlayerIndex].wins = leaderboard.wins
           }
