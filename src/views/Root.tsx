@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom"
-import { WindowTitleBar } from "../WindowTitleBar"
+import { Outlet } from "react-router-dom";
+import { WindowTitleBar } from "../WindowTitleBar";
 
 export const Root: React.FC = () => {
   return (
@@ -8,5 +8,5 @@ export const Root: React.FC = () => {
         <Outlet />
       </WindowTitleBar>
     </>
-  )
-}
+  );
+};

@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 export const SteamIcon: React.FC<{ size?: number }> = ({ size }) => {
-  size = size || 22
+  size = size || 22;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,5 +33,5 @@ export const SteamIcon: React.FC<{ size?: number }> = ({ size }) => {
         </g>
       </symbol>
     </svg>
-  )
-}
+  );
+};

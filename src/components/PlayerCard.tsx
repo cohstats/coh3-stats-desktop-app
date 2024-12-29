@@ -1,28 +1,18 @@
-import {
-  Anchor,
-  Group,
-  Paper,
-  Stack,
-  Title,
-  Image,
-  Tooltip,
-  Grid,
-  Text,
-} from "@mantine/core"
-import React from "react"
-import { FullPlayerData } from "../game-data-provider/GameData-types"
-import { PlayerELO } from "./PlayerELO"
-import { PlayerLosses } from "./PlayerLosses"
-import { PlayerRank } from "./PlayerRank"
-import { PlayerStreak } from "./PlayerStreak"
-import { PlayerWinRatio } from "./PlayerWinRatio"
-import { PlayerWins } from "./PlayerWins"
-import { open } from "@tauri-apps/api/shell"
-import { getFactionName, getCountryName } from "../utils/renameLabels"
-import RankIcon from "./other/rank-icon"
-import { coh3statsPlayerProfile } from "../utils/external-routes"
-import EllipsisText from "./other/ellipsis-text"
-import { useShowExtendedPlayerInfo } from "../game-data-provider/configValues"
+import { Anchor, Group, Paper, Stack, Title, Image, Tooltip, Grid, Text } from "@mantine/core";
+import React from "react";
+import { FullPlayerData } from "../game-data-provider/GameData-types";
+import { PlayerELO } from "./PlayerELO";
+import { PlayerLosses } from "./PlayerLosses";
+import { PlayerRank } from "./PlayerRank";
+import { PlayerStreak } from "./PlayerStreak";
+import { PlayerWinRatio } from "./PlayerWinRatio";
+import { PlayerWins } from "./PlayerWins";
+import { open } from "@tauri-apps/api/shell";
+import { getFactionName, getCountryName } from "../utils/renameLabels";
+import RankIcon from "./other/rank-icon";
+import { coh3statsPlayerProfile } from "../utils/external-routes";
+import EllipsisText from "./other/ellipsis-text";
+import { useShowExtendedPlayerInfo } from "../game-data-provider/configValues";
 
 export interface PlayerCardProps extends FullPlayerData {}
 
@@ -42,10 +32,9 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
   factionStats,
   totalGames,
 }) => {
-  const factionName = getFactionName(faction)
-  const countryName = country ? getCountryName(country) : ""
-  const [showExtendedPlayerInfo, setShowExtendedPlayerInfo] =
-    useShowExtendedPlayerInfo()
+  const factionName = getFactionName(faction);
+  const countryName = country ? getCountryName(country) : "";
+  const [showExtendedPlayerInfo, setShowExtendedPlayerInfo] = useShowExtendedPlayerInfo();
 
   const extendedInfo = showExtendedPlayerInfo ? (
     <>
@@ -61,17 +50,12 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
             <b>
               {(
                 ((factionStats?.factionWins || 0) /
-                  ((factionStats?.factionWins || 0) +
-                    (factionStats?.factionLosses || 0))) *
+                  ((factionStats?.factionWins || 0) + (factionStats?.factionLosses || 0))) *
                 100
               ).toFixed(0)}
               %
             </b>{" "}
-            in{" "}
-            <b>
-              {(factionStats?.factionWins || 0) +
-                (factionStats?.factionLosses || 0)}
-            </b>{" "}
+            in <b>{(factionStats?.factionWins || 0) + (factionStats?.factionLosses || 0)}</b>{" "}
             games |{" "}
           </span>
         </Tooltip>
@@ -84,14 +68,12 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
           ).toFixed(0)}
           %
         </b>{" "}
-        in{" "}
-        <b>{(totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0)}</b>{" "}
-        games
+        in <b>{(totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0)}</b> games
       </Text>
     </>
   ) : (
     <></>
-  )
+  );
 
   return (
     <>
@@ -99,11 +81,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
         <Grid>
           <Grid.Col span="content">
             <Tooltip label={factionName}>
-              <Image
-                src={"/factions/" + faction + ".webp"}
-                alt={faction}
-                w={62}
-              />
+              <Image src={"/factions/" + faction + ".webp"} alt={faction} w={62} />
             </Tooltip>
           </Grid.Col>
           <Grid.Col span="auto">
@@ -112,18 +90,11 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
                 <Group>
                   {!ai ? (
                     <Tooltip label={countryName}>
-                      <Image
-                        src={"/flags/4x3/" + country + ".svg"}
-                        alt={country}
-                        w={30}
-                      />
+                      <Image src={"/flags/4x3/" + country + ".svg"} alt={country} w={30} />
                     </Tooltip>
                   ) : null}
                   <Group gap={4}>
-                    <Title
-                      size="h3"
-                      onClick={() => open(coh3statsPlayerProfile(relicID))}
-                    >
+                    <Title size="h3" onClick={() => open(coh3statsPlayerProfile(relicID))}>
                       <Anchor inherit>
                         <EllipsisText text={name} maxWidth={"19ch"} />
                       </Anchor>
@@ -151,5 +122,5 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
         <div>{extendedInfo}</div>
       </Paper>
     </>
-  )
-}
+  );
+};

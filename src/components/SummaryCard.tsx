@@ -2,112 +2,92 @@ import {
   factionShortcuts,
   FullPlayerData,
   GameDataTypes,
-} from "../game-data-provider/GameData-types"
-import {
-  Anchor,
-  Divider,
-  Flex,
-  Grid,
-  HoverCard,
-  Image,
-  Paper,
-  Text,
-} from "@mantine/core"
-import { IconInfoCircle, IconSwords } from "@tabler/icons-react"
-import React, { useContext, useEffect } from "react"
-import { MapStatsContext } from "../map-stats-provider"
-import { open as openLink } from "@tauri-apps/api/shell"
-import config from "../config"
-import events from "../mixpanel/mixpanel"
+} from "../game-data-provider/GameData-types";
+import { Anchor, Divider, Flex, Grid, HoverCard, Image, Paper, Text } from "@mantine/core";
+import { IconInfoCircle, IconSwords } from "@tabler/icons-react";
+import React, { useContext, useEffect } from "react";
+import { MapStatsContext } from "../map-stats-provider";
+import { open as openLink } from "@tauri-apps/api/shell";
+import config from "../config";
+import events from "../mixpanel/mixpanel";
 
 interface MapCardProps {
-  gameData: GameDataTypes
+  gameData: GameDataTypes;
 }
 
 const TotalElo = (players: FullPlayerData[]) => {
-  return players.reduce((acc, player) => acc + (player.rating || 0), 0)
-}
+  return players.reduce((acc, player) => acc + (player.rating || 0), 0);
+};
 
 const CalculateWinRate = (players: FullPlayerData[]) => {
   const totalGames = players.reduce(
     (acc, player) => acc + (player.wins || 0) + (player.losses || 0),
-    0
-  )
-  const totalWins = players.reduce((acc, player) => acc + (player.wins || 0), 0)
-  return totalWins / totalGames
-}
+    0,
+  );
+  const totalWins = players.reduce((acc, player) => acc + (player.wins || 0), 0);
+  return totalWins / totalGames;
+};
 
 const matchType = (leftPlayerLength: number, rightPlayerLength: number) => {
   if (leftPlayerLength === 1 && rightPlayerLength === 1) {
-    return "1v1"
+    return "1v1";
   } else if (leftPlayerLength === 2 && rightPlayerLength === 2) {
-    return "2v2"
+    return "2v2";
   } else if (leftPlayerLength === 3 && rightPlayerLength === 3) {
-    return "3v3"
+    return "3v3";
   } else if (leftPlayerLength === 4 && rightPlayerLength === 4) {
-    return "4v4"
+    return "4v4";
   } else {
-    return "mixed"
+    return "mixed";
   }
-}
+};
 
 const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
-  const { data, error, loading } = useContext(MapStatsContext)
+  const { data, error, loading } = useContext(MapStatsContext);
 
-  if (!gameData) return null
-  if (loading || error || !data) return null
-  const latestPatchInfo = data.latestPatchInfo
+  if (!gameData) return null;
+  if (loading || error || !data) return null;
+  const latestPatchInfo = data.latestPatchInfo;
 
   const [mapTeamWinRate, setLeftRight] = React.useState<{
-    left: number
-    right: number
-    factionMatrixString: string
+    left: number;
+    right: number;
+    factionMatrixString: string;
   }>({
     left: 0,
     right: 0,
     factionMatrixString: "",
-  })
+  });
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       const leftFactionString = gameData.gameData.left.players
-        .reduce(
-          (acc, player) => acc + (factionShortcuts[player.faction] || ""),
-          ""
-        )
+        .reduce((acc, player) => acc + (factionShortcuts[player.faction] || ""), "")
         .split("")
         .sort()
-        .join("")
+        .join("");
 
       const rightFactionString = gameData.gameData.right.players
-        .reduce(
-          (acc, player) => acc + (factionShortcuts[player.faction] || ""),
-          ""
-        )
+        .reduce((acc, player) => acc + (factionShortcuts[player.faction] || ""), "")
         .split("")
         .sort()
-        .join("")
+        .join("");
 
       const matchup = matchType(
         gameData.gameData.left.players.length,
-        gameData.gameData.right.players.length
-      )
+        gameData.gameData.right.players.length,
+      );
 
-      let factionMatrixString = ""
+      let factionMatrixString = "";
 
       if (gameData.gameData.left.side === "Axis") {
-        factionMatrixString = `${leftFactionString}x${rightFactionString}`
+        factionMatrixString = `${leftFactionString}x${rightFactionString}`;
       } else if (gameData.gameData.left.side === "Allies") {
-        factionMatrixString = `${rightFactionString}x${leftFactionString}`
+        factionMatrixString = `${rightFactionString}x${leftFactionString}`;
       } else {
-        events.map_stats(
-          matchup,
-          gameData.gameData.map,
-          factionMatrixString,
-          false
-        )
-        console.log("Mixed matchup not supported")
-        return null
+        events.map_stats(matchup, gameData.gameData.map, factionMatrixString, false);
+        console.log("Mixed matchup not supported");
+        return null;
       }
 
       if (matchup === "mixed") {
@@ -115,53 +95,43 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
           left: 0,
           right: 0,
           factionMatrixString,
-        })
+        });
       } else {
         if (!data.mapStats.analysis[matchup][gameData.gameData.map]) {
-          console.log(`Map stats not found for map ${gameData.gameData.map}`)
+          console.log(`Map stats not found for map ${gameData.gameData.map}`);
 
-          events.map_stats(
-            matchup,
-            gameData.gameData.map,
-            factionMatrixString,
-            false
-          )
+          events.map_stats(matchup, gameData.gameData.map, factionMatrixString, false);
 
-          return null
+          return null;
         }
 
         const wins =
           data.mapStats.analysis[matchup][gameData.gameData.map]?.factionMatrix[
             factionMatrixString
-          ]?.wins || 0
+          ]?.wins || 0;
         const losses =
           data.mapStats.analysis[matchup][gameData.gameData.map]?.factionMatrix[
             factionMatrixString
-          ]?.losses || 0
+          ]?.losses || 0;
 
         if (gameData.gameData.left.side === "Axis") {
           setLeftRight({
             left: wins / (wins + losses),
             right: losses / (wins + losses),
             factionMatrixString,
-          })
+          });
         } else {
           setLeftRight({
             left: losses / (wins + losses),
             right: wins / (wins + losses),
             factionMatrixString,
-          })
+          });
         }
 
-        events.map_stats(
-          matchup,
-          gameData.gameData.map,
-          factionMatrixString,
-          true
-        )
+        events.map_stats(matchup, gameData.gameData.map, factionMatrixString, true);
       }
-    })()
-  }, [gameData, data, error, loading])
+    })();
+  }, [gameData, data, error, loading]);
 
   return (
     <>
@@ -185,14 +155,9 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
                   <br />
                   Map game analysis from patch
                   <br /> {latestPatchInfo.group} -{" "}
-                  <span style={{ whiteSpace: "nowrap" }}>
-                    v{latestPatchInfo.label}
-                  </span>
+                  <span style={{ whiteSpace: "nowrap" }}>v{latestPatchInfo.label}</span>
                   <br />
-                  <Anchor
-                    inherit
-                    onClick={() => openLink(config.COH3STATS_STATS_MAPS)}
-                  >
+                  <Anchor inherit onClick={() => openLink(config.COH3STATS_STATS_MAPS)}>
                     https://coh3stats.com/stats/maps
                   </Anchor>
                 </Text>
@@ -207,48 +172,48 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
         </Grid.Col>
       </Grid>
     </>
-  )
-}
+  );
+};
 
 class CompositionErrorBoundary extends React.Component {
   constructor(props: any) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   componentDidCatch(error: any, errorInfo: any) {
     // Log the error or send it to an error reporting service
-    console.error(error, errorInfo)
+    console.error(error, errorInfo);
     // Update state to show the fallback UI
-    this.setState({ hasError: true })
+    this.setState({ hasError: true });
   }
 
   render() {
     // @ts-ignore
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <div>Error fetching map stats. Please report on discord.</div>
+      return <div>Error fetching map stats. Please report on discord.</div>;
     }
 
     // @ts-ignore
-    return this.props.children
+    return this.props.children;
   }
 }
 
 const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
-  if (!gameData) return null
-  const localGameData = gameData.gameData
+  if (!gameData) return null;
+  const localGameData = gameData.gameData;
 
-  const totalEloLeft = TotalElo(localGameData.left.players)
-  const totalEloRight = TotalElo(localGameData.right.players)
-  const biggerTotalEloLeft = totalEloLeft > totalEloRight
+  const totalEloLeft = TotalElo(localGameData.left.players);
+  const totalEloRight = TotalElo(localGameData.right.players);
+  const biggerTotalEloLeft = totalEloLeft > totalEloRight;
 
-  const averageEloLeft = totalEloLeft / localGameData.left.players.length
-  const averageEloRight = totalEloRight / localGameData.right.players.length
-  const biggerAverageEloLeft = averageEloLeft > averageEloRight
+  const averageEloLeft = totalEloLeft / localGameData.left.players.length;
+  const averageEloRight = totalEloRight / localGameData.right.players.length;
+  const biggerAverageEloLeft = averageEloLeft > averageEloRight;
 
-  const averageWinRateLeft = CalculateWinRate(localGameData.left.players)
-  const averageWinRateRight = CalculateWinRate(localGameData.right.players)
+  const averageWinRateLeft = CalculateWinRate(localGameData.left.players);
+  const averageWinRateRight = CalculateWinRate(localGameData.right.players);
 
   return (
     <Paper p={"xs"}>
@@ -340,7 +305,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
         <MapStatsGrid gameData={gameData} />
       </CompositionErrorBoundary>
     </Paper>
-  )
-}
+  );
+};
 
-export default SummaryCard
+export default SummaryCard;

@@ -1,31 +1,29 @@
-import React, { useContext, useMemo } from "react"
-import { useLogFilePath } from "./configValues"
-import { GameDataTypes } from "./GameData-types"
-import { useFullGameData } from "./useFullGameData"
+import React, { useContext, useMemo } from "react";
+import { useLogFilePath } from "./configValues";
+import { GameDataTypes } from "./GameData-types";
+import { useFullGameData } from "./useFullGameData";
 
-const GameDataContext = React.createContext<GameDataTypes>(undefined)
-export const useGameData = () => useContext(GameDataContext)
+const GameDataContext = React.createContext<GameDataTypes>(undefined);
+export const useGameData = () => useContext(GameDataContext);
 
 export interface GameDataProviderProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
-export const GameDataProvider: React.FC<GameDataProviderProps> = ({
-  children,
-}) => {
-  const { gameData, reloadLogFile } = useFullGameData()
-  const [logFilePath] = useLogFilePath()
+export const GameDataProvider: React.FC<GameDataProviderProps> = ({ children }) => {
+  const { gameData, reloadLogFile } = useFullGameData();
+  const [logFilePath] = useLogFilePath();
 
   const contextValue = useMemo(() => {
     if (gameData) {
       return {
         gameData,
         reloadLogFile,
-      }
+      };
     } else {
-      return undefined
+      return undefined;
     }
-  }, [gameData, reloadLogFile])
+  }, [gameData, reloadLogFile]);
 
   return (
     <>
@@ -35,5 +33,5 @@ export const GameDataProvider: React.FC<GameDataProviderProps> = ({
         {children}
       </GameDataContext.Provider>
     </>
-  )
-}
+  );
+};

@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 export const COHDBIcon: React.FC<{ size?: number }> = ({ size }) => {
-  size = size || 22
+  size = size || 22;
   return (
     <>
       <svg
@@ -17,5 +17,5 @@ export const COHDBIcon: React.FC<{ size?: number }> = ({ size }) => {
         />
       </svg>
     </>
-  )
-}
+  );
+};

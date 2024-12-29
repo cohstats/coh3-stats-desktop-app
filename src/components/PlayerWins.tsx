@@ -1,18 +1,18 @@
-import { MantineColor, Text, Tooltip } from "@mantine/core"
-import React from "react"
+import { MantineColor, Text, Tooltip } from "@mantine/core";
+import React from "react";
 
 export interface PlayerWinsProps {
-  wins: unknown
+  wins: unknown;
 }
 
 export const PlayerWins: React.FC<PlayerWinsProps> = ({ wins }) => {
-  let content = "-"
-  let color: MantineColor | undefined
+  let content = "-";
+  let color: MantineColor | undefined;
   if (wins !== undefined && wins !== null) {
-    const winsNumber = Number(wins)
+    const winsNumber = Number(wins);
     if (!isNaN(winsNumber) && winsNumber >= 0) {
-      content = winsNumber + "W"
-      color = "green"
+      content = winsNumber + "W";
+      color = "green";
     }
   }
   return (
@@ -21,5 +21,5 @@ export const PlayerWins: React.FC<PlayerWinsProps> = ({ wins }) => {
         <Text c={color}>{content}</Text>
       </Tooltip>
     </>
-  )
-}
+  );
+};

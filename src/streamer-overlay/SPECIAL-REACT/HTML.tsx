@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 export interface HTMLProps {
-  html: string
+  html: string;
 }
 
 /**
@@ -21,11 +21,7 @@ export const HTML: React.FC<HTMLProps> = ({ html }) => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap"
           rel="stylesheet"
@@ -105,8 +101,8 @@ export const HTML: React.FC<HTMLProps> = ({ html }) => {
         <div id="app" dangerouslySetInnerHTML={{ __html: html }} />
       </body>
     </html>
-  )
-}
+  );
+};
 
 /*
                             background: url(https://i.ytimg.com/vi/NVqOvsHxqFc/maxresdefault.jpg) no-repeat center center fixed;

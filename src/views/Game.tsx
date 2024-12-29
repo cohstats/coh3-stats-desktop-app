@@ -1,22 +1,22 @@
-import { useGameData } from "../game-data-provider/GameDataProvider"
-import { Title, Grid, Loader, Group, Box, Badge, Stack } from "@mantine/core"
-import { PlayerCard } from "../components/PlayerCard"
-import { useLogFilePath } from "../game-data-provider/configValues"
-import { OnlinePlayers } from "../components/Online-players"
+import { useGameData } from "../game-data-provider/GameDataProvider";
+import { Title, Grid, Loader, Group, Box, Badge, Stack } from "@mantine/core";
+import { PlayerCard } from "../components/PlayerCard";
+import { useLogFilePath } from "../game-data-provider/configValues";
+import { OnlinePlayers } from "../components/Online-players";
 
-import MapCard from "../components/MapCard"
-import { IconSwords } from "@tabler/icons-react"
-import SummaryCard from "../components/SummaryCard"
-import React, { memo } from "react"
-import { GameDataTypes } from "../game-data-provider/GameData-types"
+import MapCard from "../components/MapCard";
+import { IconSwords } from "@tabler/icons-react";
+import SummaryCard from "../components/SummaryCard";
+import React, { memo } from "react";
+import { GameDataTypes } from "../game-data-provider/GameData-types";
 
 const GameContent = memo(
   ({
     gameData,
     logFilePath,
   }: {
-    gameData: GameDataTypes
-    logFilePath: string | undefined | any
+    gameData: GameDataTypes;
+    logFilePath: string | undefined | any;
   }) => {
     return (
       <>
@@ -42,10 +42,7 @@ const GameContent = memo(
                 <Grid gutter={0} p={"md"} pt={0}>
                   <Grid.Col span="auto" pt={10}>
                     {gameData.gameData.left.players.map((player, index) => (
-                      <PlayerCard
-                        key={player.relicID + " " + index}
-                        {...player}
-                      />
+                      <PlayerCard key={player.relicID + " " + index} {...player} />
                     ))}
                   </Grid.Col>
                   <Grid.Col span="content" mx={"sm"} pt={0}>
@@ -53,10 +50,7 @@ const GameContent = memo(
                   </Grid.Col>
                   <Grid.Col span="auto" pt={10}>
                     {gameData.gameData.right.players.map((player, index) => (
-                      <PlayerCard
-                        key={player.relicID + " " + index}
-                        {...player}
-                      />
+                      <PlayerCard key={player.relicID + " " + index} {...player} />
                     ))}
                   </Grid.Col>
                 </Grid>
@@ -85,16 +79,16 @@ const GameContent = memo(
           </Group>
         )}
       </>
-    )
+    );
   },
   (prevProps, nextProps) => {
-    return JSON.stringify(prevProps) === JSON.stringify(nextProps)
-  }
-)
+    return JSON.stringify(prevProps) === JSON.stringify(nextProps);
+  },
+);
 
 export const Game: React.FC = () => {
-  const gameData = useGameData()
-  const [logFilePath] = useLogFilePath()
+  const gameData = useGameData();
+  const [logFilePath] = useLogFilePath();
 
-  return <GameContent gameData={gameData} logFilePath={logFilePath} />
-}
+  return <GameContent gameData={gameData} logFilePath={logFilePath} />;
+};

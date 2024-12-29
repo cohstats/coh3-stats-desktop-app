@@ -1,40 +1,40 @@
-import React, { useEffect, useRef, useState } from "react"
-import { invoke } from "@tauri-apps/api/tauri"
-import { RawGameData } from "./GameData-types"
-import { useLogFilePath } from "./configValues"
+import React, { useEffect, useRef, useState } from "react";
+import { invoke } from "@tauri-apps/api/tauri";
+import { RawGameData } from "./GameData-types";
+import { useLogFilePath } from "./configValues";
 
 /** This hook handles the collection of raw game data from the log file */
 export const useRawGameData = () => {
-  const [logFilePath] = useLogFilePath()
-  const [rawGameData, setRawGameData] = useState<RawGameData>()
-  const intervalRef = useRef<NodeJS.Timeout | undefined>()
+  const [logFilePath] = useLogFilePath();
+  const [rawGameData, setRawGameData] = useState<RawGameData>();
+  const intervalRef = useRef<NodeJS.Timeout | undefined>();
   const getLogFileData = async (path: string) => {
     const data = (await invoke("parse_log_file_reverse", {
       path,
-    })) as RawGameData
-    setRawGameData(data)
-  }
+    })) as RawGameData;
+    setRawGameData(data);
+  };
 
   const reloadLogFile = () => {
     if (logFilePath !== undefined) {
-      getLogFileData(logFilePath)
+      getLogFileData(logFilePath);
     }
-  }
+  };
   // when log file exists start watching the log file
   useEffect(() => {
     if (logFilePath !== undefined) {
       if (intervalRef.current !== undefined) {
-        clearInterval(intervalRef.current)
+        clearInterval(intervalRef.current);
       }
       intervalRef.current = setInterval(() => {
         if (logFilePath !== undefined) {
-          getLogFileData(logFilePath)
+          getLogFileData(logFilePath);
         }
-      }, 2000)
+      }, 2000);
     }
-  }, [logFilePath])
+  }, [logFilePath]);
   return {
     rawGameData,
     reloadLogFile,
-  }
-}
+  };
+};

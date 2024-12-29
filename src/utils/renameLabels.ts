@@ -5,10 +5,10 @@ export const getFactionName = (factionCode: string): string => {
     german: "Wehrmacht",
     american: "US Forces",
     british: "British Forces",
-  }
+  };
 
-  return countryMapping[factionCode] || factionCode
-}
+  return countryMapping[factionCode] || factionCode;
+};
 
 // Helper function to get the country name from the country code
 export const getCountryName = (countryCode: string): string => {
@@ -278,7 +278,7 @@ export const getCountryName = (countryCode: string): string => {
     za: "South Africa",
     zm: "Zambia",
     zw: "Zimbabwe",
-  }
+  };
 
-  return countryMapping[countryCode] || countryCode
-}
+  return countryMapping[countryCode] || countryCode;
+};

@@ -16,64 +16,61 @@ import {
   Flex,
   Space,
   Code,
-} from "@mantine/core"
-import { useEffect, useState } from "react"
-import { IconCheck, IconCopy, IconX } from "@tabler/icons-react"
-import { open } from "@tauri-apps/api/dialog"
-import { open as openLink } from "@tauri-apps/api/shell"
-import {
-  useAutoSyncReplays,
-  usePlaybackPath,
-} from "../game-data-provider/configValues"
+} from "@mantine/core";
+import { useEffect, useState } from "react";
+import { IconCheck, IconCopy, IconX } from "@tabler/icons-react";
+import { open } from "@tauri-apps/api/dialog";
+import { open as openLink } from "@tauri-apps/api/shell";
+import { useAutoSyncReplays, usePlaybackPath } from "../game-data-provider/configValues";
 
-import events from "../mixpanel/mixpanel"
-import { invoke } from "@tauri-apps/api/tauri"
-import { emit, listen } from "@tauri-apps/api/event"
-import { COHDBIcon } from "../components/other/COHDB-icon"
-import { showNotification } from "../utils/notifications"
-import { cohdbPlayerOverView } from "../utils/external-routes"
-import HelperIcon from "../components/other/helper-icon"
-import { writeText } from "@tauri-apps/api/clipboard"
-import config from "../config"
+import events from "../mixpanel/mixpanel";
+import { invoke } from "@tauri-apps/api/tauri";
+import { emit, listen } from "@tauri-apps/api/event";
+import { COHDBIcon } from "../components/other/COHDB-icon";
+import { showNotification } from "../utils/notifications";
+import { cohdbPlayerOverView } from "../utils/external-routes";
+import HelperIcon from "../components/other/helper-icon";
+import { writeText } from "@tauri-apps/api/clipboard";
+import config from "../config";
 
 interface CohdbUser {
-  name: string
-  profile_id: number
-  steam_id: number
+  name: string;
+  profile_id: number;
+  steam_id: number;
 }
 
 export const Replays: React.FC = () => {
-  const [playbackPath, setPlaybackPath] = usePlaybackPath()
-  const [autoSyncReplays, setAutoSyncReplays] = useAutoSyncReplays()
-  const [cohdbUser, setCohdbUser] = useState<CohdbUser | null>(null)
+  const [playbackPath, setPlaybackPath] = usePlaybackPath();
+  const [autoSyncReplays, setAutoSyncReplays] = useAutoSyncReplays();
+  const [cohdbUser, setCohdbUser] = useState<CohdbUser | null>(null);
 
   useEffect(() => {
-    events.open_replays().then()
-  }, [])
+    events.open_replays().then();
+  }, []);
 
   useEffect(() => {
     const getCohdbUser = async () => {
-      const user = (await invoke("plugin:cohdb|connected")) as CohdbUser | null
-      setCohdbUser(user)
-    }
+      const user = (await invoke("plugin:cohdb|connected")) as CohdbUser | null;
+      setCohdbUser(user);
+    };
 
     const unlisten = listen<CohdbUser | null>("cohdb:connection", (event) => {
-      getCohdbUser()
+      getCohdbUser();
       if (event.payload != null) {
         showNotification({
           title: "Successfully connected to cohdb!",
           message: "You can close the browser window now",
           type: "success",
-        })
+        });
       }
-    })
+    });
 
-    getCohdbUser()
+    getCohdbUser();
 
     return () => {
-      unlisten.then((f) => f())
-    }
-  }, [])
+      unlisten.then((f) => f());
+    };
+  }, []);
 
   const openPlaybackDialog = async () => {
     const selected = await open({
@@ -81,14 +78,12 @@ export const Replays: React.FC = () => {
       multiple: false,
       directory: true,
       defaultPath: playbackPath,
-    })
+    });
     if (selected !== null) {
-      events.settings_changed("playbackPath", selected as string)
-      setPlaybackPath(selected as string).then(() =>
-        emit("playback-dir-changed", selected)
-      )
+      events.settings_changed("playbackPath", selected as string);
+      setPlaybackPath(selected as string).then(() => emit("playback-dir-changed", selected));
     }
-  }
+  };
 
   return (
     <>
@@ -113,13 +108,10 @@ export const Replays: React.FC = () => {
                   <HelperIcon
                     content={
                       <>
+                        <Text>It automatically syncs replays only when the game ends.</Text>
                         <Text>
-                          It automatically syncs replays only when the game
-                          ends.
-                        </Text>
-                        <Text>
-                          Currently you can't sync past replays. Only replays
-                          where the player played can be synced.
+                          Currently you can't sync past replays. Only replays where the player
+                          played can be synced.
                         </Text>
                       </>
                     }
@@ -128,9 +120,9 @@ export const Replays: React.FC = () => {
               </List.Item>
             </List>
             <Text fs="italic" size="sm" pt="xs">
-              It's recommended to enable autosync even when you don't want to
-              share it with anyone. If we gather enough replays, we could start
-              providing new types of statistics and analysis.
+              It's recommended to enable autosync even when you don't want to share it with
+              anyone. If we gather enough replays, we could start providing new types of
+              statistics and analysis.
             </Text>
           </Paper>
           <Group>
@@ -138,10 +130,7 @@ export const Replays: React.FC = () => {
               <Stack>
                 <Title order={4}>
                   Connected as{" "}
-                  <Anchor
-                    inherit
-                    onClick={() => openLink(cohdbPlayerOverView())}
-                  >
+                  <Anchor inherit onClick={() => openLink(cohdbPlayerOverView())}>
                     {cohdbUser.name}
                   </Anchor>{" "}
                   at <COHDBIcon size={18} />
@@ -150,8 +139,8 @@ export const Replays: React.FC = () => {
                 <Button
                   variant="default"
                   onClick={() => {
-                    invoke("plugin:cohdb|disconnect")
-                    events.disconnect_coh_db()
+                    invoke("plugin:cohdb|disconnect");
+                    events.disconnect_coh_db();
                   }}
                   size={"compact-md"}
                 >
@@ -162,21 +151,20 @@ export const Replays: React.FC = () => {
               <Button
                 variant="default"
                 onClick={async () => {
-                  const authUrl = await invoke("plugin:cohdb|authenticate")
-                  events.connect_coh_db()
+                  const authUrl = await invoke("plugin:cohdb|authenticate");
+                  events.connect_coh_db();
 
                   showNotification({
                     title: "Opening browser window",
                     message: (
                       <>
-                        If it didn't open, please copy this url into your
-                        browser:
+                        If it didn't open, please copy this url into your browser:
                         <Space h={"xs"} />
                         <Group gap={"xs"} wrap="nowrap">
                           <Tooltip label="Copy">
                             <ActionIcon
                               onClick={() => {
-                                writeText(`${authUrl}`)
+                                writeText(`${authUrl}`);
                               }}
                             >
                               <IconCopy size="22" />
@@ -188,7 +176,7 @@ export const Replays: React.FC = () => {
                     ),
                     type: "info",
                     autoCloseInMs: 20000,
-                  })
+                  });
                 }}
               >
                 <span style={{ paddingRight: 10 }}>
@@ -213,20 +201,18 @@ export const Replays: React.FC = () => {
                     content={
                       <>
                         <Text>
-                          This is the path to the folder, where your game store
-                          replays file.
+                          This is the path to the folder, where your game store replays file.
                         </Text>
                         <Text>
                           The default path is{" "}
                           <Code>
-                            C:\Users\{"<YOUR USERNAME>"}\Documents\My
-                            Games\Company of Heroes 3\playback
+                            C:\Users\{"<YOUR USERNAME>"}\Documents\My Games\Company of Heroes
+                            3\playback
                           </Code>
                         </Text>
                         <Text>
-                          However sometimes when you have (OneDrive / Dropbox)
-                          installed on your system, this path might be
-                          different.
+                          However sometimes when you have (OneDrive / Dropbox) installed on your
+                          system, this path might be different.
                         </Text>
                       </>
                     }
@@ -273,11 +259,8 @@ export const Replays: React.FC = () => {
                 size={"md"}
                 checked={autoSyncReplays === undefined ? true : autoSyncReplays}
                 onChange={(event) => {
-                  events.settings_changed(
-                    "autoSyncReplays",
-                    `${!event.currentTarget.checked}`
-                  )
-                  setAutoSyncReplays(event.currentTarget.checked)
+                  events.settings_changed("autoSyncReplays", `${!event.currentTarget.checked}`);
+                  setAutoSyncReplays(event.currentTarget.checked);
                 }}
               />
             </div>
@@ -285,5 +268,5 @@ export const Replays: React.FC = () => {
         </Stack>
       </Box>
     </>
-  )
-}
+  );
+};

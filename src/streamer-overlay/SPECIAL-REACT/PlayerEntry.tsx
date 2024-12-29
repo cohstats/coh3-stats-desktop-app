@@ -1,19 +1,16 @@
-import React from "react"
-import { FullPlayerData } from "../../game-data-provider/GameData-types"
+import React from "react";
+import { FullPlayerData } from "../../game-data-provider/GameData-types";
 
 export interface PlayerEntryProps {
-  playerData: FullPlayerData
-  flags?: boolean
+  playerData: FullPlayerData;
+  flags?: boolean;
 }
 
 /**
  * You cannot use mantine here!
  * This react component is meant for the streamerOverlay where only inline styles work!
  */
-export const PlayerEntry: React.FC<PlayerEntryProps> = ({
-  playerData,
-  flags = false,
-}) => {
+export const PlayerEntry: React.FC<PlayerEntryProps> = ({ playerData, flags = false }) => {
   return (
     <div className={"coh3stats-overlay-player"}>
       <img
@@ -35,16 +32,12 @@ export const PlayerEntry: React.FC<PlayerEntryProps> = ({
         />
       ) : null}
       <span className={"coh3stats-overlay-player-rank"}>
-        {playerData.rank === undefined || playerData.rank === -1
-          ? "-"
-          : "#" + playerData.rank}
+        {playerData.rank === undefined || playerData.rank === -1 ? "-" : "#" + playerData.rank}
       </span>{" "}
       <span className={"coh3stats-overlay-player-rating"}>
-        {playerData.rating === undefined || playerData.rating === -1
-          ? "-"
-          : playerData.rating}
+        {playerData.rating === undefined || playerData.rating === -1 ? "-" : playerData.rating}
       </span>{" "}
       <span className={"coh3stats-overlay-player-name"}>{playerData.name}</span>
     </div>
-  )
-}
+  );
+};

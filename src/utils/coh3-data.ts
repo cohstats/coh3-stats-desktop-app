@@ -1,10 +1,10 @@
 export type PlayerRank = {
-  name: string
-  url: string
-  min: number
-  max: number
-  rank: number
-}
+  name: string;
+  url: string;
+  min: number;
+  max: number;
+  rank: number;
+};
 
 export const PlayerRanks: Record<string, PlayerRank> = {
   // Requires 10 matches to get the placement rank.
@@ -158,4 +158,4 @@ export const PlayerRanks: Record<string, PlayerRank> = {
     max: 5000,
     rank: 1,
   },
-}
+};
