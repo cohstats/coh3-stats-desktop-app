@@ -47,7 +47,7 @@ export const getMapName = (mapCode: string, data: MapStatsDataType | null) => {
     return mapCode;
   }
 
-  return data.mapInfo[mapCode].name || mapCode;
+  return data.mapInfo[mapCode]?.name || mapCode;
 };
 
 export const getMapsUrlOnCDN = (mapName: string, mapType?: MapViewSettings) => {

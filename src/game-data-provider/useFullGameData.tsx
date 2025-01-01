@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { RawLaddersObject } from "coh3-data-types-library";
 import {
   FullGameData,
   FullPlayerData,
@@ -9,18 +8,15 @@ import {
 } from "./GameData-types";
 import { useRawGameData } from "./useRawGameData";
 import { fetch } from "@tauri-apps/api/http";
-import {
-  BASE_RELIC_API_URL,
-  leaderboardsIDAsObject,
-  leaderBoardType,
-  logFileRaceTypeToRaceType,
-} from "coh3-data-types-library";
+import { BASE_RELIC_API_URL } from "coh3-data-types-library";
 import { MantineColor } from "@mantine/core";
 import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay";
 import { useLogFilePath } from "./configValues";
 import { playSound as playSoundFunc } from "../game-found-sound/playSound";
 import { getPlaySound } from "../game-found-sound/configValues";
 import { calculatePlayerPlayedFactionStats, calculateTotalGamesForPlayer } from "../utils/utils";
+import { logFileRaceTypeToRaceType, leaderboardsIDAsObject } from "../coh3-data";
+import { leaderBoardType, RawLaddersObject } from "../coh3-types";
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
   left: ["blue", "blue", "blue", "blue"],
@@ -33,6 +29,8 @@ export const useFullGameData = () => {
   const lastGameUniqueKeyRef = useRef<string>("");
   const lastGameStateRef = useRef<GameState>(null);
   const [gameData, setGameData] = useState<FullGameData>();
+
+  console.log(rawGameData);
 
   const generateUniqueGameKey = useCallback((rawGameData: RawGameData) => {
     return (
@@ -74,7 +72,7 @@ export const useFullGameData = () => {
       let refinedPlayerData = side.players.map(
         (player, index): FullPlayerData => ({
           ai: player.ai,
-          faction: logFileRaceTypeToRaceType[player.faction],
+          faction: logFileRaceTypeToRaceType[player.faction] || player.faction,
           relicID: player.relic_id,
           name: player.name,
           position: player.position,

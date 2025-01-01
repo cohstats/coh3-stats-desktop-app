@@ -1,4 +1,4 @@
-import { Card, Title, Image, Paper } from "@mantine/core";
+import { Title, Image, Paper } from "@mantine/core";
 import { getMapName, getMapsUrlOnCDN } from "../utils/utils";
 import { GameDataTypes, MapViewSettings } from "../game-data-provider/GameData-types";
 import { useMapViewSettings } from "../game-data-provider/configValues";
@@ -15,6 +15,13 @@ const MapCard: React.FC<MapCardProps> = ({ gameData }) => {
 
   if (!gameData) return null;
 
+  let fallBackSrc = getMapsUrlOnCDN(gameData.gameData.map, "none");
+
+  if (getMapName(gameData.gameData.map, data) === gameData.gameData.map) {
+    // This means we don't have a name for this map, most likely we don't have custom image for it
+    fallBackSrc = "icons/placeholder.svg";
+  }
+
   return (
     <Paper pl={"xs"} w="auto" h="320">
       <Title order={3}>Map - {getMapName(gameData.gameData.map, data)}</Title>
@@ -23,7 +30,7 @@ const MapCard: React.FC<MapCardProps> = ({ gameData }) => {
         w="auto"
         h="270"
         // fit="contain"
-        fallbackSrc={getMapsUrlOnCDN(gameData.gameData.map, "none") || "icons/placeholder.svg"}
+        fallbackSrc={fallBackSrc}
         src={getMapsUrlOnCDN(gameData.gameData.map, mapViewSettings as MapViewSettings)}
         alt={gameData.gameData.map}
       />
