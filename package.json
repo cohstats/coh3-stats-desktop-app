@@ -1,7 +1,7 @@
 {
   "name": "coh3-stats-desktop-app",
   "private": true,
-  "version": "1.6.1",
+  "version": "1.6.2",
   "type": "module",
   "repository": {
     "url": "https://github.com/cohstats/coh3-stats-desktop-app"
@@ -38,7 +38,6 @@
     "@sentry/react": "8.45.0",
     "@tabler/icons-react": "3.26.0",
     "@tauri-apps/api": "1.6.0",
-    "axios": "1.7.9",
     "coh-stats-components": "github:cohstats/coh-stats-components#0.0.7",
     "coh3-data-types-library": "github:cohstats/coh3-data-types-library#0.0.2",
     "mixpanel-browser": "2.58.0",

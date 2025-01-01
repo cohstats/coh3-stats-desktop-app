@@ -27,7 +27,7 @@ pub enum TeamSide {
     Mixed,
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct PlayerData {
     pub ai: bool,
     pub faction: String,
