@@ -35,7 +35,7 @@
     "@mantine/core": "7.15.2",
     "@mantine/hooks": "7.15.2",
     "@mantine/notifications": "7.15.2",
-    "@sentry/react": "8.45.0",
+    "@sentry/react": "8.51.0",
     "@tabler/icons-react": "3.26.0",
     "@tauri-apps/api": "1.6.0",
     "coh-stats-components": "github:cohstats/coh-stats-components#0.0.7",
