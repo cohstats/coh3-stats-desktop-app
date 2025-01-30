@@ -135,7 +135,7 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
 
   return (
     <>
-      <Grid>
+      <Grid justify="center" align="center">
         <Grid.Col span={4}>
           <Text c={mapTeamWinRate.left >= 0.5 ? "green" : "red"} ta={"right"}>
             {(mapTeamWinRate.left * 100).toFixed(1)}
@@ -146,7 +146,7 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
             Map WinRate Composition
             <HoverCard width={300} shadow="md">
               <HoverCard.Target>
-                <IconInfoCircle size={20} />
+                <IconInfoCircle size={20} style={{ marginBottom: -5, marginLeft: 3 }} />
               </HoverCard.Target>
               <HoverCard.Dropdown>
                 <Text>
@@ -283,7 +283,7 @@ const SummaryCard: React.FC<MapCardProps> = ({ gameData }) => {
         </Grid.Col>
       </Grid>
       <Divider my="xs" m={"xs"} />
-      <Grid key={"win-rate-grid"}>
+      <Grid key={"win-rate-grid"} justify="center" align="center">
         <Grid.Col span={4}>
           <Text c={averageWinRateLeft >= 0.5 ? "green" : "red"} ta={"right"}>
             {(averageWinRateLeft * 100).toFixed(1)} %

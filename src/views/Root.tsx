@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import { WindowTitleBar } from "../WindowTitleBar";
 
 export const Root: React.FC = () => {

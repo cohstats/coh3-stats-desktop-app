@@ -40,38 +40,44 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
     showExtendedPlayerInfo && !ai ? (
       <>
         <Text size="sm" c={"dimmed"} style={{ textAlign: "center" }}>
-          <Tooltip label={factionName}>
-            <span>
-              {factionStats?.bestRank && (
-                <>
-                  Rank <b>{factionStats?.bestRank}</b> in {factionStats?.inMode} |{" "}
-                </>
-              )}
-              WR{" "}
+          <Group gap={3} justify="center">
+            <Tooltip label={factionName}>
+              <Group gap={3}>
+                <Image src={"/factions/" + faction + ".webp"} alt={faction} w={15} mb={-1} />
+                <span>
+                  {factionStats?.bestRank && (
+                    <>
+                      R #<b>{factionStats?.bestRank}</b> in {factionStats?.inMode} -{" "}
+                    </>
+                  )}
+                  WR{" "}
+                  <b>
+                    {(
+                      ((factionStats?.factionWins || 0) /
+                        ((factionStats?.factionWins || 0) + (factionStats?.factionLosses || 0))) *
+                      100
+                    ).toFixed(0)}
+                    %
+                  </b>{" "}
+                  in{" "}
+                  <b>{(factionStats?.factionWins || 0) + (factionStats?.factionLosses || 0)}</b>{" "}
+                  games |{" "}
+                </span>
+              </Group>
+            </Tooltip>
+            <span style={{ whiteSpace: "nowrap" }}>
+              Total WR{" "}
               <b>
                 {(
-                  ((factionStats?.factionWins || 0) /
-                    ((factionStats?.factionWins || 0) + (factionStats?.factionLosses || 0))) *
+                  ((totalGames?.totalWins || 0) /
+                    ((totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0))) *
                   100
                 ).toFixed(0)}
                 %
               </b>{" "}
-              in <b>{(factionStats?.factionWins || 0) + (factionStats?.factionLosses || 0)}</b>{" "}
-              games |{" "}
+              in <b>{(totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0)}</b> games
             </span>
-          </Tooltip>
-          <span style={{ whiteSpace: "nowrap" }}>
-            Total WR{" "}
-            <b>
-              {(
-                ((totalGames?.totalWins || 0) /
-                  ((totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0))) *
-                100
-              ).toFixed(0)}
-              %
-            </b>{" "}
-            in <b>{(totalGames?.totalWins || 0) + (totalGames?.totalLosses || 0)}</b> games
-          </span>
+          </Group>
         </Text>
       </>
     ) : (
