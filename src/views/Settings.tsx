@@ -1,4 +1,3 @@
-import { ColorSchemeToggle } from "coh-stats-components";
 import {
   Box,
   Group,
@@ -18,8 +17,8 @@ import {
 } from "@mantine/core";
 import { appDataDir } from "@tauri-apps/api/path";
 import { writeText } from "@tauri-apps/api/clipboard";
-import { useEffect, useState } from "react";
-import { IconCheck, IconCopy, IconPlayerPlay, IconX } from "@tabler/icons-react";
+import React, { useEffect, useState } from "react";
+import { IconCheck, IconCopy, IconInfoCircle, IconPlayerPlay, IconX } from "@tabler/icons-react";
 import { open } from "@tauri-apps/api/dialog";
 import { open as openLink } from "@tauri-apps/api/shell";
 import {
@@ -39,6 +38,7 @@ import { useGameData } from "../game-data-provider/GameDataProvider";
 import { relaunch } from "@tauri-apps/api/process";
 import { getMapsUrlOnCDN } from "../utils/utils";
 import { MapViewSettings } from "../game-data-provider/GameData-types";
+import { ColorSchemeToggle } from "../components/ToggleCollorShemeButton";
 
 export const Settings: React.FC = () => {
   const gameData = useGameData();
@@ -91,12 +91,18 @@ export const Settings: React.FC = () => {
     <>
       <Box p="xl">
         <Stack>
-          <Group>
-            <div>Color Theme:</div>
-            <div data-testid="color-scheme-toggle">
-              <ColorSchemeToggle />
+          <Tooltip
+            multiline
+            w={600}
+            label={
+              "If the app is stuck loading. You most likely have wrong path. This often happens when you have OneDrive, Dropbox or similar installed. Try finding the correct warnings.log file. The default path is C:\\Users\\Username\\Documents\\My Games\\Company of Heroes 3\\warnings.log\n"
+            }
+          >
+            <div>
+              Correct path to warnings.log file from CoH3 is required for the app to work.{" "}
+              <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
             </div>
-          </Group>
+          </Tooltip>
           <Group>
             <div>Path to warnings.log:</div>
             <div>
@@ -125,6 +131,14 @@ export const Settings: React.FC = () => {
               </Group>
             </div>
           </Group>
+          <Divider />
+          <Group>
+            <div>Color Theme:</div>
+            <div data-testid="color-scheme-toggle">
+              <ColorSchemeToggle />
+            </div>
+          </Group>
+
           <Group>
             <div>Play sound on match found:</div>
             <div>
@@ -158,7 +172,13 @@ export const Settings: React.FC = () => {
             </div>
           </Group>
           <Group>
-            <div>Show extended player info:</div>
+            <Tooltip label="Shows best rank and mode for a given faction. Total WinRate for the given faction across all modes. And overall winrate in all games.">
+              <div>
+                Show extended player info:{" "}
+                <IconInfoCircle size={20} style={{ marginBottom: -4 }} />{" "}
+              </div>
+            </Tooltip>
+
             <div>
               <Group>
                 <Checkbox
@@ -236,7 +256,7 @@ export const Settings: React.FC = () => {
             <div>
               {restartRequired ? (
                 <Group>
-                  <Text color="red">Restart required to enable / disable streamer overlay</Text>
+                  <Text c="red">Restart required to enable / disable streamer overlay</Text>
                   <Button
                     variant="outline"
                     color="red"

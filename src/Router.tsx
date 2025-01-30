@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router";
 import { About } from "./views/About";
 import { Game } from "./views/Game";
 import { Root } from "./views/Root";

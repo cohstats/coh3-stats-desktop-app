@@ -7,6 +7,7 @@ import { Title, Code, Text, Group, Anchor, Divider, Button, Grid, Space } from "
 import logoBig from "../assets/logo/Square310x310Logo.png";
 import events from "../mixpanel/mixpanel";
 import config from "../config";
+import { DiscordIcon } from "../components/other/Discord-icon";
 
 export const About: React.FC = () => {
   const [appVersion, setAppVersion] = useState<string>();
@@ -98,17 +99,20 @@ export const About: React.FC = () => {
             <br />
             <Code>{pathToLogs}logs</Code>
           </Text>
-          <Space h={"xs"} />
-          <Button onClick={() => open("https://ko-fi.com/cohstats")}>
-            <Group gap="xs">
-              <img
-                src="https://storage.ko-fi.com/cdn/cup-border.png"
-                alt="Ko-fi donations"
-                width={18}
-              />
-              Donate
-            </Group>
-          </Button>
+          <Space h={"lg"} />
+          <Group>
+            <Button onClick={() => open("https://ko-fi.com/cohstats")}>
+              <Group gap="xs">
+                <img
+                  src="https://storage.ko-fi.com/cdn/cup-border.png"
+                  alt="Ko-fi donations"
+                  width={18}
+                />
+                Donate
+              </Group>
+            </Button>
+            <DiscordIcon />
+          </Group>
         </Grid.Col>
       </Grid>
     </>
