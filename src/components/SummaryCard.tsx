@@ -138,7 +138,7 @@ const MapStatsGrid: React.FC<MapCardProps> = ({ gameData }) => {
       <Grid justify="center" align="center">
         <Grid.Col span={4}>
           <Text c={mapTeamWinRate.left >= 0.5 ? "green" : "red"} ta={"right"}>
-            {(mapTeamWinRate.left * 100).toFixed(1)}
+            {(mapTeamWinRate.left * 100).toFixed(1)} %
           </Text>
         </Grid.Col>
         <Grid.Col span={4}>
