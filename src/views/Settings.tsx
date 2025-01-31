@@ -172,7 +172,11 @@ export const Settings: React.FC = () => {
             </div>
           </Group>
           <Group>
-            <Tooltip label="Shows best rank and mode for a given faction. Total WinRate for the given faction across all modes. And overall winrate in all games.">
+            <Tooltip
+              multiline
+              w={600}
+              label="Shows best rank and mode for a given faction. Total WinRate for the given faction across all modes. And overall winrate in all games."
+            >
               <div>
                 Show extended player info:{" "}
                 <IconInfoCircle size={20} style={{ marginBottom: -4 }} />{" "}
@@ -310,6 +314,7 @@ export const Settings: React.FC = () => {
             <Text fw={700}>
               Follow the{" "}
               <Anchor
+                inherit
                 onClick={() =>
                   openLink(
                     "https://github.com/cohstats/coh3-stats-desktop-app#setup-obs-streamer-overlay",
