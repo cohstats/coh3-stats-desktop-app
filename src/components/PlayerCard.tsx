@@ -88,31 +88,39 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
     <>
       <Paper shadow="xs" withBorder p="xs" mb={"xs"}>
         <Grid>
-          <Grid.Col span="content">
+          <Grid.Col span="content" style={{ flexShrink: 0 }}>
             <Tooltip label={factionName}>
               <Image src={"/factions/" + faction + ".webp"} alt={faction} w={62} />
             </Tooltip>
           </Grid.Col>
-          <Grid.Col span="auto">
+          <Grid.Col span="auto" style={{ minWidth: 0 }}>
             <Stack align="stretch" gap={4}>
-              <Group justify={"space-between"}>
-                <Group>
+              <Group justify={"space-between"} wrap={"nowrap"} style={{ width: "100%" }}>
+                <Group wrap={"nowrap"} style={{ minWidth: 0, flex: 1 }}>
                   {!ai ? (
                     <Tooltip label={countryName}>
-                      <Image src={"/flags/4x3/" + country + ".svg"} alt={country} w={30} />
+                      <Image
+                        src={"/flags/4x3/" + country + ".svg"}
+                        alt={country}
+                        w={30}
+                        style={{ flexShrink: 0 }}
+                      />
                     </Tooltip>
                   ) : null}
-                  <Group gap={4}>
-                    <Title size="h3" onClick={() => open(coh3statsPlayerProfile(relicID))}>
-                      <Anchor inherit>
-                        <EllipsisText text={name} maxWidth={"19ch"} />
+                  <Group gap={4} style={{ minWidth: 0, flex: 1 }}>
+                    <Title
+                      size="h3"
+                      onClick={() => open(coh3statsPlayerProfile(relicID))}
+                      style={{ minWidth: 0, flex: 1 }}
+                    >
+                      <Anchor inherit style={{ display: "block", minWidth: 0 }}>
+                        <EllipsisText text={name} maxWidth="100%" />
                       </Anchor>
                     </Title>
-                    <Text size="xl" c="dimmed">
+                    <Text size="xl" c="dimmed" style={{ flexShrink: 0 }}>
                       {self ? <> ( You )</> : null}
                     </Text>
                   </Group>
-                  {/*<Grid.ColorSwatch color={color} />*/}
                 </Group>
                 <RankIcon size={35} rank={rank || 0} rating={rating || 0} />
               </Group>
