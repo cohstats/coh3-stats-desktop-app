@@ -89,13 +89,13 @@ export const Settings: React.FC = () => {
 
   return (
     <>
-      <Box p="xl">
+      <Box p="xl" pt={"md"}>
         <Stack>
           <Tooltip
             multiline
             w={600}
             label={
-              "If the app is stuck loading. You most likely have wrong path. This often happens when you have OneDrive, Dropbox or similar installed. Try finding the correct warnings.log file. The default path is C:\\Users\\Username\\Documents\\My Games\\Company of Heroes 3\\warnings.log\n"
+              "If the app is stuck loading, you most likely have the wrong path. This often happens when you have OneDrive, Dropbox, or similar services installed. Please locate the correct warnings.log file. The default path is: C:\\Users\\Username\\Documents\\My Games\\Company of Heroes 3\\warnings.log"
             }
           >
             <div>

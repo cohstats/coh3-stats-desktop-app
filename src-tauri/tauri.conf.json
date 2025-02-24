@@ -6,7 +6,7 @@
         "distDir": "../dist"
     },
     "package": {
-        "productName": "Coh3 Stats Desktop App",
+        "productName": "COH3 Stats Desktop App",
         "version": "../package.json"
     },
     "tauri": {

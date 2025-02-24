@@ -1,9 +1,20 @@
-import { getVersion } from "@tauri-apps/api/app";
+import { getVersion, getName } from "@tauri-apps/api/app";
 import { appDataDir } from "@tauri-apps/api/path";
 import { open } from "@tauri-apps/api/shell";
 import { fetch } from "@tauri-apps/api/http";
 import React, { useState, useEffect } from "react";
-import { Title, Code, Text, Group, Anchor, Divider, Button, Grid, Space } from "@mantine/core";
+import {
+  Title,
+  Code,
+  Text,
+  Group,
+  Anchor,
+  Divider,
+  Button,
+  Grid,
+  Space,
+  Box,
+} from "@mantine/core";
 import logoBig from "../assets/logo/Square310x310Logo.png";
 import events from "../mixpanel/mixpanel";
 import config from "../config";
@@ -12,6 +23,7 @@ import { DiscordIcon } from "../components/other/Discord-icon";
 export const About: React.FC = () => {
   const [appVersion, setAppVersion] = useState<string>();
   const [pathToLogs, setPathToLogs] = useState<string>();
+  const [appName, setAppName] = useState<string>();
 
   const [latestVersion, setLatestVersion] = useState<string>();
 
@@ -20,6 +32,7 @@ export const About: React.FC = () => {
       getVersion().then((version) => setAppVersion(version));
       events.open_about();
       appDataDir().then((path) => setPathToLogs(path));
+      getName().then((name) => setAppName(name));
 
       fetch("https://coh3stats.com/api/appUpdateRoute")
         .then((response) => {
@@ -33,16 +46,11 @@ export const About: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <Title size="h3" p="md">
-        About the App
-      </Title>
-      <Divider p="xs" />
-      <Grid style={{ margin: 0 }} p={"xs"}>
-        <Grid.Col span="content">
-          <img src={logoBig} alt="Coh3Stats Logo" width={200} />
-        </Grid.Col>
-        <Grid.Col span="auto" pt="md">
+    <Box p="xl" pt={"md"}>
+      <Grid style={{ margin: 0 }}>
+        <Grid.Col span="auto">
+          <Title size="h3">About - {appName}</Title>
+          <Divider p="xs" mt={"xs"} />
           <Group gap="xs">
             <Title order={4}>Version </Title>
             <Code color="green" data-testid="app-version">
@@ -113,8 +121,15 @@ export const About: React.FC = () => {
             </Button>
             <DiscordIcon />
           </Group>
+          <Space h={"lg"} />
+          <Text component="p" size="sm">
+            © 2023 - 2025 COH Stats
+          </Text>
+        </Grid.Col>
+        <Grid.Col span="content">
+          <img src={logoBig} alt="Coh3Stats Logo" width={150} />
         </Grid.Col>
       </Grid>
-    </>
+    </Box>
   );
 };

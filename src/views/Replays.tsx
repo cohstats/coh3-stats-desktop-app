@@ -87,9 +87,9 @@ export const Replays: React.FC = () => {
 
   return (
     <>
-      <Box p="xl">
+      <Box p="xl" pt={"md"}>
         <Flex justify="space-between" align="flex-start">
-          <Paper p="xs" pt={0} w={570}>
+          <Paper p="xs" pt={0} pl={0} w={570}>
             <Title order={3}>
               Replay integration with{" "}
               <Anchor inherit onClick={() => openLink(config.COHDB_BASE_URL)}>
