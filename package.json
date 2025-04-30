@@ -42,7 +42,7 @@
     "mixpanel-browser": "2.59.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router": "7.1.4",
+    "react-router": "7.5.2",
     "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch",
     "tauri-plugin-log-api": "https://github.com/tauri-apps/tauri-plugin-log",
     "tauri-plugin-store-api": "https://github.com/tauri-apps/tauri-plugin-store",
