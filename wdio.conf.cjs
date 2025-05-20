@@ -12,7 +12,7 @@ exports.config = {
     {
       maxInstances: 1,
       'tauri:options': {
-        application: './src-tauri/target/release/Coh3 Stats Desktop App.exe',        
+        application: './src-tauri/target/release/Coh3 Stats Desktop App.exe',
         webviewOptions: {},
       },
     },
@@ -23,7 +23,7 @@ exports.config = {
     ui: 'bdd',
     timeout: 60000,
   },
-  
+
   // ensure the rust project is built since we expect this binary to exist for the webdriver sessions
   onPrepare: () => spawnSync('cargo', ['build', '--release']),
 
@@ -31,8 +31,8 @@ exports.config = {
   beforeSession: () =>
     (tauriDriver = spawn(
       path.resolve(os.homedir(), '.cargo', 'bin', 'tauri-driver'),
-      // We will most likely need to change this once it changes in our runner in GitHub Actions       
-      ['--native-driver', path.resolve(__dirname, 'test' , process.env.GITHUB_ACTIONS ? 'msedgedriver119.exe' : 'msedgedriver122.exe')],
+      // We will most likely need to change this once it changes in our runner in GitHub Actions
+      ['--native-driver', path.resolve(__dirname, 'test' , process.env.GITHUB_ACTIONS ? 'msedgedriver131.exe' : 'msedgedriver122.exe')],
       { stdio: [null, process.stdout, process.stderr] }
     )),
 
