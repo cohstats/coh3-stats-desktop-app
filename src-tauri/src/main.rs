@@ -14,6 +14,7 @@ use std::thread;
 use tauri::Manager;
 use tauri_plugin_log::LogTarget;
 use window_shadows::set_shadow;
+use std::process;
 
 #[derive(Clone, serde::Serialize)]
 struct Payload {
@@ -25,9 +26,6 @@ fn main() {
     tauri_plugin_deep_link::prepare("com.coh3stats.desktop");
 
     // Add monitoring using sentry
-    // Monitoring is disabled on MacOS because we do only development on MacOS
-    // if you want to recieve sentry events on MacOS, remove the cfg attribute
-    #[cfg(not(target_os = "macos"))]
     let _guard = sentry::init(("https://5a9a5418c06b995fe1c6221c83451612@o4504995920543744.ingest.sentry.io/4506676182646784", sentry::ClientOptions {
       release: sentry::release_name!(),
       ..Default::default()
@@ -47,16 +45,28 @@ fn main() {
                 .build(),
         )
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
-            let window = app.get_window("main").unwrap();
-            window.set_focus().ok();
-            window
-                .request_user_attention(Some(tauri::UserAttentionType::Informational))
-                .ok();
+            let window = match app.get_window("main") {
+                Some(w) => w,
+                None => {
+                    error!("Failed to get main window: Window not found");
+                    process::exit(1);
+                }
+            };
 
-            //println!("{}, {argv:?}, {cwd}", app.package_info().name);
+            if let Err(e) = window.set_focus() {
+                error!("Failed to set window focus: {}", e);
+                sentry::capture_message(&format!("Window focus error: {}", e), sentry::Level::Error);
+            }
 
-            app.emit_all("single-instance", Payload { args: argv, cwd })
-                .unwrap();
+            if let Err(e) = window.request_user_attention(Some(tauri::UserAttentionType::Informational)) {
+                error!("Failed to request user attention: {}", e);
+                sentry::capture_message(&format!("User attention error: {}", e), sentry::Level::Error);
+            }
+
+            if let Err(e) = app.emit_all("single-instance", Payload { args: argv, cwd }) {
+                error!("Failed to emit single-instance event: {}", e);
+                sentry::capture_message(&format!("Single instance event error: {}", e), sentry::Level::Error);
+            }
         }))
         .plugin(tauri_plugin_fs_watch::init())
         // You need to comment out this line to run the app on MacOS
@@ -74,7 +84,11 @@ fn main() {
     builder
         .setup(setup)
         .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .unwrap_or_else(|e| {
+            error!("Failed to run Tauri application: {}", e);
+            sentry::capture_message(&format!("Tauri application error: {}", e), sentry::Level::Error);
+            process::exit(1);
+        });
 }
 
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
@@ -82,14 +96,19 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
 
     if load_from_store(handle.clone(), "streamerOverlayEnabled").unwrap_or(false) {
         info!("Streamer overlay server is enabled");
-        let mut file_path = handle.path_resolver().app_data_dir().unwrap();
+        let mut file_path = match handle.path_resolver().app_data_dir() {
+            Some(path) => path,
+            None => {
+                error!("Failed to get app data directory: Directory not found");
+                return Err("App data directory not found".into());
+            }
+        };
         file_path.push("streamerOverlay.html");
         info!("Expecting the streamerOverlay at {:?}", file_path);
 
         let _handle = thread::spawn(|| {
             run_http_server(file_path);
         });
-
     } else {
         info!("Streamer overlay server is disabled");
     }
@@ -99,39 +118,64 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     cohdb::sync::setup(handle.clone());
 
     // Add window shadows
-    let window = app.get_window("main").unwrap();
-    set_shadow(&window, true).expect("Unsupported platform!");
+    let window = match app.get_window("main") {
+        Some(w) => w,
+        None => {
+            error!("Failed to get main window: Window not found");
+            return Err("Main window not found".into());
+        }
+    };
+
+    if let Err(e) = set_shadow(&window, true) {
+        error!("Failed to set window shadow: {}", e);
+        sentry::capture_message(&format!("Window shadow error: {}", e), sentry::Level::Error);
+    }
 
     // Set up deep link
     tauri_plugin_deep_link::register("coh3stats", move |request| {
-        if let Err(err) =
-            tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle))
-        {
+        if let Err(err) = tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle)) {
             error!("error retrieving cohdb token: {err}");
+            sentry::capture_message(&format!("COHDB token retrieval error: {}", err), sentry::Level::Error);
         }
     })
-    .unwrap();
+    .map_err(|e| {
+        error!("Failed to register deep link: {}", e);
+        sentry::capture_message(&format!("Deep link registration error: {}", e), sentry::Level::Error);
+        e
+    })?;
 
     Ok(())
 }
 
 /// returns the default expected log file path
 #[tauri::command]
-fn default_log_file_path() -> String {
-    let mut path = tauri::api::path::document_dir().unwrap();
+fn default_log_file_path() -> Result<String, String> {
+    let mut path = match tauri::api::path::document_dir() {
+        Some(p) => p,
+        None => {
+            error!("Failed to get document directory: Directory not found");
+            return Err("Document directory not found".to_string());
+        }
+    };
     path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?
     path.push("Company of Heroes 3");
     path.push("warnings.log");
-    path.display().to_string()
+    Ok(path.display().to_string())
 }
 
 #[tauri::command]
-fn default_playback_path() -> String {
-    let mut path = tauri::api::path::document_dir().unwrap();
+fn default_playback_path() -> Result<String, String> {
+    let mut path = match tauri::api::path::document_dir() {
+        Some(p) => p,
+        None => {
+            error!("Failed to get document directory: Directory not found");
+            return Err("Document directory not found".to_string());
+        }
+    };
     path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?
     path.push("Company of Heroes 3");
     path.push("playback");
-    path.display().to_string()
+    Ok(path.display().to_string())
 }
 
 /// checks if log file can be found on system
@@ -142,6 +186,13 @@ fn check_path_exists(path: &str) -> bool {
 
 /// get the system machine id
 #[tauri::command]
-fn get_machine_id() -> String {
-    machine_uid::get().unwrap()
+fn get_machine_id() -> Result<String, String> {
+    match machine_uid::get() {
+        Ok(id) => Ok(id),
+        Err(e) => {
+            error!("Failed to get machine ID: {}", e);
+            sentry::capture_message(&format!("Machine ID error: {}", e), sentry::Level::Error);
+            Err(format!("Failed to get machine ID: {}", e))
+        }
+    }
 }

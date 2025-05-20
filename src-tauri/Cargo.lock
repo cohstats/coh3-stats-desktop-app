@@ -738,7 +738,7 @@ dependencies = [
 
 [[package]]
 name = "coh3-stats-desktop-app"
-version = "1.6.3"
+version = "1.6.4"
 dependencies = [
  "criterion",
  "keyring",
