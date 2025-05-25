@@ -85,4 +85,10 @@ export const AboutErrorBoundary: React.FC<React.PropsWithChildren> = ({ children
   </ErrorBoundary>
 );
 
+export const RecentGamesErrorBoundary: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <ErrorBoundary fallbackMessage="Error loading Recent Games. Please check your connection and try again.">
+    {children}
+  </ErrorBoundary>
+);
+
 export { ErrorBoundary };
