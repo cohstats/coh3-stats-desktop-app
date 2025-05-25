@@ -1,0 +1,5 @@
+## Project
+- Always use `yarn` as our package manager.
+- To test the build after changes in /src folder run `yarn build`.
+
+

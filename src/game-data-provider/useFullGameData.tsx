@@ -8,7 +8,7 @@ import {
 } from "./GameData-types";
 import { useRawGameData } from "./useRawGameData";
 import { fetch } from "@tauri-apps/api/http";
-import { BASE_RELIC_API_URL } from "coh3-data-types-library";
+import config from "../config";
 import { MantineColor } from "@mantine/core";
 import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay";
 import { useLogFilePath } from "./configValues";
@@ -52,7 +52,7 @@ export const useFullGameData = () => {
       let responses = await Promise.all(
         onlyRealPlayers.map((player) =>
           fetch(
-            BASE_RELIC_API_URL +
+            config.BASE_RELIC_API_URL +
               "/community/leaderboard/getpersonalstat?profile_ids=[" +
               player.relic_id +
               "]&title=coh3",

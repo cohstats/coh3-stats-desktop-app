@@ -1,5 +1,5 @@
 import { fetch } from "@tauri-apps/api/http";
-import { BASE_RELIC_API_URL } from "coh3-data-types-library";
+import config from "../config";
 import { RawMatchObject, RawProfile } from "./data-types";
 
 // Platform types for COH3
@@ -85,6 +85,6 @@ export const getRecentMatchHistoryUrl = (
   const title = apiTitleTypes[platform];
 
   return encodeURI(
-    `${BASE_RELIC_API_URL}/community/leaderboard/getrecentmatchhistorybyprofileId?profile_id=${profileID}&title=${title}`,
+    `${config.BASE_RELIC_API_URL}/community/leaderboard/getrecentmatchhistorybyprofileId?profile_id=${profileID}&title=${title}`,
   );
 };
