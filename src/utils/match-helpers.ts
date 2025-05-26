@@ -1,6 +1,5 @@
 import { ProcessedMatch } from "./data-types";
-import { raceID } from "../coh3-types";
-import { raceType } from "coh3-data-types-library";
+import { raceID, raceType } from "../coh3-types";
 
 // Match type mapping
 export const matchTypesAsObject: Record<
