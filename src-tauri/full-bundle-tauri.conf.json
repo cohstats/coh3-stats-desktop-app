@@ -70,7 +70,8 @@
                 "digestAlgorithm": "sha256",
                 "timestampUrl": "",
                 "webviewInstallMode": {
-                  "type": "offlineInstaller"
+                  "type": "fixedRuntime",
+                  "path": "./WebView2.136.0.3240.92.x64.cab"
                 }
             }
         },

@@ -49,6 +49,10 @@ jobs:
                   releaseDraft: true
                   prerelease: false
 
+            - name: Download WebView2 Runtime
+              run: |
+                Invoke-WebRequest -Uri "http://assets.coh3stats.com/webview/WebView2.136.0.3240.92.x64.cab" -OutFile "WebView2.136.0.3240.92.x64.cab"
+              shell: powershell
 
             - name: "Full Bundle Tauri Release"
               run: |
