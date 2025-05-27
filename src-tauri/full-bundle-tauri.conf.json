@@ -71,7 +71,7 @@
                 "timestampUrl": "",
                 "webviewInstallMode": {
                   "type": "fixedRuntime",
-                  "path": "./WebView2.136.0.3240.92.x64.cab"
+                  "path": "../WebView2.136.0.3240.92.x64.cab"
                 }
             }
         },
