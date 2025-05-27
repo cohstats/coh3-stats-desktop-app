@@ -10,6 +10,7 @@ export type logFileRaceType =
   | "germans_campaign"
   | "afrika_korps_campaign"
   | "british_africa_campaign";
+
 export type raceType = "german" | "american" | "dak" | "british";
 
 export type RelicAPIResult = {

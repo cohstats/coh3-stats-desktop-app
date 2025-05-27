@@ -1,5 +1,5 @@
 import { MantineColor } from "@mantine/core";
-import { logFileRaceType, raceType } from "coh3-data-types-library";
+import { logFileRaceType, raceType } from "../coh3-types";
 
 export type GameState = "Closed" | "Menu" | "Loading" | "InGame";
 

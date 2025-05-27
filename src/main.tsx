@@ -10,6 +10,7 @@ import { UploadNotifications } from "./components/UploadNotifications";
 import * as Sentry from "@sentry/react";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import "mantine-datatable/styles.layer.css";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
 info("Start frontend");

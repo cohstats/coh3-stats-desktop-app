@@ -2,7 +2,8 @@ import { MapViewSettings } from "../game-data-provider/GameData-types";
 import { PlayerRanks } from "./coh3-data";
 import config from "../config";
 import { MapStatsDataType } from "./data-types";
-import { leaderboardsIDAsObject, raceType, RawLaddersObject } from "coh3-data-types-library";
+import { raceType, RawLaddersObject } from "../coh3-types";
+import { leaderboardsIDAsObject } from "../coh3-data";
 
 export const calculatePlayerTier = (rank: number, rating: number) => {
   if (!rank || rank <= 0) {
