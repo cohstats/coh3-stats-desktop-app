@@ -1,4 +1,4 @@
-# COH3 Stats Desktop App
+# COH3 Stats Desktop App -- TESTSTEST
 
 View stats of players in the current game of Company of Heroes 3.  
 **Download from https://coh3stats.com/desktop-app** or from [release page](https://github.com/cohstats/coh3-stats-desktop-app/releases).
