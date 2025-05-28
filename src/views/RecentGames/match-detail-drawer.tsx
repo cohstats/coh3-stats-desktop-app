@@ -26,7 +26,7 @@ import {
   matchTypesAsObject,
 } from "../../utils/match-helpers";
 import { processPlayerReports } from "../../utils/match-detail-helpers";
-import PlayerMatchesDataTable from "./PlayerMatchesDataTable";
+import MatchDetailsDataTable from "./match-details-data-table";
 import RenderMap from "./matches-table/render-map";
 import { getMapName } from "../../utils/utils";
 import { MapStatsContext } from "../../map-stats-provider";
@@ -131,7 +131,7 @@ const MatchDetailDrawer = ({
 
         {/* Player Data Tables */}
         <Stack gap="md">
-          {axisPlayers.length > 0 && <PlayerMatchesDataTable data={axisPlayers} />}
+          {axisPlayers.length > 0 && <MatchDetailsDataTable data={axisPlayers} />}
 
           {axisPlayers.length > 0 && alliesPlayers.length > 0 && (
             <Flex justify="center" align="center" my={"xs"}>
@@ -139,7 +139,7 @@ const MatchDetailDrawer = ({
             </Flex>
           )}
 
-          {alliesPlayers.length > 0 && <PlayerMatchesDataTable data={alliesPlayers} />}
+          {alliesPlayers.length > 0 && <MatchDetailsDataTable data={alliesPlayers} />}
         </Stack>
       </Container>
     </Drawer>

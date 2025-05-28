@@ -13,7 +13,7 @@ interface PlayerMatchesDataTableProps {
   data: PlayerReport[];
 }
 
-const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
+const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
   // Custom games might have no player data
   if (data.length === 0) {
     return <></>;
@@ -107,11 +107,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.dmgdone.toLocaleString(),
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.dmgdone, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
       ],
@@ -142,12 +142,12 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
             return deaths !== 0 ? (kills / deaths).toFixed(2) : kills.toString();
           },
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {(
                 Object.values(data).reduce((acc, curr) => acc + curr.counters.ekills, 0) /
                 Object.values(data).reduce((acc, curr) => acc + curr.counters.edeaths, 0)
               ).toFixed(2)}
-            </>
+            </div>
           ),
         },
         {
@@ -156,11 +156,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.ekills ?? "N/A",
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.ekills, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
         {
@@ -169,11 +169,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.edeaths ?? "N/A",
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.edeaths, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
       ],
@@ -199,11 +199,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.sqkill ?? "N/A",
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.sqkill, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
         {
@@ -212,7 +212,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => `${counters.sqprod ?? "N/A"} / ${counters.sqlost ?? "N/A"}`,
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.sqprod, 0)
                 .toLocaleString() +
@@ -220,7 +220,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
                 Object.values(data)
                   .reduce((acc, curr) => acc + curr.counters.sqlost, 0)
                   .toLocaleString()}
-            </>
+            </div>
           ),
         },
       ],
@@ -247,11 +247,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.vkill ?? "N/A",
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.vkill, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
         {
@@ -260,7 +260,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => `${counters.vprod ?? "N/A"} / ${counters.vlost ?? "N/A"}`,
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.vprod, 0)
                 .toLocaleString() +
@@ -268,7 +268,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
                 Object.values(data)
                   .reduce((acc, curr) => acc + curr.counters.vlost, 0)
                   .toLocaleString()}
-            </>
+            </div>
           ),
         },
       ],
@@ -295,7 +295,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => `${counters.pcap ?? "N/A"} / ${counters.plost ?? "N/A"}`,
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.pcap, 0)
                 .toLocaleString() +
@@ -303,7 +303,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
                 Object.values(data)
                   .reduce((acc, curr) => acc + curr.counters.plost, 0)
                   .toLocaleString()}
-            </>
+            </div>
           ),
         },
         {
@@ -312,11 +312,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.precap ?? "N/A",
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.precap, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
       ],
@@ -332,11 +332,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.abil ?? "N/A",
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.abil, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
         {
@@ -345,11 +345,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           textAlign: "center",
           render: ({ counters }) => counters.cabil ?? "N/A",
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {Object.values(data)
                 .reduce((acc, curr) => acc + curr.counters.cabil, 0)
                 .toLocaleString()}
-            </>
+            </div>
           ),
         },
       ],
@@ -392,7 +392,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
             return <>{apm}</>;
           },
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {(() => {
                 const totalCommands = Object.values(data).reduce(
                   (acc, curr) => acc + curr.counters.totalcmds,
@@ -410,7 +410,7 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
                   </Tooltip>
                 );
               })()}
-            </>
+            </div>
           ),
         },
         {
@@ -421,11 +421,11 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
             <>{counters.gt ? getMatchDurationGameTime(counters.gt) : "N/A"}</>
           ),
           footer: (
-            <>
+            <div style={{ textAlign: "center" }}>
               {getMatchDurationGameTime(
                 Math.max(...Object.values(data).map((curr) => curr.counters.gt)),
               )}
-            </>
+            </div>
           ),
         },
       ],
@@ -451,4 +451,4 @@ const PlayerMatchesDataTable = ({ data }: PlayerMatchesDataTableProps) => {
   );
 };
 
-export default PlayerMatchesDataTable;
+export default MatchDetailsDataTable;
