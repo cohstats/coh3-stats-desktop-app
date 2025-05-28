@@ -10,16 +10,13 @@ import {
   TextInput,
   Text,
   Stack,
-  Paper,
-  Grid,
-  Badge,
   Title,
   Flex,
 } from "@mantine/core";
 import React, { useContext } from "react";
 import { IconCopy, IconCalendar, IconStopwatch, IconSwords } from "@tabler/icons-react";
 import { open as openLink } from "@tauri-apps/api/shell";
-import { getMatchDetailRoute, coh3statsMatchDetail } from "../../utils/external-routes";
+import { coh3statsMatchDetail } from "../../utils/external-routes";
 import {
   getMatchDuration,
   getMatchPlayersByFaction,
@@ -27,7 +24,6 @@ import {
 } from "../../utils/match-helpers";
 import { processPlayerReports } from "../../utils/match-detail-helpers";
 import MatchDetailsDataTable from "./match-details-data-table";
-import RenderMap from "./matches-table/render-map";
 import { getMapName } from "../../utils/utils";
 import { MapStatsContext } from "../../map-stats-provider";
 

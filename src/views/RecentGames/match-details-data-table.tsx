@@ -1,7 +1,7 @@
 import React from "react";
 import { DataTable, DataTableColumnGroup } from "mantine-datatable";
 import { PlayerReport } from "../../utils/data-types";
-import { Group, Image, Badge, Tooltip, Anchor } from "@mantine/core";
+import { Group, Image, Badge, Tooltip, Anchor, Text } from "@mantine/core";
 import { getMatchDurationGameTime, getIconsPathOnCDN } from "../../utils/match-detail-helpers";
 import { raceIDs } from "../../utils/match-helpers";
 import { getFactionName } from "../../utils/renameLabels";
@@ -24,7 +24,7 @@ const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
       id: "playergroup",
       textAlign: "center",
       title: (
-        <>
+        <Group justify="center">
           {data[0].resulttype === 1 && (
             <Badge color={"blue"} variant="filled" w={"25ch"}>
               VICTORY
@@ -45,7 +45,7 @@ const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
               ERROR
             </Badge>
           )}
-        </>
+        </Group>
       ),
       columns: [
         {
@@ -86,7 +86,7 @@ const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
                 <div>
                   <Anchor
                     onClick={() => open(coh3statsPlayerProfile(record.profile_id))}
-                    style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}
+                    style={{ cursor: "pointer" }}
                   >
                     {record.profile?.alias || `Player ${record.profile_id}`}
                   </Anchor>
