@@ -4,6 +4,7 @@ import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { OverlayApp } from "./SPECIAL-REACT/OverlayApp";
 import { HTML } from "./SPECIAL-REACT/HTML";
 import { getShowFlagsOverlay, getAlwaysShowOverlay } from "./configValues";
+import { showNotification } from "../utils/notifications";
 
 export const renderStreamerHTML = async (gameData: FullGameData) => {
   const content = renderToString(
@@ -14,7 +15,18 @@ export const renderStreamerHTML = async (gameData: FullGameData) => {
     />,
   );
   const html = renderToStaticMarkup(<HTML html={content} />);
-  await writeTextFile("streamerOverlay.html", `<!doctype html>\n${html}`, {
-    dir: BaseDirectory.AppData,
-  });
+  try {
+    await writeTextFile("streamerOverlay.html", `<!doctype html>\n${html}`, {
+      dir: BaseDirectory.AppData,
+    });
+  } catch (e) {
+    showNotification({
+      title: "Error saving streamer overlay!",
+      message:
+        "There was an error generating streamerOverlay.html, if you don't need it you can disable it in the settings. " +
+        "Otherwise please report this problem in our Discord.",
+      type: "error",
+    });
+    console.error("Failed to write streamer overlay html", e);
+  }
 };
