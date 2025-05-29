@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router";
 import { About } from "./views/About";
-import { Game } from "./views/Game";
+import { Game } from "./views/Game/Game";
 import { Root } from "./views/Root";
 import { Settings } from "./views/Settings";
 import { Replays } from "./views/Replays";

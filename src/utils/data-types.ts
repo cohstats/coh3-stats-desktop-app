@@ -1,5 +1,5 @@
 import { platformType } from "./coh3-relic-api";
-import { raceID } from "../coh3-types";
+import { raceID, leaderBoardType } from "../coh3-types";
 
 export type AnalysisObjectType = {
   german: { wins: number; losses: number };
@@ -204,4 +204,36 @@ export interface ProcessedMatch {
   matchhistoryreportresults: Array<PlayerReport>;
   matchhistoryitems: Array<ProcessedMatchHistoryItem>;
   profile_ids: Array<number>;
+}
+
+/**
+ * Team details interfaces for COH3 Stats API
+ */
+export interface CHSTeamCore {
+  player_ids: Array<number>;
+  players: Array<{
+    profile_id: number;
+    alias: string;
+    country: string;
+  }>;
+  type: leaderBoardType | "other";
+  side: "axis" | "allies";
+  elo: number;
+  bestElo: number;
+  w: number; // Wins
+  l: number; // Losses
+  s: number; // Streak
+  t: number; // Total
+  lmTS: number | null; // Last Match Linux Timestamp
+  mh: Array<{
+    m_id: number;
+    w: boolean;
+    eloChange: number;
+    enemyElo: number;
+    ts: number;
+  }>; // Match history
+}
+
+export interface TeamDetails extends CHSTeamCore {
+  id: string;
 }
