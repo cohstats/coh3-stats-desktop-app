@@ -43,6 +43,7 @@ export interface RawGameData {
   right: RawTeamData;
   player_name: string;
   player_steam_id: string;
+  player_profile_id: string;
   language_code: string;
 }
 

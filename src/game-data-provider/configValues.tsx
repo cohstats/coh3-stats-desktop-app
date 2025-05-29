@@ -61,6 +61,11 @@ const [getShowExtendedPlayerInfo, useShowExtendedPlayerInfo] = configValueFactor
   async () => false,
 );
 
+const [getPlayerProfileID, usePlayerProfileID] = configValueFactory<string | null>(
+  "playerProfileID",
+  async () => null,
+);
+
 export {
   getPlaybackPath,
   usePlaybackPath,
@@ -69,4 +74,5 @@ export {
   useAutoSyncReplays,
   useMapViewSettings,
   useShowExtendedPlayerInfo,
+  usePlayerProfileID,
 };

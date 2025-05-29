@@ -56,6 +56,7 @@ pub struct LogFileData {
     pub right: TeamData,
     pub player_name: String,
     pub player_steam_id: String,
+    pub player_profile_id: String,
     pub language_code: String,
 }
 
@@ -74,6 +75,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     let mut right: Vec<PlayerData> = Vec::new();
     let mut player_name = "".to_string();
     let mut player_steam_id = "".to_string();
+    let mut player_profile_id = "".to_string();
     let mut language_code = "".to_string();
 
     // Read log file in reverse order line by line
@@ -101,6 +103,11 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
             // Is the line that logs the player steam id
             if let Ok((steam_id, _)) = get_game_player_steam_id(tail) {
                 player_steam_id = steam_id.to_string();
+                continue;
+            }
+
+           if let Ok((profile_id, _)) = get_game_player_profile_id(tail) {
+                player_profile_id = profile_id.to_string();
                 continue;
             }
 
@@ -264,6 +271,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
         right: right_team,
         player_name,
         player_steam_id,
+        player_profile_id,
         language_code,
     }
 }
@@ -316,9 +324,9 @@ fn get_team_data(players: Vec<PlayerData>) -> TeamData {
 
     for player in &players {
         if player.faction == "germans" || player.faction == "afrika_korps" {
-            is_axis = true;          
+            is_axis = true;
         } else if player.faction == "americans" || player.faction == "british_africa" {
-            is_allies = true;         
+            is_allies = true;
         }
     }
 
@@ -327,7 +335,7 @@ fn get_team_data(players: Vec<PlayerData>) -> TeamData {
     } else if is_axis {
         team_side = TeamSide::Axis;
     } else if is_allies {
-        team_side = TeamSide::Allies;        
+        team_side = TeamSide::Allies;
     }
 
     TeamData {
@@ -394,6 +402,11 @@ fn get_game_language(game_param_tail: &str) -> nom::IResult<&str, ()> {
 fn get_game_player_steam_id(timestamped_tail: &str) -> nom::IResult<&str, ()> {
     let (steam_id, _) = nom::bytes::complete::tag("Found profile: /steam/")(timestamped_tail)?;
     Ok((steam_id, ()))
+}
+
+fn get_game_player_profile_id(timestamped_tail: &str) -> nom::IResult<&str, ()> {
+    let (profile_id, _) = nom::bytes::complete::tag("[SP_BG] login event. LocalProfileID: ")(timestamped_tail)?;
+    Ok((profile_id, ()))
 }
 
 fn get_map_name(scenario_tail: &str) -> nom::IResult<&str, &str> {

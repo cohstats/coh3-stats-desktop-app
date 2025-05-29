@@ -10,23 +10,19 @@ import {
   Button,
   Alert,
   Switch,
-  Space,
   Center,
   Flex,
   Anchor,
 } from "@mantine/core";
 import { IconInfoCircle, IconRefresh, IconEyePlus } from "@tabler/icons-react";
 import { open as openLink } from "@tauri-apps/api/shell";
-import { DataTable, DataTableSortStatus } from "mantine-datatable";
+import { DataTable } from "mantine-datatable";
 import { useDisclosure, useLocalStorage } from "@mantine/hooks";
-import sortBy from "lodash/sortBy";
 import { getPlayerMatches } from "../../utils/coh3-matches";
 import { coh3statsPlayerProfile } from "../../utils/external-routes";
 import { ProcessedMatch } from "../../utils/data-types";
 import { showNotification } from "../../utils/notifications";
-import { useGameData } from "../../game-data-provider/GameDataProvider";
-import { useLogFilePath } from "../../game-data-provider/configValues";
-import { GameDataTypes } from "../../game-data-provider/GameData-types";
+import { useLogFilePath, usePlayerProfileID } from "../../game-data-provider/configValues";
 import {
   matchTypesAsObject,
   raceIDs,
@@ -68,56 +64,23 @@ const getTimeAgo = (timestamp: number): string => {
   }
 };
 
-/**
- * Extracts the current player's relic ID from game data
- * @param gameData - The game data from useGameData hook
- * @returns The current player's relic ID or null if not found
- */
-const getCurrentPlayerRelicId = (gameData: GameDataTypes): string | null => {
-  if (!gameData?.gameData) {
-    return null;
-  }
-
-  // Check left team for current player
-  const leftPlayer = gameData.gameData.left.players.find((player) => player.self);
-  if (leftPlayer) {
-    return leftPlayer.relicID;
-  }
-
-  // Check right team for current player
-  const rightPlayer = gameData.gameData.right.players.find((player) => player.self);
-  if (rightPlayer) {
-    return rightPlayer.relicID;
-  }
-
-  return null;
-};
-
 export const RecentGames: React.FC = () => {
   const [matchData, setMatchData] = useState<ProcessedMatch[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Get game data and log file path using the same hooks as Game.tsx
-  const gameData = useGameData();
+  const [playerProfileID] = usePlayerProfileID();
+
   const [logFilePath] = useLogFilePath();
 
   // Extract current player's relic ID from game data
-  const currentPlayerRelicId = useMemo(() => {
-    return getCurrentPlayerRelicId(gameData);
-  }, [gameData]);
-
+  const currentPlayerRelicId = playerProfileID;
   // Enhanced table functionality
   const [opened, { open, close }] = useDisclosure(false);
   const [selectedMatchRecord, setSelectedMatchRecord] = useState<ProcessedMatch | null>(null);
   const [showCountryFlag, setShowCountryFlag] = useLocalStorage({
     key: "show-country-flag-matches",
     defaultValue: "false",
-  });
-
-  const [sortStatus, setSortStatus] = useState<DataTableSortStatus<ProcessedMatch>>({
-    columnAccessor: "completiontime",
-    direction: "desc",
   });
 
   const loadPlayerMatches = async (relicProfileId: string) => {
@@ -146,20 +109,11 @@ export const RecentGames: React.FC = () => {
     }
   };
 
-  // Sorts the table
   const sortedData = useMemo(() => {
     if (!matchData) return [];
 
-    const resortedData = sortBy(
-      matchData,
-      sortStatus.columnAccessor === "match_duration"
-        ? (matchData) => {
-            return matchData.startgametime - matchData.completiontime;
-          }
-        : sortStatus.columnAccessor,
-    );
-    return sortStatus.direction === "desc" ? resortedData.reverse() : resortedData;
-  }, [sortStatus, matchData]);
+    return matchData.sort((a, b) => b.completiontime - a.completiontime);
+  }, [matchData]);
 
   // Automatically load matches when current player is detected
   useEffect(() => {
@@ -292,9 +246,7 @@ export const RecentGames: React.FC = () => {
           withTableBorder
           verticalSpacing="xs"
           minHeight={30}
-          records={sortedData}
-          sortStatus={sortStatus}
-          onSortStatusChange={setSortStatus}
+          records={sortedData || []}
           onRowClick={({ record, event }) => {
             if (event.target instanceof Element) {
               const clickedElement = event.target as Element;

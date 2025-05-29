@@ -11,7 +11,7 @@ import { fetch } from "@tauri-apps/api/http";
 import config from "../config";
 import { MantineColor } from "@mantine/core";
 import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay";
-import { useLogFilePath } from "./configValues";
+import { useLogFilePath, usePlayerProfileID } from "./configValues";
 import { playSound as playSoundFunc } from "../game-found-sound/playSound";
 import { getPlaySound } from "../game-found-sound/configValues";
 import { calculatePlayerPlayedFactionStats, calculateTotalGamesForPlayer } from "../utils/utils";
@@ -25,12 +25,11 @@ const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
 
 export const useFullGameData = () => {
   const { rawGameData } = useRawGameData();
+  const [playerProfileID, setPlayerProfileID] = usePlayerProfileID();
   const [logFilePath] = useLogFilePath();
   const lastGameUniqueKeyRef = useRef<string>("");
   const lastGameStateRef = useRef<GameState>(null);
   const [gameData, setGameData] = useState<FullGameData>();
-
-  console.log(rawGameData);
 
   const generateUniqueGameKey = useCallback((rawGameData: RawGameData) => {
     return (
@@ -43,6 +42,12 @@ export const useFullGameData = () => {
         .join()
     );
   }, []);
+
+  useEffect(() => {
+    if (rawGameData?.player_profile_id) {
+      setPlayerProfileID(rawGameData.player_profile_id);
+    }
+  }, [rawGameData?.player_profile_id]);
 
   useEffect(() => {
     const refineSide = async (side: RawTeamData, left: boolean, rawGameData: RawGameData) => {
