@@ -130,7 +130,7 @@ export const RecentGames: React.FC = () => {
 
   if (loading) {
     return (
-      <Box p="xl" pt="md">
+      <Box px="xl" pb="xl" pt="md">
         <Center maw={400} h={250} mx="auto">
           <Loader />
         </Center>
@@ -141,7 +141,7 @@ export const RecentGames: React.FC = () => {
 
   if (error) {
     return (
-      <Box p="xl" pt="md">
+      <Box p="md">
         <ErrorCard title={"Error rendering recent matches"} body={JSON.stringify(error)} />
       </Box>
     );
@@ -149,7 +149,7 @@ export const RecentGames: React.FC = () => {
 
   if ((!matchData || !currentPlayerRelicId) && !loading) {
     return (
-      <Box p="xl" pt="md">
+      <Box p="md">
         <Stack gap="md">
           <Group justify="space-between" align="center">
             <Title order={2}>Recent Games</Title>
@@ -203,7 +203,7 @@ export const RecentGames: React.FC = () => {
   }
 
   return (
-    <Box p="xs" pt="md">
+    <Box p="md">
       <Stack gap="md">
         <MatchDetailDrawer
           selectedMatchRecord={selectedMatchRecord}
