@@ -1,6 +1,6 @@
 import { Anchor, Group, Paper, Stack, Title, Image, Tooltip, Grid, Text } from "@mantine/core";
 import React from "react";
-import { FullPlayerData } from "../game-data-provider/GameData-types";
+import { FullPlayerData } from "../../../game-data-provider/GameData-types";
 import { PlayerELO } from "./PlayerELO";
 import { PlayerLosses } from "./PlayerLosses";
 import { PlayerRank } from "./PlayerRank";
@@ -8,11 +8,11 @@ import { PlayerStreak } from "./PlayerStreak";
 import { PlayerWinRatio } from "./PlayerWinRatio";
 import { PlayerWins } from "./PlayerWins";
 import { open } from "@tauri-apps/api/shell";
-import { getFactionName, getCountryName } from "../utils/renameLabels";
-import RankIcon from "./other/rank-icon";
-import { coh3statsPlayerProfile } from "../utils/external-routes";
-import EllipsisText from "./other/ellipsis-text";
-import { useShowExtendedPlayerInfo } from "../game-data-provider/configValues";
+import { getFactionName, getCountryName } from "../../../utils/renameLabels";
+import RankIcon from "../../../components/other/rank-icon";
+import { coh3statsPlayerProfile } from "../../../utils/external-routes";
+import EllipsisText from "../../../components/other/ellipsis-text";
+import { useShowExtendedPlayerInfo } from "../../../game-data-provider/configValues";
 
 export interface PlayerCardProps extends FullPlayerData {}
 

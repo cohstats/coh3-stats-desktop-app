@@ -1,13 +1,13 @@
 import { useGameData } from "../../game-data-provider/GameDataProvider";
 import { Title, Grid, Loader, Group, Box, Badge, Stack } from "@mantine/core";
-import { PlayerCard } from "../../components/PlayerCard";
+import { PlayerCard } from "./components/PlayerCard";
 import { useLogFilePath } from "../../game-data-provider/configValues";
 import { OnlinePlayers } from "../../components/Online-players";
 
-import MapCard from "../../components/MapCard";
+import MapCard from "./components/MapCard";
 import { IconSwords } from "@tabler/icons-react";
-import SummaryCard from "../../components/SummaryCard";
-import { ArrangedTeamCard } from "./arranged-teams/arranged-team-card";
+import SummaryCard from "./components/SummaryCard";
+import { ArrangedTeamCard } from "./components/arranged-team-card";
 import React, { memo } from "react";
 import { GameDataTypes } from "../../game-data-provider/GameData-types";
 
