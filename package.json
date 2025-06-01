@@ -1,7 +1,7 @@
 {
   "name": "coh3-stats-desktop-app",
   "private": true,
-  "version": "1.6.4",
+  "version": "1.7.0",
   "type": "module",
   "repository": {
     "url": "https://github.com/cohstats/coh3-stats-desktop-app"
@@ -40,6 +40,7 @@
     "@tauri-apps/api": "1.6.0",
     "@types/lodash": "4.17.17",
     "lodash": "4.17.21",
+    "lru-cache": "^11.1.0",
     "mantine-datatable": "7.17.1",
     "mixpanel-browser": "2.59.0",
     "react": "19.0.0",
