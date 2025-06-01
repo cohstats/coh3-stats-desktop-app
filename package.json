@@ -40,7 +40,7 @@
     "@tauri-apps/api": "1.6.0",
     "@types/lodash": "4.17.17",
     "lodash": "4.17.21",
-    "lru-cache": "^11.1.0",
+    "lru-cache": "11.1.0",
     "mantine-datatable": "7.17.1",
     "mixpanel-browser": "2.59.0",
     "react": "19.0.0",
