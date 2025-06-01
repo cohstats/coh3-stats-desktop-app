@@ -109,9 +109,9 @@ fn main() {
                 *closed = true;
             });
 
-            // Wait for the dialog to be closed or timeout after 30 seconds
+            // Wait for the dialog to be closed or timeout after 60 seconds
             let start_time = std::time::Instant::now();
-            while start_time.elapsed() < Duration::from_secs(30) {
+            while start_time.elapsed() < Duration::from_secs(60) {
                 {
                     let closed = dialog_closed.lock().unwrap();
                     if *closed {
