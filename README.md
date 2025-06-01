@@ -8,7 +8,7 @@ View stats of players in the current game of Company of Heroes 3.
 This application needs WebView2 Runtime. This is by default part of Windows 10 and 11.
 If you are missing the runtime, the installer will be automatically triggered.
 But if for any reason you don't want to install the WebView into your system, you can donwload
-the release called "fullBundle" which has all deps included.
+the release called "fullBundle" which has all deps included.    
 **Download Full Bundle from [releases](https://github.com/cohstats/coh3-stats-desktop-app/releases/)**
 
 ## Setup OBS Streamer Overlay
