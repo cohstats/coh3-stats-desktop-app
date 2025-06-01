@@ -58,24 +58,24 @@ export const About: React.FC = () => {
               {appVersion}
             </Code>
           </Group>
-          {/*{latestVersion !== appVersion && latestVersion !== undefined && (*/}
-          {/*  <>*/}
-          {/*    <Space h="xs" />*/}
-          {/*    <Text component="p" size="sm" c={"red"}>*/}
-          {/*      The latest production version is reported as {latestVersion}. If the autoupdater*/}
-          {/*      doesn't work pelase download the new version manually{" "}*/}
-          {/*      <Anchor*/}
-          {/*        href="https://coh3stats.com/desktop-app"*/}
-          {/*        target="_blank"*/}
-          {/*        rel="noopener noreferrer"*/}
-          {/*      >*/}
-          {/*        coh3stats.com/desktop-app*/}
-          {/*      </Anchor>{" "}*/}
-          {/*      and reinstall the application.*/}
-          {/*    </Text>*/}
-          {/*    <Space h="xs" />*/}
-          {/*  </>*/}
-          {/*)}*/}
+          {latestVersion !== appVersion && latestVersion !== undefined && (
+            <>
+              <Space h="xs" />
+              <Text component="p" size="sm" c={"red"}>
+                The latest production version is reported as {latestVersion}. If the autoupdater
+                doesn't work pelase download the new version manually{" "}
+                <Anchor
+                  href="https://coh3stats.com/desktop-app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  coh3stats.com/desktop-app
+                </Anchor>{" "}
+                and reinstall the application.
+              </Text>
+              <Space h="xs" />
+            </>
+          )}
           <Text component="p" size="sm">
             Visit our website{" "}
             <Anchor onClick={() => open(config.COH3STATS_BASE_ULR)}>coh3stats.com</Anchor>.
