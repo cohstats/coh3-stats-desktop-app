@@ -39,7 +39,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
   const extendedInfo =
     showExtendedPlayerInfo && !ai ? (
       <>
-        <Text size="sm" c={"dimmed"} style={{ textAlign: "center" }}>
+        <Text size="sm" c={"dimmed"} style={{ textAlign: "center" }} component="div">
           <Group gap={3} justify="center">
             <Tooltip label={factionName}>
               <Group gap={3}>
