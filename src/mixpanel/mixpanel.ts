@@ -45,6 +45,14 @@ const events = {
       version: await getVersion(),
     });
   },
+  open_recent_games: async (): Promise<void> => {
+    if (!shouldSendAnalytics) return;
+
+    mixpanel.track("open_recent_games", {
+      distinct_id: await getClientId(),
+      version: await getVersion(),
+    });
+  },
   connect_coh_db: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
 

@@ -36,6 +36,7 @@ import RenderPlayers from "./matches-table/render-players";
 import RenderMap from "./matches-table/render-map";
 import MatchDetailDrawer from "./match-detail-drawer";
 import classes from "./matches-table.module.css";
+import events from "../../mixpanel/mixpanel";
 
 /**
  * Simple time ago calculation
@@ -121,6 +122,11 @@ export const RecentGames: React.FC = () => {
       loadPlayerMatches(currentPlayerRelicId);
     }
   }, [currentPlayerRelicId, logFilePath]);
+
+  // Track navigation to Recent Games component
+  useEffect(() => {
+    events.open_recent_games();
+  }, []);
 
   const handleRefresh = () => {
     if (currentPlayerRelicId) {

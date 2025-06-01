@@ -1,4 +1,4 @@
-import { fetch } from "@tauri-apps/api/http";
+import { fetch, ResponseType } from "@tauri-apps/api/http";
 import config from "../config";
 import { TeamDetails } from "./data-types";
 
@@ -18,17 +18,23 @@ export const getTeamDetailsUrl = (teamID: string | number): string => {
  * @returns Promise<TeamDetails>
  * @throws Error when API request fails or team is not found
  */
-export const getTeamDetails = async (teamID: string | number): Promise<TeamDetails> => {
+export const getTeamDetails = async (teamID: string | number): Promise<TeamDetails | null> => {
   const url = getTeamDetailsUrl(teamID);
 
+  let response;
   try {
-    const response = await fetch(url, {
+    response = await fetch(url, {
       method: "GET",
+      headers: {
+        "Accept-Encoding": "br",
+        Accept: "application/json",
+      },
+      responseType: ResponseType.JSON,
     });
 
     if (!response.ok) {
       if (response.status === 404) {
-        throw new Error("Team not found");
+        return null;
       }
       if (response.status === 500) {
         const data = response.data as any;

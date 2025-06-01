@@ -26,3 +26,9 @@ export const coh3statsMatchDetail = (
   const route = getMatchDetailRoute(matchId, profileIDs);
   return `${config.COH3STATS_BASE_ULR}${route}`;
 };
+
+export const coh3statsTeamDetails = (profileID: number | string, teamKey: string) => {
+  return encodeURI(
+    `${config.COH3STATS_BASE_ULR}/players/${profileID}?view=teamDetails&team=${teamKey}`,
+  );
+};

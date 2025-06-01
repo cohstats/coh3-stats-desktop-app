@@ -1,6 +1,7 @@
 import { Button } from "@mantine/core";
 import React from "react";
 import { showNotification } from "../utils/notifications";
+import { getTeamDetails } from "../utils/coh3-stats-api";
 
 export const Debug: React.FC = () => {
   return (
@@ -20,6 +21,13 @@ export const Debug: React.FC = () => {
         }}
       >
         Show notifications
+      </Button>
+      <Button
+        onClick={async () => {
+          console.log(await getTeamDetails("allies-356993-371892"));
+        }}
+      >
+        Get Team Details - check console - br issue
       </Button>
     </>
   );

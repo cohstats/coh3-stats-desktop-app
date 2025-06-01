@@ -7,6 +7,7 @@ import { OnlinePlayers } from "../../components/Online-players";
 import MapCard from "../../components/MapCard";
 import { IconSwords } from "@tabler/icons-react";
 import SummaryCard from "../../components/SummaryCard";
+import { ArrangedTeamCard } from "./arranged-teams/arranged-team-card";
 import React, { memo } from "react";
 import { GameDataTypes } from "../../game-data-provider/GameData-types";
 
@@ -44,6 +45,10 @@ const GameContent = memo(
                     {gameData.gameData.left.players.map((player, index) => (
                       <PlayerCard key={player.relicID + " " + index} {...player} />
                     ))}
+                    <ArrangedTeamCard
+                      players={gameData.gameData.left.players}
+                      side={gameData.gameData.left.side}
+                    />
                   </Grid.Col>
                   <Grid.Col span="content" mx={"sm"} pt={0}>
                     <IconSwords size={55} />
@@ -52,6 +57,10 @@ const GameContent = memo(
                     {gameData.gameData.right.players.map((player, index) => (
                       <PlayerCard key={player.relicID + " " + index} {...player} />
                     ))}
+                    <ArrangedTeamCard
+                      players={gameData.gameData.right.players}
+                      side={gameData.gameData.right.side}
+                    />
                   </Grid.Col>
                 </Grid>
                 <Grid gutter={0} p={"md"} pt={0}>

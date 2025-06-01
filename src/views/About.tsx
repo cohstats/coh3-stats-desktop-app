@@ -93,6 +93,14 @@ export const About: React.FC = () => {
             </Anchor>
           </Text>
           <Space h={"xs"} />
+          <Title order={4}>Arranged Teams</Title>
+          <Text component="p" size="sm">
+            <Anchor onClick={() => open("https://coh3stats.com/about#arrangedteams")}>
+              Learn more about arranged teams
+            </Anchor>{" "}
+            and how they work in Company of Heroes 3.
+          </Text>
+          <Space h={"xs"} />
           <Title order={4}>Reporting a bug</Title>
           <Text component="p" size="sm">
             In case of issues please, please try to report them in Discord sections
