@@ -15,6 +15,7 @@ use tauri::Manager;
 use tauri_plugin_log::LogTarget;
 use window_shadows::set_shadow;
 use std::process;
+use tauri::api::dialog::{MessageDialogBuilder, MessageDialogKind};
 
 #[derive(Clone, serde::Serialize)]
 struct Payload {
@@ -87,7 +88,38 @@ fn main() {
         .unwrap_or_else(|e| {
             error!("Failed to run Tauri application: {}", e);
             sentry::capture_message(&format!("Tauri application error: {}", e), sentry::Level::Error);
-            process::exit(1);
+
+            // Show system dialog to inform user about the failure
+            use std::sync::{Arc, Mutex};
+            use std::time::Duration;
+
+            let dialog_closed = Arc::new(Mutex::new(false));
+            let dialog_closed_clone = dialog_closed.clone();
+
+            let _ = MessageDialogBuilder::new(
+                "COH3 Stats Desktop App - Startup Error",
+                &format!(
+                    "The COH3 Stats Desktop App failed to start.\n\nError: {}\n\nPlease try the following:\n• Restart the application\n• Restart you computer\n• Check troubleshooting guide on coh3stats.com/desktop-app\n• Contact support on Discord if the problem persists",
+                    e
+                )
+            )
+            .kind(MessageDialogKind::Error)
+            .show(move |_| {
+                let mut closed = dialog_closed_clone.lock().unwrap();
+                *closed = true;
+            });
+
+            // Wait for the dialog to be closed or timeout after 30 seconds
+            let start_time = std::time::Instant::now();
+            while start_time.elapsed() < Duration::from_secs(30) {
+                {
+                    let closed = dialog_closed.lock().unwrap();
+                    if *closed {
+                        break;
+                    }
+                }
+                std::thread::sleep(Duration::from_millis(100));
+            }
         });
 }
 
