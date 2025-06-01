@@ -3,10 +3,20 @@ import { BaseDirectory, writeTextFile } from "@tauri-apps/api/fs";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { OverlayApp } from "./SPECIAL-REACT/OverlayApp";
 import { HTML } from "./SPECIAL-REACT/HTML";
-import { getShowFlagsOverlay, getAlwaysShowOverlay } from "./configValues";
+import {
+  getShowFlagsOverlay,
+  getAlwaysShowOverlay,
+  getStreamerOverlayEnabled,
+} from "./configValues";
 import { showNotification } from "../utils/notifications";
 
 export const renderStreamerHTML = async (gameData: FullGameData) => {
+  // Don't render if streamer overlay is disabled
+  const isEnabled = await getStreamerOverlayEnabled();
+  if (!isEnabled) {
+    return;
+  }
+
   const content = renderToString(
     <OverlayApp
       gameData={gameData}
