@@ -5,7 +5,7 @@ import { Router } from "./Router";
 import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay";
 import events from "./mixpanel/mixpanel";
 import { listen } from "@tauri-apps/api/event";
-import { info } from "tauri-plugin-log-api";
+import { info } from "@tauri-apps/plugin-log";
 import { UploadNotifications } from "./components/UploadNotifications";
 import * as Sentry from "@sentry/react";
 import "@mantine/core/styles.css";

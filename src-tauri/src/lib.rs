@@ -13,17 +13,16 @@ mod plugins;
 
 use config::{COHDB_CLIENT_ID, COHDB_REDIRECT_URI};
 use dp_utils::load_from_store;
+use log::{error, info};
 use overlay_server::run_http_server;
 use plugins::cohdb;
-use log::{error, info};
 use std::path::Path;
 use std::thread;
-use tauri::{Manager, Emitter};
+use tauri::{Emitter, Manager};
 // use tauri_plugin_log::Target; // Unused for now
 // use tauri_plugin_dialog::{MessageDialogBuilder, MessageDialogKind}; // Unused for now
 // use window_shadows::set_shadow; // Temporarily disabled due to compatibility issues with Tauri v2
 use std::process;
-
 
 #[derive(Clone, serde::Serialize)]
 struct Payload {
@@ -42,6 +41,7 @@ pub fn run() {
     }));
 
     let builder = tauri::Builder::default()
+        .plugin(tauri_plugin_log::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             default_log_file_path,
             default_playback_path,
@@ -61,22 +61,33 @@ pub fn run() {
 
             if let Err(e) = window.set_focus() {
                 error!("Failed to set window focus: {}", e);
-                sentry::capture_message(&format!("Window focus error: {}", e), sentry::Level::Error);
+                sentry::capture_message(
+                    &format!("Window focus error: {}", e),
+                    sentry::Level::Error,
+                );
             }
 
-            if let Err(e) = window.request_user_attention(Some(tauri::UserAttentionType::Informational)) {
+            if let Err(e) =
+                window.request_user_attention(Some(tauri::UserAttentionType::Informational))
+            {
                 error!("Failed to request user attention: {}", e);
-                sentry::capture_message(&format!("User attention error: {}", e), sentry::Level::Error);
+                sentry::capture_message(
+                    &format!("User attention error: {}", e),
+                    sentry::Level::Error,
+                );
             }
 
             if let Err(e) = app.emit("single-instance", Payload { args: argv, cwd }) {
                 error!("Failed to emit single-instance event: {}", e);
-                sentry::capture_message(&format!("Single instance event error: {}", e), sentry::Level::Error);
+                sentry::capture_message(
+                    &format!("Single instance event error: {}", e),
+                    sentry::Level::Error,
+                );
             }
         }))
-
         // You need to comment out this line to run the app on MacOS
         // do not compile on mac
+        .plugin(tauri_plugin_log::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
@@ -98,7 +109,10 @@ pub fn run() {
         .run(tauri::generate_context!())
         .unwrap_or_else(|e| {
             error!("Failed to run Tauri application: {}", e);
-            sentry::capture_message(&format!("Tauri application error: {}", e), sentry::Level::Error);
+            sentry::capture_message(
+                &format!("Tauri application error: {}", e),
+                sentry::Level::Error,
+            );
 
             // Show system dialog to inform user about the failure
             // TODO: Fix dialog creation for Tauri v2
@@ -150,14 +164,22 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     // Set up deep link
     let handle_clone = handle.clone();
     tauri_plugin_deep_link::register("coh3stats", move |request| {
-        if let Err(err) = tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle_clone)) {
+        if let Err(err) =
+            tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle_clone))
+        {
             error!("error retrieving cohdb token: {err}");
-            sentry::capture_message(&format!("COHDB token retrieval error: {}", err), sentry::Level::Error);
+            sentry::capture_message(
+                &format!("COHDB token retrieval error: {}", err),
+                sentry::Level::Error,
+            );
         }
     })
     .map_err(|e| {
         error!("Failed to register deep link: {}", e);
-        sentry::capture_message(&format!("Deep link registration error: {}", e), sentry::Level::Error);
+        sentry::capture_message(
+            &format!("Deep link registration error: {}", e),
+            sentry::Level::Error,
+        );
         e
     })?;
 

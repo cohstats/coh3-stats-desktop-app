@@ -1,18 +1,15 @@
 use serde::de::DeserializeOwned;
 // COH3 Desktop App Utils
-// use tauri_plugin_store::Store; // Unused for now
-use log::{error};
-use tauri::{AppHandle, Manager, Runtime};
+use log::error;
+use tauri::{AppHandle, Runtime};
 
-pub fn load_from_store<R: Runtime, T: DeserializeOwned>(_handle: AppHandle<R>, _key: &str) -> Option<T> {
-    // let _path = handle
-    //     .path()
-    //     .app_data_dir()
-    //     .unwrap()
-    //     .join("config.dat");
-
-    // For now, return None as the Store API has changed significantly in v2
-    // TODO: Implement proper store loading for Tauri v2
-    error!("Store loading not yet implemented for Tauri v2");
+pub fn load_from_store<R: Runtime, T: DeserializeOwned>(
+    _handle: AppHandle<R>,
+    _key: &str,
+) -> Option<T> {
+    // Store API is now handled on the frontend side with tauri-plugin-store
+    // This function is kept for compatibility but should not be used
+    // The frontend should use the Store API directly
+    error!("Store loading should be handled on the frontend side in Tauri v2");
     None
 }

@@ -19,7 +19,7 @@ use responses::{MeResponse, UploadResponse, User};
 use tauri::async_runtime::{JoinHandle, Mutex};
 use tauri::{
     plugin::{Builder, TauriPlugin},
-    AppHandle, Manager, Runtime, Emitter,
+    AppHandle, Emitter, Manager, Runtime,
 };
 use tauri_plugin_shell::ShellExt;
 use tokio::time::{interval, Duration};

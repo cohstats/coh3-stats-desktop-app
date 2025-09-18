@@ -74,7 +74,10 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": null,
+      "capabilities": [
+        "migrated"
+      ]
     }
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { error as TauriError } from "tauri-plugin-log-api";
+import { error as TauriError } from "@tauri-apps/plugin-log";
 import { Code, Space, Stack, Text, Title } from "@mantine/core";
 import * as Sentry from "@sentry/react";
 

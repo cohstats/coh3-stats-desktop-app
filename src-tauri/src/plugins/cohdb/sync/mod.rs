@@ -5,7 +5,7 @@ use log::{debug, error, info, warn};
 use notify::{Config, Event, RecommendedWatcher, RecursiveMode, Watcher};
 use tauri::{
     plugin::{Builder, TauriPlugin},
-    AppHandle, Manager, Runtime, Listener,
+    AppHandle, Listener, Manager, Runtime,
 };
 use vault::{GameType, Replay};
 
@@ -155,9 +155,8 @@ fn init_watcher<R: Runtime>(path: PathBuf, handle: AppHandle<R>) -> Option<Recom
 
 fn default_playback_path() -> String {
     use std::env;
-    let mut path = dirs::document_dir().unwrap_or_else(|| {
-        env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."))
-    });
+    let mut path = dirs::document_dir()
+        .unwrap_or_else(|| env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from(".")));
     path.push("My Games");
     path.push("Company of Heroes 3");
     path.push("playback");

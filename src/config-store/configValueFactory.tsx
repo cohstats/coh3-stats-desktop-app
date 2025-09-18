@@ -1,9 +1,30 @@
-import { EventEmitter } from "@tauri-apps/plugin-shell";
 import { useEffect, useRef, useState } from "react";
 import { Store } from "@tauri-apps/plugin-store";
 import { getStore } from "./store";
 
-const CONFIG_CHANGE_EVENT = new EventEmitter();
+// Simple EventEmitter implementation for config changes
+class SimpleEventEmitter {
+  private listeners: { [key: string]: Function[] } = {};
+
+  on(event: string, listener: Function) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event].push(listener);
+  }
+
+  off(event: string, listener: Function) {
+    if (!this.listeners[event]) return;
+    this.listeners[event] = this.listeners[event].filter((l) => l !== listener);
+  }
+
+  emit(event: string, ...args: any[]) {
+    if (!this.listeners[event]) return;
+    this.listeners[event].forEach((listener) => listener(...args));
+  }
+}
+
+const CONFIG_CHANGE_EVENT = new SimpleEventEmitter();
 
 export const configValueFactory = <T,>(
   key: string,

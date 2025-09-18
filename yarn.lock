@@ -797,6 +797,13 @@
     "@tauri-apps/cli-win32-ia32-msvc" "2.8.4"
     "@tauri-apps/cli-win32-x64-msvc" "2.8.4"
 
+"@tauri-apps/plugin-cli@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-cli/-/plugin-cli-2.4.0.tgz#8d6eacb113a377bb690a36676c63c7b426212f46"
+  integrity sha512-3AUUaaqj3PkacFlErFUvzaApV6uZG5W8psM5AKWoPNkThwJJZskc9wqfot7PTY13fVublGszFWBNAL4I4iIZRg==
+  dependencies:
+    "@tauri-apps/api" "^2.6.0"
+
 "@tauri-apps/plugin-clipboard-manager@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-clipboard-manager/-/plugin-clipboard-manager-2.3.0.tgz#1d0dea11aa88970cf94a153a052cb0d6634bcacd"
@@ -822,6 +829,13 @@
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-http/-/plugin-http-2.5.2.tgz#e871bb960bf9190852a79b61b4cf0a8f8ae0ff81"
   integrity sha512-x1mQKHSLDk4mS2S938OTeyk8L7QyLpCrKZCZcjkljGsvTvRMojCvI9SeJ1kaxc7t8xSilkC7WdId8xER9TIGLg==
+  dependencies:
+    "@tauri-apps/api" "^2.8.0"
+
+"@tauri-apps/plugin-log@~2":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-log/-/plugin-log-2.7.0.tgz#0f334f9a408b9f4efa5b23cfd45e2a2be4c5b101"
+  integrity sha512-81XQ2f93x4vmIB5OY0XlYAxy60cHdYLs0Ki8Qp38tNATRiuBit+Orh3frpY3qfYQnqEvYVyRub7YRJWlmW2RRA==
   dependencies:
     "@tauri-apps/api" "^2.8.0"
 
@@ -4126,12 +4140,6 @@ tar-stream@^2.1.4, tar-stream@^2.2.0:
 "tauri-plugin-fs-watch-api@https://github.com/tauri-apps/tauri-plugin-fs-watch":
   version "0.0.0"
   resolved "https://github.com/tauri-apps/tauri-plugin-fs-watch#4272d258364d22d488a081b59c45a1db7b34fa83"
-  dependencies:
-    "@tauri-apps/api" "1.6.0"
-
-"tauri-plugin-log-api@https://github.com/tauri-apps/tauri-plugin-log":
-  version "0.0.0"
-  resolved "https://github.com/tauri-apps/tauri-plugin-log#d33f0f4f8dbb02e705a83a471cdbbb9cb7b73a40"
   dependencies:
     "@tauri-apps/api" "1.6.0"
 
