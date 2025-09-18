@@ -16,11 +16,11 @@ import {
   Select,
 } from "@mantine/core";
 import { appDataDir } from "@tauri-apps/api/path";
-import { writeText } from "@tauri-apps/api/clipboard";
+import { writeText } from "@tauri-apps/plugin-clipboard-manager";
 import React, { useEffect, useState } from "react";
 import { IconCheck, IconCopy, IconInfoCircle, IconPlayerPlay, IconX } from "@tabler/icons-react";
-import { open } from "@tauri-apps/api/dialog";
-import { open as openLink } from "@tauri-apps/api/shell";
+import { open } from "@tauri-apps/plugin-dialog";
+import { open as openLink } from "@tauri-apps/plugin-shell";
 import {
   useLogFilePath,
   useMapViewSettings,
@@ -35,7 +35,7 @@ import {
 import { playSound as playSoundFunc } from "../game-found-sound/playSound";
 import events from "../mixpanel/mixpanel";
 import { useGameData } from "../game-data-provider/GameDataProvider";
-import { relaunch } from "@tauri-apps/api/process";
+import { relaunch } from "@tauri-apps/plugin-process";
 import { getMapsUrlOnCDN } from "../utils/utils";
 import { MapViewSettings } from "../game-data-provider/GameData-types";
 import { ColorSchemeToggle } from "../components/ToggleCollorShemeButton";

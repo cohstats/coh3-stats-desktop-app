@@ -1,11 +1,12 @@
 import { Box, Group } from "@mantine/core";
-import { appWindow } from "@tauri-apps/api/window";
+import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
 import { Link, useLocation } from "react-router";
 import logo from "./assets/logo/32x32.png";
 import { Routes } from "./Router";
 import classes from "./WindowTitleBar.module.css";
 import React from "react";
-import { saveWindowState, StateFlags } from "tauri-plugin-window-state-api";
+import { saveWindowState, StateFlags } from "@tauri-apps/plugin-window-state";
+const appWindow = getCurrentWebviewWindow();
 
 export interface WindowTitleBarProps {
   children?: React.ReactNode;

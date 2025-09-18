@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Badge, Group, Tooltip } from "@mantine/core";
 import { getNumberOfOnlinePlayersSteamUrl } from "../utils/steam-api";
-import { fetch } from "@tauri-apps/api/http";
+import { fetch } from "@tauri-apps/plugin-http";
 import { SteamIcon } from "./other/Steam-icon";
 
 export const OnlinePlayers: React.FC = () => {

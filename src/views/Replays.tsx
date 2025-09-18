@@ -19,18 +19,18 @@ import {
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { IconCheck, IconCopy, IconX } from "@tabler/icons-react";
-import { open } from "@tauri-apps/api/dialog";
-import { open as openLink } from "@tauri-apps/api/shell";
+import { open } from "@tauri-apps/plugin-dialog";
+import { open as openLink } from "@tauri-apps/plugin-shell";
 import { useAutoSyncReplays, usePlaybackPath } from "../game-data-provider/configValues";
 
 import events from "../mixpanel/mixpanel";
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 import { emit, listen } from "@tauri-apps/api/event";
 import { COHDBIcon } from "../components/other/COHDB-icon";
 import { showNotification } from "../utils/notifications";
 import { cohdbPlayerOverView } from "../utils/external-routes";
 import HelperIcon from "../components/other/helper-icon";
-import { writeText } from "@tauri-apps/api/clipboard";
+import { writeText } from "@tauri-apps/plugin-clipboard-manager";
 import config from "../config";
 
 interface CohdbUser {

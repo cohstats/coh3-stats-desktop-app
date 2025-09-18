@@ -1,6 +1,6 @@
 import { Group, Text, Tooltip, Image, Anchor } from "@mantine/core";
 import React from "react";
-import { open } from "@tauri-apps/api/shell";
+import { open } from "@tauri-apps/plugin-shell";
 import { raceIDs } from "../../../utils/match-helpers";
 import { coh3statsPlayerProfile } from "../../../utils/external-routes";
 

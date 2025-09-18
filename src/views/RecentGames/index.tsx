@@ -15,7 +15,7 @@ import {
   Anchor,
 } from "@mantine/core";
 import { IconInfoCircle, IconRefresh, IconEyePlus } from "@tabler/icons-react";
-import { open as openLink } from "@tauri-apps/api/shell";
+import { open as openLink } from "@tauri-apps/plugin-shell";
 import { DataTable } from "mantine-datatable";
 import { useDisclosure, useLocalStorage } from "@mantine/hooks";
 import { getPlayerMatches } from "../../utils/coh3-matches";

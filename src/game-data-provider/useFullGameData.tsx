@@ -7,7 +7,7 @@ import {
   RawTeamData,
 } from "./GameData-types";
 import { useRawGameData } from "./useRawGameData";
-import { fetch } from "@tauri-apps/api/http";
+import { fetch } from "@tauri-apps/plugin-http";
 import config from "../config";
 import { MantineColor } from "@mantine/core";
 import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay";
@@ -68,7 +68,12 @@ export const useFullGameData = () => {
         ),
       );
 
-      let mergedResponses = responses.map((response, index) => ({
+      // Parse JSON responses
+      const jsonResponses = await Promise.all(
+        responses.map(async (response) => await response.json()),
+      );
+
+      let mergedResponses = jsonResponses.map((response, index) => ({
         response,
         relicID: onlyRealPlayers[index].relic_id,
         faction: logFileRaceTypeToRaceType[onlyRealPlayers[index].faction],
@@ -87,7 +92,7 @@ export const useFullGameData = () => {
       );
 
       mergedResponses.forEach((response) => {
-        const data = response.response.data as RawLaddersObject;
+        const data = response.response as RawLaddersObject;
         if (data.result && data.result.message === "SUCCESS") {
           const refinedPlayerIndex = refinedPlayerData.findIndex(
             (player) => player.relicID === response.relicID,

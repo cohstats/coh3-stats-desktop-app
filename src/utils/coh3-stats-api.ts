@@ -1,4 +1,4 @@
-import { fetch, ResponseType } from "@tauri-apps/api/http";
+import { fetch } from "@tauri-apps/plugin-http";
 import { LRUCache } from "lru-cache";
 import config from "../config";
 import { TeamDetails } from "./data-types";
@@ -50,7 +50,6 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
         "Accept-Encoding": "br",
         Accept: "application/json",
       },
-      responseType: ResponseType.JSON,
     });
 
     if (!response.ok) {
@@ -60,13 +59,13 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
         return null;
       }
       if (response.status === 500) {
-        const data = response.data as any;
+        const data = (await response.json()) as any;
         throw new Error(`Error getting team details: ${data.error}`);
       }
       throw new Error(`Error getting team details`);
     }
 
-    const teamDetails = response.data as TeamDetails;
+    const teamDetails = (await response.json()) as TeamDetails;
     // Cache successful result
     teamDetailsCache.set(cacheKey, { found: true, data: teamDetails });
     return teamDetails;

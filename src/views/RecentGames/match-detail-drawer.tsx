@@ -15,7 +15,7 @@ import {
 } from "@mantine/core";
 import React, { useContext } from "react";
 import { IconCopy, IconCalendar, IconStopwatch, IconSwords } from "@tabler/icons-react";
-import { open as openLink } from "@tauri-apps/api/shell";
+import { open as openLink } from "@tauri-apps/plugin-shell";
 import { coh3statsMatchDetail } from "../../utils/external-routes";
 import {
   getMatchDuration,

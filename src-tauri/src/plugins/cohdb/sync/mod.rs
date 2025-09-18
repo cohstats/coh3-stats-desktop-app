@@ -5,7 +5,7 @@ use log::{debug, error, info, warn};
 use notify::{Config, Event, RecommendedWatcher, RecursiveMode, Watcher};
 use tauri::{
     plugin::{Builder, TauriPlugin},
-    AppHandle, EventHandler, Manager, Runtime,
+    AppHandle, Manager, Runtime, Listener,
 };
 use vault::{GameType, Replay};
 
@@ -21,7 +21,7 @@ pub struct State {
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("cohdbsync")
         .invoke_handler(tauri::generate_handler![])
-        .setup(|app| {
+        .setup(|app, _api| {
             app.manage(State::default());
             Ok(())
         })
@@ -37,10 +37,10 @@ pub fn setup<R: Runtime>(handle: AppHandle<R>) {
     listen_for_changes(handle.clone());
 }
 
-pub fn listen_for_changes<R: Runtime>(handle: AppHandle<R>) -> EventHandler {
+pub fn listen_for_changes<R: Runtime>(handle: AppHandle<R>) -> u32 {
     let handle_ = handle.clone();
-    handle.listen_global("playback-dir-changed", move |event| {
-        let dir: String = serde_json::from_str(event.payload().unwrap()).unwrap();
+    handle.listen("playback-dir-changed", move |event| {
+        let dir: String = serde_json::from_str(event.payload()).unwrap();
 
         info!("playback directory changed to {dir}");
 
@@ -154,7 +154,10 @@ fn init_watcher<R: Runtime>(path: PathBuf, handle: AppHandle<R>) -> Option<Recom
 }
 
 fn default_playback_path() -> String {
-    let mut path = tauri::api::path::document_dir().unwrap();
+    use std::env;
+    let mut path = dirs::document_dir().unwrap_or_else(|| {
+        env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."))
+    });
     path.push("My Games");
     path.push("Company of Heroes 3");
     path.push("playback");

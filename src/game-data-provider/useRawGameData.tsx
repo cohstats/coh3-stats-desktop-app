@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 import { RawGameData } from "./GameData-types";
 import { useLogFilePath } from "./configValues";
 

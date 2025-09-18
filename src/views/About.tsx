@@ -1,7 +1,7 @@
 import { getVersion, getName } from "@tauri-apps/api/app";
 import { appDataDir } from "@tauri-apps/api/path";
-import { open } from "@tauri-apps/api/shell";
-import { fetch } from "@tauri-apps/api/http";
+import { open } from "@tauri-apps/plugin-shell";
+import { fetch } from "@tauri-apps/plugin-http";
 import React, { useState, useEffect } from "react";
 import {
   Title,

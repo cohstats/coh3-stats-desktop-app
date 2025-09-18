@@ -7,7 +7,7 @@ import { PlayerRank } from "./PlayerRank";
 import { PlayerStreak } from "./PlayerStreak";
 import { PlayerWinRatio } from "./PlayerWinRatio";
 import { PlayerWins } from "./PlayerWins";
-import { open } from "@tauri-apps/api/shell";
+import { open } from "@tauri-apps/plugin-shell";
 import { getFactionName, getCountryName } from "../../../utils/renameLabels";
 import RankIcon from "../../../components/other/rank-icon";
 import { coh3statsPlayerProfile } from "../../../utils/external-routes";

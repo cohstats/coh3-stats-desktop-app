@@ -1,4 +1,4 @@
-import { fetch } from "@tauri-apps/api/http";
+import { fetch } from "@tauri-apps/plugin-http";
 import config from "../config";
 import { RawMatchObject, RawProfile } from "./data-types";
 
@@ -46,7 +46,7 @@ export const fetchPlayerMatches = async (
       throw Object.assign(new Error(`HTTP error! status: ${response.status}`), { response });
     }
 
-    const data = response.data as any;
+    const data = (await response.json()) as any;
 
     if (data?.result?.message === "SUCCESS") {
       // Remove the result field as it's not needed in the response

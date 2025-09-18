@@ -18,10 +18,10 @@ use reqwest::{header, Client};
 use responses::{MeResponse, UploadResponse, User};
 use tauri::async_runtime::{JoinHandle, Mutex};
 use tauri::{
-    api::shell::open,
     plugin::{Builder, TauriPlugin},
-    AppHandle, Manager, Runtime,
+    AppHandle, Manager, Runtime, Emitter,
 };
+use tauri_plugin_shell::ShellExt;
 use tokio::time::{interval, Duration};
 
 #[derive(Debug)]
@@ -96,7 +96,7 @@ async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String> {
     *state.request.lock().await = Some(request);
 
     info!("redirecting to auth URL: {auth_url}");
-    open(&handle.shell_scope(), auth_url.clone(), None).map_err(Shell)?;
+    handle.shell().open(auth_url.clone(), None).map_err(Shell)?;
     Ok(auth_url.to_string())
 }
 
@@ -142,7 +142,7 @@ pub async fn retrieve_token<R: Runtime>(request: &str, handle: &AppHandle<R>) ->
             *state.http_client.lock().await = Some(client);
             *state.user.lock().await = Some(user.clone());
 
-            handle.emit_all("cohdb:connection", user).unwrap();
+            handle.emit("cohdb:connection", user).unwrap();
         } else {
             error!("error querying user: {me:?}");
         }
@@ -183,7 +183,7 @@ async fn disconnect<R: Runtime>(handle: AppHandle<R>) -> Result<()> {
     *state.http_client.lock().await = None;
     *state.user.lock().await = None;
 
-    handle.emit_all("cohdb:connection", None::<User>).unwrap();
+    handle.emit("cohdb:connection", None::<User>).unwrap();
 
     Ok(())
 }
@@ -210,10 +210,10 @@ pub async fn upload<R: Runtime>(
     let upload = UploadResponse::from_response(res).await?;
     if let UploadResponse::Ok(replay) = upload.clone() {
         info!("upload successful, got replay: {replay:?}");
-        handle.emit_all("cohdb:upload:success", replay).unwrap();
+        handle.emit("cohdb:upload:success", replay).unwrap();
     } else {
         let err = format!("error uploading replay: {upload:?}");
-        handle.emit_all("cohdb:upload:failure", err).unwrap();
+        handle.emit("cohdb:upload:failure", err).unwrap();
         warn!("error uploading replay: {upload:?}");
     }
 
@@ -227,7 +227,7 @@ pub fn init<R: Runtime>(client_id: String, redirect_uri: String) -> TauriPlugin<
             connected,
             disconnect,
         ])
-        .setup(|app| {
+        .setup(|app, _api| {
             match PluginState::new(client_id, redirect_uri) {
                 Ok(state) => {
                     app.manage(state);
@@ -294,7 +294,7 @@ async fn query_user(client: &Client) -> Result<MeResponse> {
 }
 
 fn set_focus<R: Runtime>(handle: &AppHandle<R>) {
-    for (_, val) in handle.windows().iter() {
+    for (_, val) in handle.webview_windows().iter() {
         val.set_focus().ok();
     }
 }

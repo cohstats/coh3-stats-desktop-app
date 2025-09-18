@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { fetch } from "@tauri-apps/api/http";
+import { fetch } from "@tauri-apps/plugin-http";
 import config from "./config";
 import { MapStatsDataType } from "./utils/data-types";
 
@@ -29,7 +29,7 @@ const MapStatsProvider = ({ children }: React.PropsWithChildren) => {
           throw new Error("Network response was not ok");
         }
 
-        setData(response.data as any);
+        setData((await response.json()) as any);
       } catch (error) {
         setError(`Error fetching data: ${error}`);
       } finally {

@@ -7,7 +7,7 @@ import { Anchor, Divider, Flex, Grid, HoverCard, Image, Paper, Text } from "@man
 import { IconInfoCircle, IconSwords } from "@tabler/icons-react";
 import React, { useContext, useEffect } from "react";
 import { MapStatsContext } from "../../../map-stats-provider";
-import { open as openLink } from "@tauri-apps/api/shell";
+import { open as openLink } from "@tauri-apps/plugin-shell";
 import config from "../../../config";
 import events from "../../../mixpanel/mixpanel";
 
