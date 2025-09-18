@@ -35,9 +35,9 @@ export const About: React.FC = () => {
       getName().then((name) => setAppName(name));
 
       fetch("https://coh3stats.com/api/appUpdateRoute")
-        .then((response) => {
-          // @ts-ignore
-          setLatestVersion(response.data.version.replace("v", ""));
+        .then(async (response) => {
+          const data = await response.json();
+          setLatestVersion(data.version.replace("v", ""));
         })
         .catch((error) => {
           console.error("Error:", error);

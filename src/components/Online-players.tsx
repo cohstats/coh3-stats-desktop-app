@@ -19,8 +19,7 @@ export const OnlinePlayers: React.FC = () => {
           !onlinePlayersData
         ) {
           const fetchResponse = await fetch(getNumberOfOnlinePlayersSteamUrl());
-          // @ts-ignore
-          const { response } = fetchResponse.data;
+          const { response } = await fetchResponse.json();
           setOnlinePlayersData({
             playerCount: response.player_count,
             timeStampMs: new Date().getTime(),
