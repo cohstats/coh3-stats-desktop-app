@@ -10,11 +10,39 @@
     darken(var(--mantine-color-blue-9), 0.9)
   );
   flex: 0 1 auto;
+  /* Ensure the header can be dragged */
+  -webkit-app-region: drag;
+  app-region: drag;
 }
 
 .children {
   flex: 1 1 auto;
   overflow-y: auto;
+}
+
+/* Title bar group should allow dragging */
+.titleBarGroup {
+  /* Allow dragging on the title bar group */
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+
+/* Navigation group should not allow dragging to enable clicking */
+.navigationGroup {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+/* Window controls group should not allow dragging to enable clicking */
+.windowControlsGroup {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+/* Logo should allow dragging */
+.logo {
+  -webkit-app-region: drag;
+  app-region: drag;
 }
 
 .link {
@@ -29,6 +57,9 @@
   font-weight: 500;
   user-select: none;
   cursor: pointer;
+  /* Ensure links don't interfere with dragging */
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
 }
 
 .link:hover {
@@ -45,8 +76,29 @@
   );
 }
 
+/* Navigation links specific styling */
+.navLink {
+  /* Ensure navigation links are clickable */
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+/* Window button styling */
 .windowButton {
   padding: 10px 12px;
+  border: none;
+  background: transparent;
+  /* Ensure window buttons are clickable */
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+  /* Remove default button styling */
+  outline: none;
+  font-family: inherit;
+}
+
+.windowButton:focus {
+  outline: 2px solid var(--mantine-color-blue-6);
+  outline-offset: -2px;
 }
 
 .closeButton {
