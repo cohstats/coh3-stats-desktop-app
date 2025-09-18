@@ -1,0 +1,76 @@
+{
+  "identifier": "migrated",
+  "description": "permissions that were migrated from v1",
+  "local": true,
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:path:default",
+    "core:event:default",
+    "core:window:default",
+    "core:window:allow-set-title",
+    "core:window:allow-minimize",
+    "core:window:allow-maximize",
+    "core:window:allow-toggle-maximize",
+    "core:window:allow-close",
+    "core:window:allow-set-focus",
+    "core:window:allow-request-user-attention",
+    "core:webview:default",
+    "core:webview:allow-webview-close",
+    "core:app:default",
+    "core:resources:default",
+    "core:menu:default",
+    "core:tray:default",
+    "core:default",
+    "fs:default",
+    "fs:allow-read-file",
+    "fs:allow-read-dir",
+    "fs:allow-write-file",
+    "fs:allow-write-text-file",
+    "fs:allow-exists",
+    "fs:allow-create",
+    "fs:allow-mkdir",
+    "dialog:default",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    "shell:default",
+    "shell:allow-open",
+    "process:default",
+    "clipboard-manager:default",
+    "clipboard-manager:allow-write-text",
+    "log:default",
+    "store:default",
+    "window-state:default",
+        {
+          "identifier": "fs:scope",
+          "allow": [{ "path": "$APPDATA/*" }]
+        },
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://coh3-api.reliclink.com/*"
+        },
+        {
+          "url": "https://api.steampowered.com/*"
+        },
+        {
+          "url": "https://coh3stats.com/*"
+        },
+        {
+          "url": "https://cache-aws.coh3stats.com/*"
+        },
+        {
+          "url": "https://cohdb.com/*"
+        },
+        {
+          "url": "https://cdn.coh3stats.com/*"
+        },
+        {
+          "url": "https://*.coh3stats.com/*"
+        }
+      ]
+    }
+  ]
+}

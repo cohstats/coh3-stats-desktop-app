@@ -47,7 +47,7 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
     response = await fetch(url, {
       method: "GET",
       headers: {
-        "Accept-Encoding": "br",
+        "Accept-Encoding": "gzip",
         Accept: "application/json",
       },
     });
