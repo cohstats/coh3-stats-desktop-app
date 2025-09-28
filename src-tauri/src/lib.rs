@@ -16,9 +16,10 @@ use dp_utils::load_from_store;
 use log::{error, info};
 use overlay_server::run_http_server;
 use plugins::cohdb;
+use tauri::Runtime;
 use std::path::Path;
 use std::thread;
-use tauri::{Emitter, Manager};
+use tauri::{AppHandle, Emitter, Manager};
 // use tauri_plugin_log::Target; // Unused for now
 // use tauri_plugin_dialog::{MessageDialogBuilder, MessageDialogKind}; // Unused for now
 // use window_shadows::set_shadow; // Temporarily disabled due to compatibility issues with Tauri v2
@@ -47,7 +48,10 @@ pub fn run() {
             default_playback_path,
             check_path_exists,
             get_machine_id,
-            parse_log_file::parse_log_file_reverse
+            parse_log_file::parse_log_file_reverse,
+            cohdb_authenticate,
+            cohdb_connected,
+            cohdb_disconnect
         ])
         .plugin(tauri_plugin_log::Builder::default().build())
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
@@ -234,4 +238,20 @@ fn get_machine_id() -> Result<String, String> {
             Err(format!("Failed to get machine ID: {}", e))
         }
     }
+}
+
+// Wrapper functions for cohdb plugin commands
+#[tauri::command]
+async fn cohdb_authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String, String> {
+    cohdb::auth::authenticate(handle).await.map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+async fn cohdb_connected<R: Runtime>(handle: AppHandle<R>) -> Result<Option<cohdb::auth::responses::User>, String> {
+    cohdb::auth::connected(handle).await.map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+async fn cohdb_disconnect<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
+    cohdb::auth::disconnect(handle).await.map_err(|e| e.to_string())
 }

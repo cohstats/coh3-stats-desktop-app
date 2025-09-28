@@ -81,7 +81,7 @@ impl PluginState {
 }
 
 #[tauri::command]
-async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String> {
+pub async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String> {
     let state = handle.state::<PluginState>();
     let request = ActiveRequestState::new();
 
@@ -167,12 +167,12 @@ pub async fn connected_user<R: Runtime>(handle: AppHandle<R>) -> Option<User> {
 }
 
 #[tauri::command]
-async fn connected<R: Runtime>(handle: AppHandle<R>) -> Result<Option<User>> {
+pub async fn connected<R: Runtime>(handle: AppHandle<R>) -> Result<Option<User>> {
     Ok(connected_user(handle).await)
 }
 
 #[tauri::command]
-async fn disconnect<R: Runtime>(handle: AppHandle<R>) -> Result<()> {
+pub async fn disconnect<R: Runtime>(handle: AppHandle<R>) -> Result<()> {
     let state = handle.state::<PluginState>();
     match state.access_token.delete_password() {
         Ok(_) => Ok(()),

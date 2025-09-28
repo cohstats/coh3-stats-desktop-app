@@ -50,7 +50,7 @@ export const Replays: React.FC = () => {
 
   useEffect(() => {
     const getCohdbUser = async () => {
-      const user = (await invoke("plugin:cohdb|connected")) as CohdbUser | null;
+      const user = (await invoke("cohdb_connected")) as CohdbUser | null;
       setCohdbUser(user);
     };
 
@@ -139,7 +139,7 @@ export const Replays: React.FC = () => {
                 <Button
                   variant="default"
                   onClick={() => {
-                    invoke("plugin:cohdb|disconnect");
+                    invoke("cohdb_disconnect");
                     events.disconnect_coh_db();
                   }}
                   size={"compact-md"}
@@ -151,7 +151,7 @@ export const Replays: React.FC = () => {
               <Button
                 variant="default"
                 onClick={async () => {
-                  const authUrl = await invoke("plugin:cohdb|authenticate");
+                  const authUrl = await invoke("cohdb_authenticate");
                   events.connect_coh_db();
 
                   showNotification({
