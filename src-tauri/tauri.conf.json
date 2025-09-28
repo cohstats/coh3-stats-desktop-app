@@ -76,7 +76,7 @@
     "security": {
       "csp": null,
       "capabilities": [
-        "migrated"
+        "desktop-app-capabilities"
       ]
     }
   }

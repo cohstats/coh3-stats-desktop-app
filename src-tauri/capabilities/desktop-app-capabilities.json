@@ -1,6 +1,6 @@
 {
-  "identifier": "migrated",
-  "description": "permissions that were migrated from v1",
+  "identifier": "desktop-app-capabilities",
+  "description": "Core capabilities for the COH3 Stats Desktop App including window management, file system access, HTTP requests, and system integrations",
   "local": true,
   "windows": [
     "main"
