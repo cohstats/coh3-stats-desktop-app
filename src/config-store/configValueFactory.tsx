@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Store } from "@tauri-apps/plugin-store";
+import { load } from "@tauri-apps/plugin-store";
 import { getStore } from "./store";
+
+type Store = Awaited<ReturnType<typeof load>>;
 
 // Simple EventEmitter implementation for config changes
 class SimpleEventEmitter {
