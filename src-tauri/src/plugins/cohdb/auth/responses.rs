@@ -17,6 +17,7 @@ pub struct User {
 pub enum MeResponse {
     Ok(User),
     Unauthenticated,
+    #[allow(dead_code)]
     ServerError(u16),
 }
 
@@ -42,7 +43,9 @@ pub enum UploadResponse {
     Ok(Replay),
     Unauthenticated,
     Unauthorized,
+    #[allow(dead_code)]
     UploadError(ErrorMessages),
+    #[allow(dead_code)]
     ServerError(u16),
 }
 

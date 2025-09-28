@@ -2,7 +2,7 @@
 #[non_exhaustive]
 pub enum Error {
     #[error("There was an error opening your browser: {0}")]
-    Shell(#[from] tauri_plugin_shell::Error),
+    Shell(#[from] tauri_plugin_opener::Error),
     #[error("There was an error retrieving your token: {0}")]
     TokenRequest(String),
     #[error("There was an error accessing your keyring: {0}")]

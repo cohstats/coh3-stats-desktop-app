@@ -1,7 +1,7 @@
 use serde::de::DeserializeOwned;
 // COH3 Desktop App Utils
 use log::{error, info};
-use tauri::{AppHandle, Runtime, Manager};
+use tauri::{AppHandle, Runtime};
 use tauri_plugin_store::StoreExt;
 
 pub fn load_from_store<R: Runtime, T: DeserializeOwned>(

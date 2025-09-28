@@ -21,7 +21,7 @@ use tauri::{
     plugin::{Builder, TauriPlugin},
     AppHandle, Emitter, Manager, Runtime,
 };
-use tauri_plugin_shell::ShellExt;
+use tauri_plugin_opener::OpenerExt;
 use tokio::time::{interval, Duration};
 
 #[derive(Debug)]
@@ -96,7 +96,7 @@ pub async fn authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String> {
     *state.request.lock().await = Some(request);
 
     info!("redirecting to auth URL: {auth_url}");
-    handle.shell().open(auth_url.clone(), None).map_err(Shell)?;
+    handle.opener().open_url(auth_url.clone(), None::<String>).map_err(Shell)?;
     Ok(auth_url.to_string())
 }
 
@@ -151,6 +151,7 @@ pub async fn retrieve_token<R: Runtime>(request: &str, handle: &AppHandle<R>) ->
     Ok(())
 }
 
+#[allow(dead_code)]
 pub async fn is_connected<R: Runtime>(handle: AppHandle<R>) -> bool {
     handle
         .state::<PluginState>()
