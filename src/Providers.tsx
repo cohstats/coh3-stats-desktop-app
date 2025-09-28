@@ -1,7 +1,7 @@
 import { MantineProvider, localStorageColorSchemeManager } from "@mantine/core";
 import { GameDataProvider } from "./game-data-provider/GameDataProvider";
 import { Notifications } from "@mantine/notifications";
-import { MapStatsProvider } from "./map-stats-provider";
+import { MapStatsProvider } from "./hooks/useMapStats";
 
 interface ProvidersProps {
   children?: React.ReactNode;

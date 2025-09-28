@@ -3,7 +3,7 @@ import { getMapName, getMapsUrlOnCDN } from "../../../utils/utils";
 import { GameDataTypes, MapViewSettings } from "../../../game-data-provider/GameData-types";
 import { useMapViewSettings } from "../../../game-data-provider/configValues";
 import { useContext } from "react";
-import { MapStatsContext } from "../../../map-stats-provider";
+import { MapStatsContext } from "../../../hooks/useMapStats";
 
 interface MapCardProps {
   gameData: GameDataTypes;

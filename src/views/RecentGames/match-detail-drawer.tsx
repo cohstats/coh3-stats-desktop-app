@@ -25,7 +25,7 @@ import {
 import { processPlayerReports } from "../../utils/match-detail-helpers";
 import MatchDetailsDataTable from "./match-details-data-table";
 import { getMapName } from "../../utils/utils";
-import { MapStatsContext } from "../../map-stats-provider";
+import { MapStatsContext } from "../../hooks/useMapStats";
 
 const MatchDetailDrawer = ({
   selectedMatchRecord,

@@ -6,7 +6,7 @@ import {
 import { Anchor, Divider, Flex, Grid, HoverCard, Image, Paper, Text } from "@mantine/core";
 import { IconInfoCircle, IconSwords } from "@tabler/icons-react";
 import React, { useContext, useEffect } from "react";
-import { MapStatsContext } from "../../../map-stats-provider";
+import { MapStatsContext } from "../../../hooks/useMapStats";
 import { open as openLink } from "@tauri-apps/plugin-shell";
 import config from "../../../config";
 import events from "../../../mixpanel/mixpanel";

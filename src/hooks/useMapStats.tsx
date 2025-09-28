@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { fetch } from "@tauri-apps/plugin-http";
-import config from "./config";
-import { MapStatsDataType } from "./utils/data-types";
+import config from "../config";
+import { MapStatsDataType } from "../utils/data-types";
 
 // Create the context with types
 const MapStatsContext = createContext<{
