@@ -49,6 +49,7 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
       headers: {
         "Accept-Encoding": "gzip",
         Accept: "application/json",
+        Origin: "https://coh3stats.com",
       },
     });
 
@@ -60,8 +61,10 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
       }
       if (response.status === 500) {
         const data = (await response.json()) as any;
+        console.error(`Error getting team details: ${data.error}`);
         throw new Error(`Error getting team details: ${data.error}`);
       }
+      console.error(`Error getting team details: ${response.status} ${response.statusText}`);
       throw new Error(`Error getting team details`);
     }
 
