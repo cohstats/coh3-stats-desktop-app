@@ -67,7 +67,7 @@ const getTimeAgo = (timestamp: number): string => {
 
 export const RecentGames: React.FC = () => {
   const [matchData, setMatchData] = useState<ProcessedMatch[] | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const [playerProfileID] = usePlayerProfileID();

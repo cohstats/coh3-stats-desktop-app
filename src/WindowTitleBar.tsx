@@ -6,6 +6,7 @@ import { Routes } from "./Router";
 import classes from "./WindowTitleBar.module.css";
 import React, { useCallback } from "react";
 import { saveWindowState, StateFlags } from "@tauri-apps/plugin-window-state";
+import { OnlinePlayers } from "./components/Online-players";
 
 export interface WindowTitleBarProps {
   children?: React.ReactNode;
@@ -99,6 +100,7 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
             )}
           </Group>
           <Group gap={0} className={classes.windowControlsGroup}>
+            <OnlinePlayers compact />
             <button
               onClick={handleMinimize}
               className={`${classes.link} ${classes.windowButton}`}
