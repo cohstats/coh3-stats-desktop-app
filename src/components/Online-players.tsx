@@ -1,13 +1,13 @@
 import { Badge, Group, Tooltip } from "@mantine/core";
 import { SteamIcon } from "./other/Steam-icon";
-import { useOnlinePlayersData } from "../hooks/useOnlinePlayersData";
+import { useSteamOnlinePlayers } from "../providers/SteamOnlinePlayersProvider";
 
 interface OnlinePlayersProps {
   compact?: boolean;
 }
 
 export const OnlinePlayers: React.FC<OnlinePlayersProps> = ({ compact = false }) => {
-  const { onlinePlayersData, isLoading, error } = useOnlinePlayersData();
+  const { onlinePlayersData, isLoading, error } = useSteamOnlinePlayers();
 
   return (
     <Tooltip

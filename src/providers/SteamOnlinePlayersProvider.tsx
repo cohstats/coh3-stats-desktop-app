@@ -1,13 +1,32 @@
-import { useEffect, useRef, useState } from "react";
-import { getNumberOfOnlinePlayersSteamUrl } from "../utils/steam-api";
+import React, { createContext, useState, useEffect, useRef, useContext } from "react";
 import { fetch } from "@tauri-apps/plugin-http";
+import { getNumberOfOnlinePlayersSteamUrl } from "../utils/steam-api";
 
 interface OnlinePlayersData {
   playerCount: number;
   timeStampMs: number;
 }
 
-export const useOnlinePlayersData = () => {
+interface SteamOnlinePlayersContextType {
+  onlinePlayersData: OnlinePlayersData | null;
+  isLoading: boolean;
+  error: string | null;
+  refetch: () => Promise<void>;
+}
+
+// Create the context with types
+const SteamOnlinePlayersContext = createContext<SteamOnlinePlayersContextType>({
+  onlinePlayersData: null,
+  isLoading: false,
+  error: null,
+  refetch: async () => {},
+});
+
+// Custom hook to use the Steam online players context
+export const useSteamOnlinePlayers = () => useContext(SteamOnlinePlayersContext);
+
+// Provider component
+export const SteamOnlinePlayersProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [onlinePlayersData, setOnlinePlayersData] = useState<OnlinePlayersData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -66,10 +85,16 @@ export const useOnlinePlayersData = () => {
     };
   }, []); // Empty dependency array - we want this to run once and manage its own state
 
-  return {
+  const contextValue: SteamOnlinePlayersContextType = {
     onlinePlayersData,
     isLoading,
     error,
     refetch: fetchOnlinePlayersData,
   };
+
+  return (
+    <SteamOnlinePlayersContext.Provider value={contextValue}>
+      {children}
+    </SteamOnlinePlayersContext.Provider>
+  );
 };

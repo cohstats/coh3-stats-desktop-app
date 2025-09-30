@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { getMapName, getMapsUrlOnCDN } from "../../../utils/utils";
 import { MapViewSettings } from "../../../game-data-provider/GameData-types";
 import { useMapViewSettings } from "../../../game-data-provider/configValues";
-import { MapStatsContext } from "../../../hooks/useMapStats";
+import { MapStatsContext } from "../../../providers/MapStatsProvider";
 
 const RenderMap = ({
   mapName,
