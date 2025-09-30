@@ -105,6 +105,14 @@ const events = {
       displayed,
     });
   },
+  open_leaderboards: async (): Promise<void> => {
+    if (!shouldSendAnalytics) return;
+
+    mixpanel.track("open_leaderboards", {
+      distinct_id: await getClientId(),
+      version: await getVersion(),
+    });
+  },
 };
 
 export default events;

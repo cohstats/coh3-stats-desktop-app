@@ -91,4 +91,10 @@ export const RecentGamesErrorBoundary: React.FC<React.PropsWithChildren> = ({ ch
   </ErrorBoundary>
 );
 
+export const LeaderboardsErrorBoundary: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <ErrorBoundary fallbackMessage="Error loading Leaderboards. Please check your connection and try again.">
+    {children}
+  </ErrorBoundary>
+);
+
 export { ErrorBoundary };

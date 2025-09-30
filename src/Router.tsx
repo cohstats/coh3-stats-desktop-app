@@ -6,12 +6,14 @@ import { Settings } from "./views/Settings";
 import { Replays } from "./views/Replays";
 import { Debug } from "./views/Debug";
 import { RecentGames } from "./views/RecentGames";
+import { Leaderboards } from "./views/Leaderboards";
 import {
   AboutErrorBoundary,
   GameErrorBoundary,
   ReplaysErrorBoundary,
   SettingsErrorBoundary,
   RecentGamesErrorBoundary,
+  LeaderboardsErrorBoundary,
 } from "./components/ErrorBoundary";
 
 export enum Routes {
@@ -20,6 +22,7 @@ export enum Routes {
   ABOUT = "/about",
   REPLAYS = "/replays",
   RECENT_GAMES = "/recent-games",
+  LEADERBOARDS = "/leaderboards",
   DEBUG = "/debug",
 }
 
@@ -58,6 +61,14 @@ const router = createBrowserRouter([
           <RecentGamesErrorBoundary>
             <RecentGames />
           </RecentGamesErrorBoundary>
+        ),
+      },
+      {
+        path: Routes.LEADERBOARDS,
+        element: (
+          <LeaderboardsErrorBoundary>
+            <Leaderboards />
+          </LeaderboardsErrorBoundary>
         ),
       },
       {

@@ -13,6 +13,8 @@ export type logFileRaceType =
 
 export type raceType = "german" | "american" | "dak" | "british";
 
+export type platformType = "steam" | "xbox" | "psn";
+
 export type RelicAPIResult = {
   code: number;
   message: string;

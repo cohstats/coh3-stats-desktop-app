@@ -5,7 +5,7 @@ import { MapStatsDataType } from "./data-types";
 import { raceType, RawLaddersObject } from "../coh3-types";
 import { leaderboardsIDAsObject } from "../coh3-data";
 
-export const calculatePlayerTier = (rank: number, rating: number) => {
+export const calculatePlayerTier = (rank: number | null | undefined, rating: number) => {
   if (!rank || rank <= 0) {
     return PlayerRanks.NO_RANK;
   }

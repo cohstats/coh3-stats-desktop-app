@@ -4,7 +4,7 @@ import { calculatePlayerTier } from "../../utils/utils";
 type Props = {
   size: number;
   rating: number;
-  rank: number;
+  rank: number | undefined;
 };
 
 const RankIcon = ({ size, rank, rating }: Props) => {

@@ -65,6 +65,14 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
               Recent Games
             </Link>
             <Link
+              to={Routes.LEADERBOARDS}
+              className={`${classes.link} ${classes.navLink} ${
+                location.pathname === Routes.LEADERBOARDS ? classes.selectedLink : ""
+              }`}
+            >
+              Leaderboards
+            </Link>
+            <Link
               to={Routes.SETTINGS}
               className={`${classes.link} ${classes.navLink} ${
                 location.pathname === Routes.SETTINGS ? classes.selectedLink : ""
