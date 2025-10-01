@@ -57,7 +57,7 @@ export const About: React.FC = () => {
       appDataDir().then((path) => setPathToLogs(path));
       getName().then((name) => setAppName(name));
 
-      fetch("https://coh3stats.com/api/appUpdateRoute")
+      fetch(config.COHS3STATS_API_UPDATE_ROUTE)
         .then(async (response) => {
           const data = await response.json();
           setLatestVersion(data.version.replace("v", ""));

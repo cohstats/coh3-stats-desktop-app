@@ -7,6 +7,7 @@ const config = {
   SEND_ANALYTICS_IN_DEV: false,
   BASE_RELIC_API_URL: "https://coh3-api.reliclink.com",
   BASE_CLOUD_FUNCTIONS_PROXY_URL: "https://cache.coh3stats.com",
+  COHS3STATS_API_UPDATE_ROUTE: "https://coh3stats.com/api/appUpdateRouteV2",
 };
 
 export default config;
