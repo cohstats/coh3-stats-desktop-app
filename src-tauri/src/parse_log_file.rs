@@ -106,7 +106,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                 continue;
             }
 
-           if let Ok((profile_id, _)) = get_game_player_profile_id(tail) {
+            if let Ok((profile_id, _)) = get_game_player_profile_id(tail) {
                 player_profile_id = profile_id.to_string();
                 continue;
             }
@@ -257,7 +257,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
 
     info!(
         "Log file parsed: Found {} players. Left team {:?}, right team {:?}.",
-        left_team.players.len() + right_team.players.len(), left_team.side, right_team.side
+        left_team.players.len() + right_team.players.len(),
+        left_team.side,
+        right_team.side
     );
 
     LogFileData {
@@ -405,7 +407,8 @@ fn get_game_player_steam_id(timestamped_tail: &str) -> nom::IResult<&str, ()> {
 }
 
 fn get_game_player_profile_id(timestamped_tail: &str) -> nom::IResult<&str, ()> {
-    let (profile_id, _) = nom::bytes::complete::tag("[SP_BG] login event. LocalProfileID: ")(timestamped_tail)?;
+    let (profile_id, _) =
+        nom::bytes::complete::tag("[SP_BG] login event. LocalProfileID: ")(timestamped_tail)?;
     Ok((profile_id, ()))
 }
 

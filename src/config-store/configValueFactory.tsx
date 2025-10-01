@@ -1,9 +1,32 @@
-import { EventEmitter } from "@tauri-apps/api/shell";
 import { useEffect, useRef, useState } from "react";
-import { Store } from "tauri-plugin-store-api";
+import { load } from "@tauri-apps/plugin-store";
 import { getStore } from "./store";
 
-const CONFIG_CHANGE_EVENT = new EventEmitter();
+type Store = Awaited<ReturnType<typeof load>>;
+
+// Simple EventEmitter implementation for config changes
+class SimpleEventEmitter {
+  private listeners: { [key: string]: Function[] } = {};
+
+  on(event: string, listener: Function) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event].push(listener);
+  }
+
+  off(event: string, listener: Function) {
+    if (!this.listeners[event]) return;
+    this.listeners[event] = this.listeners[event].filter((l) => l !== listener);
+  }
+
+  emit(event: string, ...args: any[]) {
+    if (!this.listeners[event]) return;
+    this.listeners[event].forEach((listener) => listener(...args));
+  }
+}
+
+const CONFIG_CHANGE_EVENT = new SimpleEventEmitter();
 
 export const configValueFactory = <T,>(
   key: string,
@@ -21,13 +44,13 @@ export const configValueFactory = <T,>(
         const defaultValue = await defaultValueFunc();
         let validatedValue = defaultValue;
         if (validatorFunc !== undefined) {
-          if (storeValue === null) {
+          if (storeValue === null || storeValue === undefined) {
             validatedValue = await validatorFunc(defaultValue, store, defaultValue);
           } else {
-            validatedValue = await validatorFunc(storeValue, store, defaultValue);
+            validatedValue = await validatorFunc(storeValue as T, store, defaultValue);
           }
-        } else if (storeValue !== null) {
-          validatedValue = storeValue;
+        } else if (storeValue !== null && storeValue !== undefined) {
+          validatedValue = storeValue as Awaited<T>;
         }
         await store.set(key, validatedValue);
         await store.save();
@@ -63,10 +86,10 @@ export const configValueFactory = <T,>(
   const getter: () => Promise<T> = async () => {
     const store = await getStore();
     const storeValue = await store.get<T>(key);
-    if (storeValue === null) {
+    if (storeValue === null || storeValue === undefined) {
       return await defaultValueFunc();
     }
-    return storeValue;
+    return storeValue as T;
   };
   return [getter, reactHook] as const;
 };

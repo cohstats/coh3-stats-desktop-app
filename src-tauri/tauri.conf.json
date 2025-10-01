@@ -1,102 +1,83 @@
 {
-    "build": {
-        "beforeDevCommand": "yarn dev",
-        "beforeBuildCommand": "yarn build",
-        "devPath": "http://localhost:1420",
-        "distDir": "../dist"
+  "build": {
+    "beforeDevCommand": "yarn dev",
+    "beforeBuildCommand": "yarn build",
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420"
+  },
+  "bundle": {
+    "active": true,
+    "category": "Game",
+    "copyright": "COH Stats",
+    "targets": [
+      "msi"
+    ],
+    "externalBin": [],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": "",
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      }
     },
-    "package": {
-        "productName": "COH3 Stats Desktop App",
-        "version": "../package.json"
+    "longDescription": "",
+    "macOS": {
+      "entitlements": null,
+      "exceptionDomain": "",
+      "frameworks": [],
+      "providerShortName": null,
+      "signingIdentity": null
     },
-    "tauri": {
-        "allowlist": {
-            "clipboard": {
-                "writeText": true
-            },
-            "dialog": {
-                "all": true
-            },
-            "fs": {
-                "all": true,
-                "scope": ["$APPDATA/*"]
-            },
-            "http": {
-                "all": true,
-                "request": true,
-                "scope": ["https://coh3-api.reliclink.com/*", "https://api.steampowered.com/*", "https://coh3stats.com/*", "https://cache-aws.coh3stats.com/*"]
-            },
-            "path": {
-                "all": true
-            },
-            "shell": {
-                "open": true
-            },
-            "window": {
-                "all": true
-            },
-            "process": {
-                "all": true
-            }
-        },
-        "bundle": {
-            "active": true,
-            "category": "DeveloperTool",
-            "copyright": "",
-            "deb": {
-                "depends": []
-            },
-            "externalBin": [],
-            "icon": [
-                "icons/32x32.png",
-                "icons/128x128.png",
-                "icons/128x128@2x.png",
-                "icons/icon.icns",
-                "icons/icon.ico"
-            ],
-            "identifier": "com.coh3stats.desktop",
-            "longDescription": "",
-            "macOS": {
-                "entitlements": null,
-                "exceptionDomain": "",
-                "frameworks": [],
-                "providerShortName": null,
-                "signingIdentity": null
-            },
-            "resources": [],
-            "shortDescription": "",
-            "targets": ["msi", "updater"],
-            "windows": {
-                "certificateThumbprint": null,
-                "digestAlgorithm": "sha256",
-                "timestampUrl": "",
-                "webviewInstallMode": {
-                  "type": "embedBootstrapper"
-                }
-            }
-        },
-        "security": {
-            "csp": null
-        },
-        "updater": {
-            "active": true,
-            "endpoints": ["https://coh3stats.com/api/appUpdateRoute"],
-            "dialog": true,
-            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERFNjMzQTcwRjBEQjUwNTUKUldSVlVOdndjRHBqM21pc1BGYndieG03VVZOSGhxdUxPeDNkRkFqaXVpcEMyL2l1WUN6VDNCK1kK"
-        },
-        "windows": [
-            {
-                "label": "main",
-                "fullscreen": false,
-                "resizable": true,
-                "focus": true,
-                "title": "COH3 Stats Desktop App",
-                "width": 1000,
-                "minWidth": 900,
-                "height": 600,
-                "minHeight": 200,
-                "decorations": false
-            }
-        ]
+    "resources": [],
+    "shortDescription": "",
+    "linux": {
+      "deb": {
+        "depends": []
+      }
+    },
+    "createUpdaterArtifacts": "v1Compatible"
+  },
+  "productName": "COH3 Stats Desktop App",
+  "mainBinaryName": "COH3 Stats Desktop App",
+  "version": "../package.json",
+  "identifier": "com.coh3stats.desktop",
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERFNjMzQTcwRjBEQjUwNTUKUldSVlVOdndjRHBqM21pc1BGYndieG03VVZOSGhxdUxPeDNkRkFqaXVpcEMyL2l1WUN6VDNCK1kK",
+      "endpoints": [
+        "https://coh3stats.com/api/appUpdateRouteV2"
+      ]
     }
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "fullscreen": false,
+        "resizable": true,
+        "focus": true,
+        "title": "COH3 Stats Desktop App",
+        "width": 1000,
+        "minWidth": 900,
+        "height": 600,
+        "minHeight": 200,
+        "decorations": false,
+        "useHttpsScheme": true
+      }
+    ],
+    "security": {
+      "csp": null,
+      "capabilities": [
+        "desktop-app-capabilities"
+      ]
+    }
+  }
 }

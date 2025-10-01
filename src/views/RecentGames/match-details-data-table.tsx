@@ -5,7 +5,7 @@ import { Group, Image, Badge, Tooltip, Anchor, Text } from "@mantine/core";
 import { getMatchDurationGameTime, getIconsPathOnCDN } from "../../utils/match-detail-helpers";
 import { raceIDs } from "../../utils/match-helpers";
 import { getFactionName } from "../../utils/renameLabels";
-import { open } from "@tauri-apps/api/shell";
+import { open } from "@tauri-apps/plugin-shell";
 import { coh3statsPlayerProfile } from "../../utils/external-routes";
 import { IconInfoCircle } from "@tabler/icons-react";
 

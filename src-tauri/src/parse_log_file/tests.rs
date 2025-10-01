@@ -1,6 +1,5 @@
 use crate::parse_log_file::{parse_log_file_reverse, GameState, PlayerData, TeamSide};
 
-
 // TODO: Add more assertions and tests for parsing the log files
 
 #[test]
@@ -68,7 +67,6 @@ fn test_team_composition() {
 
     assert_eq!(result.map, "winter_line_8p_mkii");
 
-
     assert_eq!(result.left.side, TeamSide::Allies);
     assert_eq!(result.right.side, TeamSide::Axis);
 
@@ -85,40 +83,46 @@ fn test_team_composition_mixed_team() {
 
     assert_eq!(result.map, "italy_base");
 
-
     assert_eq!(result.left.side, TeamSide::Mixed);
     assert_eq!(result.right.side, TeamSide::Mixed);
 
+    assert_eq!(
+        result.right.players[0],
+        PlayerData {
+            ai: true,
+            faction: "germans_campaign".to_string(),
+            relic_id: "-1".to_string(),
+            name: "CPU - 보통".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        }
+    );
 
-    assert_eq!(result.right.players[0], PlayerData {
-        ai: true,
-        faction: "germans_campaign".to_string(),
-        relic_id: "-1".to_string(),
-        name: "CPU - 보통".to_string(),
-        position: 1,
-        steam_id: "".to_string(),
-        rank: -1,
-    });
-
-    assert_eq!(result.left.players[0],  PlayerData {
-        ai: true,
-        faction: "americans_campaign".to_string(),
-        relic_id: "-1".to_string(),
-        name: "CPU - 보통".to_string(),
-        position: 2,
-        steam_id: "".to_string(),
-        rank: -1,
-    });
-    assert_eq!(result.left.players[1], PlayerData {
-        ai: false,
-        faction: "americans_campaign".to_string(),
-        relic_id: "399635".to_string(),
-        name: "Baskervilles Blackdog".to_string(),
-        position: 0,
-        steam_id: "".to_string(),
-        rank: -1,
-    });
-
+    assert_eq!(
+        result.left.players[0],
+        PlayerData {
+            ai: true,
+            faction: "americans_campaign".to_string(),
+            relic_id: "-1".to_string(),
+            name: "CPU - 보통".to_string(),
+            position: 2,
+            steam_id: "".to_string(),
+            rank: -1,
+        }
+    );
+    assert_eq!(
+        result.left.players[1],
+        PlayerData {
+            ai: false,
+            faction: "americans_campaign".to_string(),
+            relic_id: "399635".to_string(),
+            name: "Baskervilles Blackdog".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        }
+    );
 
     assert_eq!(result.player_name, "Baskervilles Blackdog");
     assert_eq!(result.language_code, "ko");

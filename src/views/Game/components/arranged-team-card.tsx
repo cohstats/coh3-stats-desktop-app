@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Paper, Text, Group, Stack, Loader, Badge, Tooltip, Anchor } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
-import { open } from "@tauri-apps/api/shell";
+import { open } from "@tauri-apps/plugin-shell";
 import { FullPlayerData, TeamSide } from "../../../game-data-provider/GameData-types";
 import { getTeamDetails } from "../../../utils/coh3-stats-api";
 import { TeamDetails } from "../../../utils/data-types";

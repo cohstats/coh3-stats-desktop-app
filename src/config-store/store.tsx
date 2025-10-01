@@ -1,17 +1,14 @@
-import { appDataDir } from "@tauri-apps/api/path";
-import { Store } from "tauri-plugin-store-api";
+import { load } from "@tauri-apps/plugin-store";
 
-let CONFIG_StORE: Store | undefined;
+let CONFIG_StORE: Awaited<ReturnType<typeof load>> | undefined;
 
 export const getStore = async () => {
   if (CONFIG_StORE === undefined) {
-    const appDataPath = await appDataDir();
-    CONFIG_StORE = new Store(appDataPath + "config.dat");
-    try {
-      await CONFIG_StORE.load();
-    } catch {
-      await CONFIG_StORE.save();
-    }
+    // In Tauri v2, use relative path and the store will be created in the app data directory
+    CONFIG_StORE = await load("config.dat", {
+      defaults: {},
+      autoSave: true,
+    });
   }
   return CONFIG_StORE;
 };

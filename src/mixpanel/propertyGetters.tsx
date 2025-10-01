@@ -1,4 +1,4 @@
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 import { getVersion as getVersionTauri } from "@tauri-apps/api/app";
 
 let clientId: string;

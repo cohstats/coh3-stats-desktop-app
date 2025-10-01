@@ -1,5 +1,5 @@
 import { configValueFactory } from "../config-store/configValueFactory";
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 
 const [getLogFilePath, useLogFilePath] = configValueFactory<string | undefined>(
   "logFilePath",

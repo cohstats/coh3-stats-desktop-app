@@ -6,7 +6,7 @@ import { getTeamDetails } from "../utils/coh3-stats-api";
 export const Debug: React.FC = () => {
   return (
     <>
-      This is the debug page, you shoulld see this only in development mode.
+      This is the debug page, you should see this only in development mode.
       <br />
       Mode: {process.env.NODE_ENV}
       <br />
@@ -23,11 +23,12 @@ export const Debug: React.FC = () => {
         Show notifications
       </Button>
       <Button
+        // Some older versions of request had problems with brotli encoding
         onClick={async () => {
           console.log(await getTeamDetails("allies-356993-371892"));
         }}
       >
-        Get Team Details - check console - br issue
+        Get Team Details - check console - encoding issues
       </Button>
     </>
   );

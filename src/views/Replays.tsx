@@ -19,18 +19,18 @@ import {
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { IconCheck, IconCopy, IconX } from "@tabler/icons-react";
-import { open } from "@tauri-apps/api/dialog";
-import { open as openLink } from "@tauri-apps/api/shell";
+import { open } from "@tauri-apps/plugin-dialog";
+import { open as openLink } from "@tauri-apps/plugin-shell";
 import { useAutoSyncReplays, usePlaybackPath } from "../game-data-provider/configValues";
 
 import events from "../mixpanel/mixpanel";
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 import { emit, listen } from "@tauri-apps/api/event";
 import { COHDBIcon } from "../components/other/COHDB-icon";
 import { showNotification } from "../utils/notifications";
 import { cohdbPlayerOverView } from "../utils/external-routes";
 import HelperIcon from "../components/other/helper-icon";
-import { writeText } from "@tauri-apps/api/clipboard";
+import { writeText } from "@tauri-apps/plugin-clipboard-manager";
 import config from "../config";
 
 interface CohdbUser {
@@ -50,7 +50,7 @@ export const Replays: React.FC = () => {
 
   useEffect(() => {
     const getCohdbUser = async () => {
-      const user = (await invoke("plugin:cohdb|connected")) as CohdbUser | null;
+      const user = (await invoke("cohdb_connected")) as CohdbUser | null;
       setCohdbUser(user);
     };
 
@@ -139,7 +139,7 @@ export const Replays: React.FC = () => {
                 <Button
                   variant="default"
                   onClick={() => {
-                    invoke("plugin:cohdb|disconnect");
+                    invoke("cohdb_disconnect");
                     events.disconnect_coh_db();
                   }}
                   size={"compact-md"}
@@ -151,7 +151,7 @@ export const Replays: React.FC = () => {
               <Button
                 variant="default"
                 onClick={async () => {
-                  const authUrl = await invoke("plugin:cohdb|authenticate");
+                  const authUrl = await invoke("cohdb_authenticate");
                   events.connect_coh_db();
 
                   showNotification({

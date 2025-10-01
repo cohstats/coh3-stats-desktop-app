@@ -1,5 +1,5 @@
 import { FullGameData } from "../game-data-provider/GameData-types";
-import { BaseDirectory, writeTextFile } from "@tauri-apps/api/fs";
+import { BaseDirectory, writeTextFile } from "@tauri-apps/plugin-fs";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { OverlayApp } from "./SPECIAL-REACT/OverlayApp";
 import { HTML } from "./SPECIAL-REACT/HTML";
@@ -27,7 +27,7 @@ export const renderStreamerHTML = async (gameData: FullGameData) => {
   const html = renderToStaticMarkup(<HTML html={content} />);
   try {
     await writeTextFile("streamerOverlay.html", `<!doctype html>\n${html}`, {
-      dir: BaseDirectory.AppData,
+      baseDir: BaseDirectory.AppData,
     });
   } catch (e) {
     showNotification({

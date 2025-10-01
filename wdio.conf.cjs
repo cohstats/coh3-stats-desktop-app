@@ -32,7 +32,7 @@ exports.config = {
     (tauriDriver = spawn(
       path.resolve(os.homedir(), '.cargo', 'bin', 'tauri-driver'),
       // We will most likely need to change this once it changes in our runner in GitHub Actions
-      ['--native-driver', path.resolve(__dirname, 'test' , process.env.GITHUB_ACTIONS ? 'msedgedriver131.exe' : 'msedgedriver122.exe')],
+      ['--native-driver', path.resolve(__dirname, 'test' , process.env.GITHUB_ACTIONS ? 'msedgedriver140.exe' : 'msedgedriver140.exe')],
       { stdio: [null, process.stdout, process.stderr] }
     )),
 

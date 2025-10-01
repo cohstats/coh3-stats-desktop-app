@@ -1,64 +1,13 @@
-import { useEffect, useState } from "react";
 import { Badge, Group, Tooltip } from "@mantine/core";
-import { getNumberOfOnlinePlayersSteamUrl } from "../utils/steam-api";
-import { fetch } from "@tauri-apps/api/http";
 import { SteamIcon } from "./other/Steam-icon";
+import { useSteamOnlinePlayers } from "../providers/SteamOnlinePlayersProvider";
 
-export const OnlinePlayers: React.FC = () => {
-  const [onlinePlayersData, setOnlinePlayersData] = useState<null | {
-    playerCount: number;
-    timeStampMs: number;
-  }>(null);
+interface OnlinePlayersProps {
+  compact?: boolean;
+}
 
-  useEffect(() => {
-    (async () => {
-      try {
-        if (
-          (onlinePlayersData &&
-            onlinePlayersData.timeStampMs < new Date().getTime() - 1000 * 60 * 4) ||
-          !onlinePlayersData
-        ) {
-          const fetchResponse = await fetch(getNumberOfOnlinePlayersSteamUrl());
-          // @ts-ignore
-          const { response } = fetchResponse.data;
-          setOnlinePlayersData({
-            playerCount: response.player_count,
-            timeStampMs: new Date().getTime(),
-          });
-        }
-
-        // Update the data every 5 minutes
-        const intervalId = setInterval(
-          async () => {
-            try {
-              if (
-                (onlinePlayersData &&
-                  onlinePlayersData.timeStampMs < new Date().getTime() - 1000 * 60 * 4) ||
-                !onlinePlayersData
-              ) {
-                const fetchResponse = await fetch(getNumberOfOnlinePlayersSteamUrl());
-                // @ts-ignore
-                const { response } = fetchResponse.data;
-                setOnlinePlayersData({
-                  playerCount: response.player_count,
-                  timeStampMs: new Date().getTime(),
-                });
-              }
-            } catch (e) {
-              console.error(e);
-            }
-          },
-          1000 * 60 * 5,
-        );
-
-        return () => {
-          clearInterval(intervalId);
-        };
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, []);
+export const OnlinePlayers: React.FC<OnlinePlayersProps> = ({ compact = false }) => {
+  const { onlinePlayersData, isLoading, error } = useSteamOnlinePlayers();
 
   return (
     <Tooltip
@@ -71,16 +20,19 @@ export const OnlinePlayers: React.FC = () => {
     >
       <div>
         <Group gap={6}>
-          <SteamIcon size={20} />
-          Players in game
+          <SteamIcon size={compact ? 18 : 20} />
+          {!compact && "Players in game"}
           <Badge
             color="green"
             variant="filled"
-            size="md"
-            style={{ minWidth: 60, marginBottom: -1 }}
-            data-testid="online-players-badge"
+            size={"md"}
+            style={{
+              minWidth: 60,
+              marginBottom: compact ? 0 : -1,
+            }}
+            data-testid={compact ? "online-players-badge-compact" : "online-players-badge"}
           >
-            {onlinePlayersData?.playerCount}
+            {isLoading ? "..." : onlinePlayersData?.playerCount || "N/A"}
           </Badge>
         </Group>
       </div>

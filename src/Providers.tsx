@@ -1,7 +1,8 @@
 import { MantineProvider, localStorageColorSchemeManager } from "@mantine/core";
 import { GameDataProvider } from "./game-data-provider/GameDataProvider";
 import { Notifications } from "@mantine/notifications";
-import { MapStatsProvider } from "./map-stats-provider";
+import { MapStatsProvider } from "./providers/MapStatsProvider";
+import { SteamOnlinePlayersProvider } from "./providers/SteamOnlinePlayersProvider";
 
 interface ProvidersProps {
   children?: React.ReactNode;
@@ -22,9 +23,11 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
         // withNormalizeCSS
       >
         <Notifications />
-        <MapStatsProvider>
-          <GameDataProvider>{children}</GameDataProvider>
-        </MapStatsProvider>
+        <SteamOnlinePlayersProvider>
+          <MapStatsProvider>
+            <GameDataProvider>{children}</GameDataProvider>
+          </MapStatsProvider>
+        </SteamOnlinePlayersProvider>
       </MantineProvider>
     </>
   );

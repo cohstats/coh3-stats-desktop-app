@@ -1,4 +1,4 @@
-import { leaderBoardType, logFileRaceType, raceID, raceType } from "./coh3-types";
+import { leaderBoardType, logFileRaceType, platformType, raceID, raceType } from "./coh3-types";
 
 export const logFileRaceTypeToRaceType: Record<logFileRaceType, raceType> = {
   afrika_korps: "dak",
@@ -227,4 +227,55 @@ export const matchTypesAsObject: Record<
     name: "4V4_Unranked",
     localizedName: "4 VS 4",
   },
+};
+
+export type LeaderboardRegionTypes = keyof typeof leaderboardRegions;
+
+export const leaderboardRegions = {
+  europe: {
+    id: 2074389,
+    name: "Europe",
+    locstringid: 11223541,
+  },
+  na: {
+    id: 2074390,
+    name: "North America",
+    locstringid: 11223543,
+  },
+  me: {
+    id: 2074436,
+    name: "Middle East",
+    locstringid: 11223542,
+  },
+  asia: {
+    id: 2074437,
+    name: "Asia",
+    locstringid: 11223540,
+  },
+  sa: {
+    id: 2074438,
+    name: "South America",
+    locstringid: 11223545,
+  },
+  oceania: {
+    id: 2074440,
+    name: "Oceania",
+    locstringid: 11223544,
+  },
+  africa: {
+    id: 2074441,
+    name: "Africa",
+    locstringid: 11223539,
+  },
+  unkown: {
+    id: 2074442,
+    name: "Unknown",
+    locstringid: 11223546,
+  },
+};
+
+export const apiTitleTypes: Record<platformType, string> = {
+  steam: "coh3",
+  xbox: "coh3",
+  psn: "coh3",
 };

@@ -1,7 +1,7 @@
 {
   "name": "coh3-stats-desktop-app",
   "private": true,
-  "version": "1.7.0",
+  "version": "2.0.0",
   "type": "module",
   "repository": {
     "url": "https://github.com/cohstats/coh3-stats-desktop-app"
@@ -37,27 +37,35 @@
     "@mantine/notifications": "7.16.2",
     "@sentry/react": "8.52.1",
     "@tabler/icons-react": "3.29.0",
-    "@tauri-apps/api": "1.6.0",
+    "@tauri-apps/api": "2.8.0",
+    "@tauri-apps/plugin-cli": "2.4.0",
+    "@tauri-apps/plugin-clipboard-manager": "2.3.0",
+    "@tauri-apps/plugin-dialog": "2.4.0",
+    "@tauri-apps/plugin-fs": "2.4.2",
+    "@tauri-apps/plugin-http": "2.5.2",
+    "@tauri-apps/plugin-log": "2.7.0",
+    "@tauri-apps/plugin-process": "2.3.0",
+    "@tauri-apps/plugin-shell": "2.3.1",
+    "@tauri-apps/plugin-store": "2.4.0",
+    "@tauri-apps/plugin-window-state": "2.4.0",
     "@types/lodash": "4.17.17",
+    "clsx": "^2.1.1",
     "lodash": "4.17.21",
     "lru-cache": "11.1.0",
     "mantine-datatable": "7.17.1",
-    "mixpanel-browser": "2.59.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-router": "7.1.4",
-    "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch",
-    "tauri-plugin-log-api": "https://github.com/tauri-apps/tauri-plugin-log",
-    "tauri-plugin-store-api": "https://github.com/tauri-apps/tauri-plugin-store",
-    "tauri-plugin-window-state-api": "https://github.com/tauri-apps/tauri-plugin-window-state#v1"
+    "mixpanel-browser": "2.70.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-router": "7.9.3",
+    "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "1.6.3",
+    "@tauri-apps/cli": "^2.8.4",
     "@types/mixpanel-browser": "2.51.0",
     "@types/node": "20.14.8",
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
-    "@vitejs/plugin-react": "4.3.4",
+    "@vitejs/plugin-react": "5.0.4",
     "@wdio/cli": "^7",
     "@wdio/local-runner": "^7",
     "@wdio/mocha-framework": "^7",
@@ -69,6 +77,6 @@
     "postcss-simple-vars": "7.0.1",
     "prettier": "3.4.2",
     "typescript": "5.7.3",
-    "vite": "6.0.11"
+    "vite": "7.1.7"
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { error as TauriError } from "tauri-plugin-log-api";
+import { error as TauriError } from "@tauri-apps/plugin-log";
 import { Code, Space, Stack, Text, Title } from "@mantine/core";
 import * as Sentry from "@sentry/react";
 
@@ -87,6 +87,12 @@ export const AboutErrorBoundary: React.FC<React.PropsWithChildren> = ({ children
 
 export const RecentGamesErrorBoundary: React.FC<React.PropsWithChildren> = ({ children }) => (
   <ErrorBoundary fallbackMessage="Error loading Recent Games. Please check your connection and try again.">
+    {children}
+  </ErrorBoundary>
+);
+
+export const LeaderboardsErrorBoundary: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <ErrorBoundary fallbackMessage="Error loading Leaderboards. Please check your connection and try again.">
     {children}
   </ErrorBoundary>
 );

@@ -1,7 +1,7 @@
 import { getVersion, getName } from "@tauri-apps/api/app";
 import { appDataDir } from "@tauri-apps/api/path";
-import { open } from "@tauri-apps/api/shell";
-import { fetch } from "@tauri-apps/api/http";
+import { open } from "@tauri-apps/plugin-shell";
+import { fetch } from "@tauri-apps/plugin-http";
 import React, { useState, useEffect } from "react";
 import {
   Title,
@@ -20,6 +20,29 @@ import events from "../mixpanel/mixpanel";
 import config from "../config";
 import { DiscordIcon } from "../components/other/Discord-icon";
 
+/**
+ * Compare two semantic version strings
+ * @param version1 - First version string (e.g., "2.0.1")
+ * @param version2 - Second version string (e.g., "2.0.0")
+ * @returns -1 if version1 < version2, 0 if equal, 1 if version1 > version2
+ */
+const compareVersions = (version1: string, version2: string): number => {
+  const v1Parts = version1.split(".").map(Number);
+  const v2Parts = version2.split(".").map(Number);
+
+  const maxLength = Math.max(v1Parts.length, v2Parts.length);
+
+  for (let i = 0; i < maxLength; i++) {
+    const v1Part = v1Parts[i] || 0;
+    const v2Part = v2Parts[i] || 0;
+
+    if (v1Part < v2Part) return -1;
+    if (v1Part > v2Part) return 1;
+  }
+
+  return 0;
+};
+
 export const About: React.FC = () => {
   const [appVersion, setAppVersion] = useState<string>();
   const [pathToLogs, setPathToLogs] = useState<string>();
@@ -34,10 +57,10 @@ export const About: React.FC = () => {
       appDataDir().then((path) => setPathToLogs(path));
       getName().then((name) => setAppName(name));
 
-      fetch("https://coh3stats.com/api/appUpdateRoute")
-        .then((response) => {
-          // @ts-ignore
-          setLatestVersion(response.data.version.replace("v", ""));
+      fetch(config.COHS3STATS_API_UPDATE_ROUTE)
+        .then(async (response) => {
+          const data = await response.json();
+          setLatestVersion(data.version.replace("v", ""));
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -58,24 +81,57 @@ export const About: React.FC = () => {
               {appVersion}
             </Code>
           </Group>
-          {latestVersion !== appVersion && latestVersion !== undefined && (
-            <>
-              <Space h="xs" />
-              <Text component="p" size="sm" c={"red"}>
-                The latest production version is reported as {latestVersion}. If the autoupdater
-                doesn't work pelase download the new version manually{" "}
-                <Anchor
-                  href="https://coh3stats.com/desktop-app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  coh3stats.com/desktop-app
-                </Anchor>{" "}
-                and reinstall the application.
-              </Text>
-              <Space h="xs" />
-            </>
-          )}
+          {latestVersion !== appVersion &&
+            latestVersion !== undefined &&
+            appVersion &&
+            (() => {
+              const versionComparison = compareVersions(appVersion, latestVersion);
+
+              if (versionComparison < 0) {
+                // Current version is older than latest
+                return (
+                  <>
+                    <Space h="xs" />
+                    <Text component="p" size="sm" c={"red"}>
+                      The latest production version is reported as {latestVersion}. If the
+                      autoupdater doesn't work please download the new version manually{" "}
+                      <Anchor
+                        href="https://coh3stats.com/desktop-app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        coh3stats.com/desktop-app
+                      </Anchor>{" "}
+                      and reinstall the application.
+                    </Text>
+                    <Space h="xs" />
+                  </>
+                );
+              } else if (versionComparison > 0) {
+                // Current version is newer than latest
+                return (
+                  <>
+                    <Space h="xs" />
+                    <Text component="p" size="sm" c={"yellow"}>
+                      Your current version ({appVersion}) is newer than the last reported stable
+                      version ({latestVersion}). If you experience any issues, you can download
+                      the latest stable version from{" "}
+                      <Anchor
+                        href="https://coh3stats.com/desktop-app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        coh3stats.com/desktop-app
+                      </Anchor>
+                      .
+                    </Text>
+                    <Space h="xs" />
+                  </>
+                );
+              }
+
+              return null;
+            })()}
           <Text component="p" size="sm">
             Visit our website{" "}
             <Anchor onClick={() => open(config.COH3STATS_BASE_ULR)}>coh3stats.com</Anchor>.
