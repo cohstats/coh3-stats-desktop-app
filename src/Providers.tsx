@@ -3,7 +3,7 @@ import { GameDataProvider } from "./game-data-provider/GameDataProvider";
 import { Notifications } from "@mantine/notifications";
 import { MapStatsProvider } from "./providers/MapStatsProvider";
 import { SteamOnlinePlayersProvider } from "./providers/SteamOnlinePlayersProvider";
-import { useFontScale } from "./providers/FontScaleProvider";
+import { useFontScale } from "./config-store/fontScaleConfig";
 import { FontScaleInjector } from "./providers/FontScaleInjector";
 
 interface ProvidersProps {

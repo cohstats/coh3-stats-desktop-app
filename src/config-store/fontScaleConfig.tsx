@@ -1,4 +1,4 @@
-import { configValueFactory } from "../config-store/configValueFactory";
+import { configValueFactory } from "./configValueFactory";
 
 const [getFontScale, useFontScale] = configValueFactory<number>(
   "fontScale",

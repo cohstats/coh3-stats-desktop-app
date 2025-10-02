@@ -26,22 +26,22 @@ import {
   useMapViewSettings,
   useShowExtendedPlayerInfo,
 } from "../game-data-provider/configValues";
-import { usePlaySound, usePlaySoundVolume } from "../game-found-sound/configValues";
-import { useAutoSwitchToGame } from "../game-found-sound/autoSwitchConfigValues";
-import { useBringToFrontOnGameFound } from "../game-found-sound/bringToFrontConfigValues";
+import { usePlaySound, usePlaySoundVolume } from "../game-found/gameSoundConfigValues";
+import { useAutoSwitchToGame } from "../game-found/autoSwitchConfigValues";
+import { useBringToFrontOnGameFound } from "../game-found/bringToFrontConfigValues";
 import {
   useShowFlagsOverlay,
   useAlwaysShowOverlay,
   useStreamerOverlayEnabled,
 } from "../streamer-overlay/configValues";
-import { playSound as playSoundFunc } from "../game-found-sound/playSound";
+import { playSound as playSoundFunc } from "../game-found/playSound";
 import events from "../mixpanel/mixpanel";
 import { useGameData } from "../game-data-provider/GameDataProvider";
 import { relaunch } from "@tauri-apps/plugin-process";
 import { getMapsUrlOnCDN } from "../utils/utils";
 import { MapViewSettings } from "../game-data-provider/GameData-types";
 import { ColorSchemeToggle } from "../components/ToggleCollorShemeButton";
-import { useFontScale } from "../providers/FontScaleProvider";
+import { useFontScale } from "../config-store/fontScaleConfig";
 
 export const Settings: React.FC = () => {
   const gameData = useGameData();

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useFontScale } from "./FontScaleProvider";
+import { useFontScale } from "../config-store/fontScaleConfig";
 
 /**
  * This component injects CSS custom properties for font scaling

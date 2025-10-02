@@ -1,7 +1,7 @@
 {
   "name": "coh3-stats-desktop-app",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "repository": {
     "url": "https://github.com/cohstats/coh3-stats-desktop-app"
@@ -48,10 +48,10 @@
     "@tauri-apps/plugin-shell": "2.3.1",
     "@tauri-apps/plugin-store": "2.4.0",
     "@tauri-apps/plugin-window-state": "2.4.0",
-    "@types/lodash": "4.17.17",
-    "clsx": "^2.1.1",
+    "@types/lodash": "4.17.20",
+    "clsx": "2.1.1",
     "lodash": "4.17.21",
-    "lru-cache": "11.1.0",
+    "lru-cache": "11.2.2",
     "mantine-datatable": "7.17.1",
     "mixpanel-browser": "2.70.0",
     "react": "19.1.1",
@@ -75,8 +75,8 @@
     "postcss": "8.5.1",
     "postcss-preset-mantine": "1.17.0",
     "postcss-simple-vars": "7.0.1",
-    "prettier": "3.4.2",
-    "typescript": "5.7.3",
-    "vite": "7.1.7"
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "vite": "7.1.8"
   }
 }
