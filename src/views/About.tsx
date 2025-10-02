@@ -1,5 +1,5 @@
 import { getVersion, getName } from "@tauri-apps/api/app";
-import { appDataDir } from "@tauri-apps/api/path";
+import { appLocalDataDir } from "@tauri-apps/api/path";
 import { open } from "@tauri-apps/plugin-shell";
 import { fetch } from "@tauri-apps/plugin-http";
 import React, { useState, useEffect } from "react";
@@ -54,7 +54,7 @@ export const About: React.FC = () => {
     (async () => {
       getVersion().then((version) => setAppVersion(version));
       events.open_about();
-      appDataDir().then((path) => setPathToLogs(path));
+      appLocalDataDir().then((path) => setPathToLogs(path));
       getName().then((name) => setAppName(name));
 
       fetch(config.COHS3STATS_API_UPDATE_ROUTE)
@@ -191,7 +191,7 @@ export const About: React.FC = () => {
         <br />
         You can also provide the logs from the COH3 Stats Desktop app which are located here:
         <br />
-        <Code>{pathToLogs}logs</Code>
+        <Code>{pathToLogs}\logs</Code>
       </Text>
 
       <Space h={"lg"} />
