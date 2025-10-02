@@ -156,8 +156,8 @@ export const Leaderboards: React.FC = () => {
       <Container size="lg" p={0}>
         <Container fluid pl={0} pr={0}>
           <Group justify="space-between">
-            <Group>
-              <Image src={`/factions/${race}.webp`} alt={race} w={35} h={35} />
+            <Group gap={"sm"}>
+              <Image src={`/factions/${race}.webp`} alt={race} w={40} h={40} />
               <Title order={2}>
                 {localizedRace} - {localizedType}
               </Title>
@@ -165,7 +165,7 @@ export const Leaderboards: React.FC = () => {
             <Group justify="right">
               <Select
                 label="Region"
-                style={{ width: 150 }}
+                style={{ width: 140 }}
                 value={region || "global"}
                 data={[
                   { value: "global", label: "Global" },
