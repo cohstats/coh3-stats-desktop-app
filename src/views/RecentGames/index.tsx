@@ -155,7 +155,7 @@ export const RecentGames: React.FC = () => {
 
   if ((!matchData || !currentPlayerRelicId) && !loading) {
     return (
-      <Box p="md">
+      <Box p="md" pt={"xs"}>
         <Stack gap="md">
           <Group justify="space-between" align="center">
             <Title order={2}>Recent Games</Title>
@@ -209,7 +209,7 @@ export const RecentGames: React.FC = () => {
   }
 
   return (
-    <Box p="md">
+    <Box p="md" pt={"xs"}>
       <Stack gap="md">
         <MatchDetailDrawer
           selectedMatchRecord={selectedMatchRecord}
@@ -415,7 +415,7 @@ export const RecentGames: React.FC = () => {
               },
             },
             {
-              title: "Mode / Duration",
+              title: "Mode",
               accessor: "matchtype_id",
               textAlign: "center",
               render: ({ matchtype_id, startgametime, completiontime }) => {
@@ -440,7 +440,6 @@ export const RecentGames: React.FC = () => {
               render: (record) => {
                 return (
                   <Button
-                    leftSection={<IconEyePlus size={18} />}
                     variant="default"
                     size="compact-md"
                     onClick={() => {
@@ -448,7 +447,12 @@ export const RecentGames: React.FC = () => {
                       open();
                     }}
                   >
-                    Details
+                    <Group gap="xs" wrap="nowrap">
+                      <IconEyePlus size={18} />
+                      <Text component="span" visibleFrom="md">
+                        Details
+                      </Text>
+                    </Group>
                   </Button>
                 );
               },
