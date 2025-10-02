@@ -136,75 +136,84 @@ export const Settings: React.FC = () => {
             </div>
           </Group>
           <Divider />
-          <Group>
-            <div>Color Theme:</div>
-            <div data-testid="color-scheme-toggle">
-              <ColorSchemeToggle />
-            </div>
-          </Group>
-
-          <Group>
-            <div>Play sound on match found:</div>
-            <div>
-              <Group>
+          <Text fw={700}>When game is found</Text>
+          <Stack gap="md" pl="md">
+            <Group>
+              <div>Play sound:</div>
+              <div>
+                <Group>
+                  <Checkbox
+                    checked={playSound === undefined ? false : playSound}
+                    onChange={(event) => {
+                      events.settings_changed("play_sound", `${event.currentTarget.checked}`);
+                      setPlaySound(event.currentTarget.checked);
+                    }}
+                  />
+                  <Text>Volume:</Text>
+                  <Slider
+                    min={0.1}
+                    max={1}
+                    step={0.1}
+                    style={{ width: "100px" }}
+                    label={playSoundVolume ? <>{playSoundVolume.toFixed(1)}</> : null}
+                    value={playSoundVolume}
+                    onChange={setPlaySoundVolume}
+                    onChangeEnd={(value) => {
+                      events.settings_changed("play_sound_volume", value);
+                    }}
+                  />
+                  <Tooltip label="Play sound">
+                    <ActionIcon radius="xl" variant="filled" color="blue" onClick={playSoundFunc}>
+                      <IconPlayerPlay size="1.125rem" />
+                    </ActionIcon>
+                  </Tooltip>
+                </Group>
+              </div>
+            </Group>
+            <Group>
+              <div>Auto-switch to game tab:</div>
+              <div>
                 <Checkbox
-                  checked={playSound === undefined ? false : playSound}
+                  checked={autoSwitchToGame === undefined ? true : autoSwitchToGame}
                   onChange={(event) => {
-                    events.settings_changed("play_sound", `${event.currentTarget.checked}`);
-                    setPlaySound(event.currentTarget.checked);
+                    events.settings_changed(
+                      "auto_switch_to_game",
+                      `${event.currentTarget.checked}`,
+                    );
+                    setAutoSwitchToGame(event.currentTarget.checked);
                   }}
                 />
-                <Text>Volume:</Text>
-                <Slider
-                  min={0.1}
-                  max={1}
-                  step={0.1}
-                  style={{ width: "100px" }}
-                  label={playSoundVolume ? <>{playSoundVolume.toFixed(1)}</> : null}
-                  value={playSoundVolume}
-                  onChange={setPlaySoundVolume}
-                  onChangeEnd={(value) => {
-                    events.settings_changed("play_sound_volume", value);
+              </div>
+            </Group>
+
+            <Group>
+              <Tooltip
+                multiline
+                w={450}
+                label="It will bring the App to front (on top of other windows) in Windows."
+              >
+                <div>
+                  Bring App to front: <IconInfoCircle size={20} style={{ marginBottom: -4 }} />{" "}
+                </div>
+              </Tooltip>
+
+              <div>
+                <Checkbox
+                  checked={
+                    bringToFrontOnGameFound === undefined ? false : bringToFrontOnGameFound
+                  }
+                  onChange={(event) => {
+                    events.settings_changed(
+                      "bring_to_front_on_game_found",
+                      `${event.currentTarget.checked}`,
+                    );
+                    setBringToFrontOnGameFound(event.currentTarget.checked);
                   }}
                 />
-                <Tooltip label="Play sound">
-                  <ActionIcon radius="xl" variant="filled" color="blue" onClick={playSoundFunc}>
-                    <IconPlayerPlay size="1.125rem" />
-                  </ActionIcon>
-                </Tooltip>
-              </Group>
-            </div>
-          </Group>
-          <Group>
-            <div>Auto-switch to game view when match found:</div>
-            <div>
-              <Checkbox
-                checked={autoSwitchToGame === undefined ? true : autoSwitchToGame}
-                onChange={(event) => {
-                  events.settings_changed(
-                    "auto_switch_to_game",
-                    `${event.currentTarget.checked}`,
-                  );
-                  setAutoSwitchToGame(event.currentTarget.checked);
-                }}
-              />
-            </div>
-          </Group>
-          <Group>
-            <div>Bring app to front when game is found:</div>
-            <div>
-              <Checkbox
-                checked={bringToFrontOnGameFound === undefined ? false : bringToFrontOnGameFound}
-                onChange={(event) => {
-                  events.settings_changed(
-                    "bring_to_front_on_game_found",
-                    `${event.currentTarget.checked}`,
-                  );
-                  setBringToFrontOnGameFound(event.currentTarget.checked);
-                }}
-              />
-            </div>
-          </Group>
+              </div>
+            </Group>
+          </Stack>
+          <Divider />
           <Group>
             <Tooltip
               multiline
@@ -271,6 +280,12 @@ export const Settings: React.FC = () => {
                 borderRadius: 7,
               }}
             />
+          </Group>
+          <Group>
+            <div>Color Theme:</div>
+            <div data-testid="color-scheme-toggle">
+              <ColorSchemeToggle />
+            </div>
           </Group>
           <Divider />
           <Group>
