@@ -15,6 +15,8 @@ import { useLogFilePath, usePlayerProfileID } from "./configValues";
 import { playSound as playSoundFunc } from "../game-found-sound/playSound";
 import { getPlaySound } from "../game-found-sound/configValues";
 import { getAutoSwitchToGame } from "../game-found-sound/autoSwitchConfigValues";
+import { getBringToFrontOnGameFound } from "../game-found-sound/bringToFrontConfigValues";
+import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
 import { calculatePlayerPlayedFactionStats, calculateTotalGamesForPlayer } from "../utils/utils";
 import { logFileRaceTypeToRaceType, leaderboardsIDAsObject } from "../coh3-data";
 import { leaderBoardType, RawLaddersObject } from "../coh3-types";
@@ -154,6 +156,7 @@ export const useFullGameData = () => {
     const refineLogFileData = async (rawGameData: RawGameData) => {
       const playSound = await getPlaySound();
       const autoSwitchToGame = await getAutoSwitchToGame();
+      const bringToFrontOnGameFound = await getBringToFrontOnGameFound();
 
       if (rawGameData.game_state === "Loading") {
         // Play sound if enabled
@@ -165,6 +168,16 @@ export const useFullGameData = () => {
         const currentRoute = getCurrentRoute();
         if (autoSwitchToGame && currentRoute !== null && currentRoute !== Routes.GAME) {
           navigateTo(Routes.GAME);
+        }
+
+        // Bring app to front if enabled
+        if (bringToFrontOnGameFound) {
+          try {
+            const appWindow = getCurrentWebviewWindow();
+            await appWindow.setFocus();
+          } catch (error) {
+            console.error("Failed to bring window to front:", error);
+          }
         }
       }
 

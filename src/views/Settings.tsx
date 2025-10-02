@@ -28,6 +28,7 @@ import {
 } from "../game-data-provider/configValues";
 import { usePlaySound, usePlaySoundVolume } from "../game-found-sound/configValues";
 import { useAutoSwitchToGame } from "../game-found-sound/autoSwitchConfigValues";
+import { useBringToFrontOnGameFound } from "../game-found-sound/bringToFrontConfigValues";
 import {
   useShowFlagsOverlay,
   useAlwaysShowOverlay,
@@ -47,6 +48,7 @@ export const Settings: React.FC = () => {
   const [playSound, setPlaySound] = usePlaySound();
   const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume();
   const [autoSwitchToGame, setAutoSwitchToGame] = useAutoSwitchToGame();
+  const [bringToFrontOnGameFound, setBringToFrontOnGameFound] = useBringToFrontOnGameFound();
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay();
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay();
   const [mapViewSettings, setMapViewSettings] = useMapViewSettings();
@@ -184,6 +186,21 @@ export const Settings: React.FC = () => {
                     `${event.currentTarget.checked}`,
                   );
                   setAutoSwitchToGame(event.currentTarget.checked);
+                }}
+              />
+            </div>
+          </Group>
+          <Group>
+            <div>Bring app to front when game is found:</div>
+            <div>
+              <Checkbox
+                checked={bringToFrontOnGameFound === undefined ? false : bringToFrontOnGameFound}
+                onChange={(event) => {
+                  events.settings_changed(
+                    "bring_to_front_on_game_found",
+                    `${event.currentTarget.checked}`,
+                  );
+                  setBringToFrontOnGameFound(event.currentTarget.checked);
                 }}
               />
             </div>
