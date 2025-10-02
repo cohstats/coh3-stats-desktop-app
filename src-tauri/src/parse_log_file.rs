@@ -13,7 +13,7 @@ pub enum GameState {
     InGame,
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub enum GameType {
     Classic,
     AI,
