@@ -8,8 +8,8 @@ export type platformType = "steam" | "xbox" | "psn";
 // API title mapping for different platforms
 export const apiTitleTypes: Record<platformType, string> = {
   steam: "coh3",
-  xbox: "coh3", // Assuming same title for Xbox
-  psn: "coh3", // Assuming same title for PlayStation
+  xbox: "coh3xbl",
+  psn: "coh3psn",
 };
 
 // Relic API result structure

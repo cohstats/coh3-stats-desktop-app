@@ -56,21 +56,21 @@ jobs:
                 Invoke-WebRequest -Uri "http://assets.coh3stats.com/webview/WebView2.136.0.3240.92.x64.cab" -OutFile "WebView2.136.0.3240.92.x64.cab"
               shell: powershell
 
-            - name: "Full Bundle Tauri Release"
-              run: |
-                rm ./src-tauri/tauri.conf.json
-                mv ./src-tauri/full-bundle-tauri.conf.json ./src-tauri/tauri.conf.json
+#            - name: "Full Bundle Tauri Release"
+#              run: |
+#                rm ./src-tauri/tauri.conf.json
+#                mv ./src-tauri/full-bundle-tauri.conf.json ./src-tauri/tauri.conf.json
 
-            - name: "Build and release the app"
-              uses: tauri-apps/tauri-action@v0
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
-                TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
-              with:
-                tagName: __VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
-                releaseName: "__VERSION__"
-                releaseBody: "See the assets to download this version and install."
-                releaseDraft: true
-                prerelease: false
-                includeUpdaterJson: false
+#            - name: "Build and release the app"
+#              uses: tauri-apps/tauri-action@v0
+#              env:
+#                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#                TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+#                TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+#              with:
+#                tagName: __VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+#                releaseName: "__VERSION__"
+#                releaseBody: "See the assets to download this version and install."
+#                releaseDraft: true
+#                prerelease: false
+#                includeUpdaterJson: false

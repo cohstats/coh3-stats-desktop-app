@@ -276,6 +276,6 @@ export const leaderboardRegions = {
 
 export const apiTitleTypes: Record<platformType, string> = {
   steam: "coh3",
-  xbox: "coh3",
-  psn: "coh3",
+  xbox: "coh3xbl",
+  psn: "coh3psn",
 };
