@@ -119,11 +119,6 @@ export const Replays: React.FC = () => {
                 </Group>
               </List.Item>
             </List>
-            <Text fs="italic" size="sm" pt="xs">
-              It's recommended to enable autosync even when you don't want to share it with
-              anyone. If we gather enough replays, we could start providing new types of
-              statistics and analysis.
-            </Text>
           </Paper>
           <Group>
             {cohdbUser != null ? (
@@ -194,8 +189,8 @@ export const Replays: React.FC = () => {
           {cohdbUser != null && (
             <div>
               <Group>
-                <Group gap={4}>
-                  <>Path to playback directory:</>
+                <Group gap={"xs"}>
+                  <div>Path to playback directory</div>
                   <HelperIcon
                     toolTipWidth={650}
                     content={
@@ -220,7 +215,7 @@ export const Replays: React.FC = () => {
                 </Group>
                 <div>
                   <Group gap="xs">
-                    <Group gap={3}>
+                    <Group gap={"xs"}>
                       <Input
                         value={playbackPath ? playbackPath : ""}
                         style={{ width: 500 }}
@@ -253,16 +248,16 @@ export const Replays: React.FC = () => {
                 </div>
               </Group>
               <Space h={"xs"} />
-              <Checkbox
-                label="AutoSync Replays"
-                labelPosition="left"
-                size={"md"}
-                checked={autoSyncReplays === undefined ? true : autoSyncReplays}
-                onChange={(event) => {
-                  events.settings_changed("autoSyncReplays", `${!event.currentTarget.checked}`);
-                  setAutoSyncReplays(event.currentTarget.checked);
-                }}
-              />
+              <Group>
+                <Checkbox
+                  checked={autoSyncReplays === undefined ? true : autoSyncReplays}
+                  onChange={(event) => {
+                    events.settings_changed("autoSyncReplays", `${!event.currentTarget.checked}`);
+                    setAutoSyncReplays(event.currentTarget.checked);
+                  }}
+                />
+                <div>AutoSync Replays</div>
+              </Group>
             </div>
           )}
         </Stack>

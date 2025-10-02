@@ -41,6 +41,7 @@ import { relaunch } from "@tauri-apps/plugin-process";
 import { getMapsUrlOnCDN } from "../utils/utils";
 import { MapViewSettings } from "../game-data-provider/GameData-types";
 import { ColorSchemeToggle } from "../components/ToggleCollorShemeButton";
+import { useFontScale } from "../providers/FontScaleProvider";
 
 export const Settings: React.FC = () => {
   const gameData = useGameData();
@@ -53,6 +54,7 @@ export const Settings: React.FC = () => {
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay();
   const [mapViewSettings, setMapViewSettings] = useMapViewSettings();
   const [showExtendedPlayerInfo, setShowExtendedPlayerInfo] = useShowExtendedPlayerInfo();
+  const [fontScale, setFontScale] = useFontScale();
 
   const [streamerOverlayEnabled, setStreamerOverlayEnabled] = useStreamerOverlayEnabled();
   const [appDataPath, setAppDataPath] = useState<string>("");
@@ -111,7 +113,7 @@ export const Settings: React.FC = () => {
             <div>Path to warnings.log:</div>
             <div>
               <Group gap="xs">
-                <Group gap={3}>
+                <Group gap={"xs"}>
                   <Input value={logFilePath ? logFilePath : ""} style={{ width: 500 }} readOnly />
                   <Button variant="default" onClick={openLogfileDialog}>
                     Select
@@ -139,39 +141,35 @@ export const Settings: React.FC = () => {
           <Text fw={700}>When game is found</Text>
           <Stack gap="md" pl="md">
             <Group>
-              <div>Play sound:</div>
-              <div>
-                <Group>
-                  <Checkbox
-                    checked={playSound === undefined ? false : playSound}
-                    onChange={(event) => {
-                      events.settings_changed("play_sound", `${event.currentTarget.checked}`);
-                      setPlaySound(event.currentTarget.checked);
-                    }}
-                  />
-                  <Text>Volume:</Text>
-                  <Slider
-                    min={0.1}
-                    max={1}
-                    step={0.1}
-                    style={{ width: "100px" }}
-                    label={playSoundVolume ? <>{playSoundVolume.toFixed(1)}</> : null}
-                    value={playSoundVolume}
-                    onChange={setPlaySoundVolume}
-                    onChangeEnd={(value) => {
-                      events.settings_changed("play_sound_volume", value);
-                    }}
-                  />
-                  <Tooltip label="Play sound">
-                    <ActionIcon radius="xl" variant="filled" color="blue" onClick={playSoundFunc}>
-                      <IconPlayerPlay size="1.125rem" />
-                    </ActionIcon>
-                  </Tooltip>
-                </Group>
-              </div>
+              <Checkbox
+                checked={playSound === undefined ? false : playSound}
+                onChange={(event) => {
+                  events.settings_changed("play_sound", `${event.currentTarget.checked}`);
+                  setPlaySound(event.currentTarget.checked);
+                }}
+              />
+              <div>Play sound</div>
+              <Tooltip label="Play sound">
+                <ActionIcon radius="xl" variant="filled" color="blue" onClick={playSoundFunc}>
+                  <IconPlayerPlay size="1.125rem" />
+                </ActionIcon>
+              </Tooltip>
+              <Text>Volume</Text>
+              <Slider
+                min={0.1}
+                max={1}
+                step={0.1}
+                style={{ width: "100px" }}
+                label={playSoundVolume ? <>{playSoundVolume.toFixed(1)}</> : null}
+                value={playSoundVolume}
+                onChange={setPlaySoundVolume}
+                onChangeEnd={(value) => {
+                  events.settings_changed("play_sound_volume", value);
+                }}
+              />
             </Group>
+
             <Group>
-              <div>Auto-switch to game tab:</div>
               <div>
                 <Checkbox
                   checked={autoSwitchToGame === undefined ? true : autoSwitchToGame}
@@ -184,19 +182,18 @@ export const Settings: React.FC = () => {
                   }}
                 />
               </div>
-            </Group>
-
-            <Group>
               <Tooltip
                 multiline
                 w={450}
-                label="It will bring the App to front (on top of other windows) in Windows."
+                label="When the game is found, the COH3 Desktop App will automatically switch to the game tab."
               >
                 <div>
-                  Bring App to front: <IconInfoCircle size={20} style={{ marginBottom: -4 }} />{" "}
+                  Switch to game tab <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
                 </div>
               </Tooltip>
+            </Group>
 
+            <Group>
               <div>
                 <Checkbox
                   checked={
@@ -211,33 +208,42 @@ export const Settings: React.FC = () => {
                   }}
                 />
               </div>
+              <Tooltip
+                multiline
+                w={450}
+                label="It will bring the App to front (on top of other windows) in Windows."
+              >
+                <div>
+                  Bring App to front <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
+                </div>
+              </Tooltip>
             </Group>
           </Stack>
           <Divider />
           <Group>
+            <Checkbox
+              checked={showExtendedPlayerInfo === undefined ? false : showExtendedPlayerInfo}
+              onChange={(event) => {
+                events.settings_changed(
+                  "show_extended_player_info",
+                  `${event.currentTarget.checked}`,
+                );
+                setShowExtendedPlayerInfo(event.currentTarget.checked);
+              }}
+            />
             <Tooltip
               multiline
               w={600}
               label="Shows best rank and mode for a given faction. Total WinRate for the given faction across all modes. And overall winrate in all games."
             >
               <div>
-                Show extended player info:{" "}
+                Show extended player info{" "}
                 <IconInfoCircle size={20} style={{ marginBottom: -4 }} />{" "}
               </div>
             </Tooltip>
 
             <div>
               <Group>
-                <Checkbox
-                  checked={showExtendedPlayerInfo === undefined ? false : showExtendedPlayerInfo}
-                  onChange={(event) => {
-                    events.settings_changed(
-                      "show_extended_player_info",
-                      `${event.currentTarget.checked}`,
-                    );
-                    setShowExtendedPlayerInfo(event.currentTarget.checked);
-                  }}
-                />
                 <img
                   src={`example-extended-player-${showExtendedPlayerInfo ? "" : "no"}info.webp`}
                   alt="MapExample"
@@ -282,12 +288,37 @@ export const Settings: React.FC = () => {
             />
           </Group>
           <Group>
-            <div>Color Theme:</div>
             <div data-testid="color-scheme-toggle">
               <ColorSchemeToggle />
             </div>
+            <div>Color Theme</div>
           </Group>
-          <Divider />
+          <Group>
+            <div>Font Scale:</div>
+            <Group gap="md">
+              <Slider
+                min={0.7}
+                max={1.2}
+                step={0.1}
+                style={{ width: "200px" }}
+                label={(value) => `${Math.round(value * 100)}%`}
+                value={fontScale ?? 1.0}
+                onChange={setFontScale}
+                onChangeEnd={(value) => {
+                  events.settings_changed("fontScale", value);
+                }}
+                marks={[
+                  { value: 0.7, label: "70%" },
+                  { value: 0.8, label: "80%" },
+                  { value: 0.9, label: "90%" },
+                  { value: 1.0, label: "100%" },
+                  { value: 1.1, label: "110%" },
+                  { value: 1.2, label: "120%" },
+                ]}
+              />
+            </Group>
+          </Group>
+          <Divider mt={"md"} />
           <Group>
             <Text fw={700}>OBS Streamer Overlay</Text>
             <Switch
@@ -328,8 +359,6 @@ export const Settings: React.FC = () => {
           <Group>
             <div>
               <Checkbox
-                labelPosition="left"
-                label="Only show stats when loading / ingame:"
                 disabled={streamerOverlayEnabled === undefined ? false : !streamerOverlayEnabled}
                 checked={alwaysShowOverlay === undefined ? true : !alwaysShowOverlay}
                 onChange={(event) => {
@@ -341,12 +370,11 @@ export const Settings: React.FC = () => {
                 }}
               />
             </div>
+            <div>Only show stats when loading / ingame</div>
           </Group>
           <Group>
             <div>
               <Checkbox
-                labelPosition="left"
-                label="Show flags"
                 disabled={streamerOverlayEnabled === undefined ? false : !streamerOverlayEnabled}
                 checked={showFlagsOverlay === undefined ? false : showFlagsOverlay}
                 onChange={(event) => {
@@ -358,6 +386,7 @@ export const Settings: React.FC = () => {
                 }}
               />
             </div>
+            <div>Show flags</div>
           </Group>
           <div>
             <Text fw={700}>

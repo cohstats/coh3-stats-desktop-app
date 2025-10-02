@@ -11,7 +11,6 @@ export function ColorSchemeToggle() {
         onClick={() => toggleColorScheme()}
         variant="light"
         color={colorScheme === "dark" ? "yellow" : "blue"}
-        size="lg"
       >
         {colorScheme === "dark" ? (
           <IconSun size={20} stroke={1.5} />

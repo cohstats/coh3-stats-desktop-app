@@ -14,17 +14,15 @@ const HelperIcon = ({
   position?: FloatingPosition;
 }) => {
   return (
-    <ActionIcon p={0} variant="default">
-      <Tooltip
-        label={<div style={{ textAlign: "left" }}>{content}</div>}
-        withArrow
-        multiline
-        w={toolTipWidth}
-        position={position}
-      >
-        <IconInfoCircle size={iconSize} />
-      </Tooltip>
-    </ActionIcon>
+    <Tooltip
+      label={<div style={{ textAlign: "left" }}>{content}</div>}
+      withArrow
+      multiline
+      w={toolTipWidth}
+      position={position}
+    >
+      <IconInfoCircle size={iconSize} />
+    </Tooltip>
   );
 };
 

@@ -91,7 +91,7 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({ players, sid
             withArrow
             style={{ position: "absolute", right: 0 }}
           >
-            <IconInfoCircle size={16} style={{ color: "var(--mantine-color-dimmed)" }} />
+            <IconInfoCircle size={18} style={{ color: "var(--mantine-color-dimmed)" }} />
           </Tooltip>
         </Group>
       </Paper>
