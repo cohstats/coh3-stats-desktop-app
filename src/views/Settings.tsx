@@ -27,6 +27,7 @@ import {
   useShowExtendedPlayerInfo,
 } from "../game-data-provider/configValues";
 import { usePlaySound, usePlaySoundVolume } from "../game-found-sound/configValues";
+import { useAutoSwitchToGame } from "../game-found-sound/autoSwitchConfigValues";
 import {
   useShowFlagsOverlay,
   useAlwaysShowOverlay,
@@ -45,6 +46,7 @@ export const Settings: React.FC = () => {
   const [logFilePath, setLogFilePath] = useLogFilePath();
   const [playSound, setPlaySound] = usePlaySound();
   const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume();
+  const [autoSwitchToGame, setAutoSwitchToGame] = useAutoSwitchToGame();
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay();
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay();
   const [mapViewSettings, setMapViewSettings] = useMapViewSettings();
@@ -169,6 +171,21 @@ export const Settings: React.FC = () => {
                   </ActionIcon>
                 </Tooltip>
               </Group>
+            </div>
+          </Group>
+          <Group>
+            <div>Auto-switch to game view when match found:</div>
+            <div>
+              <Checkbox
+                checked={autoSwitchToGame === undefined ? true : autoSwitchToGame}
+                onChange={(event) => {
+                  events.settings_changed(
+                    "auto_switch_to_game",
+                    `${event.currentTarget.checked}`,
+                  );
+                  setAutoSwitchToGame(event.currentTarget.checked);
+                }}
+              />
             </div>
           </Group>
           <Group>

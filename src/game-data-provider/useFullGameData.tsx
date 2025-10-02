@@ -14,9 +14,12 @@ import { renderStreamerHTML } from "../streamer-overlay/renderStreamerOverlay";
 import { useLogFilePath, usePlayerProfileID } from "./configValues";
 import { playSound as playSoundFunc } from "../game-found-sound/playSound";
 import { getPlaySound } from "../game-found-sound/configValues";
+import { getAutoSwitchToGame } from "../game-found-sound/autoSwitchConfigValues";
 import { calculatePlayerPlayedFactionStats, calculateTotalGamesForPlayer } from "../utils/utils";
 import { logFileRaceTypeToRaceType, leaderboardsIDAsObject } from "../coh3-data";
 import { leaderBoardType, RawLaddersObject } from "../coh3-types";
+import { navigateTo, getCurrentRoute } from "../utils/navigation";
+import { Routes } from "../Router";
 
 const PLAYER_COLOR_OBJECT: { left: MantineColor[]; right: MantineColor[] } = {
   left: ["blue", "blue", "blue", "blue"],
@@ -150,9 +153,21 @@ export const useFullGameData = () => {
 
     const refineLogFileData = async (rawGameData: RawGameData) => {
       const playSound = await getPlaySound();
-      if (playSound && rawGameData.game_state === "Loading") {
-        playSoundFunc();
+      const autoSwitchToGame = await getAutoSwitchToGame();
+
+      if (rawGameData.game_state === "Loading") {
+        // Play sound if enabled
+        if (playSound) {
+          playSoundFunc();
+        }
+
+        // Auto-switch to game view if enabled and not already on game view
+        const currentRoute = getCurrentRoute();
+        if (autoSwitchToGame && currentRoute !== null && currentRoute !== Routes.GAME) {
+          navigateTo(Routes.GAME);
+        }
       }
+
       try {
         const [leftRefined, rightRefined] = await Promise.all([
           refineSide(rawGameData.left, true, rawGameData),
