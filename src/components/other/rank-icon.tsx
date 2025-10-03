@@ -13,7 +13,7 @@ const RankIcon = ({ size, rank, rating }: Props) => {
   return (
     <>
       <Tooltip label={rankTier.name}>
-        <Image src={rankTier.url} width={size} height={size} alt={rankTier.name} />
+        <Image src={rankTier.url} w={size} h={size} alt={rankTier.name} />
       </Tooltip>
     </>
   );

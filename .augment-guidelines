@@ -2,4 +2,5 @@
 - Always use `yarn` as our package manager.
 - To test the build after changes in /src folder run `yarn build`.
 
-
+## Version management
+- Always try to use exact version of packages, don't use `^` or `~`.
