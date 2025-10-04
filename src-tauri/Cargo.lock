@@ -948,7 +948,7 @@ dependencies = [
 
 [[package]]
 name = "coh3-stats-desktop-app"
-version = "2.0.3"
+version = "2.0.4"
 dependencies = [
  "criterion",
  "dirs 5.0.1",
