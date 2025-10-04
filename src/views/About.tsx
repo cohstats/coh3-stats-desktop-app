@@ -15,10 +15,12 @@ import {
   Space,
   Box,
 } from "@mantine/core";
+import { IconDownload } from "@tabler/icons-react";
 import logoBig from "../assets/logo/Square310x310Logo.png";
 import events from "../mixpanel/mixpanel";
 import config from "../config";
 import { DiscordIcon } from "../components/other/Discord-icon";
+import { useUpdater } from "../providers/UpdaterProvider";
 
 /**
  * Compare two semantic version strings
@@ -49,6 +51,8 @@ export const About: React.FC = () => {
   const [appName, setAppName] = useState<string>();
 
   const [latestVersion, setLatestVersion] = useState<string>();
+
+  const { checkForUpdates, updateAvailable, isChecking, showUpdateModal } = useUpdater();
 
   useEffect(() => {
     (async () => {
@@ -93,17 +97,34 @@ export const About: React.FC = () => {
                   <>
                     <Space h="xs" />
                     <Text component="p" size="sm" c={"red"}>
-                      The latest production version is reported as {latestVersion}. If the
-                      autoupdater doesn't work please download the new version manually{" "}
-                      <Anchor
-                        href="https://coh3stats.com/desktop-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        coh3stats.com/desktop-app
-                      </Anchor>{" "}
-                      and reinstall the application.
+                      The latest production version is reported as {latestVersion}.
                     </Text>
+                    <Group gap="xs" mt="xs">
+                      <Button
+                        size="xs"
+                        leftSection={<IconDownload size={16} />}
+                        onClick={() => {
+                          if (updateAvailable) {
+                            showUpdateModal();
+                          } else {
+                            checkForUpdates();
+                          }
+                        }}
+                        loading={isChecking}
+                      >
+                        {updateAvailable ? "Install Update" : "Check for Updates"}
+                      </Button>
+                      <Text component="span" size="sm" c="dimmed">
+                        or{" "}
+                        <Anchor
+                          href="https://coh3stats.com/desktop-app"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          download manually
+                        </Anchor>
+                      </Text>
+                    </Group>
                     <Space h="xs" />
                   </>
                 );

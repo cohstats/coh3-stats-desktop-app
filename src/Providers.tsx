@@ -5,6 +5,7 @@ import { MapStatsProvider } from "./providers/MapStatsProvider";
 import { SteamOnlinePlayersProvider } from "./providers/SteamOnlinePlayersProvider";
 import { useFontScale } from "./config-store/fontScaleConfig";
 import { FontScaleInjector } from "./providers/FontScaleInjector";
+import { UpdaterProvider } from "./providers/UpdaterProvider";
 
 interface ProvidersProps {
   children?: React.ReactNode;
@@ -104,11 +105,13 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
       >
         <FontScaleInjector />
         <Notifications />
-        <SteamOnlinePlayersProvider>
-          <MapStatsProvider>
-            <GameDataProvider>{children}</GameDataProvider>
-          </MapStatsProvider>
-        </SteamOnlinePlayersProvider>
+        <UpdaterProvider>
+          <SteamOnlinePlayersProvider>
+            <MapStatsProvider>
+              <GameDataProvider>{children}</GameDataProvider>
+            </MapStatsProvider>
+          </SteamOnlinePlayersProvider>
+        </UpdaterProvider>
       </MantineProvider>
     </>
   );

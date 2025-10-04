@@ -7,6 +7,7 @@ import classes from "./WindowTitleBar.module.css";
 import React, { useCallback } from "react";
 import { saveWindowState, StateFlags } from "@tauri-apps/plugin-window-state";
 import { OnlinePlayers } from "./components/Online-players";
+import { GameState } from "./components/GameState";
 
 export interface WindowTitleBarProps {
   children?: React.ReactNode;
@@ -108,7 +109,10 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
             )}
           </Group>
           <Group gap={0} className={classes.windowControlsGroup}>
-            <OnlinePlayers compact />
+            <Group gap={"xs"}>
+              <GameState compact />
+              <OnlinePlayers compact />
+            </Group>
             <button
               onClick={handleMinimize}
               className={`${classes.link} ${classes.windowButton}`}

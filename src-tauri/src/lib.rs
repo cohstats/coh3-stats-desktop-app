@@ -129,6 +129,13 @@ pub fn run() {
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let handle = app.handle();
 
+    // Initialize updater plugin for desktop platforms
+    #[cfg(desktop)]
+    {
+        info!("Initializing updater plugin");
+        handle.plugin(tauri_plugin_updater::Builder::new().build())?;
+    }
+
     if load_from_store(handle.clone(), "streamerOverlayEnabled").unwrap_or(false) {
         info!("Streamer overlay server is enabled");
         let mut file_path = match handle.path().app_data_dir() {

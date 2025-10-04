@@ -1,8 +1,7 @@
 import { useGameData } from "../../game-data-provider/GameDataProvider";
-import { Title, Grid, Loader, Group, Box, Badge, Stack } from "@mantine/core";
+import { Title, Grid, Loader, Stack, Group } from "@mantine/core";
 import { PlayerCard } from "./components/PlayerCard";
 import { useLogFilePath } from "../../game-data-provider/configValues";
-import { OnlinePlayers } from "../../components/Online-players";
 
 import MapCard from "./components/MapCard";
 import { IconSwords } from "@tabler/icons-react";
@@ -21,21 +20,6 @@ const GameContent = memo(
   }) => {
     return (
       <>
-        <>
-          <Group justify={"space-between"}>
-            <Group pt="xs" px="md" gap={"xs"}>
-              Game State{" "}
-              {gameData ? (
-                <Badge> {gameData.gameData.state} </Badge>
-              ) : (
-                <Loader type="dots" size="md" />
-              )}
-            </Group>
-            <Box pt="xs" px="md">
-              <OnlinePlayers />
-            </Box>
-          </Group>
-        </>
         {logFilePath !== undefined ? (
           <>
             {gameData && gameData.gameData.map.length > 0 ? (
@@ -50,7 +34,7 @@ const GameContent = memo(
                       side={gameData.gameData.left.side}
                     />
                   </Grid.Col>
-                  <Grid.Col span="content" mx={"sm"} pt={0}>
+                  <Grid.Col span="content" mx={"sm"} pt={30}>
                     <IconSwords size={55} />
                   </Grid.Col>
                   <Grid.Col span="auto" pt={10}>
