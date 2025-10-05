@@ -123,8 +123,8 @@ const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           <Image
             src={getIconsPathOnCDN(`/icons/races/common/symbols/building_barracks.webp`)}
             alt="Infantry"
-            width={20}
-            height={20}
+            w={20}
+            h={20}
             fallbackSrc="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjIi8+Cjx0ZXh0IHg9IjEwIiB5PSIxNCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VTwvdGV4dD4KPC9zdmc+"
           />
           Units
@@ -185,8 +185,8 @@ const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           <Image
             src={getIconsPathOnCDN("/icons/common/squad/squad.webp")}
             alt="Squads"
-            width={20}
-            height={20}
+            w={20}
+            h={20}
           />
           Squads
         </Group>
@@ -232,8 +232,8 @@ const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           <Image
             src={getIconsPathOnCDN(`/icons/races/common/symbols/building_tank_depot.webp`)}
             alt="vehicles"
-            width={20}
-            height={20}
+            w={20}
+            h={20}
             fallbackSrc="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjIi8+Cjx0ZXh0IHg9IjEwIiB5PSIxNCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VjwvdGV4dD4KPC9zdmc+"
           />
           Vehicles
@@ -280,8 +280,8 @@ const MatchDetailsDataTable = ({ data }: PlayerMatchesDataTableProps) => {
           <Image
             src={getIconsPathOnCDN(`10_retreatpoint`, "export_flatten")}
             alt="strategy points"
-            width={15}
-            height={15}
+            w={15}
+            h={15}
             fallbackSrc="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE1IiBoZWlnaHQ9IjE1IiBmaWxsPSIjY2NjIi8+Cjx0ZXh0IHg9IjcuNSIgeT0iMTEiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiMzMzMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlA8L3RleHQ+Cjwvc3ZnPg=="
           />
           Strategy points
