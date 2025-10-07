@@ -45,7 +45,7 @@ tauri-plugin-process = "2"
 tauri-plugin-updater = "2.0.0"
 tauri-plugin-shell = "2"
 thiserror = "=1.0.69"
-tokio = { version = "=1.43.0", features = ["time"] }
+tokio = { version = "=1.43.1", features = ["time"] }
 vault = "=8.0.1"
 window-shadows = "=0.2.2"
 # monitoring by sentry
