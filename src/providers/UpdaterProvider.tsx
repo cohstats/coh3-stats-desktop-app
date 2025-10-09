@@ -34,12 +34,24 @@ export const UpdaterProvider: React.FC<UpdaterProviderProps> = ({ children }) =>
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isChecking, setIsChecking] = useState(false);
 
+  // Check if updater is disabled via environment variable
+  const isUpdaterDisabled = import.meta.env.VITE_DISABLE_UPDATER === "true";
+
   useEffect(() => {
+    if (isUpdaterDisabled) {
+      info("[Updater] Auto-updater is disabled via VITE_DISABLE_UPDATER environment variable");
+      return;
+    }
     // Check for updates on app startup
     checkForUpdates();
   }, []);
 
   const checkForUpdates = async () => {
+    if (isUpdaterDisabled) {
+      info("[Updater] Update check skipped - updater is disabled");
+      return;
+    }
+
     try {
       setIsChecking(true);
       const currentVersion = await getVersion();

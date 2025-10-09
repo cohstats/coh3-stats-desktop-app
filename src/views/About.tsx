@@ -85,7 +85,13 @@ export const About: React.FC = () => {
               {appVersion}
             </Code>
           </Group>
-          {latestVersion !== appVersion &&
+          {config.UPDATER_DISABLED && (
+            <Text component="p" size="sm" c="dimmed" mt="xs">
+              Microsoft Store Edition - Updates are managed through the Microsoft Store
+            </Text>
+          )}
+          {!config.UPDATER_DISABLED &&
+            latestVersion !== appVersion &&
             latestVersion !== undefined &&
             appVersion &&
             (() => {

@@ -159,6 +159,22 @@ yarn tauri build
 The build output can be found in `src-tauri/target/release`. The installer can be found in `src-tauri/target/release/bundle/msi`. We distribute the app with msi installer, so
 let's keep that consitent.
 
+#### To build for Microsoft Store:
+
+The Microsoft Store build uses a separate configuration that disables the auto-updater (since the Microsoft Store handles updates).
+
+```bash
+yarn tauri:build:msstore
+```
+
+This command automatically:
+
+- Loads environment variables from `.env` (including signing keys)
+- Disables the auto-updater
+- Uses the Microsoft Store configuration
+
+For detailed information about Microsoft Store builds, see [MICROSOFT_STORE_BUILD.md](./MICROSOFT_STORE_BUILD.md).
+
 #### Running Rust BE Tests:
 
 ```

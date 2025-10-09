@@ -44,20 +44,13 @@
         "depends": []
       }
     },
-    "createUpdaterArtifacts": "v1Compatible"
+    "createUpdaterArtifacts": false
   },
   "productName": "COH3 Stats Desktop App",
   "mainBinaryName": "COH3 Stats Desktop App",
   "version": "../package.json",
   "identifier": "com.coh3stats.desktop",
-  "plugins": {
-    "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERFNjMzQTcwRjBEQjUwNTUKUldSVlVOdndjRHBqM21pc1BGYndieG03VVZOSGhxdUxPeDNkRkFqaXVpcEMyL2l1WUN6VDNCK1kK",
-      "endpoints": [
-        "https://coh3stats.com/api/appUpdateRouteV2"
-      ]
-    }
-  },
+  "plugins": {},
   "app": {
     "windows": [
       {
