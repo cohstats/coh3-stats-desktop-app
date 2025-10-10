@@ -216,7 +216,7 @@ export const About: React.FC = () => {
         <Code> C:\Users\Username\Documents\My Games\Company of Heroes 3\warnings.log</Code>
         <br />
         <br />
-        You can also provide the logs from the COH3 Stats Desktop app which are located here:
+        You can also provide the logs from the {appName} app which are located here:
         <br />
         <Code>{pathToLogs}\logs</Code>
       </Text>

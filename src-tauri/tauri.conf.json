@@ -46,8 +46,8 @@
     },
     "createUpdaterArtifacts": "v1Compatible"
   },
-  "productName": "COH3 Stats Desktop App",
-  "mainBinaryName": "COH3 Stats Desktop App",
+  "productName": "Grenadier - COH3 Companion",
+  "mainBinaryName": "Grenadier - COH3 Companion",
   "version": "../package.json",
   "identifier": "com.coh3stats.desktop",
   "plugins": {
@@ -65,7 +65,7 @@
         "fullscreen": false,
         "resizable": true,
         "focus": true,
-        "title": "COH3 Stats Desktop App",
+        "title": "Grenadier - COH3 Companion",
         "width": 1000,
         "minWidth": 900,
         "height": 600,

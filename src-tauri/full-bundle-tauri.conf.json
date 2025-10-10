@@ -6,7 +6,7 @@
         "distDir": "../dist"
     },
     "package": {
-        "productName": "COH3 Stats Desktop App - fullBundle version",
+        "productName": "Grenadier - COH3 Companion - fullBundle version",
         "version": "../package.json"
     },
     "tauri": {
@@ -90,7 +90,7 @@
                 "fullscreen": false,
                 "resizable": true,
                 "focus": true,
-                "title": "COH3 Stats Desktop App",
+                "title": "Grenadier - COH3 Companion",
                 "width": 1000,
                 "minWidth": 900,
                 "height": 600,
