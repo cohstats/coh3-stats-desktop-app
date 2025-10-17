@@ -192,7 +192,11 @@ export const About: React.FC = () => {
               open(config.MS_STORE_LINK);
             }}
           >
-            <Button size="mg" variant="filled" leftSection={<IconBrandWindows size={20} />}>
+            <Button
+              size="mg"
+              variant="filled"
+              leftSection={<IconBrandWindows size={20} style={{ marginLeft: 6 }} />}
+            >
               Get the App on Microsoft Store
             </Button>
           </Anchor>
