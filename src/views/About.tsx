@@ -15,7 +15,7 @@ import {
   Space,
   Box,
 } from "@mantine/core";
-import { IconDownload } from "@tabler/icons-react";
+import { IconDownload, IconBrandWindows } from "@tabler/icons-react";
 import logoBig from "../assets/logo/Square310x310Logo.png";
 import events from "../mixpanel/mixpanel";
 import config from "../config";
@@ -85,12 +85,12 @@ export const About: React.FC = () => {
               {appVersion}
             </Code>
           </Group>
-          {config.UPDATER_DISABLED && (
+          {config.MS_STORE_EDITION && (
             <Text component="p" size="sm" c="dimmed" mt="xs">
               Microsoft Store Edition - Updates are managed through the Microsoft Store
             </Text>
           )}
-          {!config.UPDATER_DISABLED &&
+          {!config.MS_STORE_EDITION &&
             latestVersion !== appVersion &&
             latestVersion !== undefined &&
             appVersion &&
@@ -182,16 +182,32 @@ export const About: React.FC = () => {
         </Grid.Col>
       </Grid>
       <Group>
-        <Button onClick={() => open("https://ko-fi.com/cohstats")}>
-          <Group gap="xs">
-            <img
-              src="https://storage.ko-fi.com/cdn/cup-border.png"
-              alt="Ko-fi donations"
-              width={18}
-            />
-            Donate
-          </Group>
-        </Button>
+        {!config.MS_STORE_EDITION ? (
+          <Anchor
+            href={config.MS_STORE_LINK}
+            target="_blank"
+            rel="noopener"
+            onClick={(e) => {
+              e.preventDefault();
+              open(config.MS_STORE_LINK);
+            }}
+          >
+            <Button size="mg" variant="filled" leftSection={<IconBrandWindows size={20} />}>
+              Get the App on Microsoft Store
+            </Button>
+          </Anchor>
+        ) : (
+          <Button onClick={() => open(config.KOFI_LINK)}>
+            <Group gap="xs">
+              <img
+                src="https://storage.ko-fi.com/cdn/cup-border.png"
+                alt="Ko-fi donations"
+                width={18}
+              />
+              Donate
+            </Group>
+          </Button>
+        )}
         <DiscordIcon />
       </Group>
       <Space h={"md"} />
@@ -238,7 +254,7 @@ export const About: React.FC = () => {
       </Text>
       <Space h={"xs"} />
       <Group>
-        <Button onClick={() => open("https://ko-fi.com/cohstats")}>
+        <Button onClick={() => open(config.KOFI_LINK)}>
           <Group gap="xs">
             <img
               src="https://storage.ko-fi.com/cdn/cup-border.png"
