@@ -21,7 +21,7 @@ const teamDetailsCache = new LRUCache<string, CachedTeamResult>({
  * @returns The encoded URL string
  */
 export const getTeamDetailsUrl = (teamID: string | number): string => {
-  const path = `/sharedAPIGen2Http/teams/${teamID}`;
+  const path = `/sharedAPIGen2Http/teams/${teamID}/exists`;
   return encodeURI(`${config.BASE_CLOUD_FUNCTIONS_PROXY_URL}${path}`);
 };
 
@@ -68,10 +68,19 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
       throw new Error(`Error getting team details`);
     }
 
-    const teamDetails = (await response.json()) as TeamDetails;
-    // Cache successful result
-    teamDetailsCache.set(cacheKey, { found: true, data: teamDetails });
-    return teamDetails;
+    const responseData = (await response.json()) as {
+      id: string;
+      data: TeamDetails | null;
+      exists: boolean;
+    };
+
+    if (!responseData.exists || !responseData.data) {
+      teamDetailsCache.set(cacheKey, { found: false, data: null });
+      return null;
+    } else {
+      teamDetailsCache.set(cacheKey, { found: true, data: responseData.data });
+      return responseData.data;
+    }
   } catch (error) {
     console.error(`Error fetching team details for team ${teamID}:`, error);
     throw error;
