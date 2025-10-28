@@ -3,9 +3,14 @@ import { Paper, Text, Group, Stack, Loader, Badge, Tooltip, Anchor } from "@mant
 import { IconInfoCircle } from "@tabler/icons-react";
 import { open } from "@tauri-apps/plugin-shell";
 import { FullPlayerData, TeamSide } from "../../../game-data-provider/GameData-types";
-import { getTeamDetails } from "../../../utils/coh3-stats-api";
+import {
+  getTeamDetails,
+  searchArrangedTeams,
+  TeamSideForCOH3ApiSearch,
+} from "../../../utils/coh3-stats-api";
 import { TeamDetails } from "../../../utils/data-types";
 import { coh3statsTeamDetails } from "../../../utils/external-routes";
+import config from "../../../config";
 
 interface ArrangedTeamCardProps {
   players: FullPlayerData[];
@@ -52,6 +57,16 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({ players, sid
         // Fetch team details
         const team = await getTeamDetails(teamKey);
         setTeamData(team);
+
+        if (!team && config.MS_STORE_EDITION && side !== "Mixed") {
+          const resultSearch = await searchArrangedTeams(
+            side.toLowerCase() as TeamSideForCOH3ApiSearch,
+            playerIds,
+          );
+          if (resultSearch.totalTeams === 0) {
+            return;
+          }
+        }
       } catch (err) {
         // If team is not found or any other error, don't render the component
         console.log("Arranged team not found or error occurred:", err);

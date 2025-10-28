@@ -6,7 +6,7 @@ import { TeamDetails } from "./data-types";
 /**
  * Type for team side (allies or axis)
  */
-export type TeamSide = "allies" | "axis";
+export type TeamSideForCOH3ApiSearch = "allies" | "axis";
 
 /**
  * Response type for team search API
@@ -106,7 +106,10 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
  * @param profileIds - Array of profile IDs
  * @returns The encoded URL string
  */
-export const getTeamSearchUrl = (side: TeamSide, profileIds: number[]): string => {
+export const getTeamSearchUrl = (
+  side: TeamSideForCOH3ApiSearch,
+  profileIds: number[],
+): string => {
   const profileIdsParam = encodeURIComponent(JSON.stringify(profileIds));
   const path = `/sharedAPIGen2Http/teams/search?side=${side}&profileIds=${profileIdsParam}`;
   return `${config.BASE_CLOUD_FUNCTIONS_PROXY_URL}${path}`;
@@ -120,7 +123,7 @@ export const getTeamSearchUrl = (side: TeamSide, profileIds: number[]): string =
  * @throws Error when API request fails
  */
 export const searchArrangedTeams = async (
-  side: TeamSide,
+  side: TeamSideForCOH3ApiSearch,
   profileIds: number[],
 ): Promise<TeamSearchResponse> => {
   const url = getTeamSearchUrl(side, profileIds);
