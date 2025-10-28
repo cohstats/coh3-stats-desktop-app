@@ -3,6 +3,19 @@ import { LRUCache } from "lru-cache";
 import config from "../config";
 import { TeamDetails } from "./data-types";
 
+/**
+ * Type for team side (allies or axis)
+ */
+export type TeamSide = "allies" | "axis";
+
+/**
+ * Response type for team search API
+ */
+export interface TeamSearchResponse {
+  teams: TeamDetails[];
+  totalTeams: number;
+}
+
 // Cache result wrapper to handle both successful and failed lookups
 interface CachedTeamResult {
   found: boolean;
@@ -83,6 +96,62 @@ export const getTeamDetails = async (teamID: string | number): Promise<TeamDetai
     }
   } catch (error) {
     console.error(`Error fetching team details for team ${teamID}:`, error);
+    throw error;
+  }
+};
+
+/**
+ * Builds the URL for searching arranged teams from COH3 Stats API
+ * @param side - The team side (allies or axis)
+ * @param profileIds - Array of profile IDs
+ * @returns The encoded URL string
+ */
+export const getTeamSearchUrl = (side: TeamSide, profileIds: number[]): string => {
+  const profileIdsParam = encodeURIComponent(JSON.stringify(profileIds));
+  const path = `/sharedAPIGen2Http/teams/search?side=${side}&profileIds=${profileIdsParam}`;
+  return `${config.BASE_CLOUD_FUNCTIONS_PROXY_URL}${path}`;
+};
+
+/**
+ * Searches for arranged teams from the COH3 Stats API
+ * @param side - The team side (allies or axis)
+ * @param profileIds - Array of profile IDs to search for
+ * @returns Promise<TeamSearchResponse>
+ * @throws Error when API request fails
+ */
+export const searchArrangedTeams = async (
+  side: TeamSide,
+  profileIds: number[],
+): Promise<TeamSearchResponse> => {
+  const url = getTeamSearchUrl(side, profileIds);
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Accept-Encoding": "gzip, deflate, br",
+        Accept: "application/json",
+        Origin: "https://coh3stats.com",
+      },
+    });
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        // Return empty result for 404
+        return { teams: [], totalTeams: 0 };
+      }
+      if (response.status === 500) {
+        const data = (await response.json()) as any;
+        console.error(`Error searching arranged teams: ${data.error}`);
+        throw new Error(`Error searching arranged teams: ${data.error}`);
+      }
+      console.error(`Error searching arranged teams: ${response.status} ${response.statusText}`);
+      throw new Error(`Error searching arranged teams`);
+    }
+
+    return (await response.json()) as TeamSearchResponse;
+  } catch (error) {
+    console.error(`Error searching arranged teams for side ${side}:`, error);
     throw error;
   }
 };
