@@ -14,6 +14,8 @@ import {
   Switch,
   Spoiler,
   Select,
+  Modal,
+  Image,
 } from "@mantine/core";
 import { appDataDir } from "@tauri-apps/api/path";
 import { writeText } from "@tauri-apps/plugin-clipboard-manager";
@@ -42,6 +44,9 @@ import { getMapsUrlOnCDN } from "../utils/utils";
 import { MapViewSettings } from "../game-data-provider/GameData-types";
 import { ColorSchemeToggle } from "../components/ToggleCollorShemeButton";
 import { useFontScale } from "../config-store/fontScaleConfig";
+import config from "../config";
+import { Link } from "react-router";
+import { Routes } from "../Router";
 
 export const Settings: React.FC = () => {
   const gameData = useGameData();
@@ -59,6 +64,7 @@ export const Settings: React.FC = () => {
   const [streamerOverlayEnabled, setStreamerOverlayEnabled] = useStreamerOverlayEnabled();
   const [appDataPath, setAppDataPath] = useState<string>("");
   const [restartRequired, setRestartRequired] = useState<boolean>(false);
+  const [friendsGroupModalOpened, setFriendsGroupModalOpened] = useState<boolean>(false);
 
   useEffect(() => {
     events.open_settings();
@@ -258,6 +264,56 @@ export const Settings: React.FC = () => {
             </div>
           </Group>
           <Group>
+            <Tooltip
+              label={
+                "Friends Groups Detection is available only in Microsoft Store Edition due to extensive API calls required."
+              }
+            >
+              <Checkbox disabled checked={config.MS_STORE_EDITION} />
+            </Tooltip>
+            <div>Friends Groups Detection</div>
+            <Button
+              variant="default"
+              size="compact-xs"
+              // leftSection={<IconInfoCircle size={16} />}
+              onClick={() => setFriendsGroupModalOpened(true)}
+            >
+              Learn More
+            </Button>
+          </Group>
+
+          <Modal
+            opened={friendsGroupModalOpened}
+            onClose={() => setFriendsGroupModalOpened(false)}
+            title="Friends Groups Detection"
+            size="xl"
+            centered
+          >
+            <Stack gap="sm">
+              <Text size="sm">
+                The default arranged team detection works only when all players from the group
+                played together as team. However the Friends Group Detection can show partial
+                teams (for example 3 man team + 1 random), it can also combine players across
+                various teams, detecting possible new groups which never played together before
+                but they are friends.
+              </Text>
+              <Text size="sm" fw={700}>
+                Friends Group detection is available only in Microsoft Store Edition due to
+                extensive API calls required.{" "}
+              </Text>
+              <Text size="sm" fw={700}>
+                <Anchor component={Link} to={Routes.ABOUT}>
+                  Learn more about MS Store Edition
+                </Anchor>
+              </Text>
+              <Image
+                src="/friends-group-detection.png"
+                alt="Friends Groups Detection Example"
+                style={{ borderRadius: 7 }}
+              />
+            </Stack>
+          </Modal>
+          <Group>
             <Select
               label={<Text>Select map view markings</Text>}
               allowDeselect={false}
@@ -280,7 +336,7 @@ export const Settings: React.FC = () => {
               }
               alt="MapExample"
               width={250}
-              height={80}
+              height={50}
               style={{
                 objectFit: "cover",
                 borderRadius: 7,

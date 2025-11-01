@@ -1,0 +1,10 @@
+.player-card-team {
+  /*position: absolute; !* Ensure the parent element has a positioning context *!*/
+  width: 6px; /* We need to be big, so we can nice radius */
+  height: 55px;
+  /*left: -34px;*/
+  /*z-index: 1;*/
+  border-radius: 10px;
+  /*This is magic constant, I don't know why this makes it int he middle*/
+  /*margin-top: -23px;*/
+}

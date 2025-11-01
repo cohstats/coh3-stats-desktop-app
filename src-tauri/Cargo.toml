@@ -1,6 +1,6 @@
 [package]
 name = "coh3-stats-desktop-app"
-version = "2.1.0"
+version = "2.1.1"
 description = "Grenadier - COH3 Companion"
 authors = ["coh3stats team"]
 license = ""

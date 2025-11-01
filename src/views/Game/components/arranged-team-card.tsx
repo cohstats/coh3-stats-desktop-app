@@ -11,10 +11,12 @@ import {
 import { TeamDetails } from "../../../utils/data-types";
 import { coh3statsTeamDetails } from "../../../utils/external-routes";
 import config from "../../../config";
+import { groupPlayersByTeamRelationships, KnownFriendsGroup } from "../../../utils/team-grouping";
 
 interface ArrangedTeamCardProps {
   players: FullPlayerData[];
   side: TeamSide;
+  onTeamGroupsChange?: (groups: KnownFriendsGroup[]) => void;
 }
 
 /**
@@ -26,10 +28,18 @@ const _createTeamKey = (team: { side: string; player_ids: number[] }) => {
   return `${team.side}-${team.player_ids.sort().join("-")}`;
 };
 
-export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({ players, side }) => {
+// Define colors for different groups
+const GROUP_COLORS = ["green", "orange", "violet", "pink", "cyan", "blue"];
+
+export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({
+  players,
+  side,
+  onTeamGroupsChange,
+}) => {
   const [teamData, setTeamData] = useState<TeamDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [teamGroups, setTeamGroups] = useState<KnownFriendsGroup[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -64,7 +74,22 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({ players, sid
             playerIds,
           );
           if (resultSearch.totalTeams === 0) {
+            console.debug("No teams found for players");
             return;
+          }
+          // console.debug("Teams found:", resultSearch.teams);
+
+          const groups = groupPlayersByTeamRelationships(resultSearch.teams, playerIds);
+          // console.log("Team groups:", groups);
+
+          if (groups.length > 0) {
+            // Assign colors to groups
+            const groupsWithColors = groups.map((group, index) => ({
+              ...group,
+              color: GROUP_COLORS[index % GROUP_COLORS.length],
+            }));
+            setTeamGroups(groupsWithColors);
+            onTeamGroupsChange?.(groupsWithColors);
           }
         }
       } catch (err) {
@@ -91,8 +116,50 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({ players, sid
     );
   }
 
-  // If no team found or error occurred, show random team info
+  // If no team found or error occurred, show team groups or random team info
   if (error || !teamData) {
+    // If we have team groups, show them
+    if (teamGroups.length > 0) {
+      return (
+        <Paper shadow="xs" withBorder p="xs" mb="xs">
+          <Group justify="center" align="center" pos="relative">
+            {teamGroups.map((group, index) => {
+              const playerNames = group.playerIds
+                .map((playerId) => {
+                  const player = players.find((p) => parseInt(p.relicID, 10) === playerId);
+                  return player?.name || `Player ${playerId}`;
+                })
+                .join(", ");
+
+              return (
+                <Tooltip
+                  key={index}
+                  label={`Known Friends: ${playerNames}`}
+                  multiline
+                  w={300}
+                  withArrow
+                >
+                  <Badge color={group.color} variant="filled">
+                    Friends Group
+                  </Badge>
+                </Tooltip>
+              );
+            })}
+            <Tooltip
+              label="These players have played together in vairous teams. Most likely they are all playing together."
+              multiline
+              w={300}
+              withArrow
+              style={{ position: "absolute", right: 0 }}
+            >
+              <IconInfoCircle size={18} style={{ color: "var(--mantine-color-dimmed)" }} />
+            </Tooltip>
+          </Group>
+        </Paper>
+      );
+    }
+
+    // No team groups found, show random team
     return (
       <Paper shadow="xs" withBorder p="xs" mb="xs">
         <Group justify="center" align="center" pos="relative">

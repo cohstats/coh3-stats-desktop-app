@@ -7,8 +7,9 @@ import MapCard from "./components/MapCard";
 import { IconSwords } from "@tabler/icons-react";
 import SummaryCard from "./components/SummaryCard";
 import { ArrangedTeamCard } from "./components/arranged-team-card";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { GameDataTypes } from "../../game-data-provider/GameData-types";
+import { KnownFriendsGroup } from "../../utils/team-grouping";
 
 const GameContent = memo(
   ({
@@ -18,6 +19,21 @@ const GameContent = memo(
     gameData: GameDataTypes;
     logFilePath: string | undefined | any;
   }) => {
+    const [leftTeamGroups, setLeftTeamGroups] = useState<KnownFriendsGroup[]>([]);
+    const [rightTeamGroups, setRightTeamGroups] = useState<KnownFriendsGroup[]>([]);
+
+    // Helper function to get team color for a player
+    const getPlayerTeamColor = (
+      relicID: string,
+      teamGroups: KnownFriendsGroup[],
+    ): string | undefined => {
+      const playerId = parseInt(relicID, 10);
+      if (isNaN(playerId)) return undefined;
+
+      const group = teamGroups.find((g) => g.playerIds.includes(playerId));
+      return group?.color;
+    };
+
     return (
       <>
         {logFilePath !== undefined ? (
@@ -27,11 +43,16 @@ const GameContent = memo(
                 <Grid gutter={0} p={"md"} pt={0}>
                   <Grid.Col span="auto" pt={10}>
                     {gameData.gameData.left.players.map((player, index) => (
-                      <PlayerCard key={player.relicID + " " + index} {...player} />
+                      <PlayerCard
+                        key={player.relicID + " " + index}
+                        {...player}
+                        teamColor={getPlayerTeamColor(player.relicID, leftTeamGroups)}
+                      />
                     ))}
                     <ArrangedTeamCard
                       players={gameData.gameData.left.players}
                       side={gameData.gameData.left.side}
+                      onTeamGroupsChange={setLeftTeamGroups}
                     />
                   </Grid.Col>
                   <Grid.Col span="content" mx={"sm"} pt={30}>
@@ -39,11 +60,16 @@ const GameContent = memo(
                   </Grid.Col>
                   <Grid.Col span="auto" pt={10}>
                     {gameData.gameData.right.players.map((player, index) => (
-                      <PlayerCard key={player.relicID + " " + index} {...player} />
+                      <PlayerCard
+                        key={player.relicID + " " + index}
+                        {...player}
+                        teamColor={getPlayerTeamColor(player.relicID, rightTeamGroups)}
+                      />
                     ))}
                     <ArrangedTeamCard
                       players={gameData.gameData.right.players}
                       side={gameData.gameData.right.side}
+                      onTeamGroupsChange={setRightTeamGroups}
                     />
                   </Grid.Col>
                 </Grid>

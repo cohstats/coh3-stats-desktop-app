@@ -13,8 +13,11 @@ import RankIcon from "../../../components/other/rank-icon";
 import { coh3statsPlayerProfile } from "../../../utils/external-routes";
 import EllipsisText from "../../../components/other/ellipsis-text";
 import { useShowExtendedPlayerInfo } from "../../../game-data-provider/configValues";
+import classes from "./player-card.module.css";
 
-export interface PlayerCardProps extends FullPlayerData {}
+export interface PlayerCardProps extends FullPlayerData {
+  teamColor?: string;
+}
 
 export const PlayerCard: React.FC<PlayerCardProps> = ({
   rank,
@@ -31,6 +34,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
   self,
   factionStats,
   totalGames,
+  teamColor,
 }) => {
   const factionName = getFactionName(faction);
   const countryName = country ? getCountryName(country) : "";
@@ -86,12 +90,22 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({
 
   return (
     <>
-      <Paper shadow="xs" withBorder p="xs" mb={"xs"}>
+      <Paper shadow="xs" withBorder pl={7} p="xs" mb={"xs"}>
         <Grid>
           <Grid.Col span="content" style={{ flexShrink: 0 }}>
-            <Tooltip label={factionName}>
-              <Image src={"/factions/" + faction + ".webp"} alt={faction} w={62} />
-            </Tooltip>
+            <Group gap={4}>
+              <div
+                className={`${classes["player-card-team"]}`}
+                style={{
+                  backgroundColor: teamColor
+                    ? `var(--mantine-color-${teamColor}-filled)`
+                    : "transparent",
+                }}
+              />
+              <Tooltip label={factionName}>
+                <Image src={"/factions/" + faction + ".webp"} alt={faction} w={62} />
+              </Tooltip>
+            </Group>
           </Grid.Col>
           <Grid.Col span="auto" style={{ minWidth: 0 }}>
             <Stack align="stretch" gap={4}>
