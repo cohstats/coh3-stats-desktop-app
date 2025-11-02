@@ -3,6 +3,8 @@
 View stats of players in the current game of Company of Heroes 3.  
 **Download from https://coh3stats.com/desktop-app** or from [release page](https://github.com/cohstats/coh3-stats-desktop-app/releases).
 
+Or get it directly from Microsoft Store https://apps.microsoft.com/detail/9PBKK60PKDQS
+
 #### WebView Bundle
 
 This application needs WebView2 Runtime. This is by default part of Windows 10 and 11.
