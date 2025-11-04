@@ -144,10 +144,14 @@ fn load_playback_path<R: Runtime>(handle: AppHandle<R>) -> String {
 }
 
 fn init_watcher<R: Runtime>(path: PathBuf, handle: AppHandle<R>) -> Option<RecommendedWatcher> {
-    match watch(path, handle.clone()) {
+    match watch(path.clone(), handle.clone()) {
         Ok(watcher) => Some(watcher),
         Err(err) => {
-            error!("problem watching playback directory: {err}");
+            error!("problem watching playback directory at {:?}: {}", path, err);
+            sentry::capture_message(
+                &format!("Playback directory watch error: {:?} - {}", path, err),
+                sentry::Level::Warning,
+            );
             None
         }
     }
@@ -155,8 +159,23 @@ fn init_watcher<R: Runtime>(path: PathBuf, handle: AppHandle<R>) -> Option<Recom
 
 fn default_playback_path() -> String {
     use std::env;
-    let mut path = dirs::document_dir()
-        .unwrap_or_else(|| env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from(".")));
+    let mut path = match dirs::document_dir() {
+        Some(dir) => dir,
+        None => {
+            warn!("Failed to get document directory, trying current directory");
+            match env::current_dir() {
+                Ok(dir) => dir,
+                Err(e) => {
+                    error!("Failed to get current directory: {}", e);
+                    sentry::capture_message(
+                        &format!("Directory access error (playback path): {}", e),
+                        sentry::Level::Error,
+                    );
+                    std::path::PathBuf::from(".")
+                }
+            }
+        }
+    };
     path.push("My Games");
     path.push("Company of Heroes 3");
     path.push("playback");

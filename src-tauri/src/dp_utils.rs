@@ -13,6 +13,10 @@ pub fn load_from_store<R: Runtime, T: DeserializeOwned>(
         Ok(store) => store,
         Err(e) => {
             error!("Failed to get store 'config.dat': {}", e);
+            sentry::capture_message(
+                &format!("Store access error for 'config.dat': {}", e),
+                sentry::Level::Warning,
+            );
             return None;
         }
     };
@@ -28,6 +32,10 @@ pub fn load_from_store<R: Runtime, T: DeserializeOwned>(
                 }
                 Err(e) => {
                     error!("Failed to deserialize value for key '{}': {}", key, e);
+                    sentry::capture_message(
+                        &format!("Store deserialization error for key '{}': {}", key, e),
+                        sentry::Level::Warning,
+                    );
                     None
                 }
             }
