@@ -133,24 +133,38 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     #[cfg(desktop)]
     {
         info!("Initializing updater plugin");
-        handle.plugin(tauri_plugin_updater::Builder::new().build())?;
+        if let Err(e) = handle.plugin(tauri_plugin_updater::Builder::new().build()) {
+            error!("Failed to initialize updater plugin: {}", e);
+            sentry::capture_message(
+                &format!("Updater plugin initialization error: {}", e),
+                sentry::Level::Error,
+            );
+            // Don't fail the entire setup if updater fails
+            info!("Continuing without updater plugin");
+        }
     }
 
     if load_from_store(handle.clone(), "streamerOverlayEnabled").unwrap_or(false) {
         info!("Streamer overlay server is enabled");
-        let mut file_path = match handle.path().app_data_dir() {
-            Ok(path) => path,
-            Err(e) => {
-                error!("Failed to get app data directory: {}", e);
-                return Err("App data directory not found".into());
-            }
-        };
-        file_path.push("streamerOverlay.html");
-        info!("Expecting the streamerOverlay at {:?}", file_path);
+        match handle.path().app_data_dir() {
+            Ok(mut file_path) => {
+                file_path.push("streamerOverlay.html");
+                info!("Expecting the streamerOverlay at {:?}", file_path);
 
-        let _handle = thread::spawn(|| {
-            run_http_server(file_path);
-        });
+                let _handle = thread::spawn(|| {
+                    run_http_server(file_path);
+                });
+            }
+            Err(e) => {
+                error!("Failed to get app data directory for overlay: {}", e);
+                sentry::capture_message(
+                    &format!("App data directory access error (overlay): {}", e),
+                    sentry::Level::Error,
+                );
+                // Don't fail setup, just skip overlay server
+                info!("Continuing without streamer overlay server");
+            }
+        }
     } else {
         info!("Streamer overlay server is disabled");
     }
@@ -173,9 +187,9 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     //     sentry::capture_message(&format!("Window shadow error: {}", e), sentry::Level::Error);
     // }
 
-    // Set up deep link
+    // Set up deep link - don't fail setup if this fails
     let handle_clone = handle.clone();
-    tauri_plugin_deep_link::register("coh3stats", move |request| {
+    if let Err(e) = tauri_plugin_deep_link::register("coh3stats", move |request| {
         if let Err(err) =
             tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle_clone))
         {
@@ -185,15 +199,16 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
                 sentry::Level::Error,
             );
         }
-    })
-    .map_err(|e| {
+    }) {
         error!("Failed to register deep link: {}", e);
         sentry::capture_message(
-            &format!("Deep link registration error: {}", e),
+            &format!("Deep link registration error: {} (OS error - possibly permissions)", e),
             sentry::Level::Error,
         );
-        e
-    })?;
+        // Don't fail the entire setup if deep link registration fails
+        // This is likely the "Access is denied" error on some systems
+        info!("Continuing without deep link support");
+    }
 
     Ok(())
 }
@@ -205,7 +220,11 @@ fn default_log_file_path() -> Result<String, String> {
         Some(p) => p,
         None => {
             error!("Failed to get document directory: Directory not found");
-            return Err("Document directory not found".to_string());
+            sentry::capture_message(
+                "Document directory not found (log file path)",
+                sentry::Level::Error,
+            );
+            return Err("Document directory not found. Please check your system permissions.".to_string());
         }
     };
     path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?
@@ -220,7 +239,11 @@ fn default_playback_path() -> Result<String, String> {
         Some(p) => p,
         None => {
             error!("Failed to get document directory: Directory not found");
-            return Err("Document directory not found".to_string());
+            sentry::capture_message(
+                "Document directory not found (playback path)",
+                sentry::Level::Error,
+            );
+            return Err("Document directory not found. Please check your system permissions.".to_string());
         }
     };
     path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?

@@ -1,4 +1,4 @@
-use log::info;
+use log::{error, info, warn};
 use rev_lines::RawRevLines;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
@@ -79,11 +79,47 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     let mut language_code = "".to_string();
 
     // Read log file in reverse order line by line
-    let log_file = File::open(path).unwrap();
+    let log_file = match File::open(&path) {
+        Ok(file) => file,
+        Err(e) => {
+            error!("Failed to open log file at '{}': {}", path, e);
+            sentry::capture_message(
+                &format!("Log file open error: {} - {}", path, e),
+                sentry::Level::Error,
+            );
+            // Return empty/default data if file can't be opened
+            return LogFileData {
+                game_state: GameState::Closed,
+                game_type: GameType::Custom,
+                timestamp: "".to_string(),
+                duration: 0,
+                map: "".to_string(),
+                win_condition: "".to_string(),
+                left: TeamData {
+                    players: Vec::new(),
+                    side: TeamSide::Mixed,
+                },
+                right: TeamData {
+                    players: Vec::new(),
+                    side: TeamSide::Mixed,
+                },
+                player_name: "".to_string(),
+                player_steam_id: "".to_string(),
+                player_profile_id: "".to_string(),
+                language_code: "".to_string(),
+            };
+        }
+    };
     let rev_lines = RawRevLines::new(log_file);
 
     for line in rev_lines {
-        let line = line.unwrap();
+        let line = match line {
+            Ok(l) => l,
+            Err(e) => {
+                warn!("Failed to read line from log file: {}", e);
+                continue; // Skip this line and continue parsing
+            }
+        };
         let line = String::from_utf8_lossy(&line);
 
         // Is the line when the game is being closed correctly
