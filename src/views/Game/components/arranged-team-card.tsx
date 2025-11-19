@@ -46,6 +46,7 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({
       try {
         setLoading(true);
         setError(null);
+        setTeamGroups([]); // Clear team groups at the start
 
         // Extract player IDs and convert to numbers
         const playerIds = players
@@ -53,7 +54,7 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({
           .map((player) => parseInt(player.relicID, 10))
           .filter((id) => !isNaN(id)); // Filter out invalid IDs
 
-        if (playerIds.length === 0) {
+        if (playerIds.length < 2) {
           setLoading(false);
           return;
         }
@@ -91,6 +92,9 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({
             setTeamGroups(groupsWithColors);
             onTeamGroupsChange?.(groupsWithColors);
           }
+        } else if (team) {
+          // Clear team groups when a team is found
+          onTeamGroupsChange?.([]);
         }
       } catch (err) {
         // If team is not found or any other error, don't render the component

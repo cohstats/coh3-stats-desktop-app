@@ -25,7 +25,13 @@ interface CachedTeamResult {
 // LRU cache for team details with 5-minute TTL and max 1000 items
 const teamDetailsCache = new LRUCache<string, CachedTeamResult>({
   max: 1000,
-  ttl: 5 * 60 * 1000, // 5 minutes in milliseconds
+  ttl: 60 * 60 * 1000, // 60 minutes in milliseconds
+});
+
+// LRU cache for team search results with 5-minute TTL and max 1000 items
+const teamSearchCache = new LRUCache<string, TeamSearchResponse>({
+  max: 1000,
+  ttl: 60 * 60 * 1000, // 60 minutes in milliseconds
 });
 
 /**
@@ -116,7 +122,7 @@ export const getTeamSearchUrl = (
 };
 
 /**
- * Searches for arranged teams from the COH3 Stats API
+ * Searches for arranged teams from the COH3 Stats API with LRU caching
  * @param side - The team side (allies or axis)
  * @param profileIds - Array of profile IDs to search for
  * @returns Promise<TeamSearchResponse>
@@ -126,6 +132,16 @@ export const searchArrangedTeams = async (
   side: TeamSideForCOH3ApiSearch,
   profileIds: number[],
 ): Promise<TeamSearchResponse> => {
+  // Create cache key from side and sorted profileIds
+  const sortedIds = [...profileIds].sort((a, b) => a - b);
+  const cacheKey = `${side}-${sortedIds.join(",")}`;
+
+  // Check cache first
+  const cachedResult = teamSearchCache.get(cacheKey);
+  if (cachedResult !== undefined) {
+    return cachedResult;
+  }
+
   const url = getTeamSearchUrl(side, profileIds);
 
   try {
@@ -140,8 +156,10 @@ export const searchArrangedTeams = async (
 
     if (!response.ok) {
       if (response.status === 404) {
-        // Return empty result for 404
-        return { teams: [], totalTeams: 0 };
+        // Cache empty result for 404
+        const emptyResult = { teams: [], totalTeams: 0 };
+        teamSearchCache.set(cacheKey, emptyResult);
+        return emptyResult;
       }
       if (response.status === 500) {
         const data = (await response.json()) as any;
@@ -152,7 +170,10 @@ export const searchArrangedTeams = async (
       throw new Error(`Error searching arranged teams`);
     }
 
-    return (await response.json()) as TeamSearchResponse;
+    const result = (await response.json()) as TeamSearchResponse;
+    // Cache successful result
+    teamSearchCache.set(cacheKey, result);
+    return result;
   } catch (error) {
     console.error(`Error searching arranged teams for side ${side}:`, error);
     throw error;
