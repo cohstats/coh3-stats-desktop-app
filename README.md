@@ -198,6 +198,9 @@ https://tauri.app/v1/guides/testing/webdriver/introduction
 
 Don't forget to run prettier with `yarn fix`. Should be covered by husky.
 
+For running the e2e tests in GitHub Actions we need to feed the right msedgedriver which is stored in the `test/msedgedriver` folder.
+GitHub is updating edge in runners without the right driver, so we need to update the driver manually.
+
 ### Release
 
 - Increase the version in files:
