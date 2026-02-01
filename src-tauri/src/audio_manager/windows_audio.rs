@@ -46,10 +46,10 @@ unsafe fn set_game_mute_internal(game_pid: u32, mute: bool) -> Result<(), String
         .GetDefaultAudioEndpoint(eRender, eMultimedia)
         .map_err(|e| format!("Failed to get default audio endpoint: {}", e))?;
 
-    // Activate session manager
+    // Activate session manager by casting the device to IAudioSessionManager2
     let session_manager: IAudioSessionManager2 = device
-        .Activate(CLSCTX_ALL, None)
-        .map_err(|e| format!("Failed to activate session manager: {}", e))?;
+        .cast()
+        .map_err(|e| format!("Failed to cast device to IAudioSessionManager2: {}", e))?;
 
     // Get session enumerator
     let session_enumerator: IAudioSessionEnumerator = session_manager
