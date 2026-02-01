@@ -5,11 +5,13 @@
 
 extern crate machine_uid;
 
+mod audio_manager;
 mod config;
 mod dp_utils;
 mod overlay_server;
 mod parse_log_file;
 mod plugins;
+mod process_watcher;
 
 use config::{COHDB_CLIENT_ID, COHDB_REDIRECT_URI};
 use dp_utils::load_from_store;
@@ -42,6 +44,8 @@ pub fn run() {
     }));
 
     let builder = tauri::Builder::default()
+        .manage(audio_manager::AudioManagerState::default())
+        .manage(process_watcher::ProcessWatcherState::default())
         .plugin(tauri_plugin_log::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             default_log_file_path,
@@ -51,7 +55,12 @@ pub fn run() {
             parse_log_file::parse_log_file_reverse,
             cohdb_authenticate,
             cohdb_connected,
-            cohdb_disconnect
+            cohdb_disconnect,
+            enable_audio_muting,
+            disable_audio_muting,
+            update_audio_mute_settings,
+            start_process_watcher,
+            stop_process_watcher
         ])
         .plugin(tauri_plugin_log::Builder::default().build())
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
@@ -111,18 +120,22 @@ pub fn run() {
 
     builder
         .setup(setup)
-        .run(tauri::generate_context!())
+        .build(tauri::generate_context!())
         .unwrap_or_else(|e| {
-            error!("Failed to run Tauri application: {}", e);
+            error!("Failed to build Tauri application: {}", e);
             sentry::capture_message(
                 &format!("Tauri application error: {}", e),
                 sentry::Level::Error,
             );
-
-            // Show system dialog to inform user about the failure
-            // TODO: Fix dialog creation for Tauri v2
-            // Dialog API has changed in v2, temporarily disabled
             error!("Failed to start app: {}", e);
+            process::exit(1);
+        })
+        .run(|app_handle, event| {
+            if let tauri::RunEvent::Exit = event {
+                // Ensure game audio is unmuted when app exits
+                info!("App exiting, ensuring game audio is unmuted");
+                audio_manager::cleanup_on_exit(app_handle);
+            }
         });
 }
 
@@ -172,6 +185,21 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     // Set up sync handling
     // This needs to happen here because it depends on other plugins
     cohdb::sync::setup(handle.clone());
+
+    // Start process watcher for game start/stop detection
+    #[cfg(target_os = "windows")]
+    {
+        info!("Starting process watcher");
+        if let Err(e) = process_watcher::start_watching(handle.clone()) {
+            error!("Failed to start process watcher: {}", e);
+            sentry::capture_message(
+                &format!("Process watcher initialization error: {}", e),
+                sentry::Level::Error,
+            );
+            // Don't fail the entire setup if process watcher fails
+            info!("Continuing without process watcher");
+        }
+    }
 
     // Add window shadows - temporarily disabled due to compatibility issues with Tauri v2
     // let window = match app.get_webview_window("main") {
@@ -285,4 +313,35 @@ async fn cohdb_connected<R: Runtime>(handle: AppHandle<R>) -> Result<Option<cohd
 #[tauri::command]
 async fn cohdb_disconnect<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
     cohdb::auth::disconnect(handle).await.map_err(|e| e.to_string())
+}
+
+// Audio muting commands
+#[tauri::command]
+async fn enable_audio_muting<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
+    audio_manager::enable_audio_muting(handle)
+}
+
+#[tauri::command]
+async fn disable_audio_muting<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
+    audio_manager::disable_audio_muting(handle)
+}
+
+#[tauri::command]
+async fn update_audio_mute_settings<R: Runtime>(
+    handle: AppHandle<R>,
+    mute_only_out_of_game: bool,
+    is_in_game: bool,
+) -> Result<(), String> {
+    audio_manager::update_mute_settings(handle, mute_only_out_of_game, is_in_game)
+}
+
+// Process watcher commands
+#[tauri::command]
+async fn start_process_watcher<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
+    process_watcher::start_watching(handle)
+}
+
+#[tauri::command]
+async fn stop_process_watcher<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
+    process_watcher::stop_watching(handle)
 }
