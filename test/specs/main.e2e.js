@@ -14,8 +14,8 @@ describe("Game Screen", () => {
       // Give it some time to load the app and the state to be set
       await browser.waitUntil(
         async () => {
-          const button = await $('[data-testid="color-scheme-toggle"]');
-          return (await button.isDisplayedInViewport()) === true;
+          const input = await $('[data-testid="log-file-path-input"]');
+          return (await input.isDisplayedInViewport()) === true;
         },
         { timeout: 10000, timeoutMsg: "Settings screen did not load" },
       );

@@ -123,7 +123,12 @@ export const Settings: React.FC = () => {
             <div>
               <Group gap="xs">
                 <Group gap={"xs"}>
-                  <Input value={logFilePath ? logFilePath : ""} style={{ width: 500 }} readOnly />
+                  <Input
+                    value={logFilePath ? logFilePath : ""}
+                    style={{ width: 500 }}
+                    readOnly
+                    data-testid="log-file-path-input"
+                  />
                   <Button variant="default" onClick={openLogfileDialog}>
                     Select
                   </Button>
