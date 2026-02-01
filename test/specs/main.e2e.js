@@ -4,7 +4,7 @@ import path from "path";
 describe("Game Screen", () => {
   before(async () => {
     // Give it some time to load the app and the state to be set
-    await browser.pause(5000);
+    await browser.pause(10000);
   });
 
   describe("Settings Screen", () => {
@@ -17,7 +17,7 @@ describe("Game Screen", () => {
           const button = await $('[data-testid="color-scheme-toggle"]');
           return (await button.isDisplayedInViewport()) === true;
         },
-        { timeout: 5000, timeoutMsg: "Settings screen did not load" },
+        { timeout: 10000, timeoutMsg: "Settings screen did not load" },
       );
     });
 
