@@ -120,6 +120,8 @@ export const RecentGames: React.FC = () => {
   useEffect(() => {
     if (currentPlayerRelicId && logFilePath !== undefined) {
       loadPlayerMatches(currentPlayerRelicId);
+    } else {
+      setLoading(false);
     }
   }, [currentPlayerRelicId, logFilePath]);
 

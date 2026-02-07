@@ -31,6 +31,7 @@ import {
 import { usePlaySound, usePlaySoundVolume } from "../game-found/gameSoundConfigValues";
 import { useAutoSwitchToGame } from "../game-found/autoSwitchConfigValues";
 import { useBringToFrontOnGameFound } from "../game-found/bringToFrontConfigValues";
+import { useAutoMuteEnabled, useMuteOnlyOutOfGame } from "../game-found/audioMuteConfigValues";
 import {
   useShowFlagsOverlay,
   useAlwaysShowOverlay,
@@ -55,6 +56,8 @@ export const Settings: React.FC = () => {
   const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume();
   const [autoSwitchToGame, setAutoSwitchToGame] = useAutoSwitchToGame();
   const [bringToFrontOnGameFound, setBringToFrontOnGameFound] = useBringToFrontOnGameFound();
+  const [autoMuteEnabled, setAutoMuteEnabled] = useAutoMuteEnabled();
+  const [muteOnlyOutOfGame, setMuteOnlyOutOfGame] = useMuteOnlyOutOfGame();
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay();
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay();
   const [mapViewSettings, setMapViewSettings] = useMapViewSettings();
@@ -120,7 +123,12 @@ export const Settings: React.FC = () => {
             <div>
               <Group gap="xs">
                 <Group gap={"xs"}>
-                  <Input value={logFilePath ? logFilePath : ""} style={{ width: 500 }} readOnly />
+                  <Input
+                    value={logFilePath ? logFilePath : ""}
+                    style={{ width: 500 }}
+                    readOnly
+                    data-testid="log-file-path-input"
+                  />
                   <Button variant="default" onClick={openLogfileDialog}>
                     Select
                   </Button>
@@ -221,6 +229,56 @@ export const Settings: React.FC = () => {
               >
                 <div>
                   Bring App to front <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
+                </div>
+              </Tooltip>
+            </Group>
+          </Stack>
+          <Divider />
+          <Text fw={700}>Game Audio Control</Text>
+          <Stack gap="md" pl="md">
+            <Group>
+              <div>
+                <Checkbox
+                  checked={autoMuteEnabled ?? true}
+                  onChange={(event) => {
+                    events.settings_changed("autoMuteEnabled", `${event.currentTarget.checked}`);
+                    setAutoMuteEnabled(event.currentTarget.checked);
+                  }}
+                />
+              </div>
+              <Tooltip
+                multiline
+                w={300}
+                label="Automatically mute Company of Heroes 3 when the game window is not in focus"
+              >
+                <div>
+                  Auto-mute game when not in foreground{" "}
+                  <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
+                </div>
+              </Tooltip>
+            </Group>
+
+            <Group>
+              <div>
+                <Checkbox
+                  disabled={!autoMuteEnabled}
+                  checked={muteOnlyOutOfGame ?? false}
+                  onChange={(event) => {
+                    events.settings_changed(
+                      "muteOnlyOutOfGame",
+                      `${event.currentTarget.checked}`,
+                    );
+                    setMuteOnlyOutOfGame(event.currentTarget.checked);
+                  }}
+                />
+              </div>
+              <Tooltip
+                multiline
+                w={300}
+                label="When enabled, the game will only be muted in the Menu, not during Loading or active gameplay. WARNING! The game / menu detection is not 100% accurate."
+              >
+                <div>
+                  Only mute when in Menu <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
                 </div>
               </Tooltip>
             </Group>
