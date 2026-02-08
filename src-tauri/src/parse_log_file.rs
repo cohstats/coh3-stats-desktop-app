@@ -2,8 +2,6 @@ use log::{error, info, warn};
 use rev_lines::RawRevLines;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
-#[cfg(test)]
-mod tests;
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum GameState {
@@ -314,7 +312,7 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     }
 }
 
-fn determine_game_state(running: bool, ended: bool, loading: bool, started: bool) -> GameState {
+pub(crate) fn determine_game_state(running: bool, ended: bool, loading: bool, started: bool) -> GameState {
     if !running {
         return GameState::Closed;
     } else if ended || !loading {
@@ -327,7 +325,7 @@ fn determine_game_state(running: bool, ended: bool, loading: bool, started: bool
     GameState::Menu
 }
 
-fn determine_game_type(left_team: &TeamData, right_team: &TeamData) -> GameType {
+pub(crate) fn determine_game_type(left_team: &TeamData, right_team: &TeamData) -> GameType {
     let left_ai_count = get_ai_count(left_team);
     let right_ai_count = get_ai_count(right_team);
     if left_team.side != TeamSide::Mixed
@@ -345,7 +343,7 @@ fn determine_game_type(left_team: &TeamData, right_team: &TeamData) -> GameType 
     GameType::Custom
 }
 
-fn get_ai_count(team: &TeamData) -> usize {
+pub(crate) fn get_ai_count(team: &TeamData) -> usize {
     let mut count: usize = 0;
     for player in &team.players {
         if player.ai {
@@ -355,7 +353,7 @@ fn get_ai_count(team: &TeamData) -> usize {
     count
 }
 
-fn get_team_data(players: Vec<PlayerData>) -> TeamData {
+pub(crate) fn get_team_data(players: Vec<PlayerData>) -> TeamData {
     let mut team_side = TeamSide::Mixed;
     let mut is_axis = false;
     let mut is_allies = false;

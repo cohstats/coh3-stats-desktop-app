@@ -1,5 +1,155 @@
-use crate::parse_log_file::{parse_log_file_reverse, GameState, GameType, PlayerData, TeamSide};
+use crate::parse_log_file::{parse_log_file_reverse, GameState, GameType, PlayerData, TeamData, TeamSide};
 
+
+// ============================================================================
+// UNIT TESTS - Testing individual helper functions
+// ============================================================================
+// Note: These tests require the helper functions in parse_log_file.rs to be
+// made pub(crate) instead of private. The functions that need to be exposed are:
+// - determine_game_state
+// - determine_game_type
+// - get_team_data
+// - get_ai_count
+
+// ============================================================================
+// Game State Determination Tests
+// ============================================================================
+
+#[test]
+fn test_determine_game_state_closed() {
+    // When game is not running, state should always be Closed
+    assert_eq!(
+        crate::parse_log_file::determine_game_state(false, false, false, false),
+        GameState::Closed
+    );
+    assert_eq!(
+        crate::parse_log_file::determine_game_state(false, true, true, true),
+        GameState::Closed
+    );
+}
+
+#[test]
+fn test_determine_game_state_menu() {
+    // When game is running and ended, should be Menu
+    assert_eq!(
+        crate::parse_log_file::determine_game_state(true, true, false, false),
+        GameState::Menu
+    );
+    // When game is running but not loading, should be Menu
+    assert_eq!(
+        crate::parse_log_file::determine_game_state(true, false, false, false),
+        GameState::Menu
+    );
+}
+
+#[test]
+fn test_determine_game_state_in_game() {
+    // When game is running, loading, and started, should be InGame
+    assert_eq!(
+        crate::parse_log_file::determine_game_state(true, false, true, true),
+        GameState::InGame
+    );
+}
+
+#[test]
+fn test_determine_game_state_loading() {
+    // When game is running, loading, but not started, should be Loading
+    assert_eq!(
+        crate::parse_log_file::determine_game_state(true, false, true, false),
+        GameState::Loading
+    );
+}
+
+// ============================================================================
+// Game Type Determination Tests
+// ============================================================================
+
+#[test]
+fn test_determine_game_type_classic() {
+    // Classic game: all human players, Axis vs Allies
+    let left = TeamData {
+        players: vec![PlayerData {
+            ai: false,
+            faction: "germans".to_string(),
+            relic_id: "123".to_string(),
+            name: "Player1".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        }],
+        side: TeamSide::Axis,
+    };
+    let right = TeamData {
+        players: vec![PlayerData {
+            ai: false,
+            faction: "americans".to_string(),
+            relic_id: "456".to_string(),
+            name: "Player2".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        }],
+        side: TeamSide::Allies,
+    };
+    assert_eq!(
+        crate::parse_log_file::determine_game_type(&left, &right),
+        GameType::Classic
+    );
+}
+
+#[test]
+fn test_determine_game_type_ai() {
+    // AI game: human vs AI
+    let left = TeamData {
+        players: vec![PlayerData {
+            ai: false,
+            faction: "germans".to_string(),
+            relic_id: "123".to_string(),
+            name: "Player1".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        }],
+        side: TeamSide::Axis,
+    };
+    let right = TeamData {
+        players: vec![PlayerData {
+            ai: true,
+            faction: "americans".to_string(),
+            relic_id: "-1".to_string(),
+            name: "AI".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        }],
+        side: TeamSide::Allies,
+    };
+    assert_eq!(
+        crate::parse_log_file::determine_game_type(&left, &right),
+        GameType::AI
+    );
+}
+
+#[test]
+fn test_determine_game_type_custom_mixed_teams() {
+    // Custom game: mixed team sides
+    let left = TeamData {
+        players: vec![],
+        side: TeamSide::Mixed,
+    };
+    let right = TeamData {
+        players: vec![],
+        side: TeamSide::Mixed,
+    };
+    assert_eq!(
+        crate::parse_log_file::determine_game_type(&left, &right),
+        GameType::Custom
+    );
+}
+
+// ============================================================================
+// INTEGRATION TESTS - Testing full log file parsing
+// ============================================================================
 
 // Enhanced test coverage for log file parsing functionality
 
@@ -398,4 +548,276 @@ fn test_team_composition_mixed_team() {
     assert!(all_factions.iter().all(|f| f.contains("campaign")));
     assert!(all_factions.contains(&"americans_campaign"));
     assert!(all_factions.contains(&"germans_campaign"));
+}
+
+// ============================================================================
+// MORE UNIT TESTS - Team Side Detection and AI Count
+// ============================================================================
+
+#[test]
+fn test_get_team_data_axis() {
+    // Team with only Axis factions
+    let players = vec![
+        PlayerData {
+            ai: false,
+            faction: "germans".to_string(),
+            relic_id: "123".to_string(),
+            name: "Player1".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        },
+        PlayerData {
+            ai: false,
+            faction: "afrika_korps".to_string(),
+            relic_id: "456".to_string(),
+            name: "Player2".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        },
+    ];
+    let team = crate::parse_log_file::get_team_data(players);
+    assert_eq!(team.side, TeamSide::Axis);
+    assert_eq!(team.players.len(), 2);
+}
+
+#[test]
+fn test_get_team_data_allies() {
+    // Team with only Allied factions
+    let players = vec![
+        PlayerData {
+            ai: false,
+            faction: "americans".to_string(),
+            relic_id: "123".to_string(),
+            name: "Player1".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        },
+        PlayerData {
+            ai: false,
+            faction: "british_africa".to_string(),
+            relic_id: "456".to_string(),
+            name: "Player2".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        },
+    ];
+    let team = crate::parse_log_file::get_team_data(players);
+    assert_eq!(team.side, TeamSide::Allies);
+    assert_eq!(team.players.len(), 2);
+}
+
+#[test]
+fn test_get_team_data_mixed() {
+    // Team with both Axis and Allied factions
+    let players = vec![
+        PlayerData {
+            ai: false,
+            faction: "germans".to_string(),
+            relic_id: "123".to_string(),
+            name: "Player1".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        },
+        PlayerData {
+            ai: false,
+            faction: "americans".to_string(),
+            relic_id: "456".to_string(),
+            name: "Player2".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        },
+    ];
+    let team = crate::parse_log_file::get_team_data(players);
+    assert_eq!(team.side, TeamSide::Mixed);
+    assert_eq!(team.players.len(), 2);
+}
+
+#[test]
+fn test_get_team_data_empty() {
+    // Empty team should be Mixed
+    let players = vec![];
+    let team = crate::parse_log_file::get_team_data(players);
+    assert_eq!(team.side, TeamSide::Mixed);
+    assert_eq!(team.players.len(), 0);
+}
+
+#[test]
+fn test_get_ai_count_no_ai() {
+    // Team with no AI players
+    let team = TeamData {
+        players: vec![
+            PlayerData {
+                ai: false,
+                faction: "germans".to_string(),
+                relic_id: "123".to_string(),
+                name: "Player1".to_string(),
+                position: 0,
+                steam_id: "".to_string(),
+                rank: -1,
+            },
+            PlayerData {
+                ai: false,
+                faction: "afrika_korps".to_string(),
+                relic_id: "456".to_string(),
+                name: "Player2".to_string(),
+                position: 1,
+                steam_id: "".to_string(),
+                rank: -1,
+            },
+        ],
+        side: TeamSide::Axis,
+    };
+    assert_eq!(crate::parse_log_file::get_ai_count(&team), 0);
+}
+
+#[test]
+fn test_get_ai_count_all_ai() {
+    // Team with all AI players
+    let team = TeamData {
+        players: vec![
+            PlayerData {
+                ai: true,
+                faction: "germans".to_string(),
+                relic_id: "-1".to_string(),
+                name: "AI1".to_string(),
+                position: 0,
+                steam_id: "".to_string(),
+                rank: -1,
+            },
+            PlayerData {
+                ai: true,
+                faction: "afrika_korps".to_string(),
+                relic_id: "-1".to_string(),
+                name: "AI2".to_string(),
+                position: 1,
+                steam_id: "".to_string(),
+                rank: -1,
+            },
+        ],
+        side: TeamSide::Axis,
+    };
+    assert_eq!(crate::parse_log_file::get_ai_count(&team), 2);
+}
+
+#[test]
+fn test_get_ai_count_mixed() {
+    // Team with mixed AI and human players
+    let team = TeamData {
+        players: vec![
+            PlayerData {
+                ai: true,
+                faction: "germans".to_string(),
+                relic_id: "-1".to_string(),
+                name: "AI1".to_string(),
+                position: 0,
+                steam_id: "".to_string(),
+                rank: -1,
+            },
+            PlayerData {
+                ai: false,
+                faction: "afrika_korps".to_string(),
+                relic_id: "456".to_string(),
+                name: "Player1".to_string(),
+                position: 1,
+                steam_id: "".to_string(),
+                rank: -1,
+            },
+            PlayerData {
+                ai: true,
+                faction: "germans".to_string(),
+                relic_id: "-1".to_string(),
+                name: "AI2".to_string(),
+                position: 2,
+                steam_id: "".to_string(),
+                rank: -1,
+            },
+        ],
+        side: TeamSide::Axis,
+    };
+    assert_eq!(crate::parse_log_file::get_ai_count(&team), 2);
+}
+
+#[test]
+fn test_get_ai_count_empty_team() {
+    // Empty team should have 0 AI
+    let team = TeamData {
+        players: vec![],
+        side: TeamSide::Mixed,
+    };
+    assert_eq!(crate::parse_log_file::get_ai_count(&team), 0);
+}
+
+// ============================================================================
+// Edge Case Tests
+// ============================================================================
+
+#[test]
+fn test_parse_nonexistent_file() {
+    // Parsing a non-existent file should return default/empty data without panicking
+    let result = crate::parse_log_file::parse_log_file_reverse("./nonexistent.log".to_string());
+    assert_eq!(result.game_state, GameState::Closed);
+    assert_eq!(result.game_type, GameType::Custom);
+    assert_eq!(result.duration, 0);
+    assert_eq!(result.map, "");
+    assert_eq!(result.win_condition, "");
+    assert_eq!(result.left.players.len(), 0);
+    assert_eq!(result.right.players.len(), 0);
+}
+
+#[test]
+fn test_empty_teams_game_type() {
+    // Empty teams should result in Custom game type
+    let left = TeamData {
+        players: vec![],
+        side: TeamSide::Mixed,
+    };
+    let right = TeamData {
+        players: vec![],
+        side: TeamSide::Mixed,
+    };
+    assert_eq!(crate::parse_log_file::get_ai_count(&left), 0);
+    assert_eq!(crate::parse_log_file::get_ai_count(&right), 0);
+    assert_eq!(
+        crate::parse_log_file::determine_game_type(&left, &right),
+        GameType::Custom
+    );
+}
+
+#[test]
+fn test_determine_game_type_custom_same_side() {
+    // Custom game: both teams on same side
+    let left = TeamData {
+        players: vec![PlayerData {
+            ai: false,
+            faction: "germans".to_string(),
+            relic_id: "123".to_string(),
+            name: "Player1".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        }],
+        side: TeamSide::Axis,
+    };
+    let right = TeamData {
+        players: vec![PlayerData {
+            ai: false,
+            faction: "afrika_korps".to_string(),
+            relic_id: "456".to_string(),
+            name: "Player2".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        }],
+        side: TeamSide::Axis,
+    };
+    assert_eq!(
+        crate::parse_log_file::determine_game_type(&left, &right),
+        GameType::Custom
+    );
 }

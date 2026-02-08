@@ -12,6 +12,8 @@ mod overlay_server;
 mod parse_log_file;
 mod plugins;
 mod process_watcher;
+#[cfg(test)]
+mod tests;
 
 use config::{COHDB_CLIENT_ID, COHDB_REDIRECT_URI};
 use dp_utils::load_from_store;
