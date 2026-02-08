@@ -286,6 +286,7 @@ export const Settings: React.FC = () => {
           <Divider />
           <Group>
             <Checkbox
+              data-testid="show-extended-player-info-checkbox"
               checked={showExtendedPlayerInfo === undefined ? false : showExtendedPlayerInfo}
               onChange={(event) => {
                 events.settings_changed(

@@ -146,6 +146,40 @@ class GamePage extends BasePage {
       !bodyText.includes("Something went wrong")
     );
   }
+
+  /**
+   * Check if extended player info is displayed on player cards
+   * Extended info includes: faction stats (best rank, mode, faction WR) and total WR
+   * @returns {Promise<boolean>}
+   */
+  async hasExtendedPlayerInfo() {
+    const bodyText = await this.getBodyText();
+    // Extended player info shows:
+    // - "R #" (best rank)
+    // - "WR" (win rate for faction)
+    // - "Total WR" (overall win rate)
+    // - "in X games" (game count)
+    // Check for these indicators that are unique to extended info
+    return bodyText.includes("Total WR") && bodyText.includes("in") && bodyText.includes("games");
+  }
+
+  /**
+   * Wait for extended player info to appear or disappear
+   * @param {boolean} shouldBeVisible - Whether extended info should be visible
+   * @param {number} timeout - Maximum time to wait
+   */
+  async waitForExtendedPlayerInfo(shouldBeVisible, timeout = 5000) {
+    await browser.waitUntil(
+      async () => {
+        const hasInfo = await this.hasExtendedPlayerInfo();
+        return hasInfo === shouldBeVisible;
+      },
+      {
+        timeout,
+        timeoutMsg: `Extended player info did not ${shouldBeVisible ? "appear" : "disappear"} within ${timeout}ms`,
+      },
+    );
+  }
 }
 
 export default new GamePage();

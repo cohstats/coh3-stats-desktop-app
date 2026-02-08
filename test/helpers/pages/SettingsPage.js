@@ -151,6 +151,58 @@ class SettingsPage extends BasePage {
   async getSettingsContent() {
     return await this.getBodyText();
   }
+
+  /**
+   * Get the "Show extended player info" checkbox element
+   * @returns {Promise<WebdriverIO.Element>}
+   */
+  async getShowExtendedPlayerInfoCheckbox() {
+    // Use data-testid to find the checkbox
+    const checkbox = await this.getByTestId("show-extended-player-info-checkbox");
+    // Scroll to the element to ensure it's in view
+    await checkbox.scrollIntoView();
+    await this.pause(300); // Wait for scroll to complete
+    return checkbox;
+  }
+
+  /**
+   * Check if "Show extended player info" is enabled
+   * @returns {Promise<boolean>}
+   */
+  async isShowExtendedPlayerInfoEnabled() {
+    const checkbox = await this.getShowExtendedPlayerInfoCheckbox();
+    return await checkbox.isSelected();
+  }
+
+  /**
+   * Toggle the "Show extended player info" checkbox
+   */
+  async toggleShowExtendedPlayerInfo() {
+    const checkbox = await this.getShowExtendedPlayerInfoCheckbox();
+    await checkbox.click();
+    // Wait a bit for the setting to be saved
+    await this.pause(500);
+  }
+
+  /**
+   * Enable "Show extended player info"
+   */
+  async enableShowExtendedPlayerInfo() {
+    const isEnabled = await this.isShowExtendedPlayerInfoEnabled();
+    if (!isEnabled) {
+      await this.toggleShowExtendedPlayerInfo();
+    }
+  }
+
+  /**
+   * Disable "Show extended player info"
+   */
+  async disableShowExtendedPlayerInfo() {
+    const isEnabled = await this.isShowExtendedPlayerInfoEnabled();
+    if (isEnabled) {
+      await this.toggleShowExtendedPlayerInfo();
+    }
+  }
 }
 
 export default new SettingsPage();

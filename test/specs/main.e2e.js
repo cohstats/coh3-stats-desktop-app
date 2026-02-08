@@ -80,6 +80,43 @@ describe("COH3 Stats Desktop App - E2E Tests", () => {
       await SettingsPage.toggleColorScheme();
       expect(await SettingsPage.isDarkTheme()).toBe(true);
     });
+
+    it("Can toggle Show Extended Player Info setting", async () => {
+      // Navigate to Settings screen
+      await NavigationPage.navigateToSettings();
+      await SettingsPage.waitForPageLoad();
+
+      // Step 1-2: Uncheck the "Show extended player info" checkbox
+      await SettingsPage.disableShowExtendedPlayerInfo();
+
+      // Step 3: Verify the checkbox is unchecked
+      expect(await SettingsPage.isShowExtendedPlayerInfoEnabled()).toBe(false);
+
+      // Step 4: Navigate to the Game screen
+      await NavigationPage.navigateToGame();
+      await GamePage.waitForGameDataToLoad(20000);
+
+      // Step 5: Verify that extended player info is NOT displayed on player cards
+      expect(await GamePage.hasExtendedPlayerInfo()).toBe(false);
+
+      // Step 6: Navigate back to the Settings screen
+      await NavigationPage.navigateToSettings();
+      await SettingsPage.waitForPageLoad();
+
+      // Step 7: Check the "Show extended player info" checkbox
+      await SettingsPage.enableShowExtendedPlayerInfo();
+
+      // Step 8: Verify the checkbox is checked
+      expect(await SettingsPage.isShowExtendedPlayerInfoEnabled()).toBe(true);
+
+      // Step 9: Navigate to the Game screen
+      await NavigationPage.navigateToGame();
+      await GamePage.waitForGameDataToLoad(20000);
+
+      // Step 10: Verify that extended player info IS displayed on player cards
+      await GamePage.waitForExtendedPlayerInfo(true, 5000);
+      expect(await GamePage.hasExtendedPlayerInfo()).toBe(true);
+    });
   });
 
   // Disabled because it doesn't work for some reason
