@@ -15,7 +15,7 @@ name = "coh3_stats_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2", features = [] }
+tauri-build = { version = "=2.5.1", features = [] }
 
 [dependencies]
 dirs = "5.0"
@@ -30,7 +30,7 @@ reqwest = { version = "=0.12.23", features = ["json", "multipart", "brotli", "gz
 rev_lines = "=0.3.0"
 serde_json = "=1.0.137"
 serde = { version = "=1.0.216", features = ["derive"] }
-tauri = { version = "2", features = ["tray-icon"] }
+tauri = { version = "=2.9.1", features = ["tray-icon"] }
 tauri-plugin-cli = "2"
 tauri-plugin-deep-link = "=0.1.2"
 tauri-plugin-log = "2"
@@ -42,7 +42,7 @@ tauri-plugin-dialog = "2"
 tauri-plugin-fs = "2"
 tauri-plugin-http = { version = "2", features = ["unsafe-headers"] }
 tauri-plugin-process = "2"
-tauri-plugin-updater = "2.0.0"
+tauri-plugin-updater = "=2.9.0"
 tauri-plugin-shell = "2"
 thiserror = "=1.0.69"
 tokio = { version = "=1.43.0", features = ["time"] }
