@@ -57,6 +57,11 @@ export const useAudioManager = (gameData: FullGameData | undefined) => {
       return;
     }
 
+    // Don't invoke until muteOnlyOutOfGame is loaded
+    if (muteOnlyOutOfGame === undefined) {
+      return;
+    }
+
     const gameState = gameData?.state;
     const isInGame = gameState === "InGame" || gameState === "Loading";
 
@@ -67,8 +72,8 @@ export const useAudioManager = (gameData: FullGameData | undefined) => {
     });
 
     invoke("update_audio_mute_settings", {
-      muteOnlyOutOfGame,
-      isInGame,
+      mute_only_out_of_game: muteOnlyOutOfGame,
+      is_in_game: isInGame,
     }).catch((error) => {
       console.error("[AudioManager] Failed to update mute settings:", error);
     });
