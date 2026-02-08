@@ -19,15 +19,7 @@ class RecentGamesPage extends BasePage {
    */
   async hasGames() {
     const bodyText = await this.getBodyText();
-    return bodyText.includes("Played") || bodyText.includes("Waiting for Player");
-  }
-
-  /**
-   * Check if page is in waiting state
-   * @returns {Promise<boolean>}
-   */
-  async isWaitingForPlayer() {
-    return await this.hasText("Waiting for Player");
+    return bodyText.includes("Played");
   }
 
   /**
@@ -36,11 +28,7 @@ class RecentGamesPage extends BasePage {
    */
   async hasPlayerInformation() {
     const bodyText = await this.getBodyText();
-    return (
-      bodyText.includes("Waiting for Player") ||
-      bodyText.includes("Played") ||
-      bodyText.includes("automatch")
-    );
+    return bodyText.includes("Played");
   }
 
   /**

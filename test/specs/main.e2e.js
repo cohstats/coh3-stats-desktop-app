@@ -82,7 +82,7 @@ describe("COH3 Stats Desktop App - E2E Tests", () => {
   });
 
   // Disabled because it doesn't work for some reason
-  xdescribe("Recent Games Screen", () => {
+  describe("Recent Games Screen", () => {
     before(async () => {
       // Navigate to Recent Games screen
       await NavigationPage.navigateToRecentGames();
