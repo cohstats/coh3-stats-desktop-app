@@ -6,6 +6,7 @@ import {
   RecentGamesPage,
   ReplaysPage,
   AboutPage,
+  HeaderPage,
 } from "../helpers/pages/index.js";
 
 describe("COH3 Stats Desktop App - E2E Tests", () => {
@@ -138,6 +139,27 @@ describe("COH3 Stats Desktop App - E2E Tests", () => {
     it("Should display app information", async () => {
       // Should contain basic app information
       expect(await AboutPage.hasAppInformation("Grenadier")).toBe(true);
+    });
+  });
+
+  describe("Header", () => {
+    it("Should display Steam online players count", async () => {
+      // Check that the online players badge is displayed
+      expect(await HeaderPage.isOnlinePlayersBadgeDisplayed()).toBe(true);
+    });
+
+    it("Should show online players count greater than 0", async () => {
+      // Wait for the online players count to load
+      const count = await HeaderPage.waitForOnlinePlayersToLoad(20000);
+
+      // Verify the count is a valid number and greater than 0
+      expect(count).not.toBeNull();
+      expect(count).toBeGreaterThan(0);
+    });
+
+    it("Should display header elements", async () => {
+      // Verify header is displayed
+      expect(await HeaderPage.isHeaderDisplayed()).toBe(true);
     });
   });
 

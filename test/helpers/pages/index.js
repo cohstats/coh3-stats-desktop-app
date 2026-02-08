@@ -9,8 +9,17 @@ import SettingsPage from "./SettingsPage.js";
 import RecentGamesPage from "./RecentGamesPage.js";
 import ReplaysPage from "./ReplaysPage.js";
 import AboutPage from "./AboutPage.js";
+import HeaderPage from "./HeaderPage.js";
 
-export { NavigationPage, GamePage, SettingsPage, RecentGamesPage, ReplaysPage, AboutPage };
+export {
+  NavigationPage,
+  GamePage,
+  SettingsPage,
+  RecentGamesPage,
+  ReplaysPage,
+  AboutPage,
+  HeaderPage,
+};
 
 export default {
   NavigationPage,
@@ -19,4 +28,5 @@ export default {
   RecentGamesPage,
   ReplaysPage,
   AboutPage,
+  HeaderPage,
 };
