@@ -37,8 +37,6 @@ struct Payload {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri_plugin_deep_link::prepare("com.coh3stats.desktop");
-
     // Add monitoring using sentry
     let _guard = sentry::init(("https://5a9a5418c06b995fe1c6221c83451612@o4504995920543744.ingest.sentry.io/4506676182646784", sentry::ClientOptions {
       release: sentry::release_name!(),
@@ -111,6 +109,7 @@ pub fn run() {
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_deep_link::init())
         .plugin(cohdb::auth::init(
             COHDB_CLIENT_ID.to_string(),
             COHDB_REDIRECT_URI.to_string(),
@@ -218,27 +217,36 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     // }
 
     // Set up deep link - don't fail setup if this fails
-    let handle_clone = handle.clone();
-    if let Err(e) = tauri_plugin_deep_link::register("coh3stats", move |request| {
-        if let Err(err) =
-            tauri::async_runtime::block_on(cohdb::auth::retrieve_token(&request, &handle_clone))
-        {
-            error!("error retrieving cohdb token: {err}");
+    use tauri_plugin_deep_link::DeepLinkExt;
+
+    // Register the deep link scheme at runtime for desktop platforms
+    #[cfg(any(target_os = "linux", all(debug_assertions, windows)))]
+    {
+        if let Err(e) = handle.deep_link().register("coh3stats") {
+            error!("Failed to register deep link scheme: {}", e);
             sentry::capture_message(
-                &format!("COHDB token retrieval error: {}", err),
+                &format!("Deep link scheme registration error: {} (OS error - possibly permissions)", e),
                 sentry::Level::Error,
             );
+            info!("Continuing without deep link support");
         }
-    }) {
-        error!("Failed to register deep link: {}", e);
-        sentry::capture_message(
-            &format!("Deep link registration error: {} (OS error - possibly permissions)", e),
-            sentry::Level::Error,
-        );
-        // Don't fail the entire setup if deep link registration fails
-        // This is likely the "Access is denied" error on some systems
-        info!("Continuing without deep link support");
     }
+
+    // Set up deep link event handler
+    let handle_clone = handle.clone();
+    handle.deep_link().on_open_url(move |event| {
+        for url in event.urls() {
+            if let Err(err) =
+                tauri::async_runtime::block_on(cohdb::auth::retrieve_token(url.as_str(), &handle_clone))
+            {
+                error!("error retrieving cohdb token: {err}");
+                sentry::capture_message(
+                    &format!("COHDB token retrieval error: {}", err),
+                    sentry::Level::Error,
+                );
+            }
+        }
+    });
 
     Ok(())
 }
