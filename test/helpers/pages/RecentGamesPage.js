@@ -15,11 +15,77 @@ class RecentGamesPage extends BasePage {
 
   /**
    * Check if page is displaying games
+   * Verifies that:
+   * - DataTable exists with at least 5 rows
+   * - Multiple different players are mentioned
+   * - Game-related content is present (maps, factions, etc.)
    * @returns {Promise<boolean>}
    */
   async hasGames() {
-    const bodyText = await this.getBodyText();
-    return bodyText.includes("Played");
+    try {
+      // Check 1: Verify DataTable exists with at least 5 rows
+      const tableRows = await this.getElements("tbody tr");
+      if (tableRows.length < 5) {
+        console.log(`Expected at least 5 table rows, found ${tableRows.length}`);
+        return false;
+      }
+
+      // Check 2: Verify "Played" column header exists (indicates proper table structure)
+      const bodyText = await this.getBodyText();
+      if (!bodyText.includes("Played")) {
+        console.log("Missing 'Played' column header");
+        return false;
+      }
+
+      // Check 3: Extract player names and verify multiple different players exist
+      const playerNames = new Set();
+
+      // Look for player name links (they should be clickable anchors)
+      const playerLinks = await this.getElements("a");
+      for (const link of playerLinks) {
+        const text = await link.getText();
+        // Filter out empty strings and common UI elements
+        if (text && text.length > 0 && !text.includes("Details") && !text.includes("online")) {
+          playerNames.add(text.trim());
+        }
+      }
+
+      // Should have at least 3 different players in the match history
+      if (playerNames.size < 3) {
+        console.log(`Expected at least 3 different players, found ${playerNames.size}`);
+        return false;
+      }
+
+      // Check 4: Verify faction images are present (indicates game data loaded)
+      const factionImages = await this.getElements("img[src*='/factions/']");
+      if (factionImages.length < 5) {
+        console.log(`Expected at least 5 faction images, found ${factionImages.length}`);
+        return false;
+      }
+
+      // Check 5: Verify map information is present
+      const mapImages = await this.getElements("img[alt*='map'], img[src*='maps']");
+      if (mapImages.length === 0) {
+        console.log("No map images found");
+        return false;
+      }
+
+      // Check 6: Verify no error messages are present
+      if (
+        bodyText.includes("Error") ||
+        bodyText.includes("Failed to load") ||
+        bodyText.includes("Something went wrong")
+      ) {
+        console.log("Error messages detected on page");
+        return false;
+      }
+
+      // All checks passed
+      return true;
+    } catch (error) {
+      console.error("Error in hasGames check:", error);
+      return false;
+    }
   }
 
   /**
