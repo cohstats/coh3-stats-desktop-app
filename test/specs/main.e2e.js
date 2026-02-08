@@ -1,6 +1,12 @@
-import fs from "fs";
-import path from "path";
 import testHelpers from "../helpers/test-helpers.js";
+import {
+  NavigationPage,
+  GamePage,
+  SettingsPage,
+  RecentGamesPage,
+  ReplaysPage,
+  AboutPage,
+} from "../helpers/pages/index.js";
 
 describe("COH3 Stats Desktop App - E2E Tests", () => {
   before(async () => {
@@ -19,75 +25,59 @@ describe("COH3 Stats Desktop App - E2E Tests", () => {
   describe("Game Screen", () => {
     before(async () => {
       // Navigate to Game screen (should be default)
-      await testHelpers.navigateToScreen("Game");
-      await browser.pause(2000);
+      await NavigationPage.navigateToGame();
+      await GamePage.pause(2000);
     });
 
     it("Should load game data from the test log file", async () => {
       // Wait for game data to load
-      await testHelpers.waitForGameDataToLoad(20000);
+      await GamePage.waitForGameDataToLoad(20000);
 
       // Check that we're not in "Waiting for a game" state
-      const body = await $("body");
-      const bodyText = await body.getText();
-      expect(bodyText).not.toContain("Waiting for a game");
+      expect(await GamePage.isWaitingForGame()).toBe(false);
     });
 
     it("Should display player cards", async () => {
       // Player cards should be visible
-      const playerCards = await $$("div[class*='player-card']");
-      expect(playerCards.length).toBeGreaterThan(0);
+      expect(await GamePage.hasPlayerCards()).toBe(true);
+      expect(await GamePage.getPlayerCardCount()).toBeGreaterThan(0);
     });
 
     it("Should display map information", async () => {
       // Map card should be visible with map name
-      const body = await $("body");
-      const bodyText = await body.getText();
-      expect(bodyText).toContain("Map -");
+      expect(await GamePage.hasMapInformation()).toBe(true);
     });
   });
 
   describe("Settings Screen", () => {
     before(async () => {
       // Navigate to settings screen
-      await testHelpers.navigateToScreen("Settings");
-      // Wait for the Settings page to load by checking for specific text
-      await testHelpers.waitForText("Path to warnings.log:", 5000);
-      // Give the input element time to render
-      await browser.pause(1000);
+      await NavigationPage.navigateToSettings();
+      // Wait for the Settings page to load
+      await SettingsPage.waitForPageLoad();
     });
 
     // it("Should display the log file path", async () => {
-    //   const input = await testHelpers.getByTestId("log-file-path-input");
-    //   const value = await input.getValue();
-    //
+    //   const path = await SettingsPage.getLogFilePath();
     //   // Should contain the path to warnings.log
-    //   expect(value).toContain("warnings.log");
+    //   expect(path).toContain("warnings.log");
     // });
     //
     // it("Should show log file as found (green checkmark)", async () => {
-    //   // Look for the green checkmark icon indicating file is found
-    //   const body = await $("body");
-    //   const bodyText = await body.getText();
-    //   expect(bodyText).toContain("Log file found");
+    //   expect(await SettingsPage.isLogFileFound()).toBe(true);
     // });
 
     it("Can toggle Color Scheme", async () => {
-      let body = await $("body");
-      let backgroundColor = await body.getCSSProperty("background-color");
-
       // Dark theme is the default
-      expect(backgroundColor.parsed.hex).toEqual("#242424");
+      expect(await SettingsPage.isDarkTheme()).toBe(true);
 
       // Switch to light theme
-      await $('div[data-testid="color-scheme-toggle"] button').click();
-
-      body = await $("body");
-      backgroundColor = await body.getCSSProperty("background-color");
-      expect(backgroundColor.parsed.hex).toEqual("#ffffff");
+      await SettingsPage.toggleColorScheme();
+      expect(await SettingsPage.isLightTheme()).toBe(true);
 
       // Switch back to dark theme for other tests
-      await $('div[data-testid="color-scheme-toggle"] button').click();
+      await SettingsPage.toggleColorScheme();
+      expect(await SettingsPage.isDarkTheme()).toBe(true);
     });
   });
 
@@ -95,104 +85,81 @@ describe("COH3 Stats Desktop App - E2E Tests", () => {
   xdescribe("Recent Games Screen", () => {
     before(async () => {
       // Navigate to Recent Games screen
-      await testHelpers.navigateToScreen("Recent Games");
-      await browser.pause(10000);
+      await NavigationPage.navigateToRecentGames();
+      await RecentGamesPage.waitForPageLoad();
     });
 
     it("Should display Recent Games screen", async () => {
-      const body = await $("body");
-      const bodyText = await body.getText();
-
       // Should show either games or a waiting message
-      const hasGames = bodyText.includes("Played") || bodyText.includes("Waiting for Player");
-      expect(hasGames).toBe(true);
+      expect(await RecentGamesPage.hasGames()).toBe(true);
     });
 
     it("Should show player information when available", async () => {
       // Wait a bit for data to potentially load
-      await browser.pause(3000);
-
-      const body = await $("body");
-      const bodyText = await body.getText();
+      await RecentGamesPage.waitForPlayerInfo();
 
       // Check if we have player data or appropriate waiting message
-      const hasPlayerInfo =
-        bodyText.includes("Waiting for Player") ||
-        bodyText.includes("Played") ||
-        bodyText.includes("automatch");
-
-      expect(hasPlayerInfo).toBe(true);
+      expect(await RecentGamesPage.hasPlayerInformation()).toBe(true);
     });
   });
 
   describe("Replays Screen", () => {
     before(async () => {
       // Navigate to Replays screen
-      await testHelpers.navigateToScreen("Replays");
-      await testHelpers.waitForElement('[data-testid="replays-description"]', 5000);
+      await NavigationPage.navigateToReplays();
+      await ReplaysPage.waitForPageLoad();
     });
 
     it("Should display Replays screen", async () => {
-      const description = await testHelpers.getByTestId("replays-description");
-      expect(await description.isDisplayedInViewport()).toEqual(true);
+      expect(await ReplaysPage.isReplaysDescriptionDisplayed()).toBe(true);
     });
 
     it("Should show replay information", async () => {
-      const body = await $("body");
-      const bodyText = await body.getText();
-
       // Should contain information about replays
-      expect(bodyText.length).toBeGreaterThan(50);
+      expect(await ReplaysPage.hasReplayInformation()).toBe(true);
     });
   });
 
   describe("About Screen", () => {
     before(async () => {
       // Navigate to About screen
-      await testHelpers.navigateToScreen("About");
-      await testHelpers.waitForElement('[data-testid="app-version"]', 5000);
+      await NavigationPage.navigateToAbout();
+      await AboutPage.waitForPageLoad();
     });
 
     it("Should display app version", async () => {
-      const appVersion = await testHelpers.getByTestId("app-version");
-      expect(await appVersion.isDisplayedInViewport()).toEqual(true);
+      expect(await AboutPage.isAppVersionDisplayed()).toBe(true);
     });
 
     it("App version should match package.json", async () => {
-      const appVersion = await testHelpers.getByTestId("app-version");
-      const text = await appVersion.getText();
-
-      // Read package.json from disk
-      const packageJsonPath = path.resolve(fs.realpathSync("."), "package.json");
-      const packageJsonData = fs.readFileSync(packageJsonPath, "utf8");
-      const packageJson = JSON.parse(packageJsonData);
-
-      expect(text).toMatch(packageJson.version);
+      expect(await AboutPage.doesVersionMatchPackage()).toBe(true);
     });
 
     it("Should display app information", async () => {
-      const body = await $("body");
-      const bodyText = await body.getText();
-
       // Should contain basic app information
-      expect(bodyText).toContain("Grenadier");
+      expect(await AboutPage.hasAppInformation("Grenadier")).toBe(true);
     });
   });
 
   describe("Navigation", () => {
     it("Should be able to navigate between all screens", async () => {
-      const screens = ["Game", "Recent Games", "Replays", "Settings", "About"];
+      await NavigationPage.navigateThroughAllScreens();
 
-      for (const screen of screens) {
-        await testHelpers.navigateToScreen(screen);
-        await browser.pause(1000);
+      // Verify we can navigate to each screen individually
+      await NavigationPage.navigateToGame();
+      expect((await GamePage.getBodyText()).length).toBeGreaterThan(50);
 
-        const body = await $("body");
-        const bodyText = await body.getText();
+      await NavigationPage.navigateToRecentGames();
+      expect((await RecentGamesPage.getBodyText()).length).toBeGreaterThan(50);
 
-        // Verify we're on the correct screen by checking for screen-specific content
-        expect(bodyText.length).toBeGreaterThan(50);
-      }
+      await NavigationPage.navigateToReplays();
+      expect((await ReplaysPage.getBodyText()).length).toBeGreaterThan(50);
+
+      await NavigationPage.navigateToSettings();
+      expect((await SettingsPage.getBodyText()).length).toBeGreaterThan(50);
+
+      await NavigationPage.navigateToAbout();
+      expect((await AboutPage.getBodyText()).length).toBeGreaterThan(50);
     });
   });
 });
