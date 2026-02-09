@@ -49,7 +49,7 @@ tokio = { version = "=1.43.0", features = ["time"] }
 vault = "=8.0.1"
 window-shadows = "=0.2.2"
 # monitoring by sentry
-sentry = "=0.34.0"
+sentry = "=0.46.2"
 # For the OBS interface we need to expose webserver
 tiny_http = "=0.12.0"
 tauri-plugin-opener = "2.5.0"
