@@ -1,0 +1,417 @@
+﻿RelicCoH3 started at 2024-12-31 22:23 [ëŒ€í•œë¯¼êµ­ í‘œì¤€ì‹œ UTC 09:00]
+OS Win 10.0.19045, 16315MB Physical Memory, 6410 Physical Available, 29627 Virtual Total, 16117 Virtual Available, 13312 Page file.
+RUN-OPTIONS [-turn_soft_lock_detection_seconds 60]
+WORKING-DIR [I:\SteamLibrary\steamapps\common\Company of Heroes 3\]
+USER [82105]
+COMPUTER [DESKTOP-KQS7PQ0]
+LOCALE [ko-KR]
+
+(I) [22:23:26.265] [000011508]: Version.cpp - translation info queried modulefilename I:\SteamLibrary\steamapps\common\Company of Heroes 3\RelicCoH3.exe, len 1604
+(I) [22:23:26.265] [000011508]: Version [1.9.4.32267] Info [[Anvil][anvil][stable][rtm][4162970]]
+(I) [22:23:26.358] [000011508]: GameApp::SetState : new (Uninitialized) old (Uninitialized)
+(I) [22:23:26.358] [000011508]: Loading step: [Platform]
+(I) [22:23:26.358] [000011508]: Loading step: [Logger thread]
+(I) [22:23:26.362] [000011508]: Loading step: [TimeStamp]
+(I) [22:23:26.362] [000011508]: Loading step: [Timeout thread]
+(I) [22:23:26.364] [000011508]: Loading step: [CorruptInstallNotifier]
+(I) [22:23:26.364] [000011508]: Loading step: [CoInitialize]
+(I) [22:23:26.364] [000011508]: Loading step: [Process setup]
+(I) [22:23:26.364] [000011508]: Loading step: [MemoryEnvironment]
+(I) [22:23:26.839] [000011508]: Loading step: [InitReflectSystem]
+(I) [22:23:26.892] [000011508]: Loading step: [InitGameActivator]
+(I) [22:23:26.892] [000011508]: Loading step: [InitThreadingModel]
+(I) [22:23:26.892] [000011508]: Primary CPU is a 3192MHz [Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz] running at 3192MHz
+(I) [22:23:26.892] [000011508]: Architecture [9], Level [6], Revision [40458].
+(I) [22:23:26.892] [000011508]: 12 logical processor(s) detected.
+(I) [22:23:26.892] [000011508]: 6 physical processor(s) detected.
+(I) [22:23:26.892] [000011508]: 1 processor(s) nodes detected.
+(I) [22:23:26.906] [000011508]: Threading system initialized to [12]/[12] cores
+(I) [22:23:26.906] [000011508]: Loading step: [ThreadingModel Main thread]
+(I) [22:23:26.906] [000011508]: Registered essence thread: [Main_Thread] usesRcssWorkerThreads: [true]
+(I) [22:23:26.906] [000011508]: Loading step: [Taskbar]
+(I) [22:23:26.912] [000011508]: Loading step: [Additional crash information]
+(I) [22:23:26.912] [000011508]: Loading step: [Single Instance Check]
+(I) [22:23:26.912] [000011508]: Loading step: [Config File]
+(I) [22:23:26.981] [000011508]: GAME -- Current Steam name is [Baskervilles Blackdog]
+(I) [22:23:26.981] [000011508]: GAME -- steam returned language 'koreana'
+(I) [22:23:26.992] [000011508]: GAME -- [Company of Heroes 3] set to language [ko]
+(I) [22:23:27.084] [000011508]: Loading step: [Render Window]
+(I) [22:23:27.084] [000011508]: Loading step: [Statgraph]
+(I) [22:23:27.084] [000011508]: Loading step: [StatGraph Stats]
+(I) [22:23:27.084] [000011508]: Loading step: [ArchiveManager]
+(I) [22:23:27.084] [000011508]: Loading step: [Filesystem]
+(I) [22:23:27.084] [000011508]: Using [G:\DOCUMENT\My Games\Company of Heroes 3\] as base writable folder
+(I) [22:23:27.084] [000011508]: Game -- System temp path is [C:\Users\82105\AppData\Local\Temp\]
+(I) [22:23:27.088] [000011508]: Loading step: [FileLogger]
+(I) [22:23:27.088] [000011508]: Loading step: [Lua GameBinding Traits]
+(I) [22:23:27.088] [000011508]: Loading step: [Lua Libraries]
+(I) [22:23:27.088] [000011508]: Loading step: [System Config]
+(I) [22:23:27.089] [000011508]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:configuration_user.lua'
+(I) [22:23:27.095] [000011508]: Loading step: [TelemetryController]
+(I) [22:23:27.095] [000011508]: Loading step: [User Folder Unloader]
+(I) [22:23:27.095] [000011508]: Loading step: [Load/Save Config Settings]
+(I) [22:23:27.099] [000011508]: Loading step: [Warnings]
+(I) [22:23:27.099] [000011508]: Loading step: [Load Debug Symbols]
+(I) [22:23:27.099] [000011508]: Loading step: [Command DB]
+(I) [22:23:27.099] [000011508]: Loading step: [InitStateTreeManager]
+(I) [22:23:27.099] [000011508]: Loading step: [Prerequisite Manager]
+(I) [22:23:27.099] [000011508]: Loading step: [Prerequisite Entries]
+(I) [22:23:27.099] [000011508]: Loading step: [GameModule Pre Mod Interface Init]
+(I) [22:23:27.099] [000011508]: Loading step: [ModManager]
+(I) [22:23:27.099] [000011508]: MODULE -- Creating module 'RelicGame'.
+(I) [22:23:27.100] [000029456]: DB -- Unable to load symbols.
+(I) [22:23:27.120] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\attrib.sga 72659955 B [ID:cc658689e8327aa213f047ca598ee0c9] [Ver:8a8aab4f3204058ee3529900b38ca671] [Sig:10157046892926202247]
+(I) [22:23:27.146] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\data.sga 31084942 B [ID:16c0f95516b6bd76239a8a743a290dba] [Ver:9e2f8574d6a30f62142c77f6f9bb2db8] [Sig:13114907403501327549]
+(I) [22:23:27.151] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\ui.sga 1116070 B [ID:09480279ef1f221e1467f0feeeb28aa2] [Ver:42c138afd87d231a6b2eea42bed91295] [Sig:15223601806506464644]
+(I) [22:23:27.154] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\common\archives\data.sga 92639 B [ID:16c0f95516b6bd76239a8a743a290dba] [Ver:13a054cf58402ebb44182403cfe05038] [Sig:15853610410799954909]
+(I) [22:23:27.164] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\data.sga 24304103 B [ID:91eb1b764829dce596439b0b53d5d902] [Ver:409ad4cf2ca98a29cc0000d6137429b8] [Sig:3404314467487476567]
+(I) [22:23:27.189] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\art.sga 3666753393 B [ID:335f6c45d2d00556a1b300110fb67f63] [Ver:4bf235faa5ba6ee167bfe10f7d1d6509] [Sig:17185478642125218505]
+(I) [22:23:27.215] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\artbuildings.sga 1621619114 B [ID:e630934e80bb0be959ddfc54da7e1e54] [Ver:da3dcae24efdefb104d9f285e31ec27b] [Sig:4542792497615840193]
+(I) [22:23:27.241] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\artenvironment.sga 2292552441 B [ID:a8353aa1bdde46ced0f67029944c406c] [Ver:a75a66a2b406881ca258e11791b7f248] [Sig:3358233517301789094]
+(I) [22:23:27.260] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\artscenarios.sga 2998968672 B [ID:ffdeb91fab5122cf1ab7c37d119dc5d5] [Ver:95d5d76023744cb15c531b1153d2e7dd] [Sig:1331097252841978089]
+(I) [22:23:27.272] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\scenarios.sga 11055136 B [ID:4f6bed42a792fb5b9eae14472a7e901c] [Ver:0692eef4f7c1c81bc2796901beefa28f] [Sig:800214648571763866]
+(I) [22:23:27.278] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\scenariosmp.sga 764759777 B [ID:709197811710287335bf21d3f3e018fe] [Ver:a594e9e1a5e8aaab343bf6207d1c0d2f] [Sig:14057006943632869382]
+(I) [22:23:27.286] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\scenariossp.sga 1810656367 B [ID:cb1eb03a442e23d7da269decdebfe11b] [Ver:472753f32319a2993a22d91108c0fc76] [Sig:8161168697365724050]
+(I) [22:23:27.296] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\ui.sga 1106085353 B [ID:33a67d1cab1e8601f71ae7973f75c08b] [Ver:ce9c8f8a5c4cf98d941ab8bf45003a57] [Sig:642940005621138396]
+(I) [22:23:27.303] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\tools\archives\data.sga 2029 B [ID:94195021539650ebc2111161f08a5693] [Ver:fd9902f3003e0e0354394aa79a61a133] [Sig:13413823260693370305]
+(I) [22:23:27.304] [000011508]: Archive [DevOnly] is [missing]! [Skipping.]
+(I) [22:23:27.304] [000011508]: Archive [DevOnly] is [missing]! [Skipping.]
+(I) [22:23:27.304] [000011508]: Archive [ScenariosDev] is [missing]! [Skipping.]
+(I) [22:23:27.309] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\localekorean.sga 783955 B [ID:ce140ff7302aea1fc3bf8449236b2d14] [Ver:0d0cc3b8b9ca0de7fff56320802d8467] [Sig:10968685519994995328]
+(I) [22:23:27.312] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\movies.sga 55695 B [ID:34a3a1146f0574f5dc457975826e2333] [Ver:d292021b4de23a0bd1aadb3e6a15917e] [Sig:11217675053417598744]
+(I) [22:23:27.316] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\reflect.sga 1866535 B [ID:cf317ce4d037d959d1f61ec4ba4b95da] [Ver:e4a466677b0afc6d73a341d47472bbdd] [Sig:8331361181974089073]
+(I) [22:23:27.320] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\dx12shadersandedfs.sga 45177 B [ID:f5a37cc293ebf676913da1bdd46d163b] [Ver:8edb9843efbd087325125019824cad4c] [Sig:16837756131963938435]
+(I) [22:23:27.324] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\dx12assets.sga 7852637 B [ID:6dee0a72320066df084864e3fd8db247] [Ver:b5199b08c33346f4156215f12b155586] [Sig:1424078468205146338]
+(I) [22:23:27.334] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\common\archives\dx12shadersandedfs.sga 4397973 B [ID:bcff99d52833fd8459ed8d990c584b6d] [Ver:2f809d043d7e1e4cc7963cb6409ca965] [Sig:5593080967215403531]
+(I) [22:23:27.340] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\common\archives\dx12assets.sga 1233892 B [ID:2916e14abbb8c29a770cabc48186eae9] [Ver:904fea0e86224b0a27774a9adee1ee6a] [Sig:202420786684442498]
+(I) [22:23:27.346] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\dx12shadersandedfs.sga 13363415 B [ID:17b342a4951806a6286037aad597bfb4] [Ver:4f6d369bb35d0c771a8f560444f6889a] [Sig:9562207574126097856]
+(I) [22:23:27.346] [000011508]: Loading step: [Localization]
+(I) [22:23:27.365] [000011508]: Loading step: [Game]
+(I) [22:23:27.365] [000011508]: Loading step: [SimStaticApp]
+(I) [22:23:27.367] [000011508]: Loading step: [Family Manager]
+(I) [22:23:27.378] [000011508]: UTIL -- Throwing 'Unable to open file' exception on 'Attrib:Attrib\frontend_lockout.rgd'
+(I) [22:23:27.378] [000011508]: UTIL -- Failed to Load BinaryConfig file: 'Attrib:Attrib\frontend_lockout.rgd', error: 'Unable to open file!'
+(I) [22:23:27.379] [000011508]: Loading step: [SimApp]
+(I) [22:23:27.379] [000011508]: Loading step: [Property Bag Registration]
+(I) [22:23:27.383] [000011508]: Loading step: [State Tree Manager]
+(I) [22:23:27.646] [000011508]: Loading step: [Sound - Rtpc Event Database Init]
+(I) [22:23:27.646] [000011508]: Loading step: [Property Bag Manager]
+(I) [22:23:28.235] [000011508]: MapGen - Failed to load: m_defaultCampaignPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [22:23:28.235] [000011508]: MapGen - Failed to load: m_defaultMultiplayerPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [22:23:28.235] [000011508]: MapGen - Failed to load: m_defaultOtherPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [22:23:32.206] [000011508]: PropertyBagManager Loaded in 4.561000s
+(I) [22:23:32.206] [000011508]: Loading step: [Modifier Callbacks Initialize]
+(I) [22:23:32.206] [000011508]: Loading step: [HandleIndex Manager]
+(I) [22:23:32.206] [000011508]: Loading step: [EntityBlueprintManager]
+(I) [22:23:32.208] [000011508]: Loading step: [ReflectPostExternalSystemsInited]
+(I) [22:23:32.219] [000011508]: Loading step: [ModPackManager]
+(I) [22:23:32.219] [000011508]: Loading step: [ModDllSetup]
+(I) [22:23:32.219] [000011508]: Loading step: [FilePath Filter]
+(I) [22:23:32.219] [000011508]: Loading step: [Locale System]
+(I) [22:23:32.219] [000011508]: Loading step: [Compatible Architecture Check]
+(I) [22:23:32.219] [000011508]: Loading step: [Compatible OS Check]
+(I) [22:23:32.219] [000011508]: Loading step: [Multicore Check]
+(I) [22:23:32.219] [000011508]: Loading step: [Parental Control]
+(I) [22:23:32.231] [000011508]: Loading step: [NetworkGlobal]
+(I) [22:23:32.232] [000011508]: AppID: 1677280
+(I) [22:23:32.234] [000011508]: WorldwideLoginService::WorldwideLoginService - initializing
+(I) [22:23:32.253] [000011508]: SystemCertsWin: Opened the CA system store.
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=Personal/OU=MangoWire/CN=Root issuer=/C=KR/O=Personal/OU=MangoWire/CN=Root
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/O=ASTxRoot2 issuer=/O=ASTxRoot2
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=Interezen CA/CN=Interezen issuer=/C=KR/O=Interezen CA/CN=Interezen
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Trusted Root G4 issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Trusted Root G4
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/ST=Some-State/L=Seoul/O=iniLINE Co., Ltd./CN=iniLINE CrossEX RootCA2 issuer=/C=KR/ST=Some-State/L=Seoul/O=iniLINE Co., Ltd./CN=iniLINE CrossEX RootCA2
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=WIZVERA/CN=WIZVERA CA issuer=/C=KR/O=WIZVERA/CN=WIZVERA CA
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/DC=com/DC=microsoft/CN=Microsoft Root Certificate Authority issuer=/DC=com/DC=microsoft/CN=Microsoft Root Certificate Authority
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=WIZVERA/CN=WIZVERA1 CA issuer=/C=KR/O=WIZVERA/CN=WIZVERA1 CA
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=SGASolutions/OU=CSTeam/CN=SGASolutions LocalCA issuer=/C=KR/O=SGASolutions/OU=CSTeam/CN=SGASolutions LocalCA
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=ZA/ST=Western Cape/L=Durbanville/O=Thawte/OU=Thawte Certification/CN=Thawte Timestamping CA issuer=/C=ZA/ST=Western Cape/L=Durbanville/O=Thawte/OU=Thawte Certification/CN=Thawte Timestamping CA
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/ST=KOREA/L=SEOUL/O=LumenSoft CA/OU=Mobile/CN=LumenSoft CA issuer=/C=KR/ST=KOREA/L=SEOUL/O=LumenSoft CA/OU=Mobile/CN=LumenSoft CA
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/OU=Copyright (c) 1997 Microsoft Corp./OU=Microsoft Corporation/CN=Microsoft Root Authority issuer=/OU=Copyright (c) 1997 Microsoft Corp./OU=Microsoft Corporation/CN=Microsoft Root Authority
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Symantec Corporation/CN=Symantec Enterprise Mobile Root for Microsoft issuer=/C=US/O=Symantec Corporation/CN=Symantec Enterprise Mobile Root for Microsoft
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2011 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2011
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=MSFT/CN=Microsoft Authenticode(tm) Root Authority issuer=/C=US/O=MSFT/CN=Microsoft Authenticode(tm) Root Authority
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=Interezen CA/CN=127.0.0.1 issuer=/C=KR/O=Interezen CA/CN=Interezen
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=CrossCert/OU=AccreditedCA/CN=Crosscert_Trust_Root_CA issuer=/C=KR/O=CrossCert/OU=AccreditedCA/CN=Crosscert_Trust_Root_CA
+(I) [22:23:32.253] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=WIZVERA/CN=Veraport-CA issuer=/C=KR/O=WIZVERA/CN=Veraport-CA
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/ST=Seoul/L=Seoul/O=MarkAny/OU=MarkAny/CN=MarkAny/emailAddress=mksong@markany.com issuer=/C=KR/ST=Seoul/L=Seoul/O=MarkAny/OU=MarkAny/CN=MarkAny/emailAddress=mksong@markany.com
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/ST=Seoul/L=Seoul/O=unidocs/OU=unidocs/CN=unidocs/emailAddress=vegabon@unidocs.co.kr issuer=/C=KR/ST=Seoul/L=Seoul/O=unidocs/OU=unidocs/CN=unidocs/emailAddress=vegabon@unidocs.co.kr
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=California/L=Irvine/O=Blizzard Entertainment/OU=Battle.net/CN=Blizzard Battle.net Local Cert issuer=/C=US/ST=California/L=Irvine/O=Blizzard Entertainment/OU=Battle.net/CN=Blizzard Battle.net Local Cert
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=INCA Internet Co., Ltd./OU=INCA Internet Co., Ltd. - For Authorized use only/CN=INCA Internet Co., Ltd. G2 issuer=/C=KR/O=INCA Internet Co., Ltd./OU=INCA Internet Co., Ltd. - For Authorized use only/CN=INCA Internet Co., Ltd. G2
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=ClipSoft/CN=127.0.0.1 issuer=/C=KR/O=ClipSoft/CN=127.0.0.1
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/ST=Some-State/L=Seoul/O=iniLINE Co., Ltd./CN=iniLINE CrossEX RootCA/emailAddress=support@iniline.co.kr issuer=/C=KR/ST=Some-State/L=Seoul/O=iniLINE Co., Ltd./CN=iniLINE CrossEX RootCA/emailAddress=support@iniline.co.kr
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2010 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Root Certificate Authority 2010
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC TS Root Certificate Authority 2018 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC TS Root Certificate Authority 2018
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=KSIGN CO. LTD./CN=KSIGN CO. LTD. CA2 issuer=/C=KR/O=KSIGN CO. LTD./CN=KSIGN CO. LTD. CA2
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/O=Kings Information & Networks Co., Ltd./CN=Kings Information & Networks Co., Ltd. Local Root CA issuer=/O=Kings Information & Networks Co., Ltd./CN=Kings Information & Networks Co., Ltd. Local Root CA
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/CN=Bitdefender Personal CA.Net-Defender/OU=IDS/O=Bitdefender/C=US issuer=/CN=Bitdefender Personal CA.Net-Defender/OU=IDS/O=Bitdefender/C=US
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/O=Microsoft Trust Network/OU=Microsoft Corporation/OU=Microsoft Time Stamping Service Root/OU=Copyright (c) 1997 Microsoft Corp. issuer=/O=Microsoft Trust Network/OU=Microsoft Corporation/OU=Microsoft Time Stamping Service Root/OU=Copyright (c) 1997 Microsoft Corp.
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/O=VeriSign Trust Network/OU=VeriSign, Inc./OU=VeriSign Time Stamping Service Root/OU=NO LIABILITY ACCEPTED, (c)97 VeriSign, Inc. issuer=/O=VeriSign Trust Network/OU=VeriSign, Inc./OU=VeriSign Time Stamping Service Root/OU=NO LIABILITY ACCEPTED, (c)97 VeriSign, Inc.
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/jurisdictionC=US/jurisdictionST=Delaware/businessCategory=Private Organization/serialNumber=2262497/C=US/ST=CALIFORNIA/L=Redwood City/O=Electronic Arts, Inc./OU=EA SPEAR AntiCheat Engineering/CN=Electronic Arts, Inc. issuer=/C=US/O=DigiCert, Inc./CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=Dreamsecurity Inc./CN=Dreamsecurity ROOT CA issuer=/C=KR/O=Dreamsecurity Inc./CN=Dreamsecurity ROOT CA
+(I) [22:23:32.254] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC Product Root Certificate Authority 2018 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft ECC Product Root Certificate Authority 2018
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=Hancom Secure Inc./OU=Research and development office/CN=Hancom Secure Root Authority issuer=/C=KR/O=Hancom Secure Inc./OU=Research and development office/CN=Hancom Secure Root Authority
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Time Stamp Root Certificate Authority 2014 issuer=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=Microsoft Time Stamp Root Certificate Authority 2014
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Microsoft Corporation/CN=Microsoft Identity Verification Root Certificate Authority 2020 issuer=/C=US/O=Microsoft Corporation/CN=Microsoft Identity Verification Root Certificate Authority 2020
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=http://www.usertrust.com/CN=UTN-USERFirst-Object issuer=/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=http://www.usertrust.com/CN=UTN-USERFirst-Object
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G2 issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G2
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=BM/O=QuoVadis Limited/OU=Root Certification Authority/CN=QuoVadis Root Certification Authority issuer=/C=BM/O=QuoVadis Limited/OU=Root Certification Authority/CN=QuoVadis Root Certification Authority
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=GeoTrust Inc./CN=GeoTrust Global CA issuer=/C=US/O=GeoTrust Inc./CN=GeoTrust Global CA
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Trusted Root G4 issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Trusted Root G4
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/O=Digital Signature Trust Co./CN=DST Root CA X3 issuer=/O=Digital Signature Trust Co./CN=DST Root CA X3
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign Root CA - R3/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign Root CA - R3/O=GlobalSign/CN=GlobalSign
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=IE/O=Baltimore/OU=CyberTrust/CN=Baltimore CyberTrust Root issuer=/C=IE/O=Baltimore/OU=CyberTrust/CN=Baltimore CyberTrust Root
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Equifax/OU=Equifax Secure Certificate Authority issuer=/C=US/O=Equifax/OU=Equifax Secure Certificate Authority
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services issuer=/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=New Jersey/L=Jersey City/O=The USERTRUST Network/CN=USERTrust ECC Certification Authority issuer=/C=US/ST=New Jersey/L=Jersey City/O=The USERTRUST Network/CN=USERTrust ECC Certification Authority
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Internet Security Research Group/CN=ISRG Root X1 issuer=/C=US/O=Internet Security Research Group/CN=ISRG Root X1
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Texas/L=Houston/O=SSL Corporation/CN=SSL.com Root Certification Authority RSA issuer=/C=US/ST=Texas/L=Houston/O=SSL Corporation/CN=SSL.com Root Certification Authority RSA
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Root Certificate Authority - G2 issuer=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Root Certificate Authority - G2
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Entrust, Inc./OU=www.entrust.net/CPS is incorporated by reference/OU=(c) 2006 Entrust, Inc./CN=Entrust Root Certification Authority issuer=/C=US/O=Entrust, Inc./OU=www.entrust.net/CPS is incorporated by reference/OU=(c) 2006 Entrust, Inc./CN=Entrust Root Certification Authority
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA issuer=/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=GB/ST=Greater Manchester/L=Salford/O=COMODO CA Limited/CN=COMODO RSA Certification Authority issuer=/C=GB/ST=Greater Manchester/L=Salford/O=COMODO CA Limited/CN=COMODO RSA Certification Authority
+(I) [22:23:32.255] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Starfield Technologies, Inc./OU=Starfield Class 2 Certification Authority issuer=/C=US/O=Starfield Technologies, Inc./OU=Starfield Class 2 Certification Authority
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root CA issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root CA
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=GTE Corporation/OU=GTE CyberTrust Solutions, Inc./CN=GTE CyberTrust Global Root issuer=/C=US/O=GTE Corporation/OU=GTE CyberTrust Solutions, Inc./CN=GTE CyberTrust Global Root
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Services Root Certificate Authority - G2 issuer=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Services Root Certificate Authority - G2
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=thawte, Inc./OU=Certification Services Division/OU=(c) 2006 thawte, Inc. - For authorized use only/CN=thawte Primary Root CA issuer=/C=US/O=thawte, Inc./OU=Certification Services Division/OU=(c) 2006 thawte, Inc. - For authorized use only/CN=thawte Primary Root CA
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Entrust, Inc./OU=See www.entrust.net/legal-terms/OU=(c) 2009 Entrust, Inc. - for authorized use only/CN=Entrust Root Certification Authority - G2 issuer=/C=US/O=Entrust, Inc./OU=See www.entrust.net/legal-terms/OU=(c) 2009 Entrust, Inc. - for authorized use only/CN=Entrust Root Certification Authority - G2
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=SecureTrust Corporation/CN=SecureTrust CA issuer=/C=US/O=SecureTrust Corporation/CN=SecureTrust CA
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign Root CA - R6/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign Root CA - R6/O=GlobalSign/CN=GlobalSign
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G3 issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G3
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=KR/O=Government of Korea/OU=GPKI/CN=GPKIRootCA1 issuer=/C=KR/O=Government of Korea/OU=GPKI/CN=GPKIRootCA1
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign Root CA - R2/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign Root CA - R2/O=GlobalSign/CN=GlobalSign
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Texas/L=Houston/O=SSL Corporation/CN=SSL.com EV Root Certification Authority RSA R2 issuer=/C=US/ST=Texas/L=Houston/O=SSL Corporation/CN=SSL.com EV Root Certification Authority RSA R2
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority issuer=/C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Microsoft Corporation/CN=Microsoft RSA Root Certificate Authority 2017 issuer=/C=US/O=Microsoft Corporation/CN=Microsoft RSA Root Certificate Authority 2017
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting cc/OU=Certification Services Division/CN=Thawte Premium Server CA/emailAddress=premium-server@thawte.com issuer=/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting cc/OU=Certification Services Division/CN=Thawte Premium Server CA/emailAddress=premium-server@thawte.com
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=PL/O=Unizeto Sp. z o.o./CN=Certum CA issuer=/C=PL/O=Unizeto Sp. z o.o./CN=Certum CA
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert High Assurance EV Root CA issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert High Assurance EV Root CA
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=JP/O=SECOM Trust Systems CO.,LTD./OU=Security Communication RootCA2 issuer=/C=JP/O=SECOM Trust Systems CO.,LTD./OU=Security Communication RootCA2
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert, Inc./CN=DigiCert CS RSA4096 Root G5 issuer=/C=US/O=DigiCert, Inc./CN=DigiCert CS RSA4096 Root G5
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=DE/O=T-Systems Enterprise Services GmbH/OU=T-Systems Trust Center/CN=T-TeleSec GlobalRoot Class 2 issuer=/C=DE/O=T-Systems Enterprise Services GmbH/OU=T-Systems Trust Center/CN=T-TeleSec GlobalRoot Class 2
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=WFA Hotspot 2.0/CN=Hotspot 2.0 Trust Root CA - 03 issuer=/C=US/O=WFA Hotspot 2.0/CN=Hotspot 2.0 Trust Root CA - 03
+(I) [22:23:32.256] [000011508]: WindowsCertificates: Adding certificate; subject=/O=Entrust.net/OU=www.entrust.net/CPS_2048 incorp. by ref. (limits liab.)/OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Certification Authority (2048) issuer=/O=Entrust.net/OU=www.entrust.net/CPS_2048 incorp. by ref. (limits liab.)/OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Certification Authority (2048)
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=BE/O=GlobalSign nv-sa/CN=GlobalSign Code Signing Root R45 issuer=/C=BE/O=GlobalSign nv-sa/CN=GlobalSign Code Signing Root R45
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2006 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G5 issuer=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2006 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G5
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=NO/O=Buypass AS-983163327/CN=Buypass Class 2 Root CA issuer=/C=NO/O=Buypass AS-983163327/CN=Buypass Class 2 Root CA
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./CN=Go Daddy Root Certificate Authority - G2 issuer=/C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./CN=Go Daddy Root Certificate Authority - G2
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing/CN=StartCom Certification Authority issuer=/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing/CN=StartCom Certification Authority
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=JP/O=SECOM Trust.net/OU=Security Communication RootCA1 issuer=/C=JP/O=SECOM Trust.net/OU=Security Communication RootCA1
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2008 VeriSign, Inc. - For authorized use only/CN=VeriSign Universal Root Certification Authority issuer=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2008 VeriSign, Inc. - For authorized use only/CN=VeriSign Universal Root Certification Authority
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=New Jersey/L=Jersey City/O=The USERTRUST Network/CN=USERTrust RSA Certification Authority issuer=/C=US/ST=New Jersey/L=Jersey City/O=The USERTRUST Network/CN=USERTrust RSA Certification Authority
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Google Trust Services LLC/CN=GTS Root R4 issuer=/C=US/O=Google Trust Services LLC/CN=GTS Root R4
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority issuer=/C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/L=Internet/O=VeriSign, Inc./OU=VeriSign Commercial Software Publishers CA issuer=/L=Internet/O=VeriSign, Inc./OU=VeriSign Commercial Software Publishers CA
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting cc/OU=Certification Services Division/CN=Thawte Server CA/emailAddress=server-certs@thawte.com issuer=/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting cc/OU=Certification Services Division/CN=Thawte Server CA/emailAddress=server-certs@thawte.com
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/OU=GlobalSign ECC Root CA - R5/O=GlobalSign/CN=GlobalSign issuer=/OU=GlobalSign ECC Root CA - R5/O=GlobalSign/CN=GlobalSign
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=CH/O=WISeKey/OU=OISTE Foundation Endorsed/CN=OISTE WISeKey Global Root GB CA issuer=/C=CH/O=WISeKey/OU=OISTE Foundation Endorsed/CN=OISTE WISeKey Global Root GB CA
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=PL/O=Unizeto Technologies S.A./OU=Certum Certification Authority/CN=Certum Trusted Network CA issuer=/C=PL/O=Unizeto Technologies S.A./OU=Certum Certification Authority/CN=Certum Trusted Network CA
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Assured ID Root CA issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Assured ID Root CA
+(I) [22:23:32.257] [000011508]: WindowsCertificates: Adding certificate; subject=/C=SE/O=AddTrust AB/OU=AddTrust External TTP Network/CN=AddTrust External CA Root issuer=/C=SE/O=AddTrust AB/OU=AddTrust External TTP Network/CN=AddTrust External CA Root
+(I) [22:23:32.258] [000011508]: WindowsCertificates: Adding certificate; subject=/C=GR/L=Athens/O=Hellenic Academic and Research Institutions Cert. Authority/CN=Hellenic Academic and Research Institutions RootCA 2015 issuer=/C=GR/L=Athens/O=Hellenic Academic and Research Institutions Cert. Authority/CN=Hellenic Academic and Research Institutions RootCA 2015
+(I) [22:23:32.258] [000011508]: WindowsCertificates: Adding certificate; subject=/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services issuer=/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services
+(I) [22:23:32.258] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Root Certificate Authority - G2 issuer=/C=US/ST=Arizona/L=Scottsdale/O=Starfield Technologies, Inc./CN=Starfield Root Certificate Authority - G2
+(I) [22:23:32.258] [000011508]: WindowsCertificates: Adding certificate; subject=/C=US/O=Starfield Technologies, Inc./OU=Starfield Class 2 Certification Authority issuer=/C=US/O=Starfield Technologies, Inc./OU=Starfield Class 2 Certification Authority
+(I) [22:23:32.258] [000011508]: SystemCertsWin: 97 certificates loaded
+(I) [22:23:32.302] [000011508]: AutomatchInternal: Instantiating
+(I) [22:23:32.330] [000011508]: NetworkLoadCallback not able to open file CloudGetFileInfoCache-coh3-coh3.dat
+(I) [22:23:32.330] [000011508]: NetworkLoadCallback not able to open file CloudFileMetadataCache-coh3-coh3.dat
+(I) [22:23:32.330] [000011508]: WindowsCertificates: Adding certificate; subject=/C=CA/ST=British Columbia/L=Vancouver/O=Relic Entertainment/CN=RelicLink Root CA issuer=/C=CA/ST=British Columbia/L=Vancouver/O=Relic Entertainment/CN=RelicLink Root CA
+(I) [22:23:32.331] [000011508]: Original Server Settings before command line args: server=coh3, title=coh3
+(I) [22:23:32.331] [000011508]: Applied Server Settings after command line args: liveServer=coh3, devServer=coh3, certServer=coh3, title=coh3
+(I) [22:23:32.333] [000011508]: Loading step: [Telemetry]
+(I) [22:23:32.333] [000011508]: Loading step: [Lua Libraries]
+(I) [22:23:32.333] [000011508]: Loading step: [Lua Tools]
+(I) [22:23:32.333] [000011508]: Loading step: [System Tests]
+(I) [22:23:32.342] [000011508]: Enumerating Graphics Adapters
+(I) [22:23:32.342] [000011508]: Choosing first adapter
+(I) [22:23:32.342] [000011508]: Adapter: NVIDIA GeForce RTX 3080 video dedicated: 10541334528 shared: 8553758720 system dedicated: 0
+(I) [22:23:32.343] [000011508]: Checking against Adapter: Microsoft Basic Render Driver video dedicated: 0 shared: 8553758720 system dedicated: 0
+(I) [22:23:33.306] [000011508]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [22:23:33.306] [000011508]: Chosen adapter: NVIDIA GeForce RTX 3080 video dedicated: 10541334528 shared: 8553758720 system dedicated: 0
+(I) [22:23:33.307] [000011508]: Loading step: [Action DB]
+(I) [22:23:33.346] [000011508]: ActionDatabase -- Loaded [753] actions.
+(I) [22:23:33.346] [000011508]: Loading step: [InitComponentFactory]
+(I) [22:23:33.347] [000011508]: Loading step: [Inventory]
+(I) [22:23:33.349] [000011508]: Loading step: [AI subsystem]
+(I) [22:23:33.349] [000011508]: Loading step: [Game Hooks]
+(I) [22:23:33.349] [000011508]: RPC -- Initializing RpcFramework
+(I) [22:23:33.349] [000011508]: Loading step: [Game Modules Init]
+(I) [22:23:33.350] [000011508]: Loading step: [App Init Complete]
+(I) [22:23:33.350] [000011508]: Loading step: [dbImGui]
+(I) [22:23:33.350] [000011508]: Loading step: [Havok]
+(I) [22:23:33.415] [000011508]: Loading step: [User Data Shutdown]
+(I) [22:23:33.420] [000016680]: Registered essence thread: [Simulation_Thread] usesRcssWorkerThreads: [true]
+(I) [22:23:33.422] [000027928]: Registered essence thread: [Render_Thread] usesRcssWorkerThreads: [true]
+(I) [22:23:33.429] [000011508]: NvAPI initialized with reported interface version: NVidia Complete Version 1.10
+(I) [22:23:33.429] [000011508]: NvAPI initialization reports installed display driver version: r566_31
+(I) [22:23:33.858] [000011508]: Enumerating Graphics Adapters
+(I) [22:23:33.858] [000011508]: Choosing first adapter
+(I) [22:23:33.858] [000011508]: Adapter: NVIDIA GeForce RTX 3080 video dedicated: 10541334528 shared: 8553758720 system dedicated: 0
+(I) [22:23:33.859] [000011508]: Checking against Adapter: Microsoft Basic Render Driver video dedicated: 0 shared: 8553758720 system dedicated: 0
+(I) [22:23:34.184] [000011508]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [22:23:34.184] [000011508]: Chosen adapter: NVIDIA GeForce RTX 3080 video dedicated: 10541334528 shared: 8553758720 system dedicated: 0
+(I) [22:23:34.474] [000011508]: RR Feature Level is SM6_2
+(I) [22:23:34.556] [000011508]: -------- GPU and Output INFO --------
+(I) [22:23:34.557] [000011508]: NVIDIA GeForce RTX 3080 -- 10053MB dedicated video memory, 0MB dedicated system memory and 8157MB shared system memory available.
+(I) [22:23:34.557] [000011508]: Primary Output Device is \\.\DISPLAY1, Resolution is 1920x1080
+(I) [22:23:34.557] [000011508]: Output Device is \\.\DISPLAY3, Resolution is 1600x900
+(I) [22:23:34.557] [000011508]: Microsoft Basic Render Driver -- 0MB dedicated video memory, 0MB dedicated system memory and 8157MB shared system memory available.
+(I) [22:23:35.522] [000011508]: Loading step: [Render Anim]
+(I) [22:23:35.522] [000011508]: Loading step: [Alias]
+(I) [22:23:35.523] [000011508]: Loading step: [Hotswapping]
+(I) [22:23:35.523] [000011508]: Loading step: [ITextureUtil]
+(I) [22:23:35.523] [000011508]: Loading step: [TextureManager]
+(I) [22:23:35.523] [000011508]: Loading step: [Loaders]
+(I) [22:23:35.523] [000011508]: Loading step: [IntersectUtil]
+(I) [22:23:35.523] [000011508]: Loading step: [ShadowManager]
+(I) [22:23:35.523] [000011508]: Loading step: [Debug Render]
+(I) [22:23:35.523] [000011508]: Loading step: [Autodetect Settings]
+(I) [22:23:35.524] [000011508]: -------- Display Adapter Driver Information --------
+(I) [22:23:35.524] [000011508]: Vendor: NVIDIA (0x10de)
+(I) [22:23:35.524] [000011508]: Installed Driver Version: r566_31 (56636)
+(I) [22:23:35.524] [000011508]: Required Driver Version: 512.15 (51215)
+(I) [22:23:35.524] [000011508]: ----------------------------------------------------
+(I) [22:23:37.374] [000011508]: Results of 8 GPU performance test frames: Median = 18.681343ms, average = 18.982401ms, min = 18.186239ms, max = 20.836351ms
+(I) [22:23:37.375] [000011508]: Detected: CPU [Rec][Score: 553.13][RAM: 16], GPU [Rec][Score: 214.45][VRAM: 10]
+(I) [22:23:37.380] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundcommon.sga 14106 B [ID:70641d3636c52218e9ecf2aba8a04c76] [Ver:737bbb7f7c5281969f1ddf5cd5da12f3] [Sig:8173143712925247631]
+(I) [22:23:37.387] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechallies.sga 225891908 B [ID:a3d79f90e4bdec5cb47a67abda5a2793] [Ver:b95949b3ad86404dd9e507400e47c55c] [Sig:7176493672085207988]
+(I) [22:23:37.399] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechalliesuk.sga 1641199441 B [ID:ed506ab18d21f2ffe3194169ba1d9a3c] [Ver:978ae4110a8a06fd7ce6e5bf03131861] [Sig:10794028710016632867]
+(I) [22:23:37.417] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechalliesus.sga 987992728 B [ID:7a1866d3e9d2d1e3cd91cf5ac53deaa9] [Ver:15d95bfc4f5a8ff8f0c5e377a8f382b8] [Sig:13575942662100386784]
+(I) [22:23:37.436] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxis.sga 799087663 B [ID:44d5e1d8695f153cc8d01842ce4013df] [Ver:7e6067ca329cb304ad5d7be863953b8b] [Sig:17549790165592816027]
+(I) [22:23:37.448] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxisdak.sga 957619962 B [ID:7c9beb5bbe4c6377f9af4992656de107] [Ver:2c0138164ea8f97613404bd39f911f8b] [Sig:10433178356233176534]
+(I) [22:23:37.462] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxiswehr.sga 1154088515 B [ID:86c53ff39ed7cba5c213d242f3da1e68] [Ver:40f62046add6cb47fdd0a0ae0f97d17c] [Sig:10904284892150728471]
+(I) [22:23:37.475] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechcampaign.sga 1045369919 B [ID:622fb949ed9a0aec199fafdfb5e30bb7] [Ver:5875f8c0808291ac54a172ee3b68e6b6] [Sig:4506384843269190941]
+(I) [22:23:37.481] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundhigh.sga 973457207 B [ID:95a11ec6fbb00f11e9eef24ff8ae22e5] [Ver:b567e201b4f87fbdaee2f883e697ac4f] [Sig:5201326805204247709]
+(I) [22:23:37.484] [000011508]: ARC -- i:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\arthigh.sga 6678 B [ID:e8f87e4ac202807565d2b4980453804d] [Ver:2687154863f6a8aae64a123d657f5735] [Sig:6704931815395175266]
+(I) [22:23:37.484] [000011508]: Loading step: [Sound]
+(I) [22:23:39.936] [000011508]: Loading step: [Fonts]
+(I) [22:23:39.938] [000011508]: Loading step: [Statgraph]
+(I) [22:23:39.938] [000011508]: Loading step: [Debug Console]
+(I) [22:23:39.938] [000011508]: Loading step: [Movie Manager]
+(I) [22:23:39.941] [000011508]: Loading step: [Flush Inventory]
+(I) [22:23:39.941] [000011508]: Loading step: [Purge BackgroundLoader]
+(I) [22:23:39.941] [000011508]: Loading step: [Unload inventory]
+(I) [22:23:39.941] [000011508]: Loading step: [Cancel Pending Soundbank Loads]
+(I) [22:23:40.194] [000011508]: Loading step: [Init Screen Background]
+(I) [22:23:40.194] [000011508]: Loading step: [Cursor]
+(I) [22:23:40.365] [000011508]: Loading step: [Presentation App]
+(I) [22:23:40.365] [000011508]: Loading step: [Presentation Static App]
+(I) [22:23:40.365] [000011508]: Loading step: [DestinationFormationManager]
+(I) [22:23:40.366] [000011508]: Loading step: [Campaign Manager]
+(I) [22:23:40.366] [000011508]: Loading step: [Mods]
+(I) [22:23:40.391] [000011508]: ARC -- G:\DOCUMENT\My Games\Company of Heroes 3\mods\extension\subscriptions\2937361544\ccm.sga 459957 B [ID:385d981096ba4ece90408281db65174e] [Ver:f6645e86232d1575a795c3801fca9342] [Sig:0]
+(I) [22:23:40.409] [000011508]: ARC -- G:\DOCUMENT\My Games\Company of Heroes 3\mods\extension\subscriptions\2944719343\Test_Range.sga 1296869 B [ID:0cf4f2312c82412299fefdfb1ff3f241] [Ver:f4b19dd536ca7108883084d39b55c1f0] [Sig:0]
+(I) [22:23:40.431] [000011508]: ARC -- G:\DOCUMENT\My Games\Company of Heroes 3\mods\extension\subscriptions\3054773283\Into_the_breach.sga 4313951 B [ID:10de952adfc446dca7158825da097a5d] [Ver:aa99f9001291b01e60b150a039098e33] [Sig:0]
+(I) [22:23:40.444] [000011508]: ARC -- G:\DOCUMENT\My Games\Company of Heroes 3\mods\extension\subscriptions\3278322921\8p_Safe_Haven.sga 8415983 B [ID:8ab8c88aad18417c9a1a7baec2b573a9] [Ver:4605fc0f276afb25388a072ba9972c13] [Sig:0]
+(I) [22:23:40.445] [000011508]: Failed to load lua file 'userdata:mods_meta_data.lua'
+(I) [22:23:40.489] [000011508]: SCENARIO -- Failed to open stream for Scenario 'data:scenarios\multiplayer\villa_fiore_2p\villa_fiore_2p.info'.
+(I) [22:23:40.558] [000011508]: GAME -- (WorldManager) Cannot find original scenario "po_valley_4p" referenced from data:scenarios\missions\skirmish\po_valley_sp\po_valley_sp.scenref
+(I) [22:23:40.558] [000011508]: GAME -- (WorldManager) Could not load scenario reference file data:scenarios\missions\skirmish\po_valley_sp\po_valley_sp.scenref. Please check syntax.
+(I) [22:23:40.571] [000011508]: Loading step: [Item Manager]
+(I) [22:23:40.571] [000011508]: Loading step: [Loadout Manager]
+(I) [22:23:40.571] [000011508]: Loading step: [Chat Manager]
+(I) [22:23:40.586] [000011508]: Loading step: [Squad Command Processor Types]
+(I) [22:23:40.586] [000011508]: Loading step: [Squad Command Processor Types from Games]
+(I) [22:23:40.586] [000011508]: Loading step: [IEngineInitializable]
+(I) [22:23:40.604] [000011508]: CRC & Version Info : exe 0x00007e0b:data 0x80c52f81:flags 0
+(I) [22:23:40.604] [000011508]: GameApp::SetState : new (Unloaded) old (Uninitialized)
+(I) [22:23:45.439] [000011508]: GameApp::SetState : new (FrontEnd) old (Unloaded)
+(I) [22:23:45.440] [000011508]: GameApp::SetTargetState : new (Uninitialized) old (FrontEnd)
+(I) [22:23:45.553] [000011508]: FILESYSTEM -- filepath failure, missing alias 'Save:Campaign\*.rlt'
+(I) [22:23:45.553] [000011508]: FILESYSTEM -- filepath failure, missing alias 'Save:AutoSave\Campaign\*.sav'
+(I) [22:23:45.553] [000011508]: FILESYSTEM -- filepath failure, missing alias 'Save:AutoSave\Campaign\*.rlt'
+(I) [22:23:45.553] [000011508]: FILESYSTEM -- filepath failure, missing alias 'Save:Operations\*.sav'
+(I) [22:23:45.553] [000011508]: SAVE -- Populating saved game list of 0 entries in folder Save:Operations\
+(I) [22:23:45.553] [000011508]: FILESYSTEM -- filepath failure, missing alias 'Save:Skirmish\*.sav'
+(I) [22:23:45.553] [000011508]: SAVE -- Populating saved game list of 0 entries in folder Save:Skirmish\
+(I) [22:23:45.553] [000011508]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:datastore/ftue.rlt'
+(I) [22:23:45.553] [000011508]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:datastore/ftue.rlt'
+(I) [22:23:45.624] [000027928]: RENDERING - Starting compositor fullscreen transition [1]
+(I) [22:23:45.624] [000027928]: RENDERING - Setting Fullscreen On
+(I) [22:23:48.728] [000027928]: RENDERING - state Size [1920 x 1080], fullscreen size[1920 x 1080]
+(I) [22:23:48.742] [000027928]: RENDERING - Finished compositor fullscreen transition [1]
+(I) [22:23:48.742] [000027928]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [22:23:49.014] [000027928]: RENDERING - new resize requested [1920, 1080] reason [WindowSizeEvent]
+(I) [22:23:49.014] [000027928]: RENDERING - resize request clobbering old request [1920, 1080] reason [WindowSizeEvent]
+(I) [22:23:49.014] [000027928]: RENDERING - new resize requested [1920, 1080] reason [DisplayChange]
+(I) [22:23:49.014] [000027928]: RENDERING - Starting compositor resize to [1920 x 1080] for reason [DisplayChange]
+(I) [22:23:49.022] [000027928]: RENDERING - Finished compositor resize to [1920 x 1080] for reason [DisplayChange]
+(I) [22:23:49.022] [000027928]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [22:23:49.031] [000011508]: Requesting ticket
+(I) [22:23:49.908] [000011508]: OnRequest app ticket returned N
+(I) [22:23:49.909] [000011508]: SteamAuth received ticket at t=23834091
+(I) [22:23:51.258] [000011508]: ProcessResponse: HTTP response good; context=LoginAsync bytes=8637
+(I) [22:23:51.259] [000011508]: Found 1 profiles for account /steam/76561198122738366
+(I) [22:23:51.259] [000011508]: Found profile: /steam/76561198122738366
+(I) [22:23:51.259] [000011508]: WorldwideTelemetry: Initializing Sampling; RL_TELEMMATCHGRP=
+(I) [22:23:51.259] [000011508]: WorldwideTelemetry: Initializing Sampling; RL_TELEMINSTANCEGRP=
+(I) [22:23:51.259] [000011508]: WorldwideTelemetry: Initializing Sampling; RL_TELEMSHOULDNTSEND=
+(I) [22:23:51.259] [000011508]: WorldwideTelemetry: Initializing Sampling; matchRatio=1.000 instanceRatio=1.000 defaultRatio=1.000
+(I) [22:23:51.259] [000011508]: WorldwideTelemetry: Resetting Sampling; sendMatchTables=1 sendInstanceTables=1 sendDefaultTables=1
+(I) [22:23:51.259] [000011508]: Client is using WebSockets to receive updates from the server
+(I) [22:23:51.260] [000011508]: [SP_BG] login event. LocalProfileID: 399635
+(I) [22:23:51.262] [000011508]: [SP_BG] GetUpdatedInventory Logged in: T, Profile ID: 399635, Item count: 0
+(I) [22:23:51.262] [000011508]: Login attempt: C00T01R00X000 52656C69008D
+(I) [22:23:51.271] [000017936]: WebSocketConnection::Process: Creating a websocket connection; host=coh3-api.reliclink.com port=443
+(I) [22:23:51.297] [000011508]: System was measured to be capable of copying [10635] MB/sec.
+(I) [22:23:51.740] [000011508]: ProcessResponse: HTTP response good; context=ChallengeProgressCache bytes=3431
+(I) [22:23:52.243] [000011508]: ProcessResponse: HTTP response good; context=ChallengeGetChallengesCache bytes=356
+(I) [22:23:52.330] [000017936]: WebSocketConnection::OnConnect; m_resumeState=0
+(I) [22:23:52.330] [000017936]: WebSocketConnection::Process: Sending session token; clientLibVersion=192 sessionToken=d2hd26tiks2vamq19ej5e9yq8l1ezt
+(I) [22:23:53.541] [000017936]: Read bytes [0,"PresenceMessage",399635,[[4290,399635,"/steam/76561198122738366","","Baskervilles Blackdog","",299362,3851,3851,"kr",2074437,null,"76561198122738366",3,[],1,"ì˜¨ë¼ì¸",[[1409823,""]]]]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[39866873,1755466,0,0,1735664400,null,1735651431],1]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[15338000,1529396,2,0,1734541200,1708860370,1734526475],0]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[18317202,1704850,2,0,1735059600,1730996173,1734526475],0]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[16856107,1704848,0,0,1735664400,1734012609,1735651431],0]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[21155621,1755308,2,0,1734541200,null,1734526475],0]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[19545229,1529027,0,0,1735664400,1730738154,1735651431],0]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[38915950,1529298,0,0,1735664400,null,1735651431],0]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[19173559,1528293,0,0,1735664400,1730623594,1735651431],0]]
+(I) [22:23:53.541] [000017936]: Read bytes [0,"ChallengeUpdatedMessage",399635,[[36118130,1755177,0,0,1735664400,null,1735651431],0]]
+(I) [22:23:53.652] [000011508]: ProcessResponse: HTTP response good; context=ItemCategoryCache bytes=420632
+(I) [22:23:53.663] [000011508]: ProcessResponse: HTTP response good; context=ItemCategoryCache bytes=420632
+(I) [22:23:54.036] [000011508]: ProcessResponse: HTTP response good; context=ItemBundlesCache bytes=375
+(I) [22:23:54.066] [000011508]: Movie Manager -- No movies with locale [ko] exist on disk. Switching to fallback locale [en].
+(I) [22:23:54.079] [000011508]: Movie Manager -- No movies with locale [ko] exist on disk. Switching to fallback locale [en].
+(I) [22:23:54.530] [000011508]: ProcessResponse: HTTP response good; context=ItemPricesCache bytes=33242
+(I) [22:23:55.457] [000011508]: ProcessResponse: HTTP response good; context=LevelRewardsCache bytes=375
+(I) [22:23:55.791] [000011508]: ProcessResponse: HTTP response good; context=ItemLoadoutCache bytes=6
+(I) [22:23:56.277] [000011508]: ProcessResponse: HTTP response good; context=NewsCache bytes=265
+(I) [22:23:56.812] [000011508]: ProcessResponse: HTTP response good; context=ChatChannelCache bytes=10
+(I) [22:23:57.298] [000011508]: ProcessResponse: HTTP response good; context=GetOfflineMessagesAsync bytes=31
+(I) [22:23:57.784] [000011508]: ProcessResponse: HTTP response good; context=GetItemInstancesAsync bytes=20570
+(I) [22:23:57.786] [000011508]: [SP_BG] OnItemEvent Logged in: T, Profile ID: 399635, Item count: 230, Item location count: 7
+(I) [22:23:57.786] [000011508]: [SP_BG] GetUpdatedInventory Logged in: T, Profile ID: 399635, Item count: 230
+(I) [22:23:57.798] [000011508]: [SP_BG] received items for local profile: 230, item count: 5151716448
+(I) [22:23:58.286] [000011508]: ProcessResponse: HTTP response good; context=AutomatchMapCache bytes=7646
+(I) [22:23:59.073] [000011508]: ProcessResponse: HTTP response good; context=MatchHistoryCache bytes=219129
+(I) [22:23:59.207] [000011508]: Movie Manager -- No movies with locale [ko] exist on disk. Switching to fallback locale [en].
+(I) [22:23:59.404] [000011508]: ProcessResponse: HTTP response good; context=GetAvailableAchievementsCache bytes=353
+(I) [22:23:59.874] [000011508]: Movie Manager -- No movies with locale [ko] exist on disk. Switching to fallback locale [en].
+(I) [22:23:59.946] [000011508]: ProcessResponse: HTTP response good; context=GetAchievementsCache bytes=289
+(I) [22:24:00.432] [000011508]: ProcessResponse: HTTP response good; context=GetStatGroupsByProfileIDAsync bytes=904
+(I) [22:24:00.465] [000011508]: GetPartyStatsByID found 1 teams for user ID 399635
+(I) [22:24:00.917] [000011508]: ProcessResponse: HTTP response good; context=PersonalizedItemPricesCache bytes=9
+(I) [22:24:01.455] [000011508]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=11
+(I) [22:24:01.941] [000011508]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=516
+(I) [22:24:02.427] [000011508]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=4281
+(I) [22:24:02.965] [000011508]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=13
+(I) [22:24:03.451] [000011508]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=13
+(I) [22:24:03.925] [000011508]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [22:24:03.929] [000011508]: GAME -- ValidateScenarioDesc(): Gamesave app version mismatch (data:scenarios\missions\skirmish\ruins_1_sp\ruins_1_sp ver binary version stamp or crc/data crc:18567/193881616) required:32267/-2134560895
+(I) [22:24:03.932] [000011508]: SAVE -- Save game is too old ([3579526] < [4056836])
+(I) [22:24:05.442] [000011508]: SAVE -- Populating saved game list of 0 entries in folder Save:Operations\
+(I) [22:24:05.442] [000011508]: SAVE -- Populating saved game list of 0 entries in folder Save:Skirmish\
+(I) [22:24:05.443] [000011508]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=13
+(I) [22:24:05.799] [000011508]: Movie Manager -- No movies with locale [ko] exist on disk. Switching to fallback locale [en].
+(I) [22:24:05.876] [000011508]: Movie Manager -- No movies with locale [ko] exist on disk. Switching to fallback locale [en].
+(I) [22:24:05.953] [000011508]: ProcessResponse: HTTP response good; context=WorldwideMoveChargesAsyncJob bytes=1857
+(I) [22:24:06.377] [000011508]: ProcessResponse: HTTP response good; context=WorldwideGetProfileByIDAsync bytes=1831
+(I) [22:24:06.863] [000011508]: ProcessResponse: HTTP response good; context=SaveOfflineUserDataJob bytes=350
+(I) [22:24:07.401] [000011508]: ProcessResponse: HTTP response good; context=CommunityEventsCache bytes=21
+(I) [22:24:07.890] [000011508]: ProcessResponse: HTTP response good; context=WorldWideSetPresenceAsync bytes=3
+(I) [22:24:08.392] [000011508]: ProcessResponse: HTTP response good; context=WorldwideGetProfileByIDAsync bytes=10
+(I) [22:24:08.876] [000011508]: ProcessResponse: HTTP response good; context=PresenceDataCache bytes=1006
+(I) [22:24:11.919] [000017936]: Read bytes [0,"PresenceMessage",399635,[[4292,399635,"/steam/76561198122738366","","Baskervilles Blackdog","",299362,3851,3851,"kr",2074437,null,"76561198122738366",3,[],2,"ì˜¨ë¼ì¸",[[1409823,""]]]]]

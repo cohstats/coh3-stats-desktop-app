@@ -123,8 +123,15 @@ describe("COH3 Stats Desktop App - E2E Tests", () => {
   describe("Recent Games Screen", () => {
     before(async () => {
       // Navigate to Recent Games screen
+      await testHelpers.setupTestLogFile("warnings-clean-menu.log");
+      await browser.pause(5000);
       await NavigationPage.navigateToRecentGames();
       await RecentGamesPage.waitForPageLoad();
+    });
+
+    after(async () => {
+      await testHelpers.setupTestLogFile("warnings-4v4-allfactions.log");
+      await browser.pause(5000);
     });
 
     it("Should display Recent Games screen", async () => {
