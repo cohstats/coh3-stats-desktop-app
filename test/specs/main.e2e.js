@@ -11,6 +11,8 @@ import {
 
 describe("COH3 Stats Desktop App - E2E Tests", () => {
   before(async () => {
+    // Reset config to defaults before tests run
+    await testHelpers.resetConfigToDefaults();
     // Set up test log file before any tests run
     await testHelpers.setupTestLogFile("warnings-4v4-allfactions.log");
     browser.refresh();

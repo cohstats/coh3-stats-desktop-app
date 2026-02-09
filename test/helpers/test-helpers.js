@@ -165,6 +165,46 @@ class TestHelpers {
     }
   }
 
+  // ==================== Config Management Helpers ====================
+
+  /**
+   * Get the config file path based on the OS
+   * The config file is stored in the app data directory
+   * @returns {string} The path to config.dat
+   */
+  getConfigFilePath() {
+    const appDataDir = path.join(
+      os.homedir(),
+      "AppData",
+      "Roaming",
+      "com.coh3stats.desktop",
+      "config.dat",
+    );
+    return appDataDir;
+  }
+
+  /**
+   * Remove the config file to reset app to default settings
+   * This is useful for ensuring tests start with a clean state
+   * @returns {Promise<boolean>} True if file was removed or didn't exist, false on error
+   */
+  async resetConfigToDefaults() {
+    const configPath = this.getConfigFilePath();
+    try {
+      if (fs.existsSync(configPath)) {
+        fs.unlinkSync(configPath);
+        console.log(`Removed config file: ${configPath}`);
+        return true;
+      } else {
+        console.log(`Config file does not exist: ${configPath}`);
+        return true;
+      }
+    } catch (error) {
+      console.error(`Failed to remove config file: ${error.message}`);
+      return false;
+    }
+  }
+
   // ==================== OBS Overlay Helpers ====================
 
   /**

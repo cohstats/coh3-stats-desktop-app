@@ -18,6 +18,8 @@ import { NavigationPage, SettingsPage, GamePage } from "../helpers/pages/index.j
  */
 describe("OBS Overlay E2E Tests", () => {
   before(async () => {
+    // Reset config to defaults before tests run
+    await testHelpers.resetConfigToDefaults();
     // Setup test log file with game data
     await testHelpers.setupTestLogFile("warnings-4v4-allfactions.log");
     await browser.refresh();
