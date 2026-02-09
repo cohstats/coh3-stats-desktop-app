@@ -6,7 +6,7 @@ authors = ["coh3stats team"]
 license = ""
 repository = ""
 edition = "2021"
-rust-version = "1.75"
+rust-version = "1.89.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -15,7 +15,7 @@ name = "coh3_stats_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2", features = [] }
+tauri-build = { version = "=2.5.5", features = [] }
 
 [dependencies]
 dirs = "5.0"
@@ -26,36 +26,42 @@ nom = "=7.1.3"
 notify = "=6.1.1"
 oauth2 = "=4.4.2"
 regex = "=1.11.1"
+# Reqwest
 reqwest = { version = "=0.12.23", features = ["json", "multipart", "brotli", "gzip", "blocking"] }
 rev_lines = "=0.3.0"
 serde_json = "=1.0.137"
-serde = { version = "=1.0.216", features = ["derive"] }
-tauri = { version = "2", features = ["tray-icon"] }
-tauri-plugin-cli = "2"
-tauri-plugin-deep-link = "=0.1.2"
-tauri-plugin-log = "2"
-tauri-plugin-single-instance = "2"
-tauri-plugin-store = "2"
-tauri-plugin-window-state = "2"
-tauri-plugin-clipboard-manager = "2"
-tauri-plugin-dialog = "2"
-tauri-plugin-fs = "2"
-tauri-plugin-http = { version = "2", features = ["unsafe-headers"] }
-tauri-plugin-process = "2"
-tauri-plugin-updater = "2.0.0"
-tauri-plugin-shell = "2"
 thiserror = "=1.0.69"
 tokio = { version = "=1.43.0", features = ["time"] }
+serde = { version = "=1.0.216", features = ["derive"] }
+# Tauri deps
+tauri = { version = "=2.10.2", features = ["tray-icon"] }
+tauri-plugin-cli = "=2.4.1"
+tauri-plugin-deep-link = "=2.4.7"
+tauri-plugin-log = "=2.8.0"
+tauri-plugin-single-instance = { version = "=2.4.0", features = ["deep-link"] }
+tauri-plugin-store = "=2.4.2"
+tauri-plugin-window-state = "=2.4.1"
+tauri-plugin-clipboard-manager = "=2.3.2"
+tauri-plugin-dialog = "=2.6.0"
+tauri-plugin-fs = "=2.4.5"
+tauri-plugin-http = { version = "=2.5.7", features = ["unsafe-headers"] }
+tauri-plugin-process = "=2.3.1"
+tauri-plugin-updater = "=2.10.0"
+tauri-plugin-shell = "=2.3.5"
+tauri-plugin-opener = "=2.5.3"
+
+
+# This is COH3 replay parser
 vault = "=8.0.1"
 window-shadows = "=0.2.2"
 # monitoring by sentry
 sentry = "=0.34.0"
 # For the OBS interface we need to expose webserver
 tiny_http = "=0.12.0"
-tauri-plugin-opener = "2.5.0"
+
 
 [target.'cfg(windows)'.dependencies]
-windows = { version = "0.62", features = [
+windows = { version = "0.62.2", features = [
     "Win32_Foundation",
     "Win32_System_Threading",
     "Win32_System_ProcessStatus",
@@ -63,7 +69,6 @@ windows = { version = "0.62", features = [
     "Win32_Media_Audio",
     "Win32_System_Com",
 ] }
-wmi = { version = "0.18.1", default-features = false }
 
 [dev-dependencies]
 criterion = { version = "=0.5.1", features = ["html_reports"] }

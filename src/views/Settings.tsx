@@ -286,6 +286,7 @@ export const Settings: React.FC = () => {
           <Divider />
           <Group>
             <Checkbox
+              data-testid="show-extended-player-info-checkbox"
               checked={showExtendedPlayerInfo === undefined ? false : showExtendedPlayerInfo}
               onChange={(event) => {
                 events.settings_changed(
@@ -436,6 +437,7 @@ export const Settings: React.FC = () => {
           <Group>
             <Text fw={700}>OBS Streamer Overlay</Text>
             <Switch
+              data-testid="obs-overlay-toggle"
               onLabel="ON"
               offLabel="OFF"
               size="md"
@@ -456,6 +458,7 @@ export const Settings: React.FC = () => {
                 <Group>
                   <Text c="red">Restart required to enable / disable streamer overlay</Text>
                   <Button
+                    data-testid="obs-restart-button"
                     variant="outline"
                     color="red"
                     size="compact-md"
@@ -473,6 +476,7 @@ export const Settings: React.FC = () => {
           <Group>
             <div>
               <Checkbox
+                data-testid="obs-only-show-ingame-checkbox"
                 disabled={streamerOverlayEnabled === undefined ? false : !streamerOverlayEnabled}
                 checked={alwaysShowOverlay === undefined ? true : !alwaysShowOverlay}
                 onChange={(event) => {
@@ -489,6 +493,7 @@ export const Settings: React.FC = () => {
           <Group>
             <div>
               <Checkbox
+                data-testid="obs-show-flags-checkbox"
                 disabled={streamerOverlayEnabled === undefined ? false : !streamerOverlayEnabled}
                 checked={showFlagsOverlay === undefined ? false : showFlagsOverlay}
                 onChange={(event) => {

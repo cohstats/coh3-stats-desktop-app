@@ -1,6 +1,8 @@
 ## Project
 - Always use `yarn` as our package manager.
-- To test the build after changes in /src folder run `yarn build`.
+- There is JS part in `src` and Rust part in `src-tauri`.
+- To test changes in src run `yarn build`
+- To test changes in src-tauri run `yarn tauri build`
 
 ## Version management
 - Always try to use exact version of packages, don't use `^` or `~`.
