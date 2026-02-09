@@ -56,6 +56,11 @@
       "endpoints": [
         "https://coh3stats.com/api/appUpdateRouteV2"
       ]
+    },
+    "deep-link": {
+      "desktop": {
+        "schemes": ["coh3stats"]
+      }
     }
   },
   "app": {
