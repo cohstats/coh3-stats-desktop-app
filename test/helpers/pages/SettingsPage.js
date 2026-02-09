@@ -157,12 +157,14 @@ class SettingsPage extends BasePage {
    * @returns {Promise<WebdriverIO.Element>}
    */
   async getShowExtendedPlayerInfoCheckbox() {
-    // Use data-testid to find the checkbox
-    const checkbox = await this.getByTestId("show-extended-player-info-checkbox");
+    // The data-testid is on the input element, but we need to click the parent label
+    const input = await this.getByTestId("show-extended-player-info-checkbox");
     // Scroll to the element to ensure it's in view
-    await checkbox.scrollIntoView();
+    await input.scrollIntoView();
     await this.pause(300); // Wait for scroll to complete
-    return checkbox;
+    // Get the parent element which is the clickable label
+    const clickableElement = await input.$("..");
+    return clickableElement;
   }
 
   /**
@@ -170,8 +172,9 @@ class SettingsPage extends BasePage {
    * @returns {Promise<boolean>}
    */
   async isShowExtendedPlayerInfoEnabled() {
-    const checkbox = await this.getShowExtendedPlayerInfoCheckbox();
-    return await checkbox.isSelected();
+    // Get the input element directly to check its state
+    const input = await this.getByTestId("show-extended-player-info-checkbox");
+    return await input.isSelected();
   }
 
   /**
@@ -179,6 +182,7 @@ class SettingsPage extends BasePage {
    */
   async toggleShowExtendedPlayerInfo() {
     const checkbox = await this.getShowExtendedPlayerInfoCheckbox();
+    await checkbox.waitForClickable({ timeout: 5000 });
     await checkbox.click();
     // Wait a bit for the setting to be saved
     await this.pause(500);
@@ -201,6 +205,196 @@ class SettingsPage extends BasePage {
     const isEnabled = await this.isShowExtendedPlayerInfoEnabled();
     if (isEnabled) {
       await this.toggleShowExtendedPlayerInfo();
+    }
+  }
+
+  // ==================== OBS Overlay Methods ====================
+
+  /**
+   * Get the OBS Streamer Overlay toggle switch
+   * @returns {Promise<WebdriverIO.Element>}
+   */
+  async getOBSOverlayToggle() {
+    // The data-testid is on the input element, but we need to click the parent label/root
+    const input = await this.getByTestId("obs-overlay-toggle");
+    await input.scrollIntoView();
+    await this.pause(300);
+    // Get the parent element which is the clickable label
+    const clickableElement = await input.$("..");
+    return clickableElement;
+  }
+
+  /**
+   * Check if OBS overlay is enabled
+   * @returns {Promise<boolean>}
+   */
+  async isOBSOverlayEnabled() {
+    // Get the input element directly to check its state
+    const input = await this.getByTestId("obs-overlay-toggle");
+    const dataChecked = await input.getAttribute("data-checked");
+    return dataChecked === "true";
+  }
+
+  /**
+   * Toggle the OBS overlay switch
+   */
+  async toggleOBSOverlay() {
+    const toggle = await this.getOBSOverlayToggle();
+    await toggle.waitForClickable({ timeout: 5000 });
+    await toggle.click();
+    await this.pause(500);
+  }
+
+  /**
+   * Enable OBS overlay
+   */
+  async enableOBSOverlay() {
+    const isEnabled = await this.isOBSOverlayEnabled();
+    if (!isEnabled) {
+      await this.toggleOBSOverlay();
+    }
+  }
+
+  /**
+   * Disable OBS overlay
+   */
+  async disableOBSOverlay() {
+    const isEnabled = await this.isOBSOverlayEnabled();
+    if (isEnabled) {
+      await this.toggleOBSOverlay();
+    }
+  }
+
+  /**
+   * Check if restart required message is shown
+   * @returns {Promise<boolean>}
+   */
+  async isRestartRequiredShown() {
+    return await this.hasText("Restart required to enable / disable streamer overlay");
+  }
+
+  /**
+   * Get the restart button element
+   * @returns {Promise<WebdriverIO.Element>}
+   */
+  async getRestartButton() {
+    return await this.getByTestId("obs-restart-button");
+  }
+
+  /**
+   * Click the restart button
+   */
+  async clickRestartButton() {
+    const button = await this.getRestartButton();
+    await button.click();
+  }
+
+  /**
+   * Get the show flags checkbox
+   * @returns {Promise<WebdriverIO.Element>}
+   */
+  async getShowFlagsCheckbox() {
+    // The data-testid is on the input element, but we need to click the parent label
+    const input = await this.getByTestId("obs-show-flags-checkbox");
+    await input.scrollIntoView();
+    await this.pause(300);
+    // Get the parent element which is the clickable label
+    const clickableElement = await input.$("..");
+    return clickableElement;
+  }
+
+  /**
+   * Check if show flags is enabled
+   * @returns {Promise<boolean>}
+   */
+  async isShowFlagsEnabled() {
+    // Get the input element directly to check its state
+    const input = await this.getByTestId("obs-show-flags-checkbox");
+    return await input.isSelected();
+  }
+
+  /**
+   * Toggle the show flags checkbox
+   */
+  async toggleShowFlags() {
+    const checkbox = await this.getShowFlagsCheckbox();
+    await checkbox.waitForClickable({ timeout: 5000 });
+    await checkbox.click();
+    await this.pause(500);
+  }
+
+  /**
+   * Enable show flags
+   */
+  async enableShowFlags() {
+    const isEnabled = await this.isShowFlagsEnabled();
+    if (!isEnabled) {
+      await this.toggleShowFlags();
+    }
+  }
+
+  /**
+   * Disable show flags
+   */
+  async disableShowFlags() {
+    const isEnabled = await this.isShowFlagsEnabled();
+    if (isEnabled) {
+      await this.toggleShowFlags();
+    }
+  }
+
+  /**
+   * Get the "Only show stats when loading / ingame" checkbox
+   * @returns {Promise<WebdriverIO.Element>}
+   */
+  async getOnlyShowIngameCheckbox() {
+    // The data-testid is on the input element, but we need to click the parent label
+    const input = await this.getByTestId("obs-only-show-ingame-checkbox");
+    await input.scrollIntoView();
+    await this.pause(300);
+    // Get the parent element which is the clickable label
+    const clickableElement = await input.$("..");
+    return clickableElement;
+  }
+
+  /**
+   * Check if "Only show stats when loading / ingame" is enabled
+   * @returns {Promise<boolean>}
+   */
+  async isOnlyShowIngameEnabled() {
+    // Get the input element directly to check its state
+    const input = await this.getByTestId("obs-only-show-ingame-checkbox");
+    return await input.isSelected();
+  }
+
+  /**
+   * Toggle the "Only show stats when loading / ingame" checkbox
+   */
+  async toggleOnlyShowIngame() {
+    const checkbox = await this.getOnlyShowIngameCheckbox();
+    await checkbox.waitForClickable({ timeout: 5000 });
+    await checkbox.click();
+    await this.pause(500);
+  }
+
+  /**
+   * Enable "Only show stats when loading / ingame"
+   */
+  async enableOnlyShowIngame() {
+    const isEnabled = await this.isOnlyShowIngameEnabled();
+    if (!isEnabled) {
+      await this.toggleOnlyShowIngame();
+    }
+  }
+
+  /**
+   * Disable "Only show stats when loading / ingame"
+   * This makes the overlay always visible (including in menu)
+   */
+  async disableOnlyShowIngame() {
+    const isEnabled = await this.isOnlyShowIngameEnabled();
+    if (isEnabled) {
+      await this.toggleOnlyShowIngame();
     }
   }
 }

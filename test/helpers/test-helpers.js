@@ -164,6 +164,84 @@ class TestHelpers {
       return false;
     }
   }
+
+  // ==================== OBS Overlay Helpers ====================
+
+  /**
+   * OBS Overlay server port
+   */
+  get OBS_OVERLAY_PORT() {
+    return 47824;
+  }
+
+  /**
+   * OBS Overlay server URL
+   */
+  get OBS_OVERLAY_URL() {
+    return `http://localhost:${this.OBS_OVERLAY_PORT}`;
+  }
+
+  /**
+   * Make HTTP request to check if OBS overlay server is running
+   * Uses native fetch (Node.js 18+) for clean async/await syntax
+   * @param {number} timeout - Request timeout in ms
+   * @returns {Promise<{running: boolean, content: string|null, error: string|null}>}
+   */
+  async checkOBSOverlayServer(timeout = 5000) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+      const response = await fetch(this.OBS_OVERLAY_URL, {
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      const content = await response.text();
+      return { running: true, content, error: null };
+    } catch (err) {
+      // Connection refused, timeout, or other network error = server not running
+      return { running: false, content: null, error: err.message };
+    }
+  }
+
+  /**
+   * Verify OBS overlay content contains expected player data
+   * @param {string} html - HTML content from overlay
+   * @returns {{hasPlayerNames: boolean, hasFactionIcons: boolean, playerNames: string[]}}
+   */
+  parseOBSOverlayContent(html) {
+    const hasPlayerNames = html.includes("coh3stats-overlay-player-name");
+    const hasFactionIcons = html.includes("coh3stats-overlay-player-factionIcon");
+
+    // Extract player names using regex
+    const nameRegex = /class="coh3stats-overlay-player-name">([^<]+)<\/span>/g;
+    const playerNames = [];
+    let match;
+    while ((match = nameRegex.exec(html)) !== null) {
+      playerNames.push(match[1]);
+    }
+
+    return { hasPlayerNames, hasFactionIcons, playerNames };
+  }
+
+  /**
+   * Wait for OBS overlay server to be running
+   * @param {number} maxWaitTime - Maximum time to wait in ms
+   * @param {number} pollInterval - Interval between checks in ms
+   * @returns {Promise<boolean>} - True if server is running, false if timeout
+   */
+  async waitForOBSOverlayServer(maxWaitTime = 30000, pollInterval = 1000) {
+    const startTime = Date.now();
+    while (Date.now() - startTime < maxWaitTime) {
+      const result = await this.checkOBSOverlayServer();
+      if (result.running) {
+        return true;
+      }
+      await new Promise((resolve) => setTimeout(resolve, pollInterval));
+    }
+    return false;
+  }
 }
 
 export default new TestHelpers();

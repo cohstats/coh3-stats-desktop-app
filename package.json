@@ -20,6 +20,7 @@
     "tauri:build:msstore": "dotenv -e .env -- cross-env VITE_DISABLE_UPDATER=true tauri build --config src-tauri/tauri.microsoftstore.conf.json",
     "prepare": "husky",
     "test:e2e": "wdio run wdio.conf.cjs",
+    "test:e2e:obs": "yarn wdio run wdio.conf.cjs --spec test/specs/obs-overlay.e2e.js",
     "test:be": "cd src-tauri && cargo test --package coh3-stats-desktop-app --lib",
     "reinstall": "rm -rf node_modules && rm -fr dist && rm -fr src-tauri/target && rm -f src-tauri/Cargo.lock && yarn install && cd src-tauri && cargo update"
   },
