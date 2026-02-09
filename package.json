@@ -1,13 +1,13 @@
 {
   "name": "coh3-stats-desktop-app",
   "private": true,
-  "version": "2.1.1",
+  "version": "2.2.0",
   "type": "module",
   "repository": {
     "url": "https://github.com/cohstats/coh3-stats-desktop-app"
   },
   "engines": {
-    "node": ">=18.18.0",
+    "node": ">=20",
     "npm": "please-use-yarn"
   },
   "scripts": {
