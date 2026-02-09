@@ -12,69 +12,56 @@ if (shouldSendAnalytics) {
 }
 
 /**
+ * Get common properties that should be included in every event
+ */
+const getCommonProperties = async () => ({
+  distinct_id: await getClientId(),
+  version: await getVersion(),
+  ms_store_edition: config.MS_STORE_EDITION,
+});
+
+/**
  * The events for Mixpanel
  */
 const events = {
   init: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
-    mixpanel.track("app_init", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("app_init", await getCommonProperties());
   },
   open_about: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
-    mixpanel.track("open_about", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("open_about", await getCommonProperties());
   },
   open_settings: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
-    mixpanel.track("open_settings", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("open_settings", await getCommonProperties());
   },
   open_replays: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
-    mixpanel.track("open_replays", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("open_replays", await getCommonProperties());
   },
   open_recent_games: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
-    mixpanel.track("open_recent_games", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("open_recent_games", await getCommonProperties());
   },
   connect_coh_db: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
-    mixpanel.track("cohdb_connect_account", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("cohdb_connect_account", await getCommonProperties());
   },
   disconnect_coh_db: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
-    mixpanel.track("cohdb_disconnect_account", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("cohdb_disconnect_account", await getCommonProperties());
   },
   replay_uploaded: async (status: string): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
     mixpanel.track("replays_uploaded", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
+      ...(await getCommonProperties()),
       status,
     });
   },
@@ -82,8 +69,7 @@ const events = {
     if (!shouldSendAnalytics) return;
 
     mixpanel.track("settings_changed", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
+      ...(await getCommonProperties()),
       setting,
       value,
     });
@@ -97,8 +83,7 @@ const events = {
     if (!shouldSendAnalytics) return;
 
     mixpanel.track("map_stats", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
+      ...(await getCommonProperties()),
       matchup,
       map_name,
       factionMatrixString,
@@ -108,10 +93,7 @@ const events = {
   open_leaderboards: async (): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
-    mixpanel.track("open_leaderboards", {
-      distinct_id: await getClientId(),
-      version: await getVersion(),
-    });
+    mixpanel.track("open_leaderboards", await getCommonProperties());
   },
 };
 
