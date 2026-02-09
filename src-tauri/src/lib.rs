@@ -46,7 +46,15 @@ pub fn run() {
     let builder = tauri::Builder::default()
         .manage(audio_manager::AudioManagerState::default())
         .manage(process_watcher::ProcessWatcherState::default())
-        .plugin(tauri_plugin_log::Builder::new().build())
+        .plugin(
+            tauri_plugin_log::Builder::new()
+                .level(log::LevelFilter::Info)
+                .level_for("rustls", log::LevelFilter::Warn)
+                .level_for("reqwest", log::LevelFilter::Warn)
+                .level_for("hyper", log::LevelFilter::Warn)
+                .level_for("tungstenite", log::LevelFilter::Warn)
+                .build(),
+        )
         .invoke_handler(tauri::generate_handler![
             default_log_file_path,
             default_playback_path,
@@ -62,7 +70,6 @@ pub fn run() {
             start_process_watcher,
             stop_process_watcher
         ])
-        .plugin(tauri_plugin_log::Builder::default().build())
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
             let window = match app.get_webview_window("main") {
                 Some(w) => w,
@@ -98,9 +105,6 @@ pub fn run() {
                 );
             }
         }))
-        // You need to comment out this line to run the app on MacOS
-        // do not compile on mac
-        .plugin(tauri_plugin_log::Builder::default().build())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
