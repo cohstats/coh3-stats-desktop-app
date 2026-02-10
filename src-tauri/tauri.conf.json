@@ -9,7 +9,9 @@
     "active": true,
     "category": "Game",
     "copyright": "COH Stats",
-    "publisher": "COH Stats",
+    "packageName": "petrvecera.Grenadier-COH3Companion",
+    "publisher": "CN=2559744E-EB16-4B8E-9001-BD9B7A70DF34",
+    "publisherDisplayName": "petrvecera",
     "targets": [
       "msi"
     ],
