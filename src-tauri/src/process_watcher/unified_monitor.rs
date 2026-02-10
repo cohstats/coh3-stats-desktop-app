@@ -8,7 +8,7 @@
 //! This consolidates the previous WMI event-based approach and Windows Event Hook
 //! approach into a simpler polling-based solution.
 
-use log::{error, info, warn};
+use log::{error, info};
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 use tauri::{AppHandle, Manager, Runtime};
@@ -54,6 +54,9 @@ pub fn run_unified_monitor<R: Runtime>(
     // Track when the game went to background (for 1-second delay before muting)
     let mut background_since: Option<Instant> = None;
 
+    // Track pending unmute on game start (audio session may not exist immediately)
+    let mut pending_unmute_on_start = false;
+
     loop {
         // Check if we should stop watching
         if let Ok(watching) = watching_flag.lock() {
@@ -77,9 +80,13 @@ pub fn run_unified_monitor<R: Runtime>(
                 currently_muted = false;
                 background_since = None;
 
-                // Ensure game starts unmuted
-                if let Err(e) = windows_audio::set_game_mute(pid, false) {
-                    warn!("Could not ensure game is unmuted on start: {}", e);
+                // Try to ensure game starts unmuted, but audio session may not exist yet
+                if windows_audio::set_game_mute(pid, false).is_err() {
+                    // Audio session not ready yet, will retry on next poll iterations
+                    info!("Audio session not ready on game start, will retry unmuting");
+                    pending_unmute_on_start = true;
+                } else {
+                    pending_unmute_on_start = false;
                 }
             }
 
@@ -89,12 +96,22 @@ pub fn run_unified_monitor<R: Runtime>(
                 current_game_pid = None;
                 currently_muted = false;
                 background_since = None;
+                pending_unmute_on_start = false;
             }
 
             // Game is running - check foreground state
             (Some(_), Some(pid)) => {
                 // Update PID in case it changed (shouldn't happen, but be safe)
                 current_game_pid = Some(pid);
+
+                // Retry pending unmute if audio session wasn't ready on game start
+                if pending_unmute_on_start {
+                    if windows_audio::set_game_mute(pid, false).is_ok() {
+                        info!("Game unmuted on start (delayed - audio session now ready)");
+                        pending_unmute_on_start = false;
+                    }
+                    // If still failing, will retry on next poll iteration
+                }
 
                 // Check if we should skip muting based on settings
                 let should_skip_muting = {

@@ -1,6 +1,6 @@
 import { configValueFactory } from "../config-store/configValueFactory";
 
-const [getPlaySound, usePlaySound] = configValueFactory<boolean>("playSound", async () => false);
+const [getPlaySound, usePlaySound] = configValueFactory<boolean>("playSound", async () => true);
 
 const [getPlaySoundVolume, usePlaySoundVolume] = configValueFactory<number>(
   "playSoundVolume",
