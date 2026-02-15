@@ -222,3 +222,11 @@ The backend wrapping the frontend code is created with Rust + Tauri. The code ca
 ### App configuration file
 
 The main configuration file of the app is in `src-tauri/tauri.conf.json`.
+
+### MS Store data
+
+```
+"packageName": "petrvecera.Grenadier-COH3Companion",
+"publisher": "CN=2559744E-EB16-4B8E-9001-BD9B7A70DF34",
+"publisherDisplayName": "petrvecera",
+```

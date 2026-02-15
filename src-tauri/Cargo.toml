@@ -52,8 +52,7 @@ tauri-plugin-opener = "=2.5.3"
 
 
 # This is COH3 replay parser
-vault = "=8.0.1"
-window-shadows = "=0.2.2"
+vault = "=10.2.0"
 # monitoring by sentry
 sentry = "0.46.1"
 # For the OBS interface we need to expose webserver
