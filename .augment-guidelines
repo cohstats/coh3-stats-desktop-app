@@ -6,3 +6,6 @@
 
 ## Version management
 - Always try to use exact version of packages, don't use `^` or `~`.
+
+## Folder for AI .md files
+- If you want to create some temporary files for AI, create them in `.ai` folder.
