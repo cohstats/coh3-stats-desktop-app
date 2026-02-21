@@ -597,10 +597,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mantine/core@8.3.13":
-  version "8.3.13"
-  resolved "https://registry.yarnpkg.com/@mantine/core/-/core-8.3.13.tgz#72453fb08c6af68b3c5003bffa5e268e77403aeb"
-  integrity sha512-ZgW4vqN4meaPyIMxzAufBvsgmJRfYZdTpsrAOcS8pWy7m9e8i685E7XsAxnwJCOIHudpvpvt+7Bx7VaIjEsYEw==
+"@mantine/core@8.3.15":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@mantine/core/-/core-8.3.15.tgz#0b58ef1d75ed562d9e2c3c4e04795f77a8bb00c7"
+  integrity sha512-wBn/GogB4x7a2Uj7Ztt3amRaApjED+9XqfE4wyCLh88R7KV55k9vnTdCx+irI/GLOOu9tXNUGm3a4t5sTajwkQ==
   dependencies:
     "@floating-ui/react" "^0.27.16"
     clsx "^2.1.1"
@@ -609,23 +609,23 @@
     react-textarea-autosize "8.5.9"
     type-fest "^4.41.0"
 
-"@mantine/hooks@8.3.13":
-  version "8.3.13"
-  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-8.3.13.tgz#c6a9fce53f77462daa0aa7539104fd43feec6f40"
-  integrity sha512-7YMbMW/tR9E8m/9DbBW01+3RNApm2mE/JbRKXf9s9+KxgbjQvq0FYGWV8Y4+Sjz48AO4vtWk2qBriUTgBMKAyg==
+"@mantine/hooks@8.3.15":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-8.3.15.tgz#fb20e2337b5182428d46aede85614d9c235f3efa"
+  integrity sha512-AUSnpUlzttHzJht3CJ1YWi16iy6NWRwtyWO5RLGHHsmiW05DyG0qOPKF8+R5dLHuOCnl3XOu4roI2Y1ku9U04Q==
 
-"@mantine/notifications@8.3.13":
-  version "8.3.13"
-  resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-8.3.13.tgz#e9dfe4877a377bbe8263dfe44427da22a296e4b3"
-  integrity sha512-VgQwA3C4NbjguobobFnqqQyKBWXOfzM8BES1LIX9EyzMwsvGAlShJHrF9/yLS0Jqf5DiZi4L8hxL3wcmmbnljA==
+"@mantine/notifications@8.3.15":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-8.3.15.tgz#2f52b09a26efcd081026d5b37d95d0e0bf6c9c90"
+  integrity sha512-CJGSv8oeLWyJIVPninU7Ud6vV6/UJKWZJwRGBNg2K0Ak0U0coFN3gW3H6G1Mh2zllNxb3K4fpMJNz4Iy0sCBFw==
   dependencies:
-    "@mantine/store" "8.3.13"
+    "@mantine/store" "8.3.15"
     react-transition-group "4.4.5"
 
-"@mantine/store@8.3.13":
-  version "8.3.13"
-  resolved "https://registry.yarnpkg.com/@mantine/store/-/store-8.3.13.tgz#8b78c94b5ac8a39af92699fe31148a222d11129d"
-  integrity sha512-pnHHwiffGfaqLFxuyJIuU1P6+3zOd7bfBRVFFzIEDyUbPJs7dmVUFt31bry5FokrBfCjNWyg2XfyAQqIwd2LLA==
+"@mantine/store@8.3.15":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@mantine/store/-/store-8.3.15.tgz#8a7f96b18869c6893ece1a25c57d6a614622b6ce"
+  integrity sha512-wdx91a73dM2G02YPIZ9i5UXPWfvjdf3qPAwSGnSsBFQg5uM/5CcPAOOQwlYIkvX1edUA5BFOk/4IjpEXSYUDeQ==
 
 "@mixpanel/rrdom@^2.0.0-alpha.18":
   version "2.0.0-alpha.18.2"
