@@ -8,6 +8,7 @@ extern crate machine_uid;
 mod audio_manager;
 mod config;
 mod dp_utils;
+mod map_stats;
 mod overlay_server;
 mod parse_log_file;
 mod plugins;
@@ -46,6 +47,7 @@ pub fn run() {
     let builder = tauri::Builder::default()
         .manage(audio_manager::AudioManagerState::default())
         .manage(process_watcher::ProcessWatcherState::default())
+        .manage(map_stats::MapStatsState::default())
         .plugin(
             tauri_plugin_log::Builder::new()
                 .level(log::LevelFilter::Info)
@@ -68,7 +70,8 @@ pub fn run() {
             disable_audio_muting,
             update_audio_mute_settings,
             start_process_watcher,
-            stop_process_watcher
+            stop_process_watcher,
+            map_stats::get_map_stats
         ])
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
             let window = match app.get_webview_window("main") {
@@ -255,6 +258,9 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
             }
         }
     });
+
+    // Initialize map stats fetching (non-blocking)
+    map_stats::init_map_stats(handle.clone());
 
     Ok(())
 }
