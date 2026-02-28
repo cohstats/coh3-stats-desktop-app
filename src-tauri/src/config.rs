@@ -11,3 +11,7 @@ pub const GAME_PROCESS_NAME: &str = "reliccoh3.exe";
 // Map Stats API and Cache
 pub const MAP_STATS_CACHE_FILENAME: &str = "map_stats.json";
 pub const MAP_STATS_API_URL: &str = "https://coh3stats.com/api/getLatestPatchMapStats";
+
+// Battlegroup Info API and Cache
+pub const BATTLEGROUP_INFO_CACHE_FILENAME: &str = "battlegroup_info.json";
+pub const BATTLEGROUP_INFO_API_URL: &str = "https://coh3stats.com/api/getBattlegroupInfo";
