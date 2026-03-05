@@ -7,6 +7,7 @@ use std::time::Duration;
 use tauri::{AppHandle, Manager, Runtime};
 
 const REQUEST_TIMEOUT_SECS: u64 = 60;
+const CACHE_MAX_AGE_HOURS: u64 = 12;
 
 /// State for storing map stats data
 #[derive(Debug, Default)]
@@ -67,6 +68,29 @@ pub fn load_from_cache<R: Runtime>(handle: &AppHandle<R>) -> Option<Value> {
     serde_json::from_str(&content).ok()
 }
 
+/// Checks if the cache file is older than the maximum age
+pub fn is_cache_stale<R: Runtime>(handle: &AppHandle<R>) -> bool {
+    let max_age = Duration::from_secs(CACHE_MAX_AGE_HOURS * 60 * 60);
+
+    let Some(path) = get_cache_path(handle) else {
+        return true; // No path means we should fetch
+    };
+
+    let Ok(metadata) = fs::metadata(&path) else {
+        return true; // File doesn't exist or can't be read
+    };
+
+    let Ok(modified) = metadata.modified() else {
+        return true; // Can't get modification time
+    };
+
+    let Ok(elapsed) = modified.elapsed() else {
+        return true; // Time went backwards somehow
+    };
+
+    elapsed > max_age
+}
+
 /// Helper to safely lock the mutex, recovering from poison if needed
 fn lock_state_data(state: &MapStatsState) -> std::sync::MutexGuard<'_, Option<Value>> {
     state.data.lock().unwrap_or_else(|poisoned| {
@@ -80,7 +104,19 @@ pub fn init_map_stats<R: Runtime>(handle: AppHandle<R>) {
     tauri::async_runtime::spawn(async move {
         let state = handle.state::<MapStatsState>();
 
-        // Try to fetch from API
+        // Check if cache is fresh (less than 12 hours old)
+        if !is_cache_stale(&handle) {
+            if let Some(cached_data) = load_from_cache(&handle) {
+                info!(
+                    "Loaded map stats from fresh cache (less than {} hours old)",
+                    CACHE_MAX_AGE_HOURS
+                );
+                *lock_state_data(&state) = Some(cached_data);
+                return;
+            }
+        }
+
+        // Cache is stale or doesn't exist, fetch from API
         match fetch_map_stats().await {
             Ok(data) => {
                 info!("Successfully fetched map stats from API");
@@ -101,9 +137,9 @@ pub fn init_map_stats<R: Runtime>(handle: AppHandle<R>) {
                     sentry::Level::Error,
                 );
 
-                // Try to load from cache
+                // Try to load from cache (even if stale, better than nothing)
                 if let Some(cached_data) = load_from_cache(&handle) {
-                    info!("Loaded map stats from cache");
+                    info!("Loaded map stats from stale cache after API failure");
                     *lock_state_data(&state) = Some(cached_data);
                 } else {
                     error!("Failed to load map stats from cache");
