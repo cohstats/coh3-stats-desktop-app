@@ -1052,7 +1052,7 @@ dependencies = [
  "keyring",
  "log",
  "machine-uid",
- "nom 7.1.3",
+ "nom 8.0.0",
  "notify",
  "oauth2",
  "regex",
