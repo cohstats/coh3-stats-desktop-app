@@ -290,12 +290,12 @@ fn default_log_file_path() -> Result<String, String> {
                 return Err("Local data directory not found. Please check your system permissions.".to_string());
             }
         };
-        // Figure it out the path when linux
+        // Figure out the path for linux
         path.push("Steam/steamapps/compatdata");
 
         // There could be several sessions, for each game installed
-        // this is why we needed to check witch one is the correct
-        for session in path.read_dir().unwrap() {
+        // this is why we needed to check which one is the correct
+        for session in path.read_dir().expect("read_dir call failed") {
             if let Ok(directory) = session {
                 let mut tmp_path = directory.path();
                 // TODO: Is this "My Games" also on non-English Windows? (I keep this question in linux)

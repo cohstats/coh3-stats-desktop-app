@@ -177,11 +177,11 @@ This command automatically:
 
 For detailed information about Microsoft Store builds, see [MICROSOFT_STORE_BUILD.md](./MICROSOFT_STORE_BUILD.md).
 
-#### To build for Fedora Linux:
+#### To build for Linux:
 
-The next command will buikld the app for Linux.
+The next command will build the app for Linux.
 The output can be found in `src-tauri/target/release/bundle`.
-We distribute the app with deb and rpm packages for linux.
+We distribute the app with deb and rpm packages for Linux.
 
 ```bash
 yarn tauri:build:linux
