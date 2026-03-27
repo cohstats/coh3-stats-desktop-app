@@ -258,21 +258,56 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
 /// returns the default expected log file path
 #[tauri::command]
 fn default_log_file_path() -> Result<String, String> {
-    let mut path = match dirs::document_dir() {
-        Some(p) => p,
-        None => {
-            error!("Failed to get document directory: Directory not found");
-            sentry::capture_message(
-                "Document directory not found (log file path)",
-                sentry::Level::Error,
-            );
-            return Err("Document directory not found. Please check your system permissions.".to_string());
+    #[cfg(target_os = "windows")]
+    {
+        let mut path = match dirs::document_dir() {
+            Some(p) => p,
+            None => {
+                error!("Failed to get document directory: Directory not found");
+                sentry::capture_message(
+                    "Document directory not found (log file path)",
+                    sentry::Level::Error,
+                );
+                return Err("Document directory not found. Please check your system permissions.".to_string());
+            }
+        };
+        path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?
+        path.push("Company of Heroes 3");
+        path.push("warnings.log");
+        return Ok(path.display().to_string());
+    }
+
+    #[cfg(target_os = "linux")]
+    {
+        let mut path = match dirs::data_local_dir() {
+            Some(p) => p,
+            None => {
+                error!("Failed to get local data directory: Directory not found");
+                sentry::capture_message(
+                    "Local data directory not found (log file path)",
+                    sentry::Level::Error,
+                );
+                return Err("Local data directory not found. Please check your system permissions.".to_string());
+            }
+        };
+        // Figure it out the path when linux
+        path.push("Steam/steamapps/compatdata");
+
+        // There could be several sessions, for each game installed
+        // this is why we needed to check witch one is the correct
+        for session in path.read_dir().unwrap() {
+            if let Ok(directory) = session {
+                let mut tmp_path = directory.path();
+                // TODO: Is this "My Games" also on non-English Windows? (I keep this question in linux)
+                tmp_path.push("pfx/drive_c/users/steamuser/Documents/My Games/Company of Heroes 3/warnings.log");
+                if tmp_path.exists() {
+                    return Ok(tmp_path.display().to_string());
+                }
+            }
         }
-    };
-    path.push("My Games"); // TODO: Is this "my games" also on non-English Windows?
-    path.push("Company of Heroes 3");
-    path.push("warnings.log");
-    Ok(path.display().to_string())
+    }
+
+    Err("No log file found.".to_string())
 }
 
 #[tauri::command]
