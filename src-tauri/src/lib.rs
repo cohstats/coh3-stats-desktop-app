@@ -229,7 +229,10 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
         if let Err(e) = handle.deep_link().register("coh3stats") {
             error!("Failed to register deep link scheme: {}", e);
             sentry::capture_message(
-                &format!("Deep link scheme registration error: {} (OS error - possibly permissions)", e),
+                &format!(
+                    "Deep link scheme registration error: {} (OS error - possibly permissions)",
+                    e
+                ),
                 sentry::Level::Error,
             );
             info!("Continuing without deep link support");
@@ -240,9 +243,10 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let handle_clone = handle.clone();
     handle.deep_link().on_open_url(move |event| {
         for url in event.urls() {
-            if let Err(err) =
-                tauri::async_runtime::block_on(cohdb::auth::retrieve_token(url.as_str(), &handle_clone))
-            {
+            if let Err(err) = tauri::async_runtime::block_on(cohdb::auth::retrieve_token(
+                url.as_str(),
+                &handle_clone,
+            )) {
                 error!("error retrieving cohdb token: {err}");
                 sentry::capture_message(
                     &format!("COHDB token retrieval error: {}", err),
@@ -272,7 +276,7 @@ fn get_game_path_with_sub_path(sub_path: &str) -> Result<String, String> {
         Err(err) => {
             error!("Game directory not found {}", err);
             sentry::capture_message(
-                "Game directory not found (playback path)",
+                format!("Game directory not found ({} path)", sub_path).as_str(),
                 sentry::Level::Error,
             );
             return Err(
@@ -374,17 +378,25 @@ fn get_machine_id() -> Result<String, String> {
 // Wrapper functions for cohdb plugin commands
 #[tauri::command]
 async fn cohdb_authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String, String> {
-    cohdb::auth::authenticate(handle).await.map_err(|e| e.to_string())
+    cohdb::auth::authenticate(handle)
+        .await
+        .map_err(|e| e.to_string())
 }
 
 #[tauri::command]
-async fn cohdb_connected<R: Runtime>(handle: AppHandle<R>) -> Result<Option<cohdb::auth::responses::User>, String> {
-    cohdb::auth::connected(handle).await.map_err(|e| e.to_string())
+async fn cohdb_connected<R: Runtime>(
+    handle: AppHandle<R>,
+) -> Result<Option<cohdb::auth::responses::User>, String> {
+    cohdb::auth::connected(handle)
+        .await
+        .map_err(|e| e.to_string())
 }
 
 #[tauri::command]
 async fn cohdb_disconnect<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
-    cohdb::auth::disconnect(handle).await.map_err(|e| e.to_string())
+    cohdb::auth::disconnect(handle)
+        .await
+        .map_err(|e| e.to_string())
 }
 
 // Audio muting commands
