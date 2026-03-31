@@ -1,5 +1,5 @@
 name: 'Tests on PR'
-on: [pull_request]
+on: [ pull_request ]
 
 jobs:
   js-build-pretier:
@@ -37,8 +37,12 @@ jobs:
           yarn lint:prettier
 
   test-tauri:
+    strategy:
+      matrix:
+        os: [ windows-latest, ubuntu-latest ]
+
     name: Test Tauri build
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
 
     concurrency:
       group: tests-tauri-build-${{ github.ref }}
