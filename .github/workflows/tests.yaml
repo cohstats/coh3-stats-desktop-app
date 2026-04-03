@@ -111,7 +111,7 @@ jobs:
       # If the test fails with invalid MS Edge browser it's highly possible a bug at GitHub
       # https://github.com/actions/runner-images/issues/9538
       - name: Run e2e tests
-        if: runner.os == 'windows-latest'
+        if: runner.os == 'Windows'
         run: |
           yarn test:e2e
 
