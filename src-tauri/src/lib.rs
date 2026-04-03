@@ -352,7 +352,7 @@ fn get_game_path() -> Result<PathBuf, String> {
             }
         }
 
-        Err("Error to find the game path in Linux.".to_string())
+        Err("Unable to find the game path in Linux.".to_string())
     }
 
     #[cfg(not(any(target_os = "linux", target_os = "windows")))]
