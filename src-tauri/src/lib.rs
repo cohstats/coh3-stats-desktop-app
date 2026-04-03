@@ -351,9 +351,14 @@ fn get_game_path() -> Result<PathBuf, String> {
                 }
             }
         }
+
+        Err("Error to find the game path in Linux.".to_string())
     }
 
-    Err("OS not supported.".to_string())
+    #[cfg(not(any(target_os = "linux", target_os = "windows")))]
+    {
+        Err("OS not supported.".to_string())
+    }
 }
 
 /// checks if log file can be found on system
