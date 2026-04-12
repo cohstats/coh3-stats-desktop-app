@@ -1,0 +1,493 @@
+RelicCoH3 started at 2026-04-12 14:09 [Central Europe Daylight Time UTC 01:00]
+OS Win 10.0.19045, 65298MB Physical Memory, 23466 Physical Available, 90898 Virtual Total, 28799 Virtual Available, 25600 Page file.
+RUN-OPTIONS [-print_turn_action_log_continuously -turn_soft_lock_detection_seconds 60 -nomovies]
+WORKING-DIR [D:\SteamLibrary\steamapps\common\Company of Heroes 3\]
+USER [pagep]
+COMPUTER [DESKTOP-6BDHGT2]
+LOCALE [en-US]
+
+(I) [14:09:02.589] [000003976]: Version.cpp - translation info queried modulefilename D:\SteamLibrary\steamapps\common\Company of Heroes 3\RelicCoH3.exe, len 1620
+(I) [14:09:02.589] [000003976]: Version [2.3.1.44736] Info [[Anvil][anvil][stable][rtm][4614414]]
+(I) [14:09:02.716] [000003976]: GameApp::SetState : new (Uninitialized) old (Uninitialized)
+(I) [14:09:02.717] [000003976]: Loading step: [Platform]
+(I) [14:09:02.718] [000003976]: Loading step: [Logger thread]
+(I) [14:09:02.719] [000003976]: Loading step: [TimeStamp]
+(I) [14:09:02.719] [000003976]: Loading step: [Timeout thread]
+(I) [14:09:02.719] [000003976]: Loading step: [CorruptInstallNotifier]
+(I) [14:09:02.719] [000003976]: Loading step: [CoInitialize]
+(I) [14:09:02.719] [000003976]: Loading step: [Process setup]
+(I) [14:09:02.719] [000003976]: Loading step: [MemoryEnvironment]
+(I) [14:09:03.169] [000003976]: Loading step: [InitReflectSystem]
+(I) [14:09:03.286] [000003976]: Loading step: [InitGameActivator]
+(I) [14:09:03.286] [000003976]: Loading step: [InitThreadingModel]
+(I) [14:09:03.286] [000003976]: Primary CPU is a 3600MHz [12th Gen Intel(R) Core(TM) i7-12700K] running at 3600MHz
+(I) [14:09:03.286] [000003976]: Architecture [9], Level [6], Revision [38658].
+(I) [14:09:03.286] [000003976]: 20 logical processor(s) detected.
+(I) [14:09:03.286] [000003976]: 12 physical processor(s) detected.
+(I) [14:09:03.286] [000003976]: 1 processor(s) nodes detected.
+(I) [14:09:03.287] [000003976]: Threading system initialized to [20]/[20] cores
+(I) [14:09:03.287] [000003976]: Loading step: [ThreadingModel Main thread]
+(I) [14:09:03.287] [000003976]: Registered essence thread: [Main_Thread] usesRcssWorkerThreads: [true]
+(I) [14:09:03.287] [000003976]: Loading step: [Taskbar]
+(I) [14:09:03.289] [000003976]: Loading step: [Additional crash information]
+(I) [14:09:03.289] [000003976]: Loading step: [Single Instance Check]
+(I) [14:09:03.289] [000003976]: Loading step: [Config File]
+(I) [14:09:03.341] [000003976]: GAME -- Current Steam name is [pagep]
+(I) [14:09:03.341] [000003976]: GAME -- steam returned language 'english'
+(I) [14:09:03.349] [000003976]: GAME -- [Company of Heroes 3] set to language [en]
+(I) [14:09:03.358] [000003976]: Loading step: [Render Window]
+(I) [14:09:03.358] [000003976]: Loading step: [Statgraph]
+(I) [14:09:03.358] [000003976]: Loading step: [StatGraph Stats]
+(I) [14:09:03.358] [000003976]: Loading step: [ArchiveManager]
+(I) [14:09:03.359] [000003976]: Loading step: [Filesystem]
+(I) [14:09:03.359] [000003976]: Using [C:\Users\pagep\Documents\My Games\Company of Heroes 3\] as base writable folder
+(I) [14:09:03.359] [000003976]: Game -- System temp path is [C:\Users\pagep\AppData\Local\Temp\]
+(I) [14:09:03.364] [000003976]: Loading step: [FileLogger]
+(I) [14:09:03.364] [000003976]: Loading step: [Lua GameBinding Traits]
+(I) [14:09:03.364] [000003976]: Loading step: [Lua Libraries]
+(I) [14:09:03.365] [000003976]: Loading step: [System Config]
+(I) [14:09:03.368] [000003976]: Loading step: [TelemetryController]
+(I) [14:09:03.370] [000003976]: Loading step: [User Folder Unloader]
+(I) [14:09:03.370] [000003976]: Loading step: [Load/Save Config Settings]
+(I) [14:09:03.376] [000003976]: Loading step: [Warnings]
+(I) [14:09:03.376] [000003976]: Loading step: [Load Debug Symbols]
+(I) [14:09:03.376] [000003976]: Loading step: [Command DB]
+(I) [14:09:03.376] [000055684]: DB -- Unable to load symbols.
+(I) [14:09:03.376] [000003976]: Loading step: [InitStateTreeManager]
+(I) [14:09:03.377] [000003976]: Loading step: [Prerequisite Manager]
+(I) [14:09:03.377] [000003976]: Loading step: [Prerequisite Entries]
+(I) [14:09:03.377] [000003976]: Loading step: [GameModule Pre Mod Interface Init]
+(I) [14:09:03.377] [000003976]: Loading step: [ModManager]
+(I) [14:09:03.377] [000003976]: MODULE -- Creating module 'RelicGame'.
+(I) [14:09:03.392] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\attrib.sga 85055024 B [ID:cc658689e8327aa213f047ca598ee0c9] [Ver:0720b13770ee5b96664bc4e11a72bd9c] [Sig:17027741203493511174]
+(I) [14:09:03.410] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\data.sga 31085958 B [ID:16c0f95516b6bd76239a8a743a290dba] [Ver:3b1cdff14dd84a46530d9b8eb515397d] [Sig:6833603275359640280]
+(I) [14:09:03.411] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\ui.sga 1116784 B [ID:09480279ef1f221e1467f0feeeb28aa2] [Ver:7bc82d4604a64f6349c698aed91dc63d] [Sig:4055885886066449148]
+(I) [14:09:03.411] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\common\archives\data.sga 92639 B [ID:16c0f95516b6bd76239a8a743a290dba] [Ver:13a054cf58402ebb44182403cfe05038] [Sig:15853610410799954909]
+(I) [14:09:03.415] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\data.sga 28983887 B [ID:91eb1b764829dce596439b0b53d5d902] [Ver:7abe1da600af92c5cc935ba7e4f3edef] [Sig:3231749700880215423]
+(I) [14:09:03.428] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\art.sga 4142605069 B [ID:335f6c45d2d00556a1b300110fb67f63] [Ver:fa71c3cac461e41f23bc7feed32780a1] [Sig:17568282084287191124]
+(I) [14:09:03.446] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\artbuildings.sga 1621649634 B [ID:e630934e80bb0be959ddfc54da7e1e54] [Ver:1afb5143419b34a024eee8683644c001] [Sig:4559419178842267869]
+(I) [14:09:03.458] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\artenvironment.sga 2327091161 B [ID:a8353aa1bdde46ced0f67029944c406c] [Ver:f763f4dede5705ffb69f6f6da2a2f242] [Sig:6577571673211151132]
+(I) [14:09:03.467] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\artscenarios.sga 3005062475 B [ID:ffdeb91fab5122cf1ab7c37d119dc5d5] [Ver:b6a94031c58a7cc20ee3c461f19e97d5] [Sig:7101227727244598796]
+(I) [14:09:03.473] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\scenarios.sga 15033555 B [ID:4f6bed42a792fb5b9eae14472a7e901c] [Ver:04ef93556d0619507e9c1a285fc53920] [Sig:1545881429974534082]
+(I) [14:09:03.475] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\scenariosmp.sga 1051249648 B [ID:709197811710287335bf21d3f3e018fe] [Ver:2cfeb780f79eb3f8b101d1e6a66c7082] [Sig:11028901250001363880]
+(I) [14:09:03.478] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\scenariossp.sga 1922448419 B [ID:cb1eb03a442e23d7da269decdebfe11b] [Ver:7b319ea2f814420c9286c8a541555c28] [Sig:10329612299320415897]
+(I) [14:09:03.484] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\ui.sga 958199459 B [ID:33a67d1cab1e8601f71ae7973f75c08b] [Ver:a3dab0c4809e711b398ba4e9c7c29d81] [Sig:4593410208251752680]
+(I) [14:09:03.487] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\tools\archives\data.sga 2029 B [ID:94195021539650ebc2111161f08a5693] [Ver:fd9902f3003e0e0354394aa79a61a133] [Sig:13413823260693370305]
+(I) [14:09:03.487] [000003976]: Archive [DevOnly] is [missing]! [Skipping.]
+(I) [14:09:03.487] [000003976]: Archive [DevOnly] is [missing]! [Skipping.]
+(I) [14:09:03.487] [000003976]: Archive [ScenariosDev] is [missing]! [Skipping.]
+(I) [14:09:03.488] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\localeenglish.sga 861281 B [ID:3e8711ed80cbdfeb375a3a0ab96600cd] [Ver:381aa250bf9d54512c39f98d39f22f97] [Sig:12786221809442498231]
+(I) [14:09:03.488] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\movies.sga 55074 B [ID:34a3a1146f0574f5dc457975826e2333] [Ver:7fd53369d9210e0459f0f941723df164] [Sig:4650644437784829898]
+(I) [14:09:03.489] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\reflect.sga 1969424 B [ID:cf317ce4d037d959d1f61ec4ba4b95da] [Ver:9f6d46a533d2ce6244db4ef593640f28] [Sig:14103264448269338781]
+(I) [14:09:03.489] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\dx12shadersandedfs.sga 45222 B [ID:f5a37cc293ebf676913da1bdd46d163b] [Ver:39463d0c174f48d41ca1967e67a6fd34] [Sig:16670451130807148516]
+(I) [14:09:03.490] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\dx12assets.sga 7852637 B [ID:6dee0a72320066df084864e3fd8db247] [Ver:b5199b08c33346f4156215f12b155586] [Sig:1424078468205146338]
+(I) [14:09:03.491] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\common\archives\dx12shadersandedfs.sga 4456181 B [ID:bcff99d52833fd8459ed8d990c584b6d] [Ver:3cd65f5e577e21896f26feaa2890ac05] [Sig:7800847390598925965]
+(I) [14:09:03.492] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\common\archives\dx12assets.sga 1233892 B [ID:2916e14abbb8c29a770cabc48186eae9] [Ver:904fea0e86224b0a27774a9adee1ee6a] [Sig:202420786684442498]
+(I) [14:09:03.493] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\dx12shadersandedfs.sga 13380782 B [ID:17b342a4951806a6286037aad597bfb4] [Ver:b1b5a2942b5da9e024d5cd5e705fd108] [Sig:6934218835130538725]
+(I) [14:09:03.493] [000003976]: Loading step: [Localization]
+(I) [14:09:03.511] [000003976]: Loading step: [Game]
+(I) [14:09:03.511] [000003976]: Loading step: [SimStaticApp]
+(I) [14:09:03.514] [000003976]: Loading step: [Family Manager]
+(I) [14:09:03.518] [000003976]: UTIL -- Throwing 'Unable to open file' exception on 'Attrib:Attrib\frontend_lockout.rgd'
+(I) [14:09:03.518] [000003976]: UTIL -- Failed to Load BinaryConfig file: 'Attrib:Attrib\frontend_lockout.rgd', error: 'Unable to open file!'
+(I) [14:09:03.519] [000003976]: Loading step: [SimApp]
+(I) [14:09:03.520] [000003976]: Loading step: [Property Bag Registration]
+(I) [14:09:03.530] [000003976]: Loading step: [State Tree Manager]
+(I) [14:09:03.737] [000003976]: Loading step: [Sound - Rtpc Event Database Init]
+(I) [14:09:03.737] [000003976]: Loading step: [Property Bag Manager]
+(I) [14:09:04.058] [000003976]: MapGen - Failed to load: m_defaultCampaignPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [14:09:04.058] [000003976]: MapGen - Failed to load: m_defaultMultiplayerPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [14:09:04.058] [000003976]: MapGen - Failed to load: m_defaultOtherPlayerStartMarker != nullptrFailed loading an attribute data field for map generation. It is likely that your attribute data is out of sync with your local build or build from the build launcher.
+(I) [14:09:06.572] [000003976]: PropertyBagManager Loaded in 2.834000s
+(I) [14:09:06.572] [000003976]: Loading step: [Modifier Callbacks Initialize]
+(I) [14:09:06.572] [000003976]: Loading step: [HandleIndex Manager]
+(I) [14:09:06.572] [000003976]: Loading step: [EntityBlueprintManager]
+(I) [14:09:06.574] [000003976]: Loading step: [ReflectPostExternalSystemsInited]
+(I) [14:09:06.583] [000003976]: Loading step: [ModPackManager]
+(I) [14:09:06.583] [000003976]: Loading step: [ModDllSetup]
+(I) [14:09:06.583] [000003976]: Loading step: [FilePath Filter]
+(I) [14:09:06.583] [000003976]: Loading step: [Locale System]
+(I) [14:09:06.583] [000003976]: Loading step: [Compatible Architecture Check]
+(I) [14:09:06.583] [000003976]: Loading step: [Compatible OS Check]
+(I) [14:09:06.583] [000003976]: Loading step: [Multicore Check]
+(I) [14:09:06.583] [000003976]: Loading step: [Parental Control]
+(I) [14:09:06.584] [000003976]: Loading step: [NetworkGlobal]
+(I) [14:09:06.585] [000003976]: AppID: 1677280
+(I) [14:09:06.592] [000003976]: WorldwideLoginService::WorldwideLoginService - initializing
+(I) [14:09:06.630] [000003976]: AutomatchInternal: Instantiating
+(I) [14:09:06.644] [000003976]: NetworkLoadCallback not able to open file CloudGetFileInfoCache-coh3-coh3.dat
+(I) [14:09:06.649] [000003976]: WindowsCertificates: Adding certificate; subject=/C=CA/ST=British Columbia/L=Vancouver/O=Relic Entertainment/CN=RelicLink Root CA issuer=/C=CA/ST=British Columbia/L=Vancouver/O=Relic Entertainment/CN=RelicLink Root CA
+(I) [14:09:06.649] [000003976]: Original Server Settings before command line args: server=coh3, title=coh3
+(I) [14:09:06.649] [000003976]: Applied Server Settings after command line args: liveServer=coh3, devServer=coh3, certServer=coh3, title=coh3
+(I) [14:09:06.650] [000003976]: Loading step: [Telemetry]
+(I) [14:09:06.650] [000003976]: Loading step: [Lua Libraries]
+(I) [14:09:06.651] [000003976]: Loading step: [Lua Tools]
+(I) [14:09:06.651] [000003976]: Loading step: [System Tests]
+(I) [14:09:06.653] [000003976]: Enumerating Graphics Adapters
+(I) [14:09:06.654] [000003976]: Choosing first adapter
+(I) [14:09:06.654] [000003976]: Adapter: NVIDIA GeForce GTX 1070 video dedicated: 8458862592 shared: 34235351040 system dedicated: 0
+(I) [14:09:06.654] [000003976]: Checking against Adapter: Intel(R) UHD Graphics 770 video dedicated: 134217728 shared: 34235351040 system dedicated: 0
+(I) [14:09:06.817] [000003976]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [14:09:06.817] [000003976]: Checking against Adapter: Microsoft Basic Render Driver video dedicated: 0 shared: 34235351040 system dedicated: 0
+(I) [14:09:06.923] [000003976]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [14:09:06.923] [000003976]: Chosen adapter: NVIDIA GeForce GTX 1070 video dedicated: 8458862592 shared: 34235351040 system dedicated: 0
+(I) [14:09:06.924] [000003976]: Loading step: [Action DB]
+(I) [14:09:06.944] [000003976]: ActionDatabase -- Loaded [849] actions.
+(I) [14:09:06.944] [000003976]: Loading step: [InitComponentFactory]
+(I) [14:09:06.946] [000003976]: Loading step: [Inventory]
+(I) [14:09:06.946] [000003976]: Loading step: [AI subsystem]
+(I) [14:09:06.946] [000003976]: Loading step: [Game Hooks]
+(I) [14:09:06.946] [000003976]: RPC -- Initializing RpcFramework
+(I) [14:09:06.946] [000003976]: Loading step: [Game Modules Init]
+(I) [14:09:06.947] [000003976]: Loading step: [App Init Complete]
+(I) [14:09:06.947] [000003976]: Loading step: [dbImGui]
+(I) [14:09:06.947] [000003976]: Loading step: [Havok]
+(I) [14:09:06.999] [000003976]: Loading step: [User Data Shutdown]
+(I) [14:09:07.002] [000029424]: Registered essence thread: [Simulation_Thread] usesRcssWorkerThreads: [true]
+(I) [14:09:07.002] [000025668]: Registered essence thread: [Render_Thread] usesRcssWorkerThreads: [true]
+(I) [14:09:07.007] [000003976]: NvAPI initialized with reported interface version: NVidia Complete Version 1.10
+(I) [14:09:07.007] [000003976]: NvAPI initialization reports installed display driver version: r566_31
+(I) [14:09:07.139] [000003976]: Enumerating Graphics Adapters
+(I) [14:09:07.139] [000003976]: Choosing first adapter
+(I) [14:09:07.139] [000003976]: Adapter: NVIDIA GeForce GTX 1070 video dedicated: 8458862592 shared: 34235351040 system dedicated: 0
+(I) [14:09:07.140] [000003976]: Checking against Adapter: Intel(R) UHD Graphics 770 video dedicated: 134217728 shared: 34235351040 system dedicated: 0
+(I) [14:09:07.249] [000003976]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [14:09:07.249] [000003976]: Checking against Adapter: Microsoft Basic Render Driver video dedicated: 0 shared: 34235351040 system dedicated: 0
+(I) [14:09:07.364] [000003976]: Adapter ignored, we already have a good dedicated, and this one doesn't have better dedicated memory
+(I) [14:09:07.364] [000003976]: Chosen adapter: NVIDIA GeForce GTX 1070 video dedicated: 8458862592 shared: 34235351040 system dedicated: 0
+(I) [14:09:07.465] [000003976]: RR Feature Level is SM6_2
+(I) [14:09:07.492] [000003976]: -------- GPU and Output INFO --------
+(I) [14:09:07.492] [000003976]: NVIDIA GeForce GTX 1070 -- 8067MB dedicated video memory, 0MB dedicated system memory and 32649MB shared system memory available.
+(I) [14:09:07.492] [000003976]: Primary Output Device is \\.\DISPLAY2, Resolution is 2560x1440
+(I) [14:09:07.492] [000003976]: Output Device is \\.\DISPLAY1, Portrait Resolution is 1200x1920
+(I) [14:09:07.492] [000003976]: Intel(R) UHD Graphics 770 -- 128MB dedicated video memory, 0MB dedicated system memory and 32649MB shared system memory available.
+(I) [14:09:07.492] [000003976]: Microsoft Basic Render Driver -- 0MB dedicated video memory, 0MB dedicated system memory and 32649MB shared system memory available.
+(I) [14:09:08.183] [000003976]: Loading step: [Render Anim]
+(I) [14:09:08.183] [000003976]: Loading step: [Alias]
+(I) [14:09:08.183] [000003976]: Loading step: [Hotswapping]
+(I) [14:09:08.183] [000003976]: Loading step: [ITextureUtil]
+(I) [14:09:08.183] [000003976]: Loading step: [TextureManager]
+(I) [14:09:08.183] [000003976]: Loading step: [Loaders]
+(I) [14:09:08.183] [000003976]: Loading step: [IntersectUtil]
+(I) [14:09:08.183] [000003976]: Loading step: [ShadowManager]
+(I) [14:09:08.184] [000003976]: Loading step: [Debug Render]
+(I) [14:09:08.184] [000003976]: Loading step: [Autodetect Settings]
+(I) [14:09:08.184] [000003976]: -------- Display Adapter Driver Information --------
+(I) [14:09:08.184] [000003976]: Vendor: NVIDIA (0x10de)
+(I) [14:09:08.184] [000003976]: Installed Driver Version: r566_31 (56636)
+(I) [14:09:08.184] [000003976]: Required Driver Version: 512.15 (51215)
+(I) [14:09:08.184] [000003976]: ----------------------------------------------------
+(I) [14:09:10.256] [000003976]: Results of 8 GPU performance test frames: Median = 125.646851ms, average = 125.460739ms, min = 123.912193ms, max = 126.956543ms
+(I) [14:09:10.257] [000003976]: Detected: CPU [Max][Score: 1005.03][RAM: 64], GPU [Rec][Score: 31.47][VRAM: 8]
+(I) [14:09:10.257] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundcommon.sga 14335 B [ID:70641d3636c52218e9ecf2aba8a04c76] [Ver:3d987531dc155cb85b7d6897bb698063] [Sig:11361309263832458688]
+(I) [14:09:10.259] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechallies.sga 225891908 B [ID:a3d79f90e4bdec5cb47a67abda5a2793] [Ver:b95949b3ad86404dd9e507400e47c55c] [Sig:7176493672085207988]
+(I) [14:09:10.265] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechalliesuk.sga 1991116531 B [ID:ed506ab18d21f2ffe3194169ba1d9a3c] [Ver:266bfa9c0b80f0697ceb07c959ad22f9] [Sig:16848459921373922905]
+(I) [14:09:10.275] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechalliesus.sga 1097857077 B [ID:7a1866d3e9d2d1e3cd91cf5ac53deaa9] [Ver:7170ffb519e689579820381b8fcff98b] [Sig:12904425039671906942]
+(I) [14:09:10.283] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxis.sga 799087666 B [ID:44d5e1d8695f153cc8d01842ce4013df] [Ver:fc15ceb61729244eb7e97b856c782429] [Sig:892927674551206339]
+(I) [14:09:10.289] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxisdak.sga 1056859673 B [ID:7c9beb5bbe4c6377f9af4992656de107] [Ver:d6a1872f36920d959cc79699da9b8b94] [Sig:16717560540921572278]
+(I) [14:09:10.296] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechaxiswehr.sga 1281894784 B [ID:86c53ff39ed7cba5c213d242f3da1e68] [Ver:e71cc8daa671c7c09f014ebe31da2ad0] [Sig:3804655903107497400]
+(I) [14:09:10.303] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundspeechcampaign.sga 1045369919 B [ID:622fb949ed9a0aec199fafdfb5e30bb7] [Ver:5875f8c0808291ac54a172ee3b68e6b6] [Sig:4506384843269190941]
+(I) [14:09:10.305] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\anvil\archives\soundmedium.sga 851762107 B [ID:2d7654c528d9585cb9934d2ef38f35eb] [Ver:9f12a98d64675e39d1751847c0060f1c] [Sig:12767485352971596647]
+(I) [14:09:10.306] [000003976]: ARC -- d:\steamlibrary\steamapps\common\company of heroes 3\engine\archives\arthigh.sga 6678 B [ID:e8f87e4ac202807565d2b4980453804d] [Ver:2687154863f6a8aae64a123d657f5735] [Sig:6704931815395175266]
+(I) [14:09:10.306] [000003976]: Loading step: [Sound]
+(I) [14:09:11.090] [000003976]: Loading step: [Fonts]
+(I) [14:09:11.094] [000003976]: Loading step: [Statgraph]
+(I) [14:09:11.094] [000003976]: Loading step: [Debug Console]
+(I) [14:09:11.095] [000003976]: Loading step: [Movie Manager]
+(I) [14:09:11.095] [000003976]: Loading step: [Flush Inventory]
+(I) [14:09:11.095] [000003976]: Loading step: [Purge BackgroundLoader]
+(I) [14:09:11.095] [000003976]: Loading step: [Unload inventory]
+(I) [14:09:11.095] [000003976]: Loading step: [Cancel Pending Soundbank Loads]
+(I) [14:09:11.271] [000003976]: Loading step: [Init Screen Background]
+(I) [14:09:11.271] [000003976]: Loading step: [Cursor]
+(I) [14:09:11.330] [000003976]: Loading step: [Presentation App]
+(I) [14:09:11.330] [000003976]: Loading step: [Presentation Static App]
+(I) [14:09:11.330] [000003976]: Loading step: [DestinationFormationManager]
+(I) [14:09:11.331] [000003976]: Loading step: [Campaign Manager]
+(I) [14:09:11.331] [000003976]: Loading step: [Mods]
+(I) [14:09:11.336] [000003976]: ARC -- C:\Users\pagep\Documents\My Games\Company of Heroes 3\mods\extension\subscriptions\2937361544\ccm.sga 499048 B [ID:385d981096ba4ece90408281db65174e] [Ver:89666c1bf2bb5b274032930fb33223af] [Sig:0]
+(I) [14:09:11.406] [000003976]: GAME -- (WorldManager) Cannot find original scenario "po_valley_4p" referenced from data:scenarios\missions\skirmish\po_valley_sp\po_valley_sp.scenref
+(I) [14:09:11.406] [000003976]: GAME -- (WorldManager) Could not load scenario reference file data:scenarios\missions\skirmish\po_valley_sp\po_valley_sp.scenref. Please check syntax.
+(I) [14:09:11.412] [000003976]: Loading step: [Item Manager]
+(I) [14:09:11.412] [000003976]: Loading step: [Loadout Manager]
+(I) [14:09:11.412] [000003976]: Loading step: [Chat Manager]
+(I) [14:09:11.414] [000003976]: Loading step: [Squad Command Processor Types]
+(I) [14:09:11.414] [000003976]: Loading step: [Squad Command Processor Types from Games]
+(I) [14:09:11.414] [000003976]: Loading step: [IEngineInitializable]
+(I) [14:09:11.428] [000003976]: default binding was not found for command [zoom_in] in [with-mouse]. The command could be deleted. Ignored
+(I) [14:09:11.428] [000003976]: default binding was not found for command [zoom_out] in [with-mouse]. The command could be deleted. Ignored
+(I) [14:09:11.428] [000003976]: default binding was not found for command [battlegroup_card_row01_column08] in [with-mouse]. The command could be deleted. Ignored
+(I) [14:09:11.428] [000003976]: default binding was not found for command [battlegroup_card_row01_column07] in [with-mouse]. The command could be deleted. Ignored
+(I) [14:09:11.431] [000003976]: CRC & Version Info : exe 0x0000aec0:data 0x1d98e958:flags 0
+(I) [14:09:11.438] [000003976]: GameApp::SetState : new (Unloaded) old (Uninitialized)
+(I) [14:09:14.463] [000003976]: GameApp::SetState : new (FrontEnd) old (Unloaded)
+(I) [14:09:14.463] [000003976]: GameApp::SetTargetState : new (Uninitialized) old (FrontEnd)
+(I) [14:09:14.469] [000003976]: FILESYSTEM -- filepath failure, missing alias 'Save:Campaign\*.rlt'
+(I) [14:09:14.469] [000003976]: FILESYSTEM -- filepath failure, missing alias 'Save:AutoSave\Campaign\*.sav'
+(I) [14:09:14.469] [000003976]: FILESYSTEM -- filepath failure, missing alias 'Save:AutoSave\Campaign\*.rlt'
+(I) [14:09:14.469] [000003976]: FILESYSTEM -- filepath failure, missing alias 'Save:Operations\*.sav'
+(I) [14:09:14.469] [000003976]: SAVE -- Populating saved game list of 0 entries in folder Save:Operations\
+(I) [14:09:14.469] [000003976]: FILESYSTEM -- filepath failure, missing alias 'Save:Skirmish\*.sav'
+(I) [14:09:14.469] [000003976]: SAVE -- Populating saved game list of 0 entries in folder Save:Skirmish\
+(I) [14:09:14.469] [000003976]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:datastore/ftue.rlt'
+(I) [14:09:14.469] [000003976]: FILESYSTEM -- filepath failure, missing alias 'peruserdata:datastore/ftue.rlt'
+(I) [14:09:14.485] [000025668]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [14:09:14.529] [000003976]: Requesting ticket
+(I) [14:09:14.811] [000003976]: OnRequest app ticket returned N
+(I) [14:09:14.811] [000003976]: SteamAuth received ticket at t=1049673114
+(I) [14:09:15.722] [000003976]: ProcessResponse: HTTP response good; context=LoginAsync bytes=9726
+(I) [14:09:15.724] [000003976]: Found 1 profiles for account /steam/76561198034318060
+(I) [14:09:15.725] [000003976]: Found profile: /steam/76561198034318060
+(I) [14:09:15.726] [000003976]: WorldwideTelemetry: Initializing Sampling; RL_TELEMMATCHGRP=
+(I) [14:09:15.726] [000003976]: WorldwideTelemetry: Initializing Sampling; RL_TELEMINSTANCEGRP=
+(I) [14:09:15.726] [000003976]: WorldwideTelemetry: Initializing Sampling; RL_TELEMSHOULDNTSEND=
+(I) [14:09:15.726] [000003976]: WorldwideTelemetry: Initializing Sampling; matchRatio=1.000 instanceRatio=1.000 defaultRatio=1.000
+(I) [14:09:15.726] [000003976]: WorldwideTelemetry: Resetting Sampling; sendMatchTables=1 sendInstanceTables=1 sendDefaultTables=1
+(I) [14:09:15.726] [000003976]: Client is using WebSockets to receive updates from the server
+(I) [14:09:15.727] [000003976]: [SP_BG] login event. LocalProfileID: 228
+(I) [14:09:15.729] [000003976]: [SP_BG] GetUpdatedInventory Logged in: T, Profile ID: 228, Item count: 0
+(I) [14:09:15.729] [000003976]: Login attempt: C00T01R00X000 52656C690091
+(I) [14:09:15.758] [000049048]: WebSocketConnection::Process: Creating a websocket connection; host=coh3-api.reliclink.com port=443
+(I) [14:09:15.798] [000003976]: System was measured to be capable of copying [17875] MB/sec.
+(I) [14:09:16.065] [000003976]: ProcessResponse: HTTP response good; context=ChallengeProgressCache bytes=2165
+(I) [14:09:16.516] [000049048]: WebSocketConnection::OnConnect; m_resumeState=0
+(I) [14:09:16.516] [000049048]: WebSocketConnection::Process: Sending session token; clientLibVersion=197 sessionToken=vlp45fwi0tad5ciggq7o8k4ii60k57
+(I) [14:09:16.555] [000003976]: ProcessResponse: HTTP response good; context=ChallengeGetChallengesCache bytes=356
+(I) [14:09:17.045] [000003976]: ProcessResponse: HTTP response good; context=ItemCategoryCache bytes=375
+(I) [14:09:17.540] [000003976]: ProcessResponse: HTTP response good; context=ItemBundlesCache bytes=375
+(I) [14:09:17.650] [000049048]: Read bytes [0,"PresenceMessage",228,[[8463,228,"/steam/76561198034318060","","pagep","",51608,8571,8571,"cz",2074389,null,"76561198034318060",3,[],1,"Online",[[1409823,""]]]]]
+(I) [14:09:18.198] [000003976]: ProcessResponse: HTTP response good; context=ItemPricesCache bytes=40058
+(I) [14:09:18.586] [000003976]: ProcessResponse: HTTP response good; context=LevelRewardsCache bytes=375
+(I) [14:09:18.695] [000003976]: MOD - Setting player [0] race to: [2169960]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [1].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [2].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [3].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [4].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [5].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [6].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [7].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [8].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [9].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [10].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [11].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [12].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [13].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [14].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: MOD - WARNING: Unable to get raceID [4294967295] from mod [0] for player index [15].  Defaulting to [129494] from mod [0]
+(I) [14:09:18.695] [000003976]: GameApp::SetTargetState : new (Game) old (Uninitialized)
+(I) [14:09:18.704] [000003976]: GAME -- Scenario: data:scenarios\frontend\showcase\italy\showcase_italy
+(I) [14:09:18.704] [000003976]: GAME -- Win Condition Qualified Name: 00000000000000000000000000000000:385555344
+(I) [14:09:18.704] [000003976]: GAME -- Win Condition Name: no_win_condition
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 frontend
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 0 americans
+(I) [14:09:18.704] [000003976]: GAME -- Human Player: 0  -2 1 americans
+(I) [14:09:18.704] [000003976]: GameApp::SetState : new (LoadingGame) old (FrontEnd)
+(I) [14:09:18.769] [000003976]: SAVE -- Save game is too old ([4056836] < [4595377])
+(I) [14:09:18.784] [000003976]: SAVE -- Save game is too old ([4056836] < [4595377])
+(I) [14:09:18.796] [000003976]: SAVE -- Save game is too old ([4056836] < [4595377])
+(I) [14:09:18.803] [000003976]: SAVE -- Populating saved game list of 0 entries in folder Save:Operations\
+(I) [14:09:18.803] [000003976]: SAVE -- Populating saved game list of 0 entries in folder Save:Skirmish\
+(I) [14:09:19.171] [000003976]: ProcessResponse: HTTP response good; context=ItemLoadoutCache bytes=6
+(I) [14:09:19.524] [000003976]: GameObj::StartGameObj - info, network session GUID set to [-1].
+(I) [14:09:19.525] [000050992]: Loading step: [OnBeginLoad]
+(I) [14:09:19.525] [000050992]: Loading step: [Assign Players]
+(I) [14:09:19.525] [000050992]: Loading step: [FXReflection]
+(I) [14:09:19.530] [000050992]: Loading step: [FXDataContext]
+(I) [14:09:19.530] [000050992]: Loading step: [FX Texture Pack]
+(I) [14:09:19.530] [000050992]: Loading step: [Run Havok Garbage Collection]
+(I) [14:09:19.530] [000050992]: Loading step: [Flush Inventory On Application Exit]
+(I) [14:09:19.530] [000050992]: Loading step: [Default World]
+(I) [14:09:19.550] [000050992]: Loading step: [MemShrink]
+(I) [14:09:19.550] [000050992]: Loading step: [Sync Checking]
+(I) [14:09:19.550] [000050992]: Loading step: [Tuning Variant]
+(I) [14:09:19.550] [000050992]: Using scenario tuning variant [default]
+(I) [14:09:19.550] [000050992]: Loading step: [Load Mod Packs]
+(I) [14:09:19.550] [000050992]: Loading step: [Map Mod Packs]
+(I) [14:09:19.550] [000050992]: Loading step: [SimVis System]
+(I) [14:09:19.550] [000050992]: Loading step: [DefaultWorld]
+(I) [14:09:19.550] [000050992]: Loading step: [Visual Physics ME]
+(I) [14:09:19.550] [000050992]: Loading step: [Deferred Decal Manager]
+(I) [14:09:19.550] [000050992]: Loading step: [FogVolumeManager]
+(I) [14:09:19.550] [000050992]: Loading step: [Renderable Managers]
+(I) [14:09:19.550] [000050992]: Loading step: [Setup Skins]
+(I) [14:09:19.550] [000050992]: Loading step: [AnimEventSetup]
+(I) [14:09:19.550] [000050992]: Loading step: [Session Precache]
+(I) [14:09:19.557] [000050992]: Loading step: [Precache core resources]
+(I) [14:09:19.562] [000050992]: Loading step: [Precache EBPs]
+(I) [14:09:19.564] [000050992]: Loading step: [Precache State Tree references]
+(I) [14:09:19.564] [000050992]: Loading step: [Load Actions]
+(I) [14:09:19.569] [000050992]: Loading step: [Load Resources from Precache]
+(I) [14:09:19.636] [000003976]: ProcessResponse: HTTP response good; context=NewsCache bytes=965
+(I) [14:09:20.076] [000050992]: Loading step: [GEWorld]
+(I) [14:09:20.076] [000050992]: GAME - InitializeGEWorld
+(I) [14:09:20.131] [000003976]: ProcessResponse: HTTP response good; context=ChatChannelCache bytes=10
+(I) [14:09:20.168] [000050992]: Re-winding a compressed stream for file 'data:scenarios\frontend\showcase\italy\showcase_italy.scenario'.  Expensive operation
+(I) [14:09:20.212] [000050992]: Regenerating ImpassMap data...
+(I) [14:09:20.218] [000050992]: Regenerating SimTerrainCoverMap data...
+(I) [14:09:20.224] [000050992]: SimTerrainCoverMap generation took 0.006478 seconds.
+(I) [14:09:20.340] [000050992]: Pathfinding::Regenerate()...
+(I) [14:09:20.379] [000050992]: Pathfinding::Regenerate() Done.
+(I) [14:09:20.406] [000050992]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [14:09:20.406] [000050992]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [14:09:20.406] [000050992]: ChunkyRedirect - Identifier not found for 1313817669 global identifier. Object will be recreated from the blueprint, Please resave the map to get rid of this warning
+(I) [14:09:20.409] [000050992]: GAME - CreateGEWorld in 331 ms
+(I) [14:09:20.409] [000050992]: SIM -- Setting SyncErrorChecking level to None
+(I) [14:09:20.409] [000050992]: Loading step: [Load Resources from GEWorld]
+(I) [14:09:20.422] [000050992]: Loading step: [Sound Banks]
+(I) [14:09:20.422] [000050992]: Loading step: [Session]
+(I) [14:09:20.422] [000050992]: GAME - SessionSetup
+(I) [14:09:20.422] [000050992]: GAME - SessionSetup finished in 0 ms
+(I) [14:09:20.422] [000050992]: Loading step: [Player Setup]
+(I) [14:09:20.422] [000050992]: Loading step: [Scenario Lua System]
+(I) [14:09:20.487] [000050992]: Loading step: [Diplomacy Init]
+(I) [14:09:20.487] [000050992]: Loading step: [Race Precaching Event Listener Registration]
+(I) [14:09:20.487] [000050992]: Loading step: [Simulation]
+(I) [14:09:20.490] [000050992]: LoadWinCondition: - [winconditions\mode_none] succeeded.
+(I) [14:09:20.497] [000050992]: Player [1001] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1002] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1003] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1004] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1005] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1006] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1007] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1008] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1009] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1010] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1011] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1012] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1013] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1014] killed on game tick [0] due to [unused player]
+(I) [14:09:20.498] [000050992]: Player [1015] killed on game tick [0] due to [unused player]
+(I) [14:09:20.517] [000050992]: Loading step: [GameUICore System]
+(I) [14:09:20.522] [000050992]: Loading step: [Team Colour Init]
+(I) [14:09:20.523] [000050992]: Loading step: [UI System]
+(I) [14:09:20.523] [000050992]: Loading step: [LUA]
+(I) [14:09:20.523] [000050992]: Loading step: [Game Event Listener Registration]
+(I) [14:09:20.523] [000050992]: Loading step: [CPU AI]
+(I) [14:09:20.523] [000050992]: Loading step: [Scar Init]
+(I) [14:09:20.523] [000050992]: Loading step: [FX System]
+(I) [14:09:20.523] [000050992]: Loading step: [Cheat Menu]
+(I) [14:09:20.527] [000050992]: Loading step: [Scar Start]
+(I) [14:09:20.530] [000050992]: Loading step: [Load resources]
+(I) [14:09:20.537] [000050992]: Loading step: [PreDisplay]
+(I) [14:09:20.537] [000050992]: Loading step: [Free Loading Data]
+(I) [14:09:20.537] [000050992]: PreloadResources took 0ms.
+(I) [14:09:20.537] [000050992]: Loading step: [MemShrink]
+(I) [14:09:20.537] [000050992]: Loading step: [Flush Inventory]
+(I) [14:09:20.539] [000050992]: Loading step: [Resolve Impasse Blockers]
+(I) [14:09:20.539] [000050992]: Loading step: [Content Access Setup]
+(I) [14:09:20.539] [000050992]: Loading step: [Convert OOB Static Entities to Visual Only Objects]
+(I) [14:09:20.539] [000050992]: Loading step: [DefaultWorld Begin Play]
+(I) [14:09:20.542] [000050992]: Loading step: [Preparing game]
+(I) [14:09:20.542] [000050992]: Loading step: [Start Renderer]
+(I) [14:09:20.542] [000050992]: Loading step: [FrontEnd simulation initialization]
+(I) [14:09:20.542] [000050992]: Loading step: [WPFGFrontEnd loading]
+(I) [14:09:20.545] [000050992]: Loading step: [OnEndLoad]
+(I) [14:09:20.551] [000025668]: RENDERING - Trigger Rebuilding Rendering Pipeline
+(I) [14:09:20.563] [000003976]: GAME -- Starting mission: data:scenarios\frontend\showcase\italy\showcase_italy
+(I) [14:09:20.563] [000003976]: MEM -- available page 21866 mb, total page 90899 mb
+(I) [14:09:20.817] [000003976]: GameApp::SetState : new (Game) old (LoadingGame)
+(I) [14:09:20.817] [000003976]: GameApp::SetTargetState : new (Uninitialized) old (Game)
+(I) [14:09:20.828] [000003976]: ProcessResponse: HTTP response good; context=GetOfflineMessagesAsync bytes=28
+(I) [14:09:21.197] [000003976]: ProcessResponse: HTTP response good; context=GetItemInstancesAsync bytes=24552
+(I) [14:09:21.198] [000003976]: [SP_BG] OnItemEvent Logged in: T, Profile ID: 228, Item count: 273, Item location count: 7
+(I) [14:09:21.199] [000003976]: [SP_BG] GetUpdatedInventory Logged in: T, Profile ID: 228, Item count: 273
+(I) [14:09:21.210] [000003976]: [SP_BG] received items for local profile: 228, item count: 273
+(I) [14:09:21.695] [000003976]: ProcessResponse: HTTP response good; context=AutomatchMapCache bytes=12138
+(I) [14:09:22.998] [000003976]: ProcessResponse: HTTP response good; context=MatchHistoryCache bytes=836533
+(I) [14:09:23.234] [000003976]: ProcessResponse: HTTP response good; context=GetAvailableAchievementsCache bytes=353
+(I) [14:09:23.789] [000003976]: ProcessResponse: HTTP response good; context=GetAchievementsCache bytes=139
+(I) [14:09:24.291] [000003976]: ProcessResponse: HTTP response good; context=GetStatGroupsByProfileIDAsync bytes=1288
+(I) [14:09:24.318] [000003976]: GetPartyStatsByID found 1 teams for user ID 228
+(I) [14:09:24.790] [000003976]: ProcessResponse: HTTP response good; context=PersonalizedItemPricesCache bytes=9
+(I) [14:09:25.291] [000003976]: ProcessResponse: HTTP response good; context=CommunityEventsCache bytes=21
+(I) [14:09:25.791] [000003976]: ProcessResponse: HTTP response good; context=WorldWideSetPresenceAsync bytes=3
+(I) [14:09:26.348] [000003976]: ProcessResponse: HTTP response good; context=WorldwideGetProfileByPlatformIDAsync bytes=2190
+(I) [14:09:26.514] [000003976]: starting online hosting
+(I) [14:09:26.602] [000003976]: [BG] ItemInterfaceModel::commit_FilterArmyUpgradesByActiveRace() (lobby pane Load/Unload)
+(I) [14:09:26.602] [000003976]: [BG] active race definition: 452979/Racebps\British_Africa; instance/location id: 24685079; numItems 273; upgrades...
+(I) [14:09:26.602] [000003976]: [BG] ArmyUpgrade/Battlegroup instance id: 24685078; server/def id: 453177; metaData: {"epos":"1","eslot":"1"}; pbg: 2044463/british_armored
+(I) [14:09:26.602] [000003976]: [BG] ArmyUpgrade/Battlegroup instance id: 24685080; server/def id: 453176; metaData: {"epos":"2","eslot":"2"}; pbg: 2044462/british_air_and_sea
+(I) [14:09:26.602] [000003976]: [BG] ArmyUpgrade/Battlegroup instance id: 160432321; server/def id: 458982; metaData: {"att":{"is_new":{"val":"0"}},"epos":"0","eslot":"0","dlc":1}; pbg: 2164116/canadian_shock
+(I) [14:09:26.846] [000003976]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=11
+(I) [14:09:27.347] [000003976]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=1384
+(I) [14:09:27.847] [000003976]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=235
+(I) [14:09:28.347] [000003976]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=13
+(I) [14:09:28.889] [000003976]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=13
+(I) [14:09:29.389] [000003976]: ProcessResponse: HTTP response good; context=ScheduledSaleAndItemsCache bytes=13
+(I) [14:09:29.804] [000049048]: Read bytes [0,"PresenceMessage",228,[[8464,228,"/steam/76561198034318060","","pagep","",51608,8571,8571,"cz",2074389,null,"76561198034318060",3,[],2,"Online",[[1409823,""]]]]]
+(I) [14:09:29.889] [000003976]: ProcessResponse: HTTP response good; context=WorldwideMoveChargesAsyncJob bytes=2182
+(I) [14:09:30.405] [000003976]: ProcessResponse: HTTP response good; context=WorldwideGetProfileByIDAsync bytes=15560
+(I) [14:09:30.897] [000003976]: ProcessResponse: HTTP response good; context=SaveOfflineUserDataJob bytes=350
+(I) [14:09:31.453] [000003976]: ProcessResponse: HTTP response good; context=PresenceDataCache bytes=936
+(I) [14:09:31.967] [000003976]: ProcessResponse: HTTP response good; context=WorldwideHostAsync bytes=387
+(I) [14:09:32.202] [000003976]: OnlineHostAsync success
+(I) [14:09:32.204] [000003976]: Created Matchinfo for sessionID 69620681
+(I) [14:09:32.204] [000003976]: OnJoinAdvertisementSuccess - joined online match, server leave notification required
+(I) [14:09:32.204] [000003976]: starting local hosting
+(I) [14:09:32.204] [000003976]: ValidateCustomData: called with 5296 bytes of custom data
+(I) [14:09:32.205] [000003976]: WorldwideAdvertisementService::Process - EVENT_NEWPEER
+(I) [14:09:32.217] [000003976]: Sending matchinfo change #2
+(I) [14:09:32.218] [000003976]: HostAsync - got operation info 0:SessionOperationInfo::SUCCESS
+(I) [14:09:32.223] [000034288]: MessageCounts: inval=0/0, seek=0/0, join=1/0, ichk=0/0, sk_r=0/0, deny=0/0, Padd=1/0, Pdel=0/0, drop=0/0, data=1/0, mdat=0/0, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=3/0, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=3/0, lb_p=0/0, lb_c=0/0, cast=0/0, cdat=0/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=1/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [14:09:32.231] [000003976]: hosting - Session is connected
+(E) [14:09:32.301] [000003976]: Rejecting packet type 0 that claims to come from ourself
+(I) [14:09:32.454] [000003976]: ProcessResponse: HTTP response good; context=WorldwideGetProfileByIDAsync bytes=10
+(I) [14:09:32.495] [000003976]: SteamLobbyList::AddLobby: Added Steam lobby; lobbyId=109775241715251917 sessionId=69620681
+(I) [14:09:32.968] [000003976]: ProcessResponse: HTTP response good; context=WorldwideOnPartyPeerAddAsync bytes=3
+(I) [14:09:33.469] [000003976]: ProcessResponse: HTTP response good; context=WorldwideUpdatePlatformLobbyIDAsync bytes=3
+(I) [14:09:33.983] [000049048]: Read bytes [0,"PlatformSessionUpdateMessage",228,[69620681,"0",109775241715251917,0,"",""]]
+(I) [14:09:33.983] [000003976]: Sending matchinfo change #3
+(I) [14:09:34.038] [000003976]: HostAsync - completed with HostResult = 0
+(I) [14:09:34.038] [000003976]: Party::SetHostJoinResult - 0
+(I) [14:09:34.038] [000003976]: Party::SetStatus - S_CONFIGURING
+(I) [14:09:34.039] [000003976]: WorldwideAutomatchService::OnHostComplete - automatcher is no longer active - stopPollPending 0 automatchPollID 18446744073709551615
+(E) [14:09:34.094] [000003976]: Rejecting packet type 0 that claims to come from ourself
+(I) [14:09:34.111] [000003976]: Sending matchinfo change #6
+(E) [14:09:34.186] [000003976]: Rejecting packet type 0 that claims to come from ourself
+(I) [14:09:34.353] [000003976]: ProcessResponse: HTTP response good; context=WorldwideUpdateAdvertisementAsync bytes=1803
+(I) [14:09:34.838] [000003976]: ProcessResponse: HTTP response good; context=LeaderboardInfoCache bytes=21878
+(I) [14:09:35.367] [000003976]: ProcessResponse: HTTP response good; context=LeaderboardStatsCache bytes=220
+(I) [14:09:38.085] [000003976]: WorldwideAutomatch2Service::Polling - queued CreateAutomatch2
+(I) [14:09:38.098] [000003976]: Sending matchinfo change #9
+(E) [14:09:38.181] [000003976]: Rejecting packet type 0 that claims to come from ourself
+(I) [14:09:38.334] [000003976]: ProcessResponse: HTTP response good; context=Automatch2PollingAsync bytes=164
+(I) [14:09:38.335] [000003976]: Party::OnAutomatch2Event - AET_Polling - R_Success
+(I) [14:09:38.335] [000003976]: Sending matchinfo change #10
+(E) [14:09:38.430] [000003976]: Rejecting packet type 0 that claims to come from ourself
+(I) [14:09:38.848] [000003976]: ProcessResponse: HTTP response good; context=WorldwideUpdateAdvertisementAsync bytes=1803
+(I) [14:09:39.341] [000003976]: ProcessResponse: HTTP response good; context=WorldWideSetPresenceAsync bytes=3
+(I) [14:09:39.369] [000003976]: Sending matchinfo change #11
+(E) [14:09:39.438] [000003976]: Rejecting packet type 0 that claims to come from ourself
+(I) [14:09:39.896] [000003976]: ProcessResponse: HTTP response good; context=WorldwideUpdateAdvertisementAsync bytes=1811
+(I) [14:09:40.356] [000003976]: ProcessResponse: HTTP response good; context=WorldwideUpdateAdvertisementAsync bytes=1819
+(I) [14:09:43.323] [000049048]: Read bytes [0,"PresenceMessage",228,[[8465,228,"/steam/76561198034318060","","pagep","",51608,8571,8571,"cz",2074389,null,"76561198034318060",3,[],1409821,"In Queue",[[1409823,""]]]]]
+(I) [14:09:49.007] [000003976]: WorldwideAutomatch2Service::Polling - queued CreateAutomatch2
+(I) [14:09:49.284] [000003976]: ProcessResponse: HTTP response good; context=Automatch2PollingAsync bytes=164
+(I) [14:09:49.284] [000003976]: Party::OnAutomatch2Event - AET_Polling - R_Success
+(I) [14:10:00.007] [000003976]: WorldwideAutomatch2Service::Polling - queued CreateAutomatch2
+(I) [14:10:00.269] [000003976]: ProcessResponse: HTTP response good; context=Automatch2PollingAsync bytes=163
+(I) [14:10:00.269] [000003976]: Party::OnAutomatch2Event - AET_Polling - R_Success
+(I) [14:10:11.012] [000003976]: WorldwideAutomatch2Service::Polling - queued CreateAutomatch2
+(I) [14:10:11.279] [000003976]: ProcessResponse: HTTP response good; context=Automatch2PollingAsync bytes=164
+(I) [14:10:11.279] [000003976]: Party::OnAutomatch2Event - AET_Polling - R_Success
+(I) [14:10:22.006] [000003976]: WorldwideAutomatch2Service::Polling - queued CreateAutomatch2
+(I) [14:10:22.241] [000003976]: ProcessResponse: HTTP response good; context=Automatch2PollingAsync bytes=164
+(I) [14:10:22.241] [000003976]: Party::OnAutomatch2Event - AET_Polling - R_Success
+(I) [14:10:33.002] [000034288]: MessageCounts: inval=0/0, seek=0/0, join=0/2, ichk=0/0, sk_r=0/0, deny=0/0, Padd=0/2, Pdel=0/0, drop=0/0, data=5/12, mdat=0/0, voip=0/0, rchk=0/0, nudg=0/0, Thdr=0/0, Peer=5/16, PPrx=0/0, ping=0/0, Pfrg=0/0, rely=5/7, lb_p=23/4, lb_c=0/1, cast=0/0, cdat=0/0, sorq1=0/0, sorp=0/0, acto=0/0, spob=0/0, sorq2=0/0, setp=0/0, actr=0/0, lsim=0/0, rlbc=0/0, rlbc2=0/0, endg=0/0
+(I) [14:10:33.011] [000003976]: WorldwideAutomatch2Service::Polling - queued CreateAutomatch2
+(I) [14:10:33.247] [000003976]: ProcessResponse: HTTP response good; context=Automatch2PollingAsync bytes=164
+(I) [14:10:33.247] [000003976]: Party::OnAutomatch2Event - AET_Polling - R_Success
