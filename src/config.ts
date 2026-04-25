@@ -13,6 +13,7 @@ const config = {
   // Updater can be disabled via VITE_DISABLE_UPDATER environment variable
   // This is used for Microsoft Store builds where updates are handled by the store
   MS_STORE_EDITION: import.meta.env.VITE_DISABLE_UPDATER === "true",
+  TIME_LOG_FILE_READER_MS: 2000,
 };
 
 export default config;

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { RawGameData } from "./GameData-types";
 import { useLogFilePath } from "./configValues";
+import config from "../config";
 
 /** This hook handles the collection of raw game data from the log file */
 export const useRawGameData = () => {
@@ -30,7 +31,7 @@ export const useRawGameData = () => {
         if (logFilePath !== undefined) {
           getLogFileData(logFilePath);
         }
-      }, 2000);
+      }, config.TIME_LOG_FILE_READER_MS);
     }
   }, [logFilePath]);
   return {
