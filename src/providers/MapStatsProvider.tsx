@@ -23,7 +23,7 @@ const MapStatsProvider = ({ children }: React.PropsWithChildren) => {
     let isMounted = true;
     let retryCount = 0;
     const maxRetries = 5;
-    const retryDelay = 1000; // 1 second
+    const retryDelayMultiplier = 5000;
 
     const fetchMapStats = async () => {
       try {
@@ -37,7 +37,7 @@ const MapStatsProvider = ({ children }: React.PropsWithChildren) => {
         } else if (retryCount < maxRetries) {
           // Data not ready yet, retry after delay
           retryCount++;
-          setTimeout(fetchMapStats, retryDelay);
+          setTimeout(fetchMapStats, retryCount * retryDelayMultiplier);
         } else {
           // Max retries reached, data is null
           setLoading(false);
