@@ -1,5 +1,5 @@
 name: 'Tests on PR'
-on: [pull_request]
+on: [ pull_request ]
 
 jobs:
   js-build-pretier:
@@ -37,8 +37,12 @@ jobs:
           yarn lint:prettier
 
   test-tauri:
+    strategy:
+      matrix:
+        os: [ windows-latest, ubuntu-latest ]
+
     name: Test Tauri build
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
 
     concurrency:
       group: tests-tauri-build-${{ github.ref }}
@@ -107,6 +111,7 @@ jobs:
       # If the test fails with invalid MS Edge browser it's highly possible a bug at GitHub
       # https://github.com/actions/runner-images/issues/9538
       - name: Run e2e tests
+        if: runner.os == 'Windows'
         run: |
           yarn test:e2e
 
