@@ -45,7 +45,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     concurrency:
-      group: tests-tauri-build-${{ github.ref }}
+      group: tests-tauri-build-${{ github.ref }}-${{ matrix.os }}
       cancel-in-progress: true
 
     steps:
