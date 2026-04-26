@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { fetch } from "@tauri-apps/plugin-http";
-import config from "../config";
+import { invoke } from "@tauri-apps/api/core";
 import { MapStatsDataType } from "../utils/data-types";
 
 // Create the context with types
@@ -16,26 +15,45 @@ const MapStatsContext = createContext<{
 
 // Create the provider component
 const MapStatsProvider = ({ children }: React.PropsWithChildren) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<MapStatsDataType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fetch data from an API
-    (async () => {
-      try {
-        const response = await fetch(`${config.COH3STATS_BASE_ULR}/api/getLatestPatchMapStats`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+    let isMounted = true;
+    let retryCount = 0;
+    const maxRetries = 5;
+    const retryDelayMultiplier = 5000;
 
-        setData((await response.json()) as any);
-      } catch (error) {
-        setError(`Error fetching data: ${error}`);
-      } finally {
+    const fetchMapStats = async () => {
+      try {
+        const result = await invoke<MapStatsDataType | null>("get_map_stats");
+
+        if (!isMounted) return;
+
+        if (result) {
+          setData(result);
+          setLoading(false);
+        } else if (retryCount < maxRetries) {
+          // Data not ready yet, retry after delay
+          retryCount++;
+          setTimeout(fetchMapStats, retryCount * retryDelayMultiplier);
+        } else {
+          // Max retries reached, data is null
+          setLoading(false);
+        }
+      } catch (err) {
+        if (!isMounted) return;
+        setError(`Error fetching map stats: ${err}`);
         setLoading(false);
       }
-    })();
+    };
+
+    fetchMapStats();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

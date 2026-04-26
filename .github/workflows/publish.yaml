@@ -8,11 +8,11 @@ jobs:
     publish-tauri:
         runs-on: windows-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
             - name: Setup node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
-                  node-version: 20
+                  node-version: 22
 
             - name: Cache node modules
               uses: actions/cache@v4

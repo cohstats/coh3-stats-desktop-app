@@ -199,11 +199,8 @@ export const Replays: React.FC = () => {
                           This is the path to the folder, where your game store replays file.
                         </Text>
                         <Text>
-                          The default path is{" "}
-                          <Code>
-                            C:\Users\{"<YOUR USERNAME>"}\Documents\My Games\Company of Heroes
-                            3\playback
-                          </Code>
+                          The default path is C:\Users\{"<YOUR USERNAME>"}\Documents\My
+                          Games\Company of Heroes 3\playback
                         </Text>
                         <Text>
                           However sometimes when you have (OneDrive / Dropbox) installed on your

@@ -27,7 +27,9 @@ import {
   useLogFilePath,
   useMapViewSettings,
   useShowExtendedPlayerInfo,
+  usePlaybackPath,
 } from "../game-data-provider/configValues";
+import { emit } from "@tauri-apps/api/event";
 import { usePlaySound, usePlaySoundVolume } from "../game-found/gameSoundConfigValues";
 import { useAutoSwitchToGame } from "../game-found/autoSwitchConfigValues";
 import { useBringToFrontOnGameFound } from "../game-found/bringToFrontConfigValues";
@@ -52,6 +54,7 @@ import { Routes } from "../Router";
 export const Settings: React.FC = () => {
   const gameData = useGameData();
   const [logFilePath, setLogFilePath] = useLogFilePath();
+  const [playbackPath, setPlaybackPath] = usePlaybackPath();
   const [playSound, setPlaySound] = usePlaySound();
   const [playSoundVolume, setPlaySoundVolume] = usePlaySoundVolume();
   const [autoSwitchToGame, setAutoSwitchToGame] = useAutoSwitchToGame();
@@ -102,6 +105,19 @@ export const Settings: React.FC = () => {
     }
   };
 
+  const openPlaybackDialog = async () => {
+    const selected = await open({
+      title: "Select CoH3 playback directory",
+      multiple: false,
+      directory: true,
+      defaultPath: playbackPath,
+    });
+    if (selected !== null) {
+      events.settings_changed("playbackPath", selected as string);
+      setPlaybackPath(selected as string).then(() => emit("playback-dir-changed", selected));
+    }
+  };
+
   return (
     <>
       <Box p="xl" pt={"md"}>
@@ -142,6 +158,55 @@ export const Settings: React.FC = () => {
                     radius="xl"
                   >
                     {logFilePath !== undefined ? (
+                      <IconCheck size="1.125rem" />
+                    ) : (
+                      <IconX size="1.125rem" />
+                    )}
+                  </ActionIcon>
+                </Tooltip>
+              </Group>
+            </div>
+          </Group>
+          <Tooltip
+            multiline
+            w={650}
+            label={
+              "This is the path to the folder where your game stores replay files. The default path is: C:\\Users\\Username\\Documents\\My Games\\Company of Heroes 3\\playback. Sometimes when you have OneDrive, Dropbox, or similar services installed, this path might be different."
+            }
+          >
+            <div>
+              Path to playback directory.{" "}
+              <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
+            </div>
+          </Tooltip>
+          <Group>
+            <div>Path to playback:</div>
+            <div>
+              <Group gap="xs">
+                <Group gap={"xs"}>
+                  <Input
+                    value={playbackPath ? playbackPath : ""}
+                    style={{ width: 500 }}
+                    readOnly
+                    data-testid="playback-path-input"
+                  />
+                  <Button variant="default" onClick={openPlaybackDialog}>
+                    Select
+                  </Button>
+                </Group>
+                <Tooltip
+                  label={
+                    playbackPath !== undefined
+                      ? "Playback directory found"
+                      : "Could not find playback directory"
+                  }
+                >
+                  <ActionIcon
+                    variant="light"
+                    color={playbackPath !== undefined ? "green" : "red"}
+                    radius="xl"
+                  >
+                    {playbackPath !== undefined ? (
                       <IconCheck size="1.125rem" />
                     ) : (
                       <IconX size="1.125rem" />

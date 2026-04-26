@@ -159,8 +159,8 @@ export const useFullGameData = () => {
       const bringToFrontOnGameFound = await getBringToFrontOnGameFound();
 
       if (rawGameData.game_state === "Loading") {
-        // Play sound if enabled
-        if (playSound) {
+        // Play sound if enabled, no_win_condition are in single player games
+        if (playSound && rawGameData.win_condition !== "no_win_condition") {
           playSoundFunc();
         }
 

@@ -1,9 +1,12 @@
-import { Button } from "@mantine/core";
-import React from "react";
+import { Button, Code, ScrollArea, Text, Title } from "@mantine/core";
+import React, { useContext } from "react";
 import { showNotification } from "../utils/notifications";
 import { getTeamDetails } from "../utils/coh3-stats-api";
+import { MapStatsContext } from "../providers/MapStatsProvider";
 
 export const Debug: React.FC = () => {
+  const { data, loading, error } = useContext(MapStatsContext);
+
   return (
     <>
       This is the debug page, you should see this only in development mode.
@@ -30,6 +33,16 @@ export const Debug: React.FC = () => {
       >
         Get Team Details - check console - encoding issues
       </Button>
+      <br />
+      <br />
+      <Title order={4}>Map Stats</Title>
+      {loading && <Text>Loading map stats...</Text>}
+      {error && <Text c="red">Error: {error}</Text>}
+      {data && (
+        <ScrollArea h={400}>
+          <Code block>{JSON.stringify(data, null, 2)}</Code>
+        </ScrollArea>
+      )}
     </>
   );
 };
