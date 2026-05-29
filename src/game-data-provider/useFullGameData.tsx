@@ -158,9 +158,12 @@ export const useFullGameData = () => {
       const autoSwitchToGame = await getAutoSwitchToGame();
       const bringToFrontOnGameFound = await getBringToFrontOnGameFound();
 
-      if (rawGameData.game_state === "Loading") {
+      if (
+        rawGameData.game_state === "Loading" &&
+        rawGameData.win_condition !== "no_win_condition"
+      ) {
         // Play sound if enabled, no_win_condition are in single player games
-        if (playSound && rawGameData.win_condition !== "no_win_condition") {
+        if (playSound) {
           playSoundFunc();
         }
 
@@ -204,6 +207,7 @@ export const useFullGameData = () => {
             players: rightRefined,
           },
           language_code: rawGameData.language_code,
+          rec_file: rawGameData.rec_file,
         };
         renderStreamerHTML(newGameData);
         setGameData(newGameData);
