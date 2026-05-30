@@ -243,9 +243,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                                                                 rank: -1,
                                                             };
                                                             if side == 0 {
-                                                                left.push(player_data);
+                                                               right.push(player_data);
                                                             } else {
-                                                                right.push(player_data);
+                                                               left.push(player_data);
                                                             }
                                                             //println!("{}", position);
                                                             //println!("{}", faction);
