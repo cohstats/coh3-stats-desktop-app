@@ -46,11 +46,6 @@ const [getPlaybackPath, usePlaybackPath] = configValueFactory<string | undefined
   },
 );
 
-const [getAutoSyncReplays, useAutoSyncReplays] = configValueFactory<boolean>(
-  "autoSyncReplays",
-  async () => true,
-);
-
 const [getMapViewSettings, useMapViewSettings] = configValueFactory<string>(
   "mapViewSettings",
   async () => "default",
@@ -71,7 +66,6 @@ export {
   usePlaybackPath,
   getLogFilePath,
   useLogFilePath,
-  useAutoSyncReplays,
   useMapViewSettings,
   useShowExtendedPlayerInfo,
   usePlayerProfileID,

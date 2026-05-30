@@ -167,55 +167,60 @@ export const Settings: React.FC = () => {
               </Group>
             </div>
           </Group>
-          <Tooltip
-            multiline
-            w={650}
-            label={
-              "This is the path to the folder where your game stores replay files. The default path is: C:\\Users\\Username\\Documents\\My Games\\Company of Heroes 3\\playback. Sometimes when you have OneDrive, Dropbox, or similar services installed, this path might be different."
-            }
-          >
-            <div>
-              Path to playback directory.{" "}
-              <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
-            </div>
-          </Tooltip>
-          <Group>
-            <div>Path to playback:</div>
-            <div>
-              <Group gap="xs">
-                <Group gap={"xs"}>
-                  <Input
-                    value={playbackPath ? playbackPath : ""}
-                    style={{ width: 500 }}
-                    readOnly
-                    data-testid="playback-path-input"
-                  />
-                  <Button variant="default" onClick={openPlaybackDialog}>
-                    Select
-                  </Button>
-                </Group>
-                <Tooltip
-                  label={
-                    playbackPath !== undefined
-                      ? "Playback directory found"
-                      : "Could not find playback directory"
-                  }
-                >
-                  <ActionIcon
-                    variant="light"
-                    color={playbackPath !== undefined ? "green" : "red"}
-                    radius="xl"
-                  >
-                    {playbackPath !== undefined ? (
-                      <IconCheck size="1.125rem" />
-                    ) : (
-                      <IconX size="1.125rem" />
-                    )}
-                  </ActionIcon>
-                </Tooltip>
+          {/* Playback directory section hidden - kept for potential future use */}
+          {false && (
+            <>
+              <Tooltip
+                multiline
+                w={650}
+                label={
+                  "This is the path to the folder where your game stores replay files. The default path is: C:\\Users\\Username\\Documents\\My Games\\Company of Heroes 3\\playback. Sometimes when you have OneDrive, Dropbox, or similar services installed, this path might be different."
+                }
+              >
+                <div>
+                  Path to playback directory.{" "}
+                  <IconInfoCircle size={20} style={{ marginBottom: -4 }} />
+                </div>
+              </Tooltip>
+              <Group>
+                <div>Path to playback:</div>
+                <div>
+                  <Group gap="xs">
+                    <Group gap={"xs"}>
+                      <Input
+                        value={playbackPath ? playbackPath : ""}
+                        style={{ width: 500 }}
+                        readOnly
+                        data-testid="playback-path-input"
+                      />
+                      <Button variant="default" onClick={openPlaybackDialog}>
+                        Select
+                      </Button>
+                    </Group>
+                    <Tooltip
+                      label={
+                        playbackPath !== undefined
+                          ? "Playback directory found"
+                          : "Could not find playback directory"
+                      }
+                    >
+                      <ActionIcon
+                        variant="light"
+                        color={playbackPath !== undefined ? "green" : "red"}
+                        radius="xl"
+                      >
+                        {playbackPath !== undefined ? (
+                          <IconCheck size="1.125rem" />
+                        ) : (
+                          <IconX size="1.125rem" />
+                        )}
+                      </ActionIcon>
+                    </Tooltip>
+                  </Group>
+                </div>
               </Group>
-            </div>
-          </Group>
+            </>
+          )}
           <Divider />
           <Text fw={700}>When game is found</Text>
           <Stack gap="md" pl="md">

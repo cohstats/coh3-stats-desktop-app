@@ -207,7 +207,6 @@ export const useFullGameData = () => {
             players: rightRefined,
           },
           language_code: rawGameData.language_code,
-          rec_file: rawGameData.rec_file,
         };
         renderStreamerHTML(newGameData);
         setGameData(newGameData);

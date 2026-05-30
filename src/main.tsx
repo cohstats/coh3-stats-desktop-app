@@ -6,7 +6,6 @@ import { renderStreamerHTML } from "./streamer-overlay/renderStreamerOverlay";
 import events from "./mixpanel/mixpanel";
 import { listen } from "@tauri-apps/api/event";
 import { info } from "@tauri-apps/plugin-log";
-import { UploadNotifications } from "./components/UploadNotifications";
 import * as Sentry from "@sentry/react";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
@@ -63,7 +62,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
       <Providers>
-        <UploadNotifications />
         <Router />
       </Providers>
     </ErrorBoundary>

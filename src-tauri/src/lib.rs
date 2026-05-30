@@ -17,11 +17,9 @@ mod process_watcher;
 #[cfg(test)]
 mod tests;
 
-use config::{COHDB_CLIENT_ID, COHDB_REDIRECT_URI};
 use dp_utils::load_from_store;
 use log::{error, info};
 use overlay_server::run_http_server;
-use plugins::cohdb;
 use std::path::{Path, PathBuf};
 use std::thread;
 use tauri::Runtime;
@@ -65,9 +63,6 @@ pub fn run() {
             check_path_exists,
             get_machine_id,
             parse_log_file::parse_log_file_reverse,
-            cohdb_authenticate,
-            cohdb_connected,
-            cohdb_disconnect,
             enable_audio_muting,
             disable_audio_muting,
             update_audio_mute_settings,
@@ -115,16 +110,9 @@ pub fn run() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_shell::init())
-        .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_clipboard_manager::init())
-        .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_deep_link::init())
-        .plugin(cohdb::auth::init(
-            COHDB_CLIENT_ID.to_string(),
-            COHDB_REDIRECT_URI.to_string(),
-        ))
-        .plugin(plugins::cohdb::sync::init());
+        .plugin(tauri_plugin_process::init());
 
     #[cfg(not(target_os = "macos"))]
     let builder = builder.plugin(tauri_plugin_window_state::Builder::default().build());
@@ -193,10 +181,6 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
         info!("Streamer overlay server is disabled");
     }
 
-    // Set up sync handling
-    // This needs to happen here because it depends on other plugins
-    cohdb::sync::setup(handle.clone());
-
     // Start process watcher for game start/stop detection
     #[cfg(target_os = "windows")]
     {
@@ -225,42 +209,6 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     //     error!("Failed to set window shadow: {}", e);
     //     sentry::capture_message(&format!("Window shadow error: {}", e), sentry::Level::Error);
     // }
-
-    // Set up deep link - don't fail setup if this fails
-    use tauri_plugin_deep_link::DeepLinkExt;
-
-    // Register the deep link scheme at runtime for desktop platforms
-    #[cfg(any(target_os = "linux", all(debug_assertions, windows)))]
-    {
-        if let Err(e) = handle.deep_link().register("coh3stats") {
-            error!("Failed to register deep link scheme: {}", e);
-            sentry::capture_message(
-                &format!(
-                    "Deep link scheme registration error: {} (OS error - possibly permissions)",
-                    e
-                ),
-                sentry::Level::Error,
-            );
-            info!("Continuing without deep link support");
-        }
-    }
-
-    // Set up deep link event handler
-    let handle_clone = handle.clone();
-    handle.deep_link().on_open_url(move |event| {
-        for url in event.urls() {
-            if let Err(err) = tauri::async_runtime::block_on(cohdb::auth::retrieve_token(
-                url.as_str(),
-                &handle_clone,
-            )) {
-                error!("error retrieving cohdb token: {err}");
-                sentry::capture_message(
-                    &format!("COHDB token retrieval error: {}", err),
-                    sentry::Level::Error,
-                );
-            }
-        }
-    });
 
     // Initialize map stats fetching (non-blocking)
     map_stats::init_map_stats(handle.clone());
@@ -390,30 +338,6 @@ fn get_machine_id() -> Result<String, String> {
             Err(format!("Failed to get machine ID: {}", e))
         }
     }
-}
-
-// Wrapper functions for cohdb plugin commands
-#[tauri::command]
-async fn cohdb_authenticate<R: Runtime>(handle: AppHandle<R>) -> Result<String, String> {
-    cohdb::auth::authenticate(handle)
-        .await
-        .map_err(|e| e.to_string())
-}
-
-#[tauri::command]
-async fn cohdb_connected<R: Runtime>(
-    handle: AppHandle<R>,
-) -> Result<Option<cohdb::auth::responses::User>, String> {
-    cohdb::auth::connected(handle)
-        .await
-        .map_err(|e| e.to_string())
-}
-
-#[tauri::command]
-async fn cohdb_disconnect<R: Runtime>(handle: AppHandle<R>) -> Result<(), String> {
-    cohdb::auth::disconnect(handle)
-        .await
-        .map_err(|e| e.to_string())
 }
 
 // Audio muting commands

@@ -1,264 +1,44 @@
-import {
-  Box,
-  Group,
-  Stack,
-  Divider,
-  Input,
-  ActionIcon,
-  Text,
-  List,
-  Button,
-  Tooltip,
-  Checkbox,
-  Anchor,
-  Paper,
-  Title,
-  Flex,
-  Space,
-  Code,
-} from "@mantine/core";
-import { useEffect, useState } from "react";
-import { IconCheck, IconCopy, IconX } from "@tabler/icons-react";
-import { open } from "@tauri-apps/plugin-dialog";
+import { Box, Text, Anchor, Paper, Title, Stack } from "@mantine/core";
+import { useEffect } from "react";
 import { open as openLink } from "@tauri-apps/plugin-shell";
-import { useAutoSyncReplays, usePlaybackPath } from "../game-data-provider/configValues";
-
 import events from "../mixpanel/mixpanel";
-import { invoke } from "@tauri-apps/api/core";
-import { emit, listen } from "@tauri-apps/api/event";
 import { COHDBIcon } from "../components/other/COHDB-icon";
-import { showNotification } from "../utils/notifications";
-import { cohdbPlayerOverView } from "../utils/external-routes";
-import HelperIcon from "../components/other/helper-icon";
-import { writeText } from "@tauri-apps/plugin-clipboard-manager";
 import config from "../config";
 
-interface CohdbUser {
-  name: string;
-  profile_id: number;
-  steam_id: number;
-}
-
 export const Replays: React.FC = () => {
-  const [playbackPath, setPlaybackPath] = usePlaybackPath();
-  const [autoSyncReplays, setAutoSyncReplays] = useAutoSyncReplays();
-  const [cohdbUser, setCohdbUser] = useState<CohdbUser | null>(null);
-
   useEffect(() => {
     events.open_replays().then();
   }, []);
 
-  useEffect(() => {
-    const getCohdbUser = async () => {
-      const user = (await invoke("cohdb_connected")) as CohdbUser | null;
-      setCohdbUser(user);
-    };
-
-    const unlisten = listen<CohdbUser | null>("cohdb:connection", (event) => {
-      getCohdbUser();
-      if (event.payload != null) {
-        showNotification({
-          title: "Successfully connected to cohdb!",
-          message: "You can close the browser window now",
-          type: "success",
-        });
-      }
-    });
-
-    getCohdbUser();
-
-    return () => {
-      unlisten.then((f) => f());
-    };
-  }, []);
-
-  const openPlaybackDialog = async () => {
-    const selected = await open({
-      title: "Select CoH3 playback directory",
-      multiple: false,
-      directory: true,
-      defaultPath: playbackPath,
-    });
-    if (selected !== null) {
-      events.settings_changed("playbackPath", selected as string);
-      setPlaybackPath(selected as string).then(() => emit("playback-dir-changed", selected));
-    }
-  };
-
   return (
-    <>
-      <Box p="xl" pt={"md"}>
-        <Flex justify="space-between" align="flex-start">
-          <Paper p="xs" pt={0} pl={0} w={570}>
-            <Title order={3}>
-              Replay integration with{" "}
-              <Anchor inherit onClick={() => openLink(config.COHDB_BASE_URL)}>
-                cohdb.com
-              </Anchor>
-            </Title>
-            <Text data-testid="replays-description">
-              Automatically upload replays to cohdb for replay analysis
-            </Text>
-            <List type="ordered" withPadding>
-              <List.Item>Authenticate with cohdb</List.Item>
-              <List.Item>Validate path to replay folder</List.Item>
-              <List.Item>
-                <Group gap={4}>
-                  Enjoy automatic upload to cohdb.com
-                  <HelperIcon
-                    content={
-                      <>
-                        <Text>It automatically syncs replays only when the game ends.</Text>
-                        <Text>
-                          Currently you can't sync past replays. Only replays where the player
-                          played can be synced.
-                        </Text>
-                      </>
-                    }
-                  />
-                </Group>
-              </List.Item>
-            </List>
-          </Paper>
-          <Group>
-            {cohdbUser != null ? (
-              <Stack>
-                <Title order={4}>
-                  Connected as{" "}
-                  <Anchor inherit onClick={() => openLink(cohdbPlayerOverView())}>
-                    {cohdbUser.name}
-                  </Anchor>{" "}
-                  at <COHDBIcon size={18} />
-                </Title>
-
-                <Button
-                  variant="default"
-                  onClick={() => {
-                    invoke("cohdb_disconnect");
-                    events.disconnect_coh_db();
-                  }}
-                  size={"compact-md"}
-                >
-                  Disconnect
-                </Button>
-              </Stack>
-            ) : (
-              <Button
-                variant="default"
-                onClick={async () => {
-                  const authUrl = await invoke("cohdb_authenticate");
-                  events.connect_coh_db();
-
-                  showNotification({
-                    title: "Opening browser window",
-                    message: (
-                      <>
-                        If it didn't open, please copy this url into your browser:
-                        <Space h={"xs"} />
-                        <Group gap={"xs"} wrap="nowrap">
-                          <Tooltip label="Copy">
-                            <ActionIcon
-                              onClick={() => {
-                                writeText(`${authUrl}`);
-                              }}
-                            >
-                              <IconCopy size="22" />
-                            </ActionIcon>
-                          </Tooltip>
-                          <Code block>{`${authUrl}`}</Code>
-                        </Group>
-                      </>
-                    ),
-                    type: "info",
-                    autoCloseInMs: 20000,
-                  });
-                }}
-              >
-                <span style={{ paddingRight: 10 }}>
-                  <COHDBIcon />
-                </span>{" "}
-                Authenticate with cohdb
-              </Button>
-            )}
-          </Group>
-        </Flex>
-        <Stack>
-          <Space />
-          <Divider />
-
-          {cohdbUser != null && (
-            <div>
-              <Group>
-                <Group gap={"xs"}>
-                  <div>Path to playback directory</div>
-                  <HelperIcon
-                    toolTipWidth={650}
-                    content={
-                      <>
-                        <Text>
-                          This is the path to the folder, where your game store replays file.
-                        </Text>
-                        <Text>
-                          The default path is C:\Users\{"<YOUR USERNAME>"}\Documents\My
-                          Games\Company of Heroes 3\playback
-                        </Text>
-                        <Text>
-                          However sometimes when you have (OneDrive / Dropbox) installed on your
-                          system, this path might be different.
-                        </Text>
-                      </>
-                    }
-                  />
-                </Group>
-                <div>
-                  <Group gap="xs">
-                    <Group gap={"xs"}>
-                      <Input
-                        value={playbackPath ? playbackPath : ""}
-                        style={{ width: 500 }}
-                        readOnly
-                      />
-                      <Button variant="default" onClick={openPlaybackDialog}>
-                        Select
-                      </Button>
-                    </Group>
-                    <Tooltip
-                      label={
-                        playbackPath !== undefined
-                          ? "Playback directory found"
-                          : "Could not find playback directory"
-                      }
-                    >
-                      <ActionIcon
-                        variant="light"
-                        color={playbackPath !== undefined ? "green" : "red"}
-                        radius="xl"
-                      >
-                        {playbackPath !== undefined ? (
-                          <IconCheck size="1.125rem" />
-                        ) : (
-                          <IconX size="1.125rem" />
-                        )}
-                      </ActionIcon>
-                    </Tooltip>
-                  </Group>
-                </div>
-              </Group>
-              <Space h={"xs"} />
-              <Group>
-                <Checkbox
-                  checked={autoSyncReplays === undefined ? true : autoSyncReplays}
-                  onChange={(event) => {
-                    events.settings_changed("autoSyncReplays", `${!event.currentTarget.checked}`);
-                    setAutoSyncReplays(event.currentTarget.checked);
-                  }}
-                />
-                <div>AutoSync Replays</div>
-              </Group>
-            </div>
-          )}
+    <Box p="xl" pt={"md"}>
+      <Paper p="md">
+        <Stack gap="md">
+          <Title order={3}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+              <COHDBIcon size={24} /> Replay Analysis
+            </span>
+          </Title>
+          <Text size="lg" data-testid="replays-description">
+            Visit{" "}
+            <Anchor onClick={() => openLink(config.COHDB_BASE_URL)} fw={700}>
+              cohdb.com
+            </Anchor>{" "}
+            to upload and analyze your Company of Heroes 3 replays.
+          </Text>
+          <Text>
+            COHDB offers comprehensive replay analysis tools to help you improve your gameplay and
+            review your matches.
+          </Text>
+          <Text>
+            You can also visit{" "}
+            <Anchor onClick={() => openLink("https://coh3stats.com")} fw={700}>
+              coh3stats.com
+            </Anchor>{" "}
+            for additional stats and leaderboards.
+          </Text>
         </Stack>
-      </Box>
-    </>
+      </Paper>
+    </Box>
   );
 };

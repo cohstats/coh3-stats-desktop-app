@@ -47,24 +47,6 @@ const events = {
 
     mixpanel.track("open_recent_games", await getCommonProperties());
   },
-  connect_coh_db: async (): Promise<void> => {
-    if (!shouldSendAnalytics) return;
-
-    mixpanel.track("cohdb_connect_account", await getCommonProperties());
-  },
-  disconnect_coh_db: async (): Promise<void> => {
-    if (!shouldSendAnalytics) return;
-
-    mixpanel.track("cohdb_disconnect_account", await getCommonProperties());
-  },
-  replay_uploaded: async (status: string): Promise<void> => {
-    if (!shouldSendAnalytics) return;
-
-    mixpanel.track("replays_uploaded", {
-      ...(await getCommonProperties()),
-      status,
-    });
-  },
   settings_changed: async (setting: string, value?: string | number): Promise<void> => {
     if (!shouldSendAnalytics) return;
 
