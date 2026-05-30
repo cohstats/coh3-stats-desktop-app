@@ -223,8 +223,7 @@ export const useFullGameData = () => {
       } else if (lastGameStateRef.current !== rawGameData.game_state) {
         if (gameData) {
           lastGameStateRef.current = rawGameData.game_state;
-          const newGameData = gameData;
-          newGameData.state = rawGameData.game_state;
+          const newGameData = { ...gameData, state: rawGameData.game_state };
           renderStreamerHTML(newGameData);
           setGameData(newGameData);
         }

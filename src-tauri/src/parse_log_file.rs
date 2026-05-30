@@ -286,6 +286,11 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     }
 
     let game_state = determine_game_state(game_running, game_ended, game_loading, game_started);
+
+    // Reverse player order for each team because we read it from the end of the log
+    left.reverse();
+    right.reverse();
+
     let left_team = get_team_data(left);
     let right_team = get_team_data(right);
 
