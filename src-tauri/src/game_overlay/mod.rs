@@ -56,7 +56,7 @@ pub fn create_overlay_window<R: Runtime>(app: &AppHandle<R>) {
         WebviewUrl::App("index.html".into()),
     )
     .title("Grenadier In-Game Overlay")
-    .inner_size(900.0, 420.0)
+    .inner_size(1536.0, 420.0)
     .transparent(true)
     .decorations(false)
     .always_on_top(true)

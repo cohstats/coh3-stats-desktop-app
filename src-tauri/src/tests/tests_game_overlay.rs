@@ -16,19 +16,19 @@ fn scales_lengths_for_dpi() {
 #[test]
 fn sizes_overlay_as_a_fraction_of_the_game_window() {
     let (w, h) = overlay_size(Bounds::new(0, 0, 1920, 1080), 96);
-    assert_eq!(w, 1056); // 55%
+    assert_eq!(w, 1536); // 80%
     assert_eq!(h, 432); // 40%
 }
 
 #[test]
 fn clamps_overlay_on_very_wide_and_very_small_windows() {
-    // 5120 * 0.55 = 2816 -> clamped to the 1800 max
+    // 5120 * 0.80 = 4096 -> clamped to the 2400 max
     let (w, _) = overlay_size(Bounds::new(0, 0, 5120, 1440), 96);
-    assert_eq!(w, 1800);
+    assert_eq!(w, 2400);
 
-    // 800 * 0.55 = 440 -> raised to the 560 min, but never wider than the game window
+    // 800 * 0.80 = 640 -> raised to the 700 min, but never wider than the game window
     let (w, h) = overlay_size(Bounds::new(0, 0, 800, 600), 96);
-    assert_eq!(w, 560);
+    assert_eq!(w, 700);
     assert_eq!(h, 260); // 240 raised to the min height
 
     // Tiny windowed game: overlay may not exceed the window itself
@@ -40,16 +40,30 @@ fn clamps_overlay_on_very_wide_and_very_small_windows() {
 #[test]
 fn clamps_are_dpi_scaled() {
     // At 150% the minimum width grows with the UI, so a 800px-wide game window
-    // is fully covered rather than getting a 560px strip.
+    // is fully covered rather than getting a narrow strip.
     let (w, _) = overlay_size(Bounds::new(0, 0, 800, 600), 144);
-    assert_eq!(w, 800); // min 840 capped to the game width
+    assert_eq!(w, 800); // min 1050 capped to the game width
 }
 
 #[test]
 fn centres_inside_the_game_window() {
-    assert_eq!(centre_in(Bounds::new(0, 0, 1920, 1080), 1056, 432), (432, 324));
+    assert_eq!(centre_in(Bounds::new(0, 0, 1920, 1080), 1536, 432), (192, 324));
     // Odd leftovers round down, they never go negative
     assert_eq!(centre_in(Bounds::new(0, 0, 101, 101), 100, 100), (0, 0));
+}
+
+#[test]
+fn starts_at_the_vertical_middle_of_the_game_window() {
+    let rect = overlay_rect(Bounds::new(0, 0, 1920, 1080), 96);
+    assert_eq!(rect.y, 540); // top edge on the halfway line, not centred
+    assert_eq!(rect.x, 192); // still horizontally centred
+
+    // A short window where half + height would overflow gets pushed back up so the
+    // overlay still fits: 400 * 0.4 = 160 raised to the 260 min, half is 200.
+    let game = Bounds::new(0, 0, 1920, 400);
+    let rect = overlay_rect(game, 96);
+    assert_eq!(rect.y, 140);
+    assert_eq!(rect.y + rect.height, game.height);
 }
 
 #[test]
@@ -58,7 +72,8 @@ fn centres_on_a_secondary_monitor_with_a_negative_origin() {
     // overlay must follow it instead of landing on the primary screen.
     let game = Bounds::new(-1920, -200, 1920, 1080);
     let rect = overlay_rect(game, 96);
-    assert_eq!(rect, Bounds::new(-1488, 124, 1056, 432));
+    // Horizontally centred, and starting at the vertical middle (-200 + 540).
+    assert_eq!(rect, Bounds::new(-1728, 340, 1536, 432));
 }
 
 #[test]

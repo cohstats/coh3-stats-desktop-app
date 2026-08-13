@@ -31,5 +31,5 @@ export const GameOverlayApp: React.FC = () => {
     return null;
   }
 
-  return <CompactMatchup left={payload.left} right={payload.right} map={payload.map} />;
+  return <CompactMatchup left={payload.left} right={payload.right} />;
 };

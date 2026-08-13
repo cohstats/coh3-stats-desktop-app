@@ -356,6 +356,158 @@ export const Settings: React.FC = () => {
               </Tooltip>
             </Group>
           </Stack>
+          <Divider mt={"md"} />
+          <Group gap="xs">
+            <Text fw={700}>Supporter features</Text>
+            <Tooltip
+              multiline
+              w={400}
+              label="Supporter features are available only in the Microsoft Store Edition of the app, because of the extensive API calls required. Click for more info on how to get it."
+            >
+              <Anchor component={Link} to={Routes.ABOUT} c="dimmed" display={"flex"}>
+                <IconInfoCircle size={20} />
+              </Anchor>
+            </Tooltip>
+          </Group>
+          <Stack gap="md" pl="md">
+            {/* This is the overlay drawn on top of the game itself. Not to be confused
+                with the OBS Streamer Overlay section below, which is for viewers. */}
+            <Group>
+              {config.MS_STORE_EDITION ? (
+                <Switch
+                  data-testid="game-overlay-toggle"
+                  onLabel="ON"
+                  offLabel="OFF"
+                  size="md"
+                  checked={gameOverlayEnabled === undefined ? false : gameOverlayEnabled}
+                  onChange={(event) => {
+                    events.settings_changed(
+                      "gameOverlayEnabled",
+                      `${event.currentTarget.checked}`,
+                    );
+                    setGameOverlayEnabled(event.currentTarget.checked);
+                  }}
+                />
+              ) : (
+                <Tooltip
+                  multiline
+                  w={300}
+                  label="The In-Game Matchup Overlay is available only in Microsoft Store Edition due to extensive API calls required."
+                >
+                  <div>
+                    <Switch
+                      data-testid="game-overlay-toggle"
+                      disabled
+                      onLabel="ON"
+                      offLabel="OFF"
+                      size="md"
+                      checked={false}
+                    />
+                  </div>
+                </Tooltip>
+              )}
+              <Text fw={500}>In-Game Matchup Overlay</Text>
+              <Button
+                variant="default"
+                size="compact-xs"
+                onClick={() => setGameOverlayModalOpened(true)}
+              >
+                Learn More
+              </Button>
+            </Group>
+            <Text size="sm" c="dimmed">
+              Shows both teams over the game's loading screen. Requires CoH3 in Borderless or
+              Windowed display mode. Exclusive Fullscreen is not supported.
+            </Text>
+
+            <Group>
+              <Tooltip
+                label={
+                  "Friends Groups Detection is available only in Microsoft Store Edition due to extensive API calls required."
+                }
+              >
+                <Checkbox disabled checked={config.MS_STORE_EDITION} />
+              </Tooltip>
+              <Text fw={500}>Friends Groups Detection</Text>
+              <Button
+                variant="default"
+                size="compact-xs"
+                onClick={() => setFriendsGroupModalOpened(true)}
+              >
+                Learn More
+              </Button>
+            </Group>
+            <Text size="sm" c="dimmed">
+              Detects partial arranged teams and possible friends groups across teams, beyond the
+              default arranged team detection.
+            </Text>
+          </Stack>
+
+          <Modal
+            opened={friendsGroupModalOpened}
+            onClose={() => setFriendsGroupModalOpened(false)}
+            title="Friends Groups Detection"
+            size="xl"
+            centered
+          >
+            <Stack gap="sm">
+              <Text size="sm">
+                The default arranged team detection works only when all players from the group
+                played together as team. However the Friends Group Detection can show partial
+                teams (for example 3 man team + 1 random), it can also combine players across
+                various teams, detecting possible new groups which never played together before
+                but they are friends.
+              </Text>
+              <Text size="sm" fw={700}>
+                Friends Group detection is available only in Microsoft Store Edition due to
+                extensive API calls required.{" "}
+              </Text>
+              <Text size="sm" fw={700}>
+                <Anchor component={Link} to={Routes.ABOUT}>
+                  Learn more about MS Store Edition
+                </Anchor>
+              </Text>
+              <Image
+                src="/friends-group-detection.png"
+                alt="Friends Groups Detection Example"
+                style={{ borderRadius: 7 }}
+              />
+            </Stack>
+          </Modal>
+
+          <Modal
+            opened={gameOverlayModalOpened}
+            onClose={() => setGameOverlayModalOpened(false)}
+            title="In-Game Matchup Overlay"
+            size="xl"
+            centered
+          >
+            <Stack gap="sm">
+              <Text size="sm">
+                When a match starts loading, the overlay is drawn on top of the game with both
+                teams: faction, country, rank, ELO, win / loss record, and the arranged team or
+                friends group detection. It disappears as soon as the match starts, and it never
+                takes focus or swallows your clicks.
+              </Text>
+              <Text size="sm" fw={700}>
+                Requires CoH3 to run in Borderless or Windowed display mode. Exclusive Fullscreen
+                is not supported.
+              </Text>
+              {!config.MS_STORE_EDITION && (
+                <>
+                  <Text size="sm" fw={700}>
+                    The In-Game Matchup Overlay is available only in Microsoft Store Edition due
+                    to extensive API calls required.
+                  </Text>
+                  <Text size="sm" fw={700}>
+                    <Anchor component={Link} to={Routes.ABOUT}>
+                      Learn more about MS Store Edition
+                    </Anchor>
+                  </Text>
+                </>
+              )}
+            </Stack>
+          </Modal>
           <Divider />
           <Group>
             <Checkbox
@@ -395,56 +547,6 @@ export const Settings: React.FC = () => {
               </Group>
             </div>
           </Group>
-          <Group>
-            <Tooltip
-              label={
-                "Friends Groups Detection is available only in Microsoft Store Edition due to extensive API calls required."
-              }
-            >
-              <Checkbox disabled checked={config.MS_STORE_EDITION} />
-            </Tooltip>
-            <div>Friends Groups Detection</div>
-            <Button
-              variant="default"
-              size="compact-xs"
-              // leftSection={<IconInfoCircle size={16} />}
-              onClick={() => setFriendsGroupModalOpened(true)}
-            >
-              Learn More
-            </Button>
-          </Group>
-
-          <Modal
-            opened={friendsGroupModalOpened}
-            onClose={() => setFriendsGroupModalOpened(false)}
-            title="Friends Groups Detection"
-            size="xl"
-            centered
-          >
-            <Stack gap="sm">
-              <Text size="sm">
-                The default arranged team detection works only when all players from the group
-                played together as team. However the Friends Group Detection can show partial
-                teams (for example 3 man team + 1 random), it can also combine players across
-                various teams, detecting possible new groups which never played together before
-                but they are friends.
-              </Text>
-              <Text size="sm" fw={700}>
-                Friends Group detection is available only in Microsoft Store Edition due to
-                extensive API calls required.{" "}
-              </Text>
-              <Text size="sm" fw={700}>
-                <Anchor component={Link} to={Routes.ABOUT}>
-                  Learn more about MS Store Edition
-                </Anchor>
-              </Text>
-              <Image
-                src="/friends-group-detection.png"
-                alt="Friends Groups Detection Example"
-                style={{ borderRadius: 7 }}
-              />
-            </Stack>
-          </Modal>
           <Group>
             <Select
               label={<Text>Select map view markings</Text>}
@@ -506,89 +608,6 @@ export const Settings: React.FC = () => {
               />
             </Group>
           </Group>
-          <Divider mt={"md"} />
-          {/* This is the overlay drawn on top of the game itself. Not to be confused
-              with the OBS Streamer Overlay section below, which is for viewers. */}
-          <Group>
-            <Text fw={700}>In-Game Matchup Overlay</Text>
-            {config.MS_STORE_EDITION ? (
-              <Switch
-                data-testid="game-overlay-toggle"
-                onLabel="ON"
-                offLabel="OFF"
-                size="md"
-                checked={gameOverlayEnabled === undefined ? false : gameOverlayEnabled}
-                onChange={(event) => {
-                  events.settings_changed("gameOverlayEnabled", `${event.currentTarget.checked}`);
-                  setGameOverlayEnabled(event.currentTarget.checked);
-                }}
-              />
-            ) : (
-              <Tooltip
-                multiline
-                w={300}
-                label="The In-Game Matchup Overlay is available only in Microsoft Store Edition due to extensive API calls required."
-              >
-                <div>
-                  <Switch
-                    data-testid="game-overlay-toggle"
-                    disabled
-                    onLabel="ON"
-                    offLabel="OFF"
-                    size="md"
-                    checked={false}
-                  />
-                </div>
-              </Tooltip>
-            )}
-            <Button
-              variant="default"
-              size="compact-xs"
-              onClick={() => setGameOverlayModalOpened(true)}
-            >
-              Learn More
-            </Button>
-          </Group>
-          <Group>
-            <Text size="sm" c="dimmed">
-              Shows both teams over the game's loading screen. Requires CoH3 in Borderless or
-              Windowed display mode. Exclusive Fullscreen is not supported.
-            </Text>
-          </Group>
-
-          <Modal
-            opened={gameOverlayModalOpened}
-            onClose={() => setGameOverlayModalOpened(false)}
-            title="In-Game Matchup Overlay"
-            size="xl"
-            centered
-          >
-            <Stack gap="sm">
-              <Text size="sm">
-                When a match starts loading, the overlay is drawn on top of the game with both
-                teams: faction, country, rank, ELO, win / loss record, and the arranged team or
-                friends group detection. It disappears as soon as the match starts, and it never
-                takes focus or swallows your clicks.
-              </Text>
-              <Text size="sm" fw={700}>
-                Requires CoH3 to run in Borderless or Windowed display mode. Exclusive Fullscreen
-                is not supported.
-              </Text>
-              {!config.MS_STORE_EDITION && (
-                <>
-                  <Text size="sm" fw={700}>
-                    The In-Game Matchup Overlay is available only in Microsoft Store Edition due
-                    to extensive API calls required.
-                  </Text>
-                  <Text size="sm" fw={700}>
-                    <Anchor component={Link} to={Routes.ABOUT}>
-                      Learn more about MS Store Edition
-                    </Anchor>
-                  </Text>
-                </>
-              )}
-            </Stack>
-          </Modal>
           <Divider mt={"md"} />
           <Group>
             <Text fw={700}>OBS Streamer Overlay</Text>

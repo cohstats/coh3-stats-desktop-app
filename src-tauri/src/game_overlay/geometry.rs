@@ -23,11 +23,11 @@ impl Bounds {
 }
 
 /// Fraction of the game window the overlay covers.
-const WIDTH_RATIO: f64 = 0.55;
+const WIDTH_RATIO: f64 = 0.80;
 const HEIGHT_RATIO: f64 = 0.40;
 /// Clamps at 96 DPI - scaled by the game window's DPI before being applied.
-const MIN_WIDTH_96: i32 = 560;
-const MAX_WIDTH_96: i32 = 1800;
+const MIN_WIDTH_96: i32 = 700;
+const MAX_WIDTH_96: i32 = 2400;
 const MIN_HEIGHT_96: i32 = 260;
 const MAX_HEIGHT_96: i32 = 1000;
 
@@ -62,12 +62,18 @@ pub fn centre_in(outer: Bounds, w: i32, h: i32) -> (i32, i32) {
     )
 }
 
-/// Final overlay rectangle for a given game window: sized, centred, clamped so it
-/// never spills outside the game window.
+/// Where the overlay starts vertically, as a fraction of the game window height.
+/// The loading art has its subject in the upper half, so the tables begin at the
+/// vertical middle rather than being centred.
+const TOP_RATIO: f64 = 0.50;
+
+/// Final overlay rectangle for a given game window: sized, horizontally centred and
+/// starting at the vertical middle, clamped so it never spills outside the game window.
 pub fn overlay_rect(game: Bounds, dpi: u32) -> Bounds {
     let (w, h) = overlay_size(game, dpi);
-    let (x, y) = centre_in(game, w, h);
+    let (x, _) = centre_in(game, w, h);
     let x = x.clamp(game.x, game.x + (game.width - w).max(0));
+    let y = game.y + (game.height as f64 * TOP_RATIO).round() as i32;
     let y = y.clamp(game.y, game.y + (game.height - h).max(0));
     Bounds::new(x, y, w, h)
 }

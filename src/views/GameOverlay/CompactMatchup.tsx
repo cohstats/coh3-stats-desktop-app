@@ -59,9 +59,23 @@ const TeamBadges: React.FC<{ team: OverlayTeam }> = ({ team }) => {
   );
 };
 
+/** Labels the numeric columns so ELO / win rate / W-L are not guesswork. */
+const ColumnHeader: React.FC = () => (
+  <div className={`${classes.row} ${classes.columnHeader}`}>
+    <span />
+    <span />
+    <span className={classes.name}>Player</span>
+    <span className={classes.rank}>Rank</span>
+    <span className={classes.elo}>ELO</span>
+    <span className={classes.winRate}>Win %</span>
+    <span className={classes.record}>W / L</span>
+  </div>
+);
+
 const TeamColumn: React.FC<{ team: OverlayTeam }> = ({ team }) => (
   <div className={classes.column}>
     <TeamBadges team={team} />
+    <ColumnHeader />
     {team.players.map((player) => (
       <CompactPlayerRow key={`${player.relicID}-${player.position}`} player={player} />
     ))}
@@ -71,14 +85,8 @@ const TeamColumn: React.FC<{ team: OverlayTeam }> = ({ team }) => (
 export const CompactMatchup: React.FC<{
   left: OverlayTeam;
   right: OverlayTeam;
-  map: string;
-}> = ({ left, right, map }) => (
+}> = ({ left, right }) => (
   <div className={classes.panel}>
-    <div className={classes.header}>
-      <span>Grenadier</span>
-      <span>·</span>
-      <span>{map}</span>
-    </div>
     <div className={classes.teams}>
       <TeamColumn team={left} />
       <div className={classes.versus}>VS</div>

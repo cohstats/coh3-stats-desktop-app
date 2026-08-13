@@ -18,9 +18,10 @@ export const CompactPlayerRow: React.FC<{ player: FullPlayerData }> = ({ player 
           alt={player.faction}
         />
         <span />
+        <span className={classes.name}>{player.name}</span>
         <span className={`${classes.rank} ${classes.dim}`}>AI</span>
         <span />
-        <span className={classes.name}>{player.name}</span>
+        <span />
         <span />
       </div>
     );
@@ -29,7 +30,8 @@ export const CompactPlayerRow: React.FC<{ player: FullPlayerData }> = ({ player 
   const rank = player.rank !== undefined && player.rank > 0 ? `#${player.rank}` : "—";
   const wins = player.wins ?? 0;
   const losses = player.losses ?? 0;
-  const hasRecord = wins + losses > 0;
+  const played = wins + losses;
+  const winRate = played > 0 ? Math.round((wins / played) * 100) : undefined;
 
   return (
     <div className={`${classes.row} ${player.self ? classes.rowSelf : ""}`}>
@@ -47,11 +49,14 @@ export const CompactPlayerRow: React.FC<{ player: FullPlayerData }> = ({ player 
       ) : (
         <span />
       )}
+      <span className={classes.name}>{player.name}</span>
       <span className={`${classes.rank} ${rank === "—" ? classes.dim : ""}`}>{rank}</span>
       <span className={classes.elo}>{player.rating ?? "—"}</span>
-      <span className={classes.name}>{player.name}</span>
+      <span className={classes.winRate}>
+        {winRate !== undefined ? `${winRate}%` : <span className={classes.dim}>—</span>}
+      </span>
       <span className={classes.record}>
-        {hasRecord ? (
+        {played > 0 ? (
           <>
             <span className={classes.win}>{wins}</span>
             <span className={classes.dim}> / </span>

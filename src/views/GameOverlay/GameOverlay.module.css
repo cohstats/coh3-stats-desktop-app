@@ -7,12 +7,10 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  /* The window itself starts at the vertical middle of the game window, so the
+     tables hang from the top of it. */
+  justify-content: flex-start;
   padding: 10px 12px;
-  border-radius: 10px;
-  background: rgba(12, 14, 18, 0.72);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #fff;
   font-family:
     Segoe UI,
@@ -22,46 +20,47 @@
   overflow: hidden;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
-}
-
+/* Left table | empty gutter | right table. The gutter is a third of the panel so the
+   two teams read as separate tables rather than one wide grid. */
 .teams {
-  flex: 1;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 10px;
-  align-items: stretch;
+  grid-template-columns: 1fr 34% 1fr;
+  align-items: start;
   min-height: 0;
 }
 
+/* Each team gets its own card - the panel itself is transparent, so the gutter
+   between them shows the loading art through. */
 .column {
   display: flex;
   flex-direction: column;
   gap: 4px;
   min-width: 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(12, 14, 18, 0.72);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .versus {
   display: flex;
   align-items: center;
-  font-size: 16px;
+  justify-content: center;
+  padding-top: 40px;
+  font-size: 22px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .badges {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  min-height: 20px;
+  min-height: 22px;
+  margin-bottom: 2px;
 }
 
 .badge {
@@ -79,16 +78,28 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
-/* One player row: faction | flag | rank | elo | name | W-L */
+/* One player row: faction | flag | name | rank | elo | win% | W-L */
 .row {
   display: grid;
-  grid-template-columns: 22px 20px 54px 46px 1fr auto;
-  gap: 6px;
+  grid-template-columns: 22px 20px 1fr 58px 48px 48px 66px;
+  gap: 8px;
   align-items: center;
-  font-size: 13px;
-  padding: 2px 4px;
+  font-size: 14px;
+  padding: 3px 6px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.05);
+}
+
+.columnHeader {
+  background: transparent;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  padding-bottom: 4px;
 }
 
 .rowSelf {
@@ -111,12 +122,20 @@
 
 .rank {
   font-variant-numeric: tabular-nums;
+  text-align: right;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .elo {
   font-variant-numeric: tabular-nums;
+  text-align: right;
   font-weight: 700;
+}
+
+.winRate {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .name {
@@ -126,8 +145,8 @@
 }
 
 .record {
-  font-size: 12px;
   font-variant-numeric: tabular-nums;
+  text-align: right;
   color: rgba(255, 255, 255, 0.72);
 }
 
