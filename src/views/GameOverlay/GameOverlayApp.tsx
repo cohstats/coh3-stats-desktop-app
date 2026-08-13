@@ -19,7 +19,9 @@ export const GameOverlayApp: React.FC = () => {
 
     // The sender may have emitted before this window finished loading. Announce
     // ourselves so it can re-push, instead of relying on a global on `window`.
-    emit(GAME_OVERLAY_READY_EVENT).catch(console.error);
+    // Only once the listener is actually registered, or the re-push it triggers
+    // could arrive before we are listening for it.
+    unlisten.then(() => emit(GAME_OVERLAY_READY_EVENT)).catch(console.error);
 
     return () => {
       unlisten.then((fn) => fn()).catch(console.error);

@@ -12,10 +12,7 @@
   justify-content: flex-start;
   padding: 10px 12px;
   color: #fff;
-  font-family:
-    Segoe UI,
-    Roboto,
-    sans-serif;
+  font-family: "Segoe UI", Roboto, sans-serif;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   overflow: hidden;
 }

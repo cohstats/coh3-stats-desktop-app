@@ -18,7 +18,7 @@ mod window_detector;
 
 use geometry::Bounds;
 use log::{error, info};
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::Arc;
 use tauri::{AppHandle, Manager, Runtime};
 
@@ -38,6 +38,10 @@ pub struct GameOverlayState {
     /// Signal for the watcher thread. Cleared to make it exit on its own next tick -
     /// it is never `join()`ed, which is what deadlocked the earlier attempt.
     watcher_running: Arc<AtomicBool>,
+    /// Bumped on every stand-down. A watcher carries the token it started with and
+    /// exits without touching shared state once the token no longer matches, so a
+    /// hide-then-show cannot leave the outgoing watcher stopping the incoming one.
+    watcher_generation: Arc<AtomicU64>,
 }
 
 #[cfg(target_os = "windows")]
@@ -183,16 +187,22 @@ fn apply<R: Runtime>(handle: &AppHandle<R>, tick: &mut TickState) -> Tick {
 
     let rect = geometry::overlay_rect(bounds, window_detector::get_dpi(hwnd));
     if tick.last_rect != Some(rect) {
-        if let Err(e) = window.set_size(tauri::PhysicalSize::new(
+        let sized = window.set_size(tauri::PhysicalSize::new(
             rect.width as u32,
             rect.height as u32,
-        )) {
+        ));
+        if let Err(e) = &sized {
             error!("Game overlay: set_size failed: {}", e);
         }
-        if let Err(e) = window.set_position(tauri::PhysicalPosition::new(rect.x, rect.y)) {
+        let positioned = window.set_position(tauri::PhysicalPosition::new(rect.x, rect.y));
+        if let Err(e) = &positioned {
             error!("Game overlay: set_position failed: {}", e);
         }
-        tick.last_rect = Some(rect);
+        // Only remember the rect once it actually took, so a failed call is retried
+        // on the next tick instead of being cached as done.
+        if sized.is_ok() && positioned.is_ok() {
+            tick.last_rect = Some(rect);
+        }
     }
 
     // Only draw while the game owns the foreground - otherwise the overlay would float
@@ -236,7 +246,7 @@ fn apply<R: Runtime>(handle: &AppHandle<R>, tick: &mut TickState) -> Tick {
 }
 
 fn start_watcher<R: Runtime>(handle: &AppHandle<R>, initial: TickState) {
-    let running = {
+    let (running, generation, token) = {
         let state = handle.state::<GameOverlayState>();
         // Already running - it will keep tracking, nothing to do.
         if state
@@ -246,16 +256,26 @@ fn start_watcher<R: Runtime>(handle: &AppHandle<R>, initial: TickState) {
         {
             return;
         }
-        Arc::clone(&state.watcher_running)
+        (
+            Arc::clone(&state.watcher_running),
+            Arc::clone(&state.watcher_generation),
+            state.watcher_generation.load(Ordering::SeqCst),
+        )
     };
 
     let handle = handle.clone();
     std::thread::spawn(move || {
-        info!("Game overlay: watcher started");
+        info!("Game overlay: watcher {} started", token);
         let mut tick = initial;
 
-        while running.load(Ordering::SeqCst) {
+        loop {
             std::thread::sleep(std::time::Duration::from_millis(WATCHER_TICK_MS));
+            // Checked before `running`: a superseded watcher would otherwise see the
+            // flag the *new* watcher just set and keep ticking alongside it.
+            if generation.load(Ordering::SeqCst) != token {
+                info!("Game overlay: watcher {} superseded", token);
+                return;
+            }
             if !running.load(Ordering::SeqCst) {
                 break;
             }
@@ -264,8 +284,11 @@ fn start_watcher<R: Runtime>(handle: &AppHandle<R>, initial: TickState) {
             }
         }
 
-        running.store(false, Ordering::SeqCst);
-        info!("Game overlay: watcher stopped");
+        // Never clear the flag on behalf of a watcher that has replaced us.
+        if generation.load(Ordering::SeqCst) == token {
+            running.store(false, Ordering::SeqCst);
+        }
+        info!("Game overlay: watcher {} stopped", token);
     });
 }
 
@@ -304,6 +327,9 @@ pub fn hide<R: Runtime>(handle: &AppHandle<R>) {
     let state = handle.state::<GameOverlayState>();
     state.wanted.store(false, Ordering::SeqCst);
     // Signal only. Never join here: the watcher locks nothing, it just exits next tick.
+    // Bumping the generation first retires the running watcher even if a `show` races
+    // in and starts a new one before it woke up.
+    state.watcher_generation.fetch_add(1, Ordering::SeqCst);
     state.watcher_running.store(false, Ordering::SeqCst);
 
     if let Some(window) = handle.get_webview_window(OVERLAY_WINDOW_LABEL) {

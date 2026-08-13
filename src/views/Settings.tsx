@@ -376,6 +376,7 @@ export const Settings: React.FC = () => {
               {config.MS_STORE_EDITION ? (
                 <Switch
                   data-testid="game-overlay-toggle"
+                  aria-label="In-Game Matchup Overlay"
                   onLabel="ON"
                   offLabel="OFF"
                   size="md"
@@ -397,6 +398,7 @@ export const Settings: React.FC = () => {
                   <div>
                     <Switch
                       data-testid="game-overlay-toggle"
+                      aria-label="In-Game Matchup Overlay"
                       disabled
                       onLabel="ON"
                       offLabel="OFF"

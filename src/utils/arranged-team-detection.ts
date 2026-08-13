@@ -31,7 +31,11 @@ const EMPTY_RESULT: ArrangedTeamDetectionResult = { team: null, groups: [] };
  * is expensive, which is exactly why the feature is MS Store only.
  */
 const CACHE_TTL_MS = 60_000;
-const cache = new Map<string, { ts: number; result: ArrangedTeamDetectionResult }>();
+/**
+ * The in-flight promise is stored, not the resolved value - the two callers fire at
+ * the same moment, so caching only on completion would still double the API calls.
+ */
+const cache = new Map<string, { ts: number; result: Promise<ArrangedTeamDetectionResult> }>();
 
 /**
  * Detects whether one side of a match is an arranged team, or - MS Store edition only -
@@ -65,9 +69,15 @@ export const detectArrangedTeam = async (
     return cached.result;
   }
 
-  const result = await detect(teamKey, playerIds, side);
-  cache.set(teamKey, { ts: Date.now(), result });
-  return result;
+  const pending = detect(teamKey, playerIds, side);
+  // A failed lookup must not be cached - drop it so the next call retries.
+  pending.catch(() => {
+    if (cache.get(teamKey)?.result === pending) {
+      cache.delete(teamKey);
+    }
+  });
+  cache.set(teamKey, { ts: Date.now(), result: pending });
+  return pending;
 };
 
 const detect = async (

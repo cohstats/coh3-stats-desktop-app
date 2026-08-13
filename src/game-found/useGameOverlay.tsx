@@ -135,6 +135,11 @@ export const useGameOverlay = (gameData: FullGameData | undefined) => {
         return;
       }
 
+      // A back-to-back match reuses this effect without going through `hide`, so the
+      // previous match's timer would otherwise still be armed and pull this overlay.
+      if (timeoutRef.current !== undefined) {
+        clearTimeout(timeoutRef.current);
+      }
       timeoutRef.current = setTimeout(() => {
         console.warn("[GameOverlay] Safety timeout reached, hiding overlay");
         hide();
