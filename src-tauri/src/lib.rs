@@ -9,6 +9,7 @@ mod audio_manager;
 mod battlegroup_info;
 mod config;
 mod dp_utils;
+mod game_overlay;
 mod map_stats;
 mod overlay_server;
 mod parse_log_file;
@@ -37,6 +38,19 @@ struct Payload {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // Chromium skips producing frames for a window it believes is occluded. A
+    // transparent, always-on-top overlay sitting over a borderless-fullscreen game is
+    // exactly the case its heuristic gets wrong: the game window counts as covering us,
+    // so the overlay shows up blank until some input forces the occlusion state to be
+    // recalculated. Must be set before any WebView2 environment is created, and it is
+    // process-wide - a per-window `additional_browser_args` would conflict with the
+    // main window's environment.
+    #[cfg(target_os = "windows")]
+    std::env::set_var(
+        "WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS",
+        "--disable-features=CalculateNativeWinOcclusion",
+    );
+
     // Add monitoring using sentry
     let _guard = sentry::init(("https://5a9a5418c06b995fe1c6221c83451612@o4504995920543744.ingest.sentry.io/4506676182646784", sentry::ClientOptions {
       release: sentry::release_name!(),
@@ -48,6 +62,7 @@ pub fn run() {
         .manage(process_watcher::ProcessWatcherState::default())
         .manage(map_stats::MapStatsState::default())
         .manage(battlegroup_info::BattlegroupInfoState::default())
+        .manage(game_overlay::GameOverlayState::default())
         .plugin(
             tauri_plugin_log::Builder::new()
                 .level(log::LevelFilter::Info)
@@ -69,7 +84,10 @@ pub fn run() {
             start_process_watcher,
             stop_process_watcher,
             map_stats::get_map_stats,
-            battlegroup_info::get_battlegroup_info
+            battlegroup_info::get_battlegroup_info,
+            game_overlay::game_overlay_show,
+            game_overlay::game_overlay_hide,
+            game_overlay::game_overlay_is_supported
         ])
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
             let window = match app.get_webview_window("main") {
@@ -115,7 +133,12 @@ pub fn run() {
         .plugin(tauri_plugin_process::init());
 
     #[cfg(not(target_os = "macos"))]
-    let builder = builder.plugin(tauri_plugin_window_state::Builder::default().build());
+    let builder = builder.plugin(
+        tauri_plugin_window_state::Builder::default()
+            // the overlay positions itself - never let the plugin restore its geometry
+            .with_denylist(&[game_overlay::OVERLAY_WINDOW_LABEL])
+            .build(),
+    );
 
     builder
         .setup(setup)
@@ -134,6 +157,8 @@ pub fn run() {
                 // Ensure game audio is unmuted when app exits
                 info!("App exiting, ensuring game audio is unmuted");
                 audio_manager::cleanup_on_exit(app_handle);
+                // Never leave the overlay on screen after the app is gone
+                game_overlay::hide(app_handle);
             }
         });
 }
@@ -209,6 +234,10 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     //     error!("Failed to set window shadow: {}", e);
     //     sentry::capture_message(&format!("Window shadow error: {}", e), sentry::Level::Error);
     // }
+
+    // In-game matchup overlay: create the window once, hidden. It is only ever
+    // shown/hidden afterwards - see game_overlay/mod.rs.
+    game_overlay::create_overlay_window(handle);
 
     // Initialize map stats fetching (non-blocking)
     map_stats::init_map_stats(handle.clone());

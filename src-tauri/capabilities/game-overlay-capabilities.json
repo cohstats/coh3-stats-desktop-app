@@ -1,0 +1,14 @@
+{
+  "identifier": "game-overlay-capabilities",
+  "description": "Minimal capabilities for the in-game matchup overlay window. It only listens for pushed match data and logs - it must not be able to do anything else.",
+  "local": true,
+  "windows": [
+    "game-overlay"
+  ],
+  "permissions": [
+    "core:event:default",
+    "core:app:default",
+    "core:webview:default",
+    "log:default"
+  ]
+}

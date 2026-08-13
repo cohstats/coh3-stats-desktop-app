@@ -266,6 +266,28 @@ class TestHelpers {
   }
 
   /**
+   * Whether the app under test was built as the MS Store edition.
+   *
+   * `config.MS_STORE_EDITION` is `import.meta.env.VITE_DISABLE_UPDATER === "true"`,
+   * baked in at build time - so we resolve the same value the way Vite does: the
+   * process env first, then the project .env file.
+   * @returns {boolean}
+   */
+  isMSStoreEditionBuild() {
+    if (process.env.VITE_DISABLE_UPDATER !== undefined) {
+      return process.env.VITE_DISABLE_UPDATER === "true";
+    }
+    const envFile = path.resolve(__dirname, "../../.env");
+    if (!fs.existsSync(envFile)) {
+      return false;
+    }
+    const match = fs
+      .readFileSync(envFile, "utf-8")
+      .match(/^\s*VITE_DISABLE_UPDATER\s*=\s*(\S+)\s*$/m);
+    return match !== null && match[1].replace(/["']/g, "") === "true";
+  }
+
+  /**
    * Wait for OBS overlay server to be running
    * @param {number} maxWaitTime - Maximum time to wait in ms
    * @param {number} pollInterval - Interval between checks in ms

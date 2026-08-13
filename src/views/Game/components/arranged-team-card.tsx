@@ -3,33 +3,16 @@ import { Paper, Text, Group, Stack, Loader, Badge, Tooltip, Anchor } from "@mant
 import { IconInfoCircle } from "@tabler/icons-react";
 import { open } from "@tauri-apps/plugin-shell";
 import { FullPlayerData, TeamSide } from "../../../game-data-provider/GameData-types";
-import {
-  getTeamDetails,
-  searchArrangedTeams,
-  TeamSideForCOH3ApiSearch,
-} from "../../../utils/coh3-stats-api";
 import { TeamDetails } from "../../../utils/data-types";
 import { coh3statsTeamDetails } from "../../../utils/external-routes";
-import config from "../../../config";
-import { groupPlayersByTeamRelationships, KnownFriendsGroup } from "../../../utils/team-grouping";
+import { KnownFriendsGroup } from "../../../utils/team-grouping";
+import { detectArrangedTeam } from "../../../utils/arranged-team-detection";
 
 interface ArrangedTeamCardProps {
   players: FullPlayerData[];
   side: TeamSide;
   onTeamGroupsChange?: (groups: KnownFriendsGroup[]) => void;
 }
-
-/**
- * Creates a team key for API lookup
- * @param team Object with side and player_ids
- * @returns Team key string
- */
-const _createTeamKey = (team: { side: string; player_ids: number[] }) => {
-  return `${team.side}-${team.player_ids.sort().join("-")}`;
-};
-
-// Define colors for different groups
-const GROUP_COLORS = ["green", "orange", "violet", "pink", "cyan", "blue"];
 
 export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({
   players,
@@ -48,50 +31,13 @@ export const ArrangedTeamCard: React.FC<ArrangedTeamCardProps> = ({
         setError(null);
         setTeamGroups([]); // Clear team groups at the start
 
-        // Extract player IDs and convert to numbers
-        const playerIds = players
-          .filter((player) => !player.ai) // Only real players
-          .map((player) => parseInt(player.relicID, 10))
-          .filter((id) => !isNaN(id)); // Filter out invalid IDs
-
-        if (playerIds.length < 2) {
-          setLoading(false);
-          return;
-        }
-
-        // Generate team key
-        const teamKey = _createTeamKey({
-          side: side.toLowerCase(),
-          player_ids: playerIds,
-        });
-
-        // Fetch team details
-        const team = await getTeamDetails(teamKey);
+        // Shared with the in-game overlay - see utils/arranged-team-detection.ts
+        const { team, groups } = await detectArrangedTeam(players, side);
         setTeamData(team);
 
-        if (!team && config.MS_STORE_EDITION && side !== "Mixed") {
-          const resultSearch = await searchArrangedTeams(
-            side.toLowerCase() as TeamSideForCOH3ApiSearch,
-            playerIds,
-          );
-          if (resultSearch.totalTeams === 0) {
-            console.debug("No teams found for players");
-            return;
-          }
-          // console.debug("Teams found:", resultSearch.teams);
-
-          const groups = groupPlayersByTeamRelationships(resultSearch.teams, playerIds);
-          // console.log("Team groups:", groups);
-
-          if (groups.length > 0) {
-            // Assign colors to groups
-            const groupsWithColors = groups.map((group, index) => ({
-              ...group,
-              color: GROUP_COLORS[index % GROUP_COLORS.length],
-            }));
-            setTeamGroups(groupsWithColors);
-            onTeamGroupsChange?.(groupsWithColors);
-          }
+        if (groups.length > 0) {
+          setTeamGroups(groups);
+          onTeamGroupsChange?.(groups);
         } else if (team) {
           // Clear team groups when a team is found
           onTeamGroupsChange?.([]);

@@ -265,6 +265,39 @@ class SettingsPage extends BasePage {
     }
   }
 
+  // ==================== In-Game Matchup Overlay Methods ====================
+
+  /**
+   * Get the In-Game Matchup Overlay toggle input
+   * @returns {Promise<WebdriverIO.Element>}
+   */
+  async getGameOverlayToggle() {
+    const input = await this.getByTestId("game-overlay-toggle");
+    await input.scrollIntoView();
+    await this.pause(300);
+    return input;
+  }
+
+  /**
+   * Whether the In-Game Matchup Overlay toggle is disabled.
+   * It is disabled in non MS Store builds.
+   * @returns {Promise<boolean>}
+   */
+  async isGameOverlayToggleDisabled() {
+    const input = await this.getGameOverlayToggle();
+    return !(await input.isEnabled());
+  }
+
+  /**
+   * Check if the In-Game Matchup Overlay is enabled
+   * @returns {Promise<boolean>}
+   */
+  async isGameOverlayEnabled() {
+    const input = await this.getGameOverlayToggle();
+    const dataChecked = await input.getAttribute("data-checked");
+    return dataChecked === "true";
+  }
+
   /**
    * Check if restart required message is shown
    * @returns {Promise<boolean>}

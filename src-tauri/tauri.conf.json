@@ -76,7 +76,8 @@
     "security": {
       "csp": null,
       "capabilities": [
-        "desktop-app-capabilities"
+        "desktop-app-capabilities",
+        "game-overlay-capabilities"
       ]
     }
   }

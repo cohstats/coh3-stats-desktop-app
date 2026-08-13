@@ -34,6 +34,7 @@ import { usePlaySound, usePlaySoundVolume } from "../game-found/gameSoundConfigV
 import { useAutoSwitchToGame } from "../game-found/autoSwitchConfigValues";
 import { useBringToFrontOnGameFound } from "../game-found/bringToFrontConfigValues";
 import { useAutoMuteEnabled, useMuteOnlyOutOfGame } from "../game-found/audioMuteConfigValues";
+import { useGameOverlayEnabled } from "../game-found/gameOverlayConfigValues";
 import {
   useShowFlagsOverlay,
   useAlwaysShowOverlay,
@@ -61,6 +62,7 @@ export const Settings: React.FC = () => {
   const [bringToFrontOnGameFound, setBringToFrontOnGameFound] = useBringToFrontOnGameFound();
   const [autoMuteEnabled, setAutoMuteEnabled] = useAutoMuteEnabled();
   const [muteOnlyOutOfGame, setMuteOnlyOutOfGame] = useMuteOnlyOutOfGame();
+  const [gameOverlayEnabled, setGameOverlayEnabled] = useGameOverlayEnabled();
   const [showFlagsOverlay, setShowFlagsOverlay] = useShowFlagsOverlay();
   const [alwaysShowOverlay, setAlwaysShowOverlay] = useAlwaysShowOverlay();
   const [mapViewSettings, setMapViewSettings] = useMapViewSettings();
@@ -71,6 +73,7 @@ export const Settings: React.FC = () => {
   const [appDataPath, setAppDataPath] = useState<string>("");
   const [restartRequired, setRestartRequired] = useState<boolean>(false);
   const [friendsGroupModalOpened, setFriendsGroupModalOpened] = useState<boolean>(false);
+  const [gameOverlayModalOpened, setGameOverlayModalOpened] = useState<boolean>(false);
 
   useEffect(() => {
     events.open_settings();
@@ -503,6 +506,89 @@ export const Settings: React.FC = () => {
               />
             </Group>
           </Group>
+          <Divider mt={"md"} />
+          {/* This is the overlay drawn on top of the game itself. Not to be confused
+              with the OBS Streamer Overlay section below, which is for viewers. */}
+          <Group>
+            <Text fw={700}>In-Game Matchup Overlay</Text>
+            {config.MS_STORE_EDITION ? (
+              <Switch
+                data-testid="game-overlay-toggle"
+                onLabel="ON"
+                offLabel="OFF"
+                size="md"
+                checked={gameOverlayEnabled === undefined ? false : gameOverlayEnabled}
+                onChange={(event) => {
+                  events.settings_changed("gameOverlayEnabled", `${event.currentTarget.checked}`);
+                  setGameOverlayEnabled(event.currentTarget.checked);
+                }}
+              />
+            ) : (
+              <Tooltip
+                multiline
+                w={300}
+                label="The In-Game Matchup Overlay is available only in Microsoft Store Edition due to extensive API calls required."
+              >
+                <div>
+                  <Switch
+                    data-testid="game-overlay-toggle"
+                    disabled
+                    onLabel="ON"
+                    offLabel="OFF"
+                    size="md"
+                    checked={false}
+                  />
+                </div>
+              </Tooltip>
+            )}
+            <Button
+              variant="default"
+              size="compact-xs"
+              onClick={() => setGameOverlayModalOpened(true)}
+            >
+              Learn More
+            </Button>
+          </Group>
+          <Group>
+            <Text size="sm" c="dimmed">
+              Shows both teams over the game's loading screen. Requires CoH3 in Borderless or
+              Windowed display mode. Exclusive Fullscreen is not supported.
+            </Text>
+          </Group>
+
+          <Modal
+            opened={gameOverlayModalOpened}
+            onClose={() => setGameOverlayModalOpened(false)}
+            title="In-Game Matchup Overlay"
+            size="xl"
+            centered
+          >
+            <Stack gap="sm">
+              <Text size="sm">
+                When a match starts loading, the overlay is drawn on top of the game with both
+                teams: faction, country, rank, ELO, win / loss record, and the arranged team or
+                friends group detection. It disappears as soon as the match starts, and it never
+                takes focus or swallows your clicks.
+              </Text>
+              <Text size="sm" fw={700}>
+                Requires CoH3 to run in Borderless or Windowed display mode. Exclusive Fullscreen
+                is not supported.
+              </Text>
+              {!config.MS_STORE_EDITION && (
+                <>
+                  <Text size="sm" fw={700}>
+                    The In-Game Matchup Overlay is available only in Microsoft Store Edition due
+                    to extensive API calls required.
+                  </Text>
+                  <Text size="sm" fw={700}>
+                    <Anchor component={Link} to={Routes.ABOUT}>
+                      Learn more about MS Store Edition
+                    </Anchor>
+                  </Text>
+                </>
+              )}
+            </Stack>
+          </Modal>
           <Divider mt={"md"} />
           <Group>
             <Text fw={700}>OBS Streamer Overlay</Text>
