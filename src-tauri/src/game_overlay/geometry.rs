@@ -23,13 +23,13 @@ impl Bounds {
 }
 
 /// Fraction of the game window the overlay covers.
-const WIDTH_RATIO: f64 = 0.80;
-const HEIGHT_RATIO: f64 = 0.40;
+const WIDTH_RATIO: f64 = 0.90;
+const HEIGHT_RATIO: f64 = 0.48;
 /// Clamps at 96 DPI - scaled by the game window's DPI before being applied.
-const MIN_WIDTH_96: i32 = 700;
-const MAX_WIDTH_96: i32 = 2400;
-const MIN_HEIGHT_96: i32 = 260;
-const MAX_HEIGHT_96: i32 = 1000;
+const MIN_WIDTH_96: i32 = 840;
+const MAX_WIDTH_96: i32 = 2880;
+const MIN_HEIGHT_96: i32 = 312;
+const MAX_HEIGHT_96: i32 = 1200;
 
 /// Scale a length expressed at 96 DPI to the given DPI.
 pub fn scale_for_dpi(length_96: i32, dpi: u32) -> i32 {

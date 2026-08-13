@@ -428,7 +428,17 @@ export const Settings: React.FC = () => {
                   "Friends Groups Detection is available only in Microsoft Store Edition due to extensive API calls required."
                 }
               >
-                <Checkbox disabled checked={config.MS_STORE_EDITION} />
+                <div>
+                  <Switch
+                    data-testid="friends-group-detection-toggle"
+                    aria-label="Friends Groups Detection"
+                    disabled
+                    onLabel="ON"
+                    offLabel="OFF"
+                    size="md"
+                    checked={config.MS_STORE_EDITION}
+                  />
+                </div>
               </Tooltip>
               <Text fw={500}>Friends Groups Detection</Text>
               <Button
@@ -481,7 +491,8 @@ export const Settings: React.FC = () => {
             opened={gameOverlayModalOpened}
             onClose={() => setGameOverlayModalOpened(false)}
             title="In-Game Matchup Overlay"
-            size="xl"
+            size="95%"
+            styles={{ content: { maxWidth: 1920 } }}
             centered
           >
             <Stack gap="sm">
@@ -508,6 +519,11 @@ export const Settings: React.FC = () => {
                   </Text>
                 </>
               )}
+              <Image
+                src="/overlay-example.webp"
+                alt="In-Game Matchup Overlay Example"
+                style={{ borderRadius: 7 }}
+              />
             </Stack>
           </Modal>
           <Divider />

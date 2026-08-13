@@ -10,18 +10,18 @@
   /* The window itself starts at the vertical middle of the game window, so the
      tables hang from the top of it. */
   justify-content: flex-start;
-  padding: 10px 12px;
+  padding: 12px 14px;
   color: #fff;
   font-family: "Segoe UI", Roboto, sans-serif;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   overflow: hidden;
 }
 
-/* Left table | empty gutter | right table. The gutter is a third of the panel so the
-   two teams read as separate tables rather than one wide grid. */
+/* Left table | empty gutter | right table. The gutter keeps the two teams reading as
+   separate tables rather than one wide grid. */
 .teams {
   display: grid;
-  grid-template-columns: 1fr 34% 1fr;
+  grid-template-columns: 1fr 30% 1fr;
   align-items: start;
   min-height: 0;
 }
@@ -31,10 +31,10 @@
 .column {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   min-width: 0;
-  padding: 8px 10px;
-  border-radius: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
   background: rgba(12, 14, 18, 0.72);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -44,8 +44,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 40px;
-  font-size: 22px;
+  padding-top: 48px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: 2px;
   color: rgba(255, 255, 255, 0.55);
@@ -55,48 +55,48 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  min-height: 22px;
+  gap: 7px;
+  min-height: 26px;
   margin-bottom: 2px;
 }
 
 .badge {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   line-height: 1;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 999px;
   color: #fff;
   white-space: nowrap;
 }
 
 .badgeElo {
-  font-size: 11px;
+  font-size: 13px;
   color: rgba(255, 255, 255, 0.75);
 }
 
-/* One player row: faction | flag | name | rank | elo | win% | W-L */
+/* One player row: group bar | faction | flag | name | rank | elo | win% | W-L */
 .row {
   display: grid;
-  grid-template-columns: 22px 20px 1fr 58px 48px 48px 66px;
-  gap: 8px;
+  grid-template-columns: 5px 26px 24px 1fr 70px 58px 58px 80px;
+  gap: 10px;
   align-items: center;
-  font-size: 14px;
-  padding: 3px 6px;
-  border-radius: 4px;
+  font-size: 17px;
+  padding: 4px 7px;
+  border-radius: 5px;
   background: rgba(255, 255, 255, 0.05);
 }
 
 .columnHeader {
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0;
-  padding-bottom: 4px;
+  padding-bottom: 5px;
 }
 
 .rowSelf {
@@ -104,15 +104,24 @@
   outline: 1px solid rgba(255, 214, 102, 0.45);
 }
 
+/* Friends-group marker in front of the name - the overlay counterpart of the coloured
+   bar on the player cards in the main window. Transparent when the player is not in a
+   detected group, so every row keeps the same alignment. */
+.groupIndicator {
+  width: 5px;
+  height: 22px;
+  border-radius: 10px;
+}
+
 .faction {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 
 .flag {
-  width: 18px;
-  height: 13px;
+  width: 22px;
+  height: 16px;
   object-fit: cover;
   border-radius: 2px;
 }

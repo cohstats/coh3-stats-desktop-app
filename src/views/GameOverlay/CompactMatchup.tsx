@@ -1,24 +1,8 @@
 import React from "react";
 import { CompactPlayerRow } from "./CompactPlayerRow";
 import { OverlayTeam } from "./types";
+import { BADGE_COLORS, badgeColor, playerGroupColor } from "./overlayColors";
 import classes from "./GameOverlay.module.css";
-
-/**
- * Same colour and label semantics as `ArrangedTeamCard`, but as plain CSS - the
- * overlay does not load Mantine's stylesheet, so the group colours are resolved to
- * the equivalent Mantine shade here.
- */
-const BADGE_COLORS: Record<string, string> = {
-  blue: "#228be6",
-  gray: "#868e96",
-  green: "#40c057",
-  orange: "#fd7e14",
-  violet: "#7950f2",
-  pink: "#e64980",
-  cyan: "#15aabf",
-};
-
-const badgeColor = (color?: string) => BADGE_COLORS[color ?? "gray"] ?? BADGE_COLORS.gray;
 
 const TeamBadges: React.FC<{ team: OverlayTeam }> = ({ team }) => {
   if (team.teamKind === "arranged") {
@@ -64,6 +48,7 @@ const ColumnHeader: React.FC = () => (
   <div className={`${classes.row} ${classes.columnHeader}`}>
     <span />
     <span />
+    <span />
     <span className={classes.name}>Player</span>
     <span className={classes.rank}>Rank</span>
     <span className={classes.elo}>ELO</span>
@@ -77,7 +62,13 @@ const TeamColumn: React.FC<{ team: OverlayTeam }> = ({ team }) => (
     <TeamBadges team={team} />
     <ColumnHeader />
     {team.players.map((player) => (
-      <CompactPlayerRow key={`${player.relicID}-${player.position}`} player={player} />
+      <CompactPlayerRow
+        key={`${player.relicID}-${player.position}`}
+        player={player}
+        groupColor={
+          team.teamKind === "friends" ? playerGroupColor(player.relicID, team.groups) : undefined
+        }
+      />
     ))}
   </div>
 );
