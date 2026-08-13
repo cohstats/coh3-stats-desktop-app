@@ -69,8 +69,10 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     let mut win_condition = "".to_string();
     let mut timestamp = "".to_string();
     let mut game_duration: u64 = 0;
-    let mut left: Vec<PlayerData> = Vec::new();
-    let mut right: Vec<PlayerData> = Vec::new();
+    // Buckets keyed by the log's own team index, not by screen position - the mapping to
+    // left/right happens once, at the end of this function.
+    let mut team_0: Vec<PlayerData> = Vec::new();
+    let mut team_1: Vec<PlayerData> = Vec::new();
     let mut player_name = "".to_string();
     let mut player_steam_id = "".to_string();
     let mut player_profile_id = "".to_string();
@@ -194,9 +196,9 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                                                                 rank: -1,
                                                             };
                                                             if side == 0 {
-                                                                left.push(player_data);
+                                                                team_0.push(player_data);
                                                             } else {
-                                                                right.push(player_data);
+                                                                team_1.push(player_data);
                                                             }
                                                             //println!("{}", position);
                                                             //println!("{}", faction);
@@ -242,10 +244,15 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
                                                                 steam_id: "".to_string(),
                                                                 rank: -1,
                                                             };
+                                                            // Same mapping as the human
+                                                            // branch above - the log's team
+                                                            // index means the same thing for
+                                                            // AI, so an AI teammate must land
+                                                            // in the same bucket as its human.
                                                             if side == 0 {
-                                                               right.push(player_data);
+                                                                team_0.push(player_data);
                                                             } else {
-                                                               left.push(player_data);
+                                                                team_1.push(player_data);
                                                             }
                                                             //println!("{}", position);
                                                             //println!("{}", faction);
@@ -288,11 +295,15 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     let game_state = determine_game_state(game_running, game_ended, game_loading, game_started);
 
     // Reverse player order for each team because we read it from the end of the log
-    left.reverse();
-    right.reverse();
+    team_0.reverse();
+    team_1.reverse();
 
-    let left_team = get_team_data(left);
-    let right_team = get_team_data(right);
+    // The log's team index is the opposite of what CoH3 shows: the game's loading screen
+    // puts team index 1 on the left and team index 0 on the right. Everything downstream
+    // (the Game view, the in-game overlay, the streamer overlay) renders left first, so
+    // the swap belongs here - once - rather than in each consumer.
+    let left_team = get_team_data(team_1);
+    let right_team = get_team_data(team_0);
 
     info!(
         "Log file parsed: Found {} players. Left team {:?}, right team {:?}.",
