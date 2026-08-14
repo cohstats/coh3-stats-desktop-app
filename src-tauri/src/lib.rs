@@ -36,6 +36,38 @@ struct Payload {
     cwd: String,
 }
 
+const OCCLUSION_FEATURE: &str = "CalculateNativeWinOcclusion";
+
+/// Adds `CalculateNativeWinOcclusion` to the `--disable-features` list of already existing
+/// WebView2 browser arguments, keeping every other argument untouched.
+#[allow(dead_code)]
+pub fn with_occlusion_disabled(existing_args: &str) -> String {
+    let mut args: Vec<String> = Vec::new();
+    let mut merged = false;
+
+    for arg in existing_args.split_whitespace() {
+        match arg.strip_prefix("--disable-features=") {
+            Some(features) => {
+                merged = true;
+                if features.split(',').any(|f| f == OCCLUSION_FEATURE) {
+                    args.push(arg.to_string());
+                } else if features.is_empty() {
+                    args.push(format!("--disable-features={}", OCCLUSION_FEATURE));
+                } else {
+                    args.push(format!("--disable-features={},{}", features, OCCLUSION_FEATURE));
+                }
+            }
+            None => args.push(arg.to_string()),
+        }
+    }
+
+    if !merged {
+        args.push(format!("--disable-features={}", OCCLUSION_FEATURE));
+    }
+
+    args.join(" ")
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     // Chromium skips producing frames for a window it believes is occluded. A
@@ -45,10 +77,14 @@ pub fn run() {
     // recalculated. Must be set before any WebView2 environment is created, and it is
     // process-wide - a per-window `additional_browser_args` would conflict with the
     // main window's environment.
+    // Whatever is already in the variable has to be preserved - `tauri-driver` passes the
+    // `--remote-debugging-port` the e2e tests rely on through it.
     #[cfg(target_os = "windows")]
     std::env::set_var(
         "WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS",
-        "--disable-features=CalculateNativeWinOcclusion",
+        with_occlusion_disabled(
+            &std::env::var("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS").unwrap_or_default(),
+        ),
     );
 
     // Add monitoring using sentry

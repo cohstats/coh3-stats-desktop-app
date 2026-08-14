@@ -28,3 +28,6 @@ dist-ssr
 
 .env
 /.ai/
+
+# msedgedriver downloaded to match the installed WebView2 runtime for e2e tests
+test/.edgedriver/

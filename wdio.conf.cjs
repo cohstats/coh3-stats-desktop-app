@@ -1,6 +1,7 @@
 const os = require('os')
 const path = require('path')
 const { spawn, spawnSync } = require('child_process')
+const { resolveEdgeDriver } = require('./test/setup-edgedriver.cjs')
 
 // keep track of the `tauri-driver` child process
 let tauriDriver
@@ -31,8 +32,8 @@ exports.config = {
   beforeSession: () =>
     (tauriDriver = spawn(
       path.resolve(os.homedir(), '.cargo', 'bin', 'tauri-driver'),
-      // We will most likely need to change this once it changes in our runner in GitHub Actions
-      ['--native-driver', path.resolve(__dirname, 'test' , process.env.GITHUB_ACTIONS ? 'msedgedriver146.exe' : 'msedgedriver146.exe')],
+      // the driver has to match the locally installed WebView2 runtime, see test/setup-edgedriver.cjs
+      ['--native-driver', resolveEdgeDriver()],
       { stdio: [null, process.stdout, process.stderr] }
     )),
 
