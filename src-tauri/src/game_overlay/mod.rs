@@ -129,6 +129,8 @@ fn show_window<R: Runtime>(window: &tauri::WebviewWindow<R>, state: &GameOverlay
         error!("Game overlay: show failed: {}", e);
         return;
     }
+    // `hwnd()` only exists on Windows; everything it feeds is a no-op elsewhere.
+    #[cfg(target_os = "windows")]
     if let Ok(hwnd) = window.hwnd() {
         // Re-apply after show(): the styles are what keep it click-through and
         // non-activating, and they must never be lost.
