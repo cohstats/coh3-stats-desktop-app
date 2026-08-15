@@ -160,4 +160,3 @@ pub fn get_battlegroup_info<R: Runtime>(handle: AppHandle<R>) -> Option<Value> {
     let data = lock_state_data(&state).clone();
     data
 }
-

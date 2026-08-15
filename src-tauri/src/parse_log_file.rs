@@ -328,7 +328,12 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     }
 }
 
-pub(crate) fn determine_game_state(running: bool, ended: bool, loading: bool, started: bool) -> GameState {
+pub(crate) fn determine_game_state(
+    running: bool,
+    ended: bool,
+    loading: bool,
+    started: bool,
+) -> GameState {
     if !running {
         return GameState::Closed;
     } else if ended || !loading {

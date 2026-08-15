@@ -9,7 +9,7 @@ fn scales_lengths_for_dpi() {
     assert_eq!(scale_for_dpi(100, 96), 100);
     assert_eq!(scale_for_dpi(100, 120), 125); // 125% scaling
     assert_eq!(scale_for_dpi(100, 144), 150); // 150% scaling
-    // A bogus DPI of 0 must not collapse the overlay to nothing
+                                              // A bogus DPI of 0 must not collapse the overlay to nothing
     assert_eq!(scale_for_dpi(100, 0), 100);
 }
 
@@ -47,7 +47,10 @@ fn clamps_are_dpi_scaled() {
 
 #[test]
 fn centres_inside_the_game_window() {
-    assert_eq!(centre_in(Bounds::new(0, 0, 1920, 1080), 1728, 518), (96, 281));
+    assert_eq!(
+        centre_in(Bounds::new(0, 0, 1920, 1080), 1728, 518),
+        (96, 281)
+    );
     // Odd leftovers round down, they never go negative
     assert_eq!(centre_in(Bounds::new(0, 0, 101, 101), 100, 100), (0, 0));
 }

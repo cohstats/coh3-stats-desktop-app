@@ -54,7 +54,10 @@ pub fn with_occlusion_disabled(existing_args: &str) -> String {
                 } else if features.is_empty() {
                     args.push(format!("--disable-features={}", OCCLUSION_FEATURE));
                 } else {
-                    args.push(format!("--disable-features={},{}", features, OCCLUSION_FEATURE));
+                    args.push(format!(
+                        "--disable-features={},{}",
+                        features, OCCLUSION_FEATURE
+                    ));
                 }
             }
             None => args.push(arg.to_string()),
@@ -80,12 +83,12 @@ pub fn run() {
     // Whatever is already in the variable has to be preserved - `tauri-driver` passes the
     // `--remote-debugging-port` the e2e tests rely on through it.
     #[cfg(target_os = "windows")]
-    std::env::set_var(
-        "WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS",
-        with_occlusion_disabled(
-            &std::env::var("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS").unwrap_or_default(),
-        ),
-    );
+    {
+        let existing = std::env::var("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS").unwrap_or_default();
+        let merged = with_occlusion_disabled(&existing);
+        eprintln!("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS: \"{existing}\" -> \"{merged}\"");
+        std::env::set_var("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", merged);
+    }
 
     // Add monitoring using sentry
     let _guard = sentry::init(("https://5a9a5418c06b995fe1c6221c83451612@o4504995920543744.ingest.sentry.io/4506676182646784", sentry::ClientOptions {

@@ -1,5 +1,6 @@
-use crate::parse_log_file::{parse_log_file_reverse, GameState, GameType, PlayerData, TeamData, TeamSide};
-
+use crate::parse_log_file::{
+    parse_log_file_reverse, GameState, GameType, PlayerData, TeamData, TeamSide,
+};
 
 // ============================================================================
 // UNIT TESTS - Testing individual helper functions
@@ -190,7 +191,10 @@ fn test_parse_log_file_reverse_file_1() {
     assert_eq!(result.right.players.len(), 4);
 
     // Verify specific player data for the main player (Wolfsindis)
-    let wolfsindis_player = result.right.players.iter()
+    let wolfsindis_player = result
+        .right
+        .players
+        .iter()
         .find(|p| p.name == "Wolfsindis")
         .expect("Should find Wolfsindis in right team");
 
@@ -203,43 +207,92 @@ fn test_parse_log_file_reverse_file_1() {
 
     // Verify all players are human (no AI)
     for player in &result.left.players {
-        assert_eq!(player.ai, false, "Left team player {} should not be AI", player.name);
+        assert_eq!(
+            player.ai, false,
+            "Left team player {} should not be AI",
+            player.name
+        );
     }
     for player in &result.right.players {
-        assert_eq!(player.ai, false, "Right team player {} should not be AI", player.name);
+        assert_eq!(
+            player.ai, false,
+            "Right team player {} should not be AI",
+            player.name
+        );
     }
 
     // Verify faction distribution on left team (Allies)
-    let left_factions: Vec<&str> = result.left.players.iter().map(|p| p.faction.as_str()).collect();
+    let left_factions: Vec<&str> = result
+        .left
+        .players
+        .iter()
+        .map(|p| p.faction.as_str())
+        .collect();
     assert!(left_factions.contains(&"americans"));
     assert!(left_factions.contains(&"british_africa"));
 
     // Verify faction distribution on right team (Axis)
-    let right_factions: Vec<&str> = result.right.players.iter().map(|p| p.faction.as_str()).collect();
+    let right_factions: Vec<&str> = result
+        .right
+        .players
+        .iter()
+        .map(|p| p.faction.as_str())
+        .collect();
     assert!(right_factions.contains(&"germans"));
     assert!(right_factions.contains(&"afrika_korps"));
 
     // Verify all players have valid relic IDs (non-empty for human players)
     for player in &result.left.players {
-        assert!(!player.relic_id.is_empty(), "Player {} should have a relic ID", player.name);
+        assert!(
+            !player.relic_id.is_empty(),
+            "Player {} should have a relic ID",
+            player.name
+        );
     }
     for player in &result.right.players {
-        assert!(!player.relic_id.is_empty(), "Player {} should have a relic ID", player.name);
+        assert!(
+            !player.relic_id.is_empty(),
+            "Player {} should have a relic ID",
+            player.name
+        );
     }
 
     // Verify specific known players from the log
     let expected_left_players = vec!["Treiben", "McLovin", "既定之天命", "蹦嚓蹦嚓蹦嚓"];
-    let expected_right_players = vec!["Wolfsindis", "Le mérovingien", "BLITZKRIEG BOB", "joker95174"];
+    let expected_right_players = vec![
+        "Wolfsindis",
+        "Le mérovingien",
+        "BLITZKRIEG BOB",
+        "joker95174",
+    ];
 
-    let left_names: Vec<&str> = result.left.players.iter().map(|p| p.name.as_str()).collect();
-    let right_names: Vec<&str> = result.right.players.iter().map(|p| p.name.as_str()).collect();
+    let left_names: Vec<&str> = result
+        .left
+        .players
+        .iter()
+        .map(|p| p.name.as_str())
+        .collect();
+    let right_names: Vec<&str> = result
+        .right
+        .players
+        .iter()
+        .map(|p| p.name.as_str())
+        .collect();
 
     for expected_name in expected_left_players {
-        assert!(left_names.contains(&expected_name), "Left team should contain player {}", expected_name);
+        assert!(
+            left_names.contains(&expected_name),
+            "Left team should contain player {}",
+            expected_name
+        );
     }
 
     for expected_name in expected_right_players {
-        assert!(right_names.contains(&expected_name), "Right team should contain player {}", expected_name);
+        assert!(
+            right_names.contains(&expected_name),
+            "Right team should contain player {}",
+            expected_name
+        );
     }
 }
 
@@ -298,14 +351,26 @@ fn test_parse_log_file_reverse_file_2() {
 
     // Verify all players are human
     for player in &result.left.players {
-        assert_eq!(player.ai, false, "Left team player {} should not be AI", player.name);
+        assert_eq!(
+            player.ai, false,
+            "Left team player {} should not be AI",
+            player.name
+        );
     }
     for player in &result.right.players {
-        assert_eq!(player.ai, false, "Right team player {} should not be AI", player.name);
+        assert_eq!(
+            player.ai, false,
+            "Right team player {} should not be AI",
+            player.name
+        );
     }
 
     // Verify faction assignment is correct for team sides
-    assert!(result.left.players.iter().any(|p| p.faction == "british_africa"));
+    assert!(result
+        .left
+        .players
+        .iter()
+        .any(|p| p.faction == "british_africa"));
     assert!(result.right.players.iter().any(|p| p.faction == "germans"));
 }
 
@@ -410,21 +475,47 @@ fn test_team_composition() {
 
     // Verify all players are human (no AI)
     for player in &result.left.players {
-        assert_eq!(player.ai, false, "Left team player {} should not be AI", player.name);
-        assert!(!player.relic_id.is_empty(), "Player {} should have a relic ID", player.name);
+        assert_eq!(
+            player.ai, false,
+            "Left team player {} should not be AI",
+            player.name
+        );
+        assert!(
+            !player.relic_id.is_empty(),
+            "Player {} should have a relic ID",
+            player.name
+        );
     }
     for player in &result.right.players {
-        assert_eq!(player.ai, false, "Right team player {} should not be AI", player.name);
-        assert!(!player.relic_id.is_empty(), "Player {} should have a relic ID", player.name);
+        assert_eq!(
+            player.ai, false,
+            "Right team player {} should not be AI",
+            player.name
+        );
+        assert!(
+            !player.relic_id.is_empty(),
+            "Player {} should have a relic ID",
+            player.name
+        );
     }
 
     // Verify faction distribution on left team (Axis)
-    let left_factions: Vec<&str> = result.left.players.iter().map(|p| p.faction.as_str()).collect();
+    let left_factions: Vec<&str> = result
+        .left
+        .players
+        .iter()
+        .map(|p| p.faction.as_str())
+        .collect();
     assert!(left_factions.contains(&"germans"));
     assert!(left_factions.contains(&"afrika_korps"));
 
     // Verify faction distribution on right team (Allies)
-    let right_factions: Vec<&str> = result.right.players.iter().map(|p| p.faction.as_str()).collect();
+    let right_factions: Vec<&str> = result
+        .right
+        .players
+        .iter()
+        .map(|p| p.faction.as_str())
+        .collect();
     assert!(right_factions.contains(&"americans"));
     assert!(right_factions.contains(&"british_africa"));
 
@@ -432,19 +523,40 @@ fn test_team_composition() {
     let expected_left_players = vec!["Brothers in Trenches", "pagep", "白yu黑", "K21"];
     let expected_right_players = vec!["老肉片", "Saving Ryan", "hhh3350", "Smiley"];
 
-    let left_names: Vec<&str> = result.left.players.iter().map(|p| p.name.as_str()).collect();
-    let right_names: Vec<&str> = result.right.players.iter().map(|p| p.name.as_str()).collect();
+    let left_names: Vec<&str> = result
+        .left
+        .players
+        .iter()
+        .map(|p| p.name.as_str())
+        .collect();
+    let right_names: Vec<&str> = result
+        .right
+        .players
+        .iter()
+        .map(|p| p.name.as_str())
+        .collect();
 
     for expected_name in expected_left_players {
-        assert!(left_names.contains(&expected_name), "Left team should contain player {}", expected_name);
+        assert!(
+            left_names.contains(&expected_name),
+            "Left team should contain player {}",
+            expected_name
+        );
     }
 
     for expected_name in expected_right_players {
-        assert!(right_names.contains(&expected_name), "Right team should contain player {}", expected_name);
+        assert!(
+            right_names.contains(&expected_name),
+            "Right team should contain player {}",
+            expected_name
+        );
     }
 
     // Verify the main player (pagep) is in the left team
-    let pagep_player = result.left.players.iter()
+    let pagep_player = result
+        .left
+        .players
+        .iter()
         .find(|p| p.name == "pagep")
         .expect("Should find pagep in left team");
 
@@ -491,42 +603,51 @@ fn test_team_composition_mixed_team() {
     assert_eq!(result.right.players.len(), 2);
 
     // Verify left team player (AI)
-    assert_eq!(result.left.players[0], PlayerData {
-        ai: true,
-        faction: "germans_campaign".to_string(),
-        relic_id: "-1".to_string(),
-        name: "CPU - 보통".to_string(),
-        position: 1,
-        steam_id: "".to_string(),
-        rank: -1,
-    });
+    assert_eq!(
+        result.left.players[0],
+        PlayerData {
+            ai: true,
+            faction: "germans_campaign".to_string(),
+            relic_id: "-1".to_string(),
+            name: "CPU - 보통".to_string(),
+            position: 1,
+            steam_id: "".to_string(),
+            rank: -1,
+        }
+    );
 
     // Verify right team players (Human + AI), in the game's own slot order
-    assert_eq!(result.right.players[0], PlayerData {
-        ai: false,
-        faction: "americans_campaign".to_string(),
-        relic_id: "399635".to_string(),
-        name: "Baskervilles Blackdog".to_string(),
-        position: 0,
-        steam_id: "".to_string(),
-        rank: -1,
-    });
+    assert_eq!(
+        result.right.players[0],
+        PlayerData {
+            ai: false,
+            faction: "americans_campaign".to_string(),
+            relic_id: "399635".to_string(),
+            name: "Baskervilles Blackdog".to_string(),
+            position: 0,
+            steam_id: "".to_string(),
+            rank: -1,
+        }
+    );
 
-    assert_eq!(result.right.players[1], PlayerData {
-        ai: true,
-        faction: "americans_campaign".to_string(),
-        relic_id: "-1".to_string(),
-        name: "CPU - 보통".to_string(),
-        position: 2,
-        steam_id: "".to_string(),
-        rank: -1,
-    });
+    assert_eq!(
+        result.right.players[1],
+        PlayerData {
+            ai: true,
+            faction: "americans_campaign".to_string(),
+            relic_id: "-1".to_string(),
+            name: "CPU - 보통".to_string(),
+            position: 2,
+            steam_id: "".to_string(),
+            rank: -1,
+        }
+    );
 
     // Verify AI vs Human distribution
-    let total_ai = result.left.players.iter().filter(|p| p.ai).count() +
-                   result.right.players.iter().filter(|p| p.ai).count();
-    let total_human = result.left.players.iter().filter(|p| !p.ai).count() +
-                      result.right.players.iter().filter(|p| !p.ai).count();
+    let total_ai = result.left.players.iter().filter(|p| p.ai).count()
+        + result.right.players.iter().filter(|p| p.ai).count();
+    let total_human = result.left.players.iter().filter(|p| !p.ai).count()
+        + result.right.players.iter().filter(|p| !p.ai).count();
 
     assert_eq!(total_ai, 2);
     assert_eq!(total_human, 1);
@@ -546,7 +667,10 @@ fn test_team_composition_mixed_team() {
     }
 
     // Verify campaign factions are used
-    let all_factions: Vec<&str> = result.left.players.iter()
+    let all_factions: Vec<&str> = result
+        .left
+        .players
+        .iter()
         .chain(result.right.players.iter())
         .map(|p| p.faction.as_str())
         .collect();

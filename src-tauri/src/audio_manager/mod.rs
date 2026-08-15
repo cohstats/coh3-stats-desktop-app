@@ -99,7 +99,10 @@ pub fn update_mute_settings<R: Runtime>(
     let state = handle.state::<AudioManagerState>();
 
     {
-        let mut setting = state.mute_only_out_of_game.lock().map_err(|e| e.to_string())?;
+        let mut setting = state
+            .mute_only_out_of_game
+            .lock()
+            .map_err(|e| e.to_string())?;
         *setting = mute_only_out_of_game;
     }
     {
@@ -146,4 +149,3 @@ pub fn update_mute_settings<R: Runtime>(
 ) -> Result<(), String> {
     Ok(())
 }
-

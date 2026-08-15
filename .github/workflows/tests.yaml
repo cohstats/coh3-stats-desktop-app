@@ -141,8 +141,14 @@ jobs:
           $exe = "src-tauri/target/release/Grenadier - COH3 Companion.exe"
           $env:WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS = "--remote-debugging-port=9222"
           $env:WEBVIEW2_USER_DATA_FOLDER = "$env:RUNNER_TEMP\wv2"
-          $proc = Start-Process -FilePath $exe -PassThru
+          Write-Host "=== WebView2 policies"
+          Get-ChildItem -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Edge' -Recurse -ErrorAction SilentlyContinue |
+            ForEach-Object { Write-Host $_.Name }
+          Get-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\*' -ErrorAction SilentlyContinue | Format-List | Out-String | Write-Host
+          $proc = Start-Process -FilePath $exe -PassThru -NoNewWindow -RedirectStandardError "$env:RUNNER_TEMP\app-stderr.txt"
           Start-Sleep -Seconds 25
+          Write-Host "=== app stderr"
+          Get-Content "$env:RUNNER_TEMP\app-stderr.txt" -ErrorAction SilentlyContinue | Write-Host
           Write-Host "=== process alive: $(-not $proc.HasExited)"
           if ($proc.HasExited) { Write-Host "=== exit code: $($proc.ExitCode)" }
           try {

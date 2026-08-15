@@ -75,7 +75,10 @@ pub fn run_unified_monitor<R: Runtime>(
         match (current_game_pid, game_pid) {
             // Game just started
             (None, Some(pid)) => {
-                info!("Game process detected: {} (PID: {})", GAME_PROCESS_NAME, pid);
+                info!(
+                    "Game process detected: {} (PID: {})",
+                    GAME_PROCESS_NAME, pid
+                );
                 current_game_pid = Some(pid);
                 currently_muted = false;
                 background_since = None;
@@ -116,7 +119,11 @@ pub fn run_unified_monitor<R: Runtime>(
                 // Check if we should skip muting based on settings
                 let should_skip_muting = {
                     if let Some(state) = handle.try_state::<AudioManagerState>() {
-                        let mute_only_out_of_game = state.mute_only_out_of_game.lock().map(|v| *v).unwrap_or(false);
+                        let mute_only_out_of_game = state
+                            .mute_only_out_of_game
+                            .lock()
+                            .map(|v| *v)
+                            .unwrap_or(false);
                         let is_in_game = state.is_in_game.lock().map(|v| *v).unwrap_or(false);
                         mute_only_out_of_game && is_in_game
                     } else {
@@ -204,4 +211,3 @@ pub fn run_unified_monitor<R: Runtime>(
     info!("Unified monitor stopped");
     Ok(())
 }
-
