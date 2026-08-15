@@ -288,6 +288,27 @@ class TestHelpers {
   }
 
   /**
+   * Point the session at the app's main window.
+   *
+   * The app also opens a hidden webview for the in-game overlay and the driver attaches to
+   * whichever of the two it sees first, so a fresh session can start on the overlay - where
+   * none of the app's UI exists. wdio.conf.cjs does this for the initial session; call it
+   * again after every browser.reloadSession().
+   */
+  async switchToMainWindow() {
+    for (const handle of await browser.getWindowHandles()) {
+      await browser.switchToWindow(handle);
+      const label = await browser.execute(
+        () => window.__TAURI_INTERNALS__?.metadata?.currentWindow?.label,
+      );
+      if (label === "main") {
+        return;
+      }
+    }
+    throw new Error('No webview with the "main" window label - cannot run the tests');
+  }
+
+  /**
    * Wait for OBS overlay server to be running
    * @param {number} maxWaitTime - Maximum time to wait in ms
    * @param {number} pollInterval - Interval between checks in ms

@@ -38,58 +38,74 @@ struct Payload {
 
 const OCCLUSION_FEATURE: &str = "CalculateNativeWinOcclusion";
 
-/// Adds `CalculateNativeWinOcclusion` to the `--disable-features` list of already existing
-/// WebView2 browser arguments, keeping every other argument untouched.
+/// What `wry` passes to WebView2 when a webview does not set `additional_browser_args`.
+/// Setting the argument replaces this default, so it has to be repeated here.
+/// See `wry::webview2::InnerWebView::create_environment`.
+const WRY_DEFAULT_BROWSER_ARGS: &str =
+    "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --autoplay-policy=no-user-gesture-required";
+
+/// Adds `CalculateNativeWinOcclusion` to the `--disable-features` list of the given WebView2
+/// browser arguments, keeping every other argument untouched. Multiple `--disable-features`
+/// arguments are collapsed into one - Chromium only honours the last occurrence.
 #[allow(dead_code)]
 pub fn with_occlusion_disabled(existing_args: &str) -> String {
     let mut args: Vec<String> = Vec::new();
-    let mut merged = false;
+    let mut features: Vec<String> = Vec::new();
+    let mut features_at: Option<usize> = None;
 
     for arg in existing_args.split_whitespace() {
         match arg.strip_prefix("--disable-features=") {
-            Some(features) => {
-                merged = true;
-                if features.split(',').any(|f| f == OCCLUSION_FEATURE) {
-                    args.push(arg.to_string());
-                } else if features.is_empty() {
-                    args.push(format!("--disable-features={}", OCCLUSION_FEATURE));
-                } else {
-                    args.push(format!(
-                        "--disable-features={},{}",
-                        features, OCCLUSION_FEATURE
-                    ));
+            Some(list) => {
+                if features_at.is_none() {
+                    features_at = Some(args.len());
+                    args.push(String::new()); // placeholder, filled in below
+                }
+                for feature in list.split(',').filter(|f| !f.is_empty()) {
+                    if !features.iter().any(|f| f == feature) {
+                        features.push(feature.to_string());
+                    }
                 }
             }
             None => args.push(arg.to_string()),
         }
     }
 
-    if !merged {
-        args.push(format!("--disable-features={}", OCCLUSION_FEATURE));
+    if !features.iter().any(|f| f == OCCLUSION_FEATURE) {
+        features.push(OCCLUSION_FEATURE.to_string());
+    }
+
+    let disable_features = format!("--disable-features={}", features.join(","));
+    match features_at {
+        Some(index) => args[index] = disable_features,
+        None => args.push(disable_features),
     }
 
     args.join(" ")
 }
 
+/// The browser arguments every webview of this app is created with.
+///
+/// Elevated apps - which is what every process on a GitHub Actions Windows runner is -
+/// ignore `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS`, but they do honour arguments passed
+/// through `CoreWebView2EnvironmentOptions`. `tauri-driver` hands the e2e session its
+/// `--remote-debugging-port` through that variable, so it is read here and merged into the
+/// arguments instead of being left to WebView2.
+/// See https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/webview-features-flags
+///
+/// Every webview shares one WebView2 environment, so all of them have to be built with the
+/// same string - see https://github.com/tauri-apps/tauri/issues/11144.
+#[cfg(target_os = "windows")]
+pub fn webview_browser_args() -> String {
+    let from_env = std::env::var("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS").unwrap_or_default();
+    // Chromium skips producing frames for a window it believes is occluded. A transparent,
+    // always-on-top overlay sitting over a borderless-fullscreen game is exactly the case its
+    // heuristic gets wrong: the game window counts as covering us, so the overlay shows up
+    // blank until some input forces the occlusion state to be recalculated.
+    with_occlusion_disabled(&format!("{} {}", WRY_DEFAULT_BROWSER_ARGS, from_env))
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    // Chromium skips producing frames for a window it believes is occluded. A
-    // transparent, always-on-top overlay sitting over a borderless-fullscreen game is
-    // exactly the case its heuristic gets wrong: the game window counts as covering us,
-    // so the overlay shows up blank until some input forces the occlusion state to be
-    // recalculated. Must be set before any WebView2 environment is created, and it is
-    // process-wide - a per-window `additional_browser_args` would conflict with the
-    // main window's environment.
-    // Whatever is already in the variable has to be preserved - `tauri-driver` passes the
-    // `--remote-debugging-port` the e2e tests rely on through it.
-    #[cfg(target_os = "windows")]
-    {
-        let existing = std::env::var("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS").unwrap_or_default();
-        let merged = with_occlusion_disabled(&existing);
-        eprintln!("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS: \"{existing}\" -> \"{merged}\"");
-        std::env::set_var("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", merged);
-    }
-
     // Add monitoring using sentry
     let _guard = sentry::init(("https://5a9a5418c06b995fe1c6221c83451612@o4504995920543744.ingest.sentry.io/4506676182646784", sentry::ClientOptions {
       release: sentry::release_name!(),
@@ -191,18 +207,66 @@ pub fn run() {
             error!("Failed to start app: {}", e);
             process::exit(1);
         })
-        .run(|app_handle, event| {
-            if let tauri::RunEvent::Exit = event {
+        .run(|app_handle, event| match event {
+            tauri::RunEvent::Exit => {
                 // Ensure game audio is unmuted when app exits
                 info!("App exiting, ensuring game audio is unmuted");
                 audio_manager::cleanup_on_exit(app_handle);
                 // Never leave the overlay on screen after the app is gone
                 game_overlay::hide(app_handle);
             }
+            // The overlay window outlives the main one and would keep the process running
+            // with nothing on screen - closing the main window has to close the app.
+            tauri::RunEvent::WindowEvent {
+                label,
+                event: tauri::WindowEvent::Destroyed,
+                ..
+            } if label == "main" => {
+                info!("Main window closed, exiting");
+                app_handle.exit(0);
+            }
+            _ => {}
         });
 }
 
+/// Creates the window declared in `tauri.conf.json`. It is built here instead of by Tauri
+/// (`"create": false`) so that the WebView2 browser arguments can be passed in - see
+/// [`webview_browser_args`].
+fn create_main_window(app: &tauri::App) -> Result<(), Box<dyn std::error::Error>> {
+    let config = app
+        .config()
+        .app
+        .windows
+        .iter()
+        .find(|w| w.label == "main")
+        .cloned()
+        .ok_or("Main window is missing from tauri.conf.json")?;
+
+    #[allow(unused_mut)]
+    let mut builder = tauri::WebviewWindowBuilder::from_config(app.handle(), &config)?;
+
+    #[cfg(target_os = "windows")]
+    {
+        let args = webview_browser_args();
+        info!("WebView2 browser arguments: {}", args);
+        builder = builder.additional_browser_args(&args);
+    }
+
+    builder.build()?;
+    Ok(())
+}
+
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
+    // Nothing may touch the main window before this - it does not exist until now.
+    if let Err(e) = create_main_window(app) {
+        error!("Failed to create the main window: {}", e);
+        sentry::capture_message(
+            &format!("Main window creation error: {}", e),
+            sentry::Level::Error,
+        );
+        return Err(e);
+    }
+
     let handle = app.handle();
 
     // Initialize updater plugin for desktop platforms

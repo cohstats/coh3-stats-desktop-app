@@ -117,10 +117,7 @@ jobs:
 
       # If the test fails with invalid MS Edge browser it's highly possible a bug at GitHub
       # https://github.com/actions/runner-images/issues/9538
-      # The WebView2 runtime preinstalled on the runner image ignores
-      # WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS, which is how tauri-driver hands the
-      # `--remote-debugging-port` to the app - without it no webdriver session can be created.
-      # See https://github.com/actions/runner-images/issues/9538
+      # Keeps the runtime in sync with the msedgedriver the e2e tests download.
       - name: Update to Evergreen WebView2 Runtime
         if: runner.os == 'Windows'
         shell: pwsh
@@ -132,39 +129,6 @@ jobs:
           Start-Process -FilePath "$env:RUNNER_TEMP\MicrosoftEdgeWebview2Setup.exe" -ArgumentList '/silent', '/install' -Wait
           $after = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction SilentlyContinue).pv
           Write-Host "WebView2 runtime after update: $after"
-
-      # TEMPORARY: diagnose why the webdriver session cannot be created on the runner
-      - name: Debug app startup
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          $exe = "src-tauri/target/release/Grenadier - COH3 Companion.exe"
-          $env:WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS = "--remote-debugging-port=9222"
-          $env:WEBVIEW2_USER_DATA_FOLDER = "$env:RUNNER_TEMP\wv2"
-          Write-Host "=== WebView2 policies"
-          Get-ChildItem -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Edge' -Recurse -ErrorAction SilentlyContinue |
-            ForEach-Object { Write-Host $_.Name }
-          Get-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\*' -ErrorAction SilentlyContinue | Format-List | Out-String | Write-Host
-          $proc = Start-Process -FilePath $exe -PassThru -NoNewWindow -RedirectStandardError "$env:RUNNER_TEMP\app-stderr.txt"
-          Start-Sleep -Seconds 25
-          Write-Host "=== app stderr"
-          Get-Content "$env:RUNNER_TEMP\app-stderr.txt" -ErrorAction SilentlyContinue | Write-Host
-          Write-Host "=== process alive: $(-not $proc.HasExited)"
-          if ($proc.HasExited) { Write-Host "=== exit code: $($proc.ExitCode)" }
-          try {
-            $r = Invoke-WebRequest -Uri 'http://127.0.0.1:9222/json/version' -UseBasicParsing -TimeoutSec 5
-            Write-Host "=== devtools: $($r.Content)"
-          } catch {
-            Write-Host "=== devtools not reachable: $($_.Exception.Message)"
-          }
-          Write-Host "=== webview command lines"
-          Get-CimInstance Win32_Process -Filter "Name='msedgewebview2.exe'" | ForEach-Object { $_.CommandLine }
-          Write-Host "=== app logs"
-          Get-ChildItem -Path $env:APPDATA, $env:LOCALAPPDATA -Recurse -Filter '*.log' -ErrorAction SilentlyContinue |
-            Where-Object { $_.FullName -like '*coh3stats*' } |
-            ForEach-Object { Write-Host "--- $($_.FullName)"; Get-Content $_.FullName -Tail 80 }
-          Stop-Process -Id $proc.Id -Force -ErrorAction SilentlyContinue
-          Get-Process msedgewebview2 -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 
       - name: Run e2e tests
         if: runner.os == 'Windows'

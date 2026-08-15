@@ -69,6 +69,8 @@ pub fn create_overlay_window<R: Runtime>(app: &AppHandle<R>) {
     .focused(false)
     .visible(false)
     .shadow(false)
+    // Has to match the main window - all webviews share one WebView2 environment.
+    .additional_browser_args(&crate::webview_browser_args())
     .build()
     {
         Ok(w) => w,
