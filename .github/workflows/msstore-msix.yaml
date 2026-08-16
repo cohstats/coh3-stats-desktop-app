@@ -10,17 +10,17 @@ jobs:
   build-msix:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.1.0
 
       - name: Setup node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v6.5.0
         with:
           # Node 24: tauri-windows-bundle crashes on Node 22 with
           # ERR_REQUIRE_CYCLE_MODULE (require(esm) cycle in one of its deps).
-          node-version: 24
+          node-version: 24.19.0
 
       - name: Cache node modules
-        uses: actions/cache@v4
+        uses: actions/cache@v4.3.0
         env:
           cache-name: cache-node-modules-v1
         with:
@@ -36,7 +36,7 @@ jobs:
           targets: x86_64-pc-windows-msvc
 
       - name: Rust cache
-        uses: swatinem/rust-cache@v2
+        uses: swatinem/rust-cache@v2.9.2
         with:
           workspaces: "./src-tauri -> target"
 
@@ -63,7 +63,7 @@ jobs:
           VITE_DISABLE_UPDATER: "true"
 
       - name: Upload MSIX artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: msix-x64-${{ steps.version.outputs.version }}
           # x64 only - the plain .msix is what gets uploaded to Partner Center.

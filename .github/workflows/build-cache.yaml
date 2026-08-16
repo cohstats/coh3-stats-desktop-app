@@ -17,14 +17,14 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.1.0
       - name: Setup node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v6.5.0
         with:
-          node-version: 22
+          node-version: 22.23.2
 
       - name: Cache node modules
-        uses: actions/cache@v4
+        uses: actions/cache@v4.3.0
         env:
           cache-name: cache-node-modules-v1
         with:
@@ -48,14 +48,14 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.1.0
       - name: Setup node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v6.5.0
         with:
-          node-version: 22
+          node-version: 22.23.2
 
       - name: Cache node modules
-        uses: actions/cache@v4
+        uses: actions/cache@v4.3.0
         env:
           cache-name: cache-node-modules-v1
         with:
@@ -69,7 +69,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Rust cache
-        uses: swatinem/rust-cache@v2
+        uses: swatinem/rust-cache@v2.9.2
         with:
           workspaces: './src-tauri -> target'
 
@@ -77,7 +77,7 @@ jobs:
         run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
 
       - name: Build tauri App
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v0.6.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
