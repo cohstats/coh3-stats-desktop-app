@@ -83,7 +83,7 @@
     "postcss-simple-vars": "7.0.1",
     "prettier": "3.8.1",
     "typescript": "5.9.3",
-    "vite": "7.3.2",
+    "vite": "7.3.5",
     "@choochmeque/tauri-windows-bundle": "^0.1.28"
   }
 }
