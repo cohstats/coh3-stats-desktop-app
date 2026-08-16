@@ -1,0 +1,29 @@
+{
+  "identifier": "petrvecera.Grenadier-COH3Companion",
+  "publisher": "CN=2559744E-EB16-4B8E-9001-BD9B7A70DF34",
+  "publisherDisplayName": "petrvecera",
+  "capabilities": {
+    "general": ["internetClient"]
+  },
+  "extensions": {
+    "shareTarget": false,
+    "fileAssociations": [],
+    "protocolHandlers": []
+  },
+  "signing": {
+    "pfx": null,
+    "pfxPassword": null
+  },
+  "resourceIndex": {
+    "enabled": true,
+    "keepConfig": false
+  },
+  "assets": {
+    "variants": {
+      "scale": true,
+      "targetSize": true,
+      "unplated": true,
+      "lightUnplated": true
+    }
+  }
+}

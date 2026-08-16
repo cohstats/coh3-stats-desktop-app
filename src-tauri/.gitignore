@@ -2,4 +2,13 @@
 # will have compiled files and executables
 /target/
 
-/gen/
+# Tauri generated files. gen/windows holds the hand-maintained MSIX packaging
+# config (bundle.config.json, AppxManifest.xml.template, Assets) and must be committed.
+/gen/*
+!/gen/windows/
+
+# Created at build time by the Microsoft Store workflow
+# (a copy of tauri.microsoftstore.conf.json). Never commit it - Tauri auto-merges
+# tauri.windows.conf.json into every Windows build, which would disable the updater
+# in the regular MSI release.
+/tauri.windows.conf.json

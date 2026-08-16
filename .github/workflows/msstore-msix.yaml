@@ -1,0 +1,73 @@
+name: "Microsoft Store MSIX"
+
+# Manually triggered build that produces an unsigned MSIX package (x64) which
+# can be uploaded to Partner Center (the Store re-signs the package on submission).
+# See MICROSOFT_STORE_BUILD.md for the full submission checklist.
+on:
+  workflow_dispatch:
+
+jobs:
+  build-msix:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          # Node 24: tauri-windows-bundle crashes on Node 22 with
+          # ERR_REQUIRE_CYCLE_MODULE (require(esm) cycle in one of its deps).
+          node-version: 24
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules-v1
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "./src-tauri -> target"
+
+      - name: Yarn install FE dependencies
+        run: yarn --prefer-offline --frozen-lockfile --network-timeout 1000000 install
+
+      # tauri-windows-bundle only merges src-tauri/tauri.windows.conf.json over
+      # tauri.conf.json (it has no --config flag). We copy the Store config in at
+      # build time so the regular MSI release build keeps the auto-updater.
+      - name: Apply Microsoft Store Tauri config
+        run: Copy-Item src-tauri/tauri.microsoftstore.conf.json src-tauri/tauri.windows.conf.json -Force
+        shell: powershell
+
+      - name: Read app version
+        id: version
+        run: |
+          $version = (Get-Content package.json | ConvertFrom-Json).version
+          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+        shell: powershell
+
+      - name: Build MSIX package
+        run: yarn tauri:windows:build --arch x64 --runner yarn --verbose
+        env:
+          VITE_DISABLE_UPDATER: "true"
+
+      - name: Upload MSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: msix-x64-${{ steps.version.outputs.version }}
+          # x64 only - the plain .msix is what gets uploaded to Partner Center.
+          # The tool also emits a .msixbundle, which is only useful for multiarch.
+          path: src-tauri/target/msix/*.msix
+          if-no-files-found: error
+          retention-days: 30
