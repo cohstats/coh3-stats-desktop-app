@@ -1,0 +1,87 @@
+import React from "react";
+import { CompactPlayerRow } from "./CompactPlayerRow";
+import { OverlayTeam } from "./types";
+import { BADGE_COLORS, badgeColor, playerGroupColor } from "./overlayColors";
+import classes from "./GameOverlay.module.css";
+
+const TeamBadges: React.FC<{ team: OverlayTeam }> = ({ team }) => {
+  if (team.teamKind === "arranged") {
+    return (
+      <div className={classes.badges}>
+        <span className={classes.badge} style={{ background: BADGE_COLORS.blue }}>
+          Arranged Team
+        </span>
+        {team.teamElo !== undefined && (
+          <span className={classes.badgeElo}>ELO {team.teamElo}</span>
+        )}
+      </div>
+    );
+  }
+
+  if (team.teamKind === "friends" && team.groups.length > 0) {
+    return (
+      <div className={classes.badges}>
+        {team.groups.map((group, index) => (
+          <span
+            key={index}
+            className={classes.badge}
+            style={{ background: badgeColor(group.color) }}
+          >
+            Friends Group
+          </span>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className={classes.badges}>
+      <span className={classes.badge} style={{ background: BADGE_COLORS.gray }}>
+        Random Team
+      </span>
+    </div>
+  );
+};
+
+/** Labels the numeric columns so ELO / win rate / W-L are not guesswork. */
+const ColumnHeader: React.FC = () => (
+  <div className={`${classes.row} ${classes.columnHeader}`}>
+    <span />
+    <span />
+    <span />
+    <span className={classes.name}>Player</span>
+    <span className={classes.rank}>Rank</span>
+    <span className={classes.elo}>ELO</span>
+    <span className={classes.winRate}>Win %</span>
+    <span className={classes.record}>W / L</span>
+  </div>
+);
+
+const TeamColumn: React.FC<{ team: OverlayTeam }> = ({ team }) => (
+  <div className={classes.column}>
+    <TeamBadges team={team} />
+    <ColumnHeader />
+    {team.players.map((player) => (
+      <CompactPlayerRow
+        key={`${player.relicID}-${player.position}`}
+        player={player}
+        groupColor={
+          team.teamKind === "friends" ? playerGroupColor(player.relicID, team.groups) : undefined
+        }
+      />
+    ))}
+  </div>
+);
+
+export const CompactMatchup: React.FC<{
+  left: OverlayTeam;
+  right: OverlayTeam;
+}> = ({ left, right }) => (
+  <div className={classes.panel}>
+    <div className={classes.teams}>
+      <TeamColumn team={left} />
+      <div className={classes.versus}>VS</div>
+      <TeamColumn team={right} />
+    </div>
+  </div>
+);

@@ -83,6 +83,24 @@ describe("COH3 Stats Desktop App - E2E Tests", () => {
       expect(await SettingsPage.isDarkTheme()).toBe(true);
     });
 
+    it("Shows the In-Game Matchup Overlay toggle, disabled in non MS Store builds", async () => {
+      await NavigationPage.navigateToSettings();
+      await SettingsPage.waitForPageLoad();
+
+      // The toggle must always be present, so users can see the feature exists
+      const toggle = await SettingsPage.getGameOverlayToggle();
+      expect(await toggle.isExisting()).toBe(true);
+
+      // MS_STORE_EDITION comes from VITE_DISABLE_UPDATER at build time. In a non-store
+      // build the toggle is disabled and off; in a store build it is usable.
+      if (testHelpers.isMSStoreEditionBuild()) {
+        expect(await SettingsPage.isGameOverlayToggleDisabled()).toBe(false);
+      } else {
+        expect(await SettingsPage.isGameOverlayToggleDisabled()).toBe(true);
+        expect(await SettingsPage.isGameOverlayEnabled()).toBe(false);
+      }
+    });
+
     it("Can toggle Show Extended Player Info setting", async () => {
       // Navigate to Settings screen
       await NavigationPage.navigateToSettings();

@@ -266,6 +266,49 @@ class TestHelpers {
   }
 
   /**
+   * Whether the app under test was built as the MS Store edition.
+   *
+   * `config.MS_STORE_EDITION` is `import.meta.env.VITE_DISABLE_UPDATER === "true"`,
+   * baked in at build time - so we resolve the same value the way Vite does: the
+   * process env first, then the project .env file.
+   * @returns {boolean}
+   */
+  isMSStoreEditionBuild() {
+    if (process.env.VITE_DISABLE_UPDATER !== undefined) {
+      return process.env.VITE_DISABLE_UPDATER === "true";
+    }
+    const envFile = path.resolve(__dirname, "../../.env");
+    if (!fs.existsSync(envFile)) {
+      return false;
+    }
+    const match = fs
+      .readFileSync(envFile, "utf-8")
+      .match(/^\s*VITE_DISABLE_UPDATER\s*=\s*(\S+)\s*$/m);
+    return match !== null && match[1].replace(/["']/g, "") === "true";
+  }
+
+  /**
+   * Point the session at the app's main window.
+   *
+   * The app also opens a hidden webview for the in-game overlay and the driver attaches to
+   * whichever of the two it sees first, so a fresh session can start on the overlay - where
+   * none of the app's UI exists. wdio.conf.cjs does this for the initial session; call it
+   * again after every browser.reloadSession().
+   */
+  async switchToMainWindow() {
+    for (const handle of await browser.getWindowHandles()) {
+      await browser.switchToWindow(handle);
+      const label = await browser.execute(
+        () => window.__TAURI_INTERNALS__?.metadata?.currentWindow?.label,
+      );
+      if (label === "main") {
+        return;
+      }
+    }
+    throw new Error('No webview with the "main" window label - cannot run the tests');
+  }
+
+  /**
    * Wait for OBS overlay server to be running
    * @param {number} maxWaitTime - Maximum time to wait in ms
    * @param {number} pollInterval - Interval between checks in ms

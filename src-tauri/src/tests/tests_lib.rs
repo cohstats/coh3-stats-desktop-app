@@ -302,3 +302,69 @@ fn test_default_log_file_path_error_message_is_descriptive() {
         );
     }
 }
+
+// =========================================================================
+// WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS handling
+//
+// tauri-driver passes `--remote-debugging-port` through this variable, so the
+// occlusion workaround has to merge into it instead of overwriting it.
+// =========================================================================
+mod webview2_browser_arguments {
+    use crate::with_occlusion_disabled;
+
+    #[test]
+    fn adds_the_flag_when_nothing_is_set() {
+        assert_eq!(
+            with_occlusion_disabled(""),
+            "--disable-features=CalculateNativeWinOcclusion"
+        );
+    }
+
+    #[test]
+    fn keeps_existing_arguments() {
+        assert_eq!(
+            with_occlusion_disabled("--remote-debugging-port=9222"),
+            "--remote-debugging-port=9222 --disable-features=CalculateNativeWinOcclusion"
+        );
+    }
+
+    #[test]
+    fn merges_into_an_existing_disable_features_list() {
+        assert_eq!(
+            with_occlusion_disabled("--disable-features=Foo --remote-debugging-port=9222"),
+            "--disable-features=Foo,CalculateNativeWinOcclusion --remote-debugging-port=9222"
+        );
+    }
+
+    #[test]
+    fn does_not_duplicate_the_feature() {
+        assert_eq!(
+            with_occlusion_disabled("--disable-features=CalculateNativeWinOcclusion"),
+            "--disable-features=CalculateNativeWinOcclusion"
+        );
+    }
+
+    #[test]
+    fn collapses_several_disable_features_lists() {
+        // Chromium only honours the last `--disable-features`, so the app's own list and the
+        // one tauri-driver passes in have to end up in a single argument.
+        assert_eq!(
+            with_occlusion_disabled("--disable-features=Foo --test-type --disable-features=Bar,Foo"),
+            "--disable-features=Foo,Bar,CalculateNativeWinOcclusion --test-type"
+        );
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn browser_args_keep_the_wry_defaults_and_the_driver_arguments() {
+        use crate::webview_browser_args;
+
+        // Not `set_var` - the value only has to be readable, and tests share the process.
+        let args = webview_browser_args();
+
+        assert!(args.contains("msSmartScreenProtection"));
+        assert!(args.contains("--autoplay-policy=no-user-gesture-required"));
+        assert!(args.contains("CalculateNativeWinOcclusion"));
+        assert_eq!(args.matches("--disable-features=").count(), 1);
+    }
+}

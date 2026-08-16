@@ -38,8 +38,9 @@ pub fn set_game_mute(game_pid: u32, mute: bool) -> Result<(), String> {
 /// Internal function to set game mute (COM must be initialized)
 unsafe fn set_game_mute_internal(game_pid: u32, mute: bool) -> Result<(), String> {
     // Create device enumerator
-    let enumerator: IMMDeviceEnumerator = CoCreateInstance(&MMDeviceEnumerator, None, CLSCTX_ALL)
-        .map_err(|e| format!("Failed to create device enumerator: {}", e))?;
+    let enumerator: IMMDeviceEnumerator =
+        CoCreateInstance(&MMDeviceEnumerator, None, CLSCTX_ALL)
+            .map_err(|e| format!("Failed to create device enumerator: {}", e))?;
 
     // Get default audio endpoint
     let device: IMMDevice = enumerator
@@ -102,4 +103,3 @@ unsafe fn set_game_mute_internal(game_pid: u32, mute: bool) -> Result<(), String
     warn!("Game audio session not found for PID: {}", game_pid);
     Err("Game audio session not found".to_string())
 }
-

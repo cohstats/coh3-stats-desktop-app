@@ -107,6 +107,7 @@ describe("OBS Overlay E2E Tests", () => {
       await browser.pause(3000);
       // Reload the WebDriver session to reconnect to the restarted app
       await browser.reloadSession();
+      await testHelpers.switchToMainWindow();
 
       await browser.pause(10000);
     });
@@ -170,6 +171,7 @@ describe("OBS Overlay E2E Tests", () => {
 
       // Reload the WebDriver session to reconnect to the restarted app
       await browser.reloadSession();
+      await testHelpers.switchToMainWindow();
 
       // Wait for app to fully load after restart
       await browser.pause(10000);

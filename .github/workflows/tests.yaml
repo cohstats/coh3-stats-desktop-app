@@ -117,6 +117,19 @@ jobs:
 
       # If the test fails with invalid MS Edge browser it's highly possible a bug at GitHub
       # https://github.com/actions/runner-images/issues/9538
+      # Keeps the runtime in sync with the msedgedriver the e2e tests download.
+      - name: Update to Evergreen WebView2 Runtime
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $before = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction SilentlyContinue).pv
+          Write-Host "WebView2 runtime before update: $before"
+          $ProgressPreference = 'SilentlyContinue'
+          Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile "$env:RUNNER_TEMP\MicrosoftEdgeWebview2Setup.exe" -UseBasicParsing
+          Start-Process -FilePath "$env:RUNNER_TEMP\MicrosoftEdgeWebview2Setup.exe" -ArgumentList '/silent', '/install' -Wait
+          $after = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction SilentlyContinue).pv
+          Write-Host "WebView2 runtime after update: $after"
+
       - name: Run e2e tests
         if: runner.os == 'Windows'
         run: |

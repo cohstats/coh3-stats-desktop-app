@@ -3,6 +3,7 @@ import { useLogFilePath } from "./configValues";
 import { GameDataTypes } from "./GameData-types";
 import { useFullGameData } from "./useFullGameData";
 import { useAudioManager } from "../game-found/useAudioManager";
+import { useGameOverlay } from "../game-found/useGameOverlay";
 
 const GameDataContext = React.createContext<GameDataTypes>(undefined);
 export const useGameData = () => useContext(GameDataContext);
@@ -17,6 +18,9 @@ export const GameDataProvider: React.FC<GameDataProviderProps> = ({ children }) 
 
   // Initialize audio manager for auto-mute functionality
   useAudioManager(gameData);
+
+  // In-game matchup overlay shown over CoH3 during the loading screen
+  useGameOverlay(gameData);
 
   const contextValue = useMemo(() => {
     if (gameData) {

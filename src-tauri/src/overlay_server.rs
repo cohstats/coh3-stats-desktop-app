@@ -15,26 +15,38 @@ pub fn run_http_server(streamer_overlay_path: PathBuf) {
         Err(err) => {
             error!("Couldn't start the streamer overlay server: {:?}", err);
             sentry::capture_message(
-                &format!("Overlay server startup error on port {}: {}", OVERLAY_PORT, err),
+                &format!(
+                    "Overlay server startup error on port {}: {}",
+                    OVERLAY_PORT, err
+                ),
                 sentry::Level::Error,
             );
             return;
         }
     };
 
-    info!("Streamer overlay server started successfully on port {}", OVERLAY_PORT);
+    info!(
+        "Streamer overlay server started successfully on port {}",
+        OVERLAY_PORT
+    );
 
     for request in server.incoming_requests() {
         let file = match File::open(&streamer_overlay_path) {
             Ok(file) => file,
             Err(err) => {
-                error!("Failed to open overlay file at {:?}: {}", streamer_overlay_path, err);
+                error!(
+                    "Failed to open overlay file at {:?}: {}",
+                    streamer_overlay_path, err
+                );
                 // Only report to Sentry on first few errors to avoid spam
                 static mut ERROR_COUNT: u32 = 0;
                 unsafe {
                     if ERROR_COUNT < 3 {
                         sentry::capture_message(
-                            &format!("Overlay file access error: {:?} - {}", streamer_overlay_path, err),
+                            &format!(
+                                "Overlay file access error: {:?} - {}",
+                                streamer_overlay_path, err
+                            ),
                             sentry::Level::Warning,
                         );
                         ERROR_COUNT += 1;

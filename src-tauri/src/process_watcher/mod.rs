@@ -8,7 +8,7 @@
 //! - Foreground window state
 //! - Audio mute/unmute based on settings
 
-use log::{error, info, debug};
+use log::{debug, error, info};
 use std::sync::{Arc, Mutex};
 use std::thread::{self, JoinHandle};
 use tauri::{AppHandle, Manager, Runtime};
@@ -176,4 +176,3 @@ pub fn start_watching<R: Runtime>(_handle: AppHandle<R>) -> Result<(), String> {
 pub fn stop_watching<R: Runtime>(_handle: AppHandle<R>) -> Result<(), String> {
     Ok(())
 }
-

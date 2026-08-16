@@ -1,6 +1,6 @@
 [package]
 name = "coh3-stats-desktop-app"
-version = "2.2.0"
+version = "2.3.0"
 description = "Grenadier - COH3 Companion"
 authors = ["coh3stats team"]
 license = ""
@@ -61,6 +61,8 @@ windows = { version = "0.62.2", features = [
     "Win32_System_Threading",
     "Win32_System_ProcessStatus",
     "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_HiDpi",
+    "Win32_Graphics_Dwm",
     "Win32_Media_Audio",
     "Win32_System_Com",
     "Win32_System_Com_StructuredStorage",

@@ -61,6 +61,7 @@
     "windows": [
       {
         "label": "main",
+        "create": false,
         "fullscreen": false,
         "resizable": true,
         "focus": true,
@@ -76,7 +77,8 @@
     "security": {
       "csp": null,
       "capabilities": [
-        "desktop-app-capabilities"
+        "desktop-app-capabilities",
+        "game-overlay-capabilities"
       ]
     }
   }

@@ -3,7 +3,6 @@
 ///
 /// Run with: cargo test --package coh3-stats-desktop-app test_parse_temp_replay -- --nocapture
 /// Or from src-tauri directory: cargo test test_parse_temp_replay -- --nocapture
-
 use std::fs;
 use vault::{Command, Replay};
 
@@ -13,7 +12,8 @@ use vault::{Command, Replay};
 #[test]
 fn test_parse_temp_replay() {
     // Path to the temporary replay file
-    let replay_path = r"C:\Users\pagep\Documents\My Games\Company of Heroes 3\playback\temp_15-Feb-26__14_58.rec";
+    let replay_path =
+        r"C:\Users\pagep\Documents\My Games\Company of Heroes 3\playback\temp_15-Feb-26__14_58.rec";
 
     println!("\n========================================");
     println!("COH3 Replay Parser - Commander Discovery");
@@ -142,12 +142,20 @@ fn test_explore_commands() {
     println!("\n=== COMMAND EXPLORATION ===\n");
 
     for (i, player) in replay.players().iter().enumerate() {
-        println!("Player {}: {} ({:?})", i + 1, player.name(), player.faction());
+        println!(
+            "Player {}: {} ({:?})",
+            i + 1,
+            player.name(),
+            player.faction()
+        );
 
         let all_commands = player.commands();
         println!("  Total commands: {}", all_commands.len());
         println!("  Build commands: {}", player.build_commands().len());
-        println!("  Battlegroup commands: {}", player.battlegroup_commands().len());
+        println!(
+            "  Battlegroup commands: {}",
+            player.battlegroup_commands().len()
+        );
 
         // Show first few commands of each type
         println!("  First 5 commands:");
@@ -157,4 +165,3 @@ fn test_explore_commands() {
         println!();
     }
 }
-
