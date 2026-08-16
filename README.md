@@ -163,19 +163,28 @@ let's keep that consitent.
 
 #### To build for Microsoft Store:
 
-The Microsoft Store build uses a separate configuration that disables the auto-updater (since the Microsoft Store handles updates).
+The Microsoft Store version is shipped as an **MSIX package (x64)**. The easiest way to get one is the
+manual GitHub Action: **Actions → "Microsoft Store MSIX" → Run workflow**, then download the
+`msix-x64-<version>` artifact and upload it in Partner Center (the Store signs the package itself).
+
+To build the MSIX locally (needs **Node 24** and `rustup target add x86_64-pc-windows-msvc`):
+
+```bash
+cp src-tauri/tauri.microsoftstore.conf.json src-tauri/tauri.windows.conf.json
+VITE_DISABLE_UPDATER=true yarn tauri:windows:build --arch x64 --runner yarn --verbose
+rm src-tauri/tauri.windows.conf.json   # keeps the updater enabled for normal builds
+```
+
+Both use a separate configuration that disables the auto-updater (the Microsoft Store handles updates).
+
+The old MSI-based Store build is still available via:
 
 ```bash
 yarn tauri:build:msstore
 ```
 
-This command automatically:
-
-- Loads environment variables from `.env` (including signing keys)
-- Disables the auto-updater
-- Uses the Microsoft Store configuration
-
-For detailed information about Microsoft Store builds, see [MICROSOFT_STORE_BUILD.md](./MICROSOFT_STORE_BUILD.md).
+For the full submission checklist, identity values and gotchas, see
+[MICROSOFT_STORE_BUILD.md](./MICROSOFT_STORE_BUILD.md).
 
 #### To build for Linux:
 
