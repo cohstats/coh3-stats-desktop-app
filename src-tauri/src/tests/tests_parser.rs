@@ -182,9 +182,9 @@ fn test_parse_log_file_reverse_file_1() {
     assert_eq!(result.language_code, "en");
 
     // Team composition. Wolfsindis is on log team index 0, which the game shows on the
-    // right, so the right team is the Axis one here.
-    assert_eq!(result.left.side, TeamSide::Allies);
-    assert_eq!(result.right.side, TeamSide::Axis);
+    // left, so the left team is the Axis one here.
+    assert_eq!(result.left.side, TeamSide::Axis);
+    assert_eq!(result.right.side, TeamSide::Allies);
 
     // Verify team sizes (8 players total in 4v4)
     assert_eq!(result.left.players.len(), 4);
@@ -192,11 +192,11 @@ fn test_parse_log_file_reverse_file_1() {
 
     // Verify specific player data for the main player (Wolfsindis)
     let wolfsindis_player = result
-        .right
+        .left
         .players
         .iter()
         .find(|p| p.name == "Wolfsindis")
-        .expect("Should find Wolfsindis in right team");
+        .expect("Should find Wolfsindis in left team");
 
     assert_eq!(wolfsindis_player.ai, false);
     assert_eq!(wolfsindis_player.faction, "germans");
@@ -221,25 +221,25 @@ fn test_parse_log_file_reverse_file_1() {
         );
     }
 
-    // Verify faction distribution on left team (Allies)
+    // Verify faction distribution on left team (Axis)
     let left_factions: Vec<&str> = result
         .left
         .players
         .iter()
         .map(|p| p.faction.as_str())
         .collect();
-    assert!(left_factions.contains(&"americans"));
-    assert!(left_factions.contains(&"british_africa"));
+    assert!(left_factions.contains(&"germans"));
+    assert!(left_factions.contains(&"afrika_korps"));
 
-    // Verify faction distribution on right team (Axis)
+    // Verify faction distribution on right team (Allies)
     let right_factions: Vec<&str> = result
         .right
         .players
         .iter()
         .map(|p| p.faction.as_str())
         .collect();
-    assert!(right_factions.contains(&"germans"));
-    assert!(right_factions.contains(&"afrika_korps"));
+    assert!(right_factions.contains(&"americans"));
+    assert!(right_factions.contains(&"british_africa"));
 
     // Verify all players have valid relic IDs (non-empty for human players)
     for player in &result.left.players {
@@ -258,13 +258,13 @@ fn test_parse_log_file_reverse_file_1() {
     }
 
     // Verify specific known players from the log
-    let expected_left_players = vec!["Treiben", "McLovin", "既定之天命", "蹦嚓蹦嚓蹦嚓"];
-    let expected_right_players = vec![
+    let expected_left_players = vec![
         "Wolfsindis",
         "Le mérovingien",
         "BLITZKRIEG BOB",
         "joker95174",
     ];
+    let expected_right_players = vec!["Treiben", "McLovin", "既定之天命", "蹦嚓蹦嚓蹦嚓"];
 
     let left_names: Vec<&str> = result
         .left
@@ -323,29 +323,29 @@ fn test_parse_log_file_reverse_file_2() {
     assert_eq!(result.language_code, "fr");
 
     // Team composition (1v1 match). Imperial Dane is on log team index 0, which the game
-    // shows on the right.
-    assert_eq!(result.left.side, TeamSide::Allies);
-    assert_eq!(result.right.side, TeamSide::Axis);
+    // shows on the left.
+    assert_eq!(result.left.side, TeamSide::Axis);
+    assert_eq!(result.right.side, TeamSide::Allies);
     assert_eq!(result.left.players.len(), 1);
     assert_eq!(result.right.players.len(), 1);
 
-    // Verify left team player (Allies) - this is the main player
+    // Verify left team player (Axis)
     let left_player = &result.left.players[0];
     assert_eq!(left_player.ai, false);
-    assert_eq!(left_player.faction, "british_africa");
-    assert_eq!(left_player.relic_id, "16432");
-    assert_eq!(left_player.name, "UMirinBrah?");
-    assert_eq!(left_player.position, 1);
+    assert_eq!(left_player.faction, "germans");
+    assert_eq!(left_player.relic_id, "1968");
+    assert_eq!(left_player.name, "Imperial Dane");
+    assert_eq!(left_player.position, 0);
     assert_eq!(left_player.steam_id, "");
     assert_eq!(left_player.rank, -1);
 
-    // Verify right team player (Axis)
+    // Verify right team player (Allies) - this is the main player
     let right_player = &result.right.players[0];
     assert_eq!(right_player.ai, false);
-    assert_eq!(right_player.faction, "germans");
-    assert_eq!(right_player.relic_id, "1968");
-    assert_eq!(right_player.name, "Imperial Dane");
-    assert_eq!(right_player.position, 0);
+    assert_eq!(right_player.faction, "british_africa");
+    assert_eq!(right_player.relic_id, "16432");
+    assert_eq!(right_player.name, "UMirinBrah?");
+    assert_eq!(right_player.position, 1);
     assert_eq!(right_player.steam_id, "");
     assert_eq!(right_player.rank, -1);
 
@@ -366,12 +366,12 @@ fn test_parse_log_file_reverse_file_2() {
     }
 
     // Verify faction assignment is correct for team sides
+    assert!(result.left.players.iter().any(|p| p.faction == "germans"));
     assert!(result
-        .left
+        .right
         .players
         .iter()
         .any(|p| p.faction == "british_africa"));
-    assert!(result.right.players.iter().any(|p| p.faction == "germans"));
 }
 
 /// Enhanced comprehensive test for parsing warnings-3.log
@@ -401,40 +401,40 @@ fn test_parse_log_file_reverse_file_3() {
     assert_eq!(result.language_code, "fr");
 
     // Team composition (Human vs AI). The human is on log team index 0, which the game
-    // shows on the right; the AI is on index 1 and so lands on the left.
-    assert_eq!(result.left.side, TeamSide::Axis);
-    assert_eq!(result.right.side, TeamSide::Allies);
+    // shows on the left; the AI is on index 1 and so lands on the right.
+    assert_eq!(result.left.side, TeamSide::Allies);
+    assert_eq!(result.right.side, TeamSide::Axis);
     assert_eq!(result.left.players.len(), 1);
     assert_eq!(result.right.players.len(), 1);
 
-    // Verify left team player (AI - Axis)
+    // Verify left team player (Human - Allies)
     let left_player = &result.left.players[0];
-    assert_eq!(left_player.ai, true);
-    assert_eq!(left_player.faction, "germans");
-    assert_eq!(left_player.relic_id, "-1");
-    assert_eq!(left_player.name, "IA normale");
-    assert_eq!(left_player.position, 1);
+    assert_eq!(left_player.ai, false);
+    assert_eq!(left_player.faction, "americans");
+    assert_eq!(left_player.relic_id, "16432");
+    assert_eq!(left_player.name, "UMirinBrah?");
+    assert_eq!(left_player.position, 0);
     assert_eq!(left_player.steam_id, "");
     assert_eq!(left_player.rank, -1);
 
-    // Verify right team player (Human - Allies)
+    // Verify right team player (AI - Axis)
     let right_player = &result.right.players[0];
-    assert_eq!(right_player.ai, false);
-    assert_eq!(right_player.faction, "americans");
-    assert_eq!(right_player.relic_id, "16432");
-    assert_eq!(right_player.name, "UMirinBrah?");
-    assert_eq!(right_player.position, 0);
+    assert_eq!(right_player.ai, true);
+    assert_eq!(right_player.faction, "germans");
+    assert_eq!(right_player.relic_id, "-1");
+    assert_eq!(right_player.name, "IA normale");
+    assert_eq!(right_player.position, 1);
     assert_eq!(right_player.steam_id, "");
     assert_eq!(right_player.rank, -1);
 
     // Verify AI vs Human composition
-    assert_eq!(result.left.players.iter().filter(|p| p.ai).count(), 1);
-    assert_eq!(result.right.players.iter().filter(|p| p.ai).count(), 0);
-    assert_eq!(result.left.players.iter().filter(|p| !p.ai).count(), 0);
-    assert_eq!(result.right.players.iter().filter(|p| !p.ai).count(), 1);
+    assert_eq!(result.left.players.iter().filter(|p| p.ai).count(), 0);
+    assert_eq!(result.right.players.iter().filter(|p| p.ai).count(), 1);
+    assert_eq!(result.left.players.iter().filter(|p| !p.ai).count(), 1);
+    assert_eq!(result.right.players.iter().filter(|p| !p.ai).count(), 0);
 
     // Verify AI player has expected characteristics
-    let ai_player = result.left.players.iter().find(|p| p.ai).unwrap();
+    let ai_player = result.right.players.iter().find(|p| p.ai).unwrap();
     assert_eq!(ai_player.relic_id, "-1");
     assert!(ai_player.name.contains("IA") || ai_player.name.contains("CPU"));
 }
@@ -467,9 +467,9 @@ fn test_team_composition() {
     assert_eq!(result.language_code, "en");
 
     // Team composition (4v4 match). pagep is on log team index 1, which the game shows on
-    // the left, so the left team is the Axis one here.
-    assert_eq!(result.left.side, TeamSide::Axis);
-    assert_eq!(result.right.side, TeamSide::Allies);
+    // the right, so the right team is the Axis one here.
+    assert_eq!(result.left.side, TeamSide::Allies);
+    assert_eq!(result.right.side, TeamSide::Axis);
     assert_eq!(result.left.players.len(), 4);
     assert_eq!(result.right.players.len(), 4);
 
@@ -499,29 +499,29 @@ fn test_team_composition() {
         );
     }
 
-    // Verify faction distribution on left team (Axis)
+    // Verify faction distribution on left team (Allies)
     let left_factions: Vec<&str> = result
         .left
         .players
         .iter()
         .map(|p| p.faction.as_str())
         .collect();
-    assert!(left_factions.contains(&"germans"));
-    assert!(left_factions.contains(&"afrika_korps"));
+    assert!(left_factions.contains(&"americans"));
+    assert!(left_factions.contains(&"british_africa"));
 
-    // Verify faction distribution on right team (Allies)
+    // Verify faction distribution on right team (Axis)
     let right_factions: Vec<&str> = result
         .right
         .players
         .iter()
         .map(|p| p.faction.as_str())
         .collect();
-    assert!(right_factions.contains(&"americans"));
-    assert!(right_factions.contains(&"british_africa"));
+    assert!(right_factions.contains(&"germans"));
+    assert!(right_factions.contains(&"afrika_korps"));
 
     // Verify specific known players from the log
-    let expected_left_players = vec!["Brothers in Trenches", "pagep", "白yu黑", "K21"];
-    let expected_right_players = vec!["老肉片", "Saving Ryan", "hhh3350", "Smiley"];
+    let expected_left_players = vec!["老肉片", "Saving Ryan", "hhh3350", "Smiley"];
+    let expected_right_players = vec!["Brothers in Trenches", "pagep", "白yu黑", "K21"];
 
     let left_names: Vec<&str> = result
         .left
@@ -552,13 +552,13 @@ fn test_team_composition() {
         );
     }
 
-    // Verify the main player (pagep) is in the left team
+    // Verify the main player (pagep) is in the right team
     let pagep_player = result
-        .left
+        .right
         .players
         .iter()
         .find(|p| p.name == "pagep")
-        .expect("Should find pagep in left team");
+        .expect("Should find pagep in right team");
 
     assert_eq!(pagep_player.ai, false);
     assert_eq!(pagep_player.faction, "germans");
@@ -598,27 +598,13 @@ fn test_team_composition_mixed_team() {
     assert_eq!(result.left.side, TeamSide::Mixed);
     assert_eq!(result.right.side, TeamSide::Mixed);
     // The human and its AI teammate are on log team index 0, which the game shows on the
-    // right; the lone opposing AI is on index 1 and so lands on the left.
-    assert_eq!(result.left.players.len(), 1);
-    assert_eq!(result.right.players.len(), 2);
+    // left; the lone opposing AI is on index 1 and so lands on the right.
+    assert_eq!(result.left.players.len(), 2);
+    assert_eq!(result.right.players.len(), 1);
 
-    // Verify left team player (AI)
+    // Verify left team players (Human + AI), in the game's own slot order
     assert_eq!(
         result.left.players[0],
-        PlayerData {
-            ai: true,
-            faction: "germans_campaign".to_string(),
-            relic_id: "-1".to_string(),
-            name: "CPU - 보통".to_string(),
-            position: 1,
-            steam_id: "".to_string(),
-            rank: -1,
-        }
-    );
-
-    // Verify right team players (Human + AI), in the game's own slot order
-    assert_eq!(
-        result.right.players[0],
         PlayerData {
             ai: false,
             faction: "americans_campaign".to_string(),
@@ -631,13 +617,27 @@ fn test_team_composition_mixed_team() {
     );
 
     assert_eq!(
-        result.right.players[1],
+        result.left.players[1],
         PlayerData {
             ai: true,
             faction: "americans_campaign".to_string(),
             relic_id: "-1".to_string(),
             name: "CPU - 보통".to_string(),
             position: 2,
+            steam_id: "".to_string(),
+            rank: -1,
+        }
+    );
+
+    // Verify right team player (AI)
+    assert_eq!(
+        result.right.players[0],
+        PlayerData {
+            ai: true,
+            faction: "germans_campaign".to_string(),
+            relic_id: "-1".to_string(),
+            name: "CPU - 보통".to_string(),
+            position: 1,
             steam_id: "".to_string(),
             rank: -1,
         }
