@@ -211,15 +211,3 @@ pub use imp::{
     apply_overlay_styles, find_window_for_pid, foreground_pid, get_dpi, get_window_bounds,
     is_minimised, raise_without_activating,
 };
-
-/// The game's main window, if the game is running and has one.
-pub fn find_game_window() -> Option<isize> {
-    #[cfg(target_os = "windows")]
-    {
-        crate::process_watcher::find_game_process_id().and_then(find_window_for_pid)
-    }
-    #[cfg(not(target_os = "windows"))]
-    {
-        None
-    }
-}

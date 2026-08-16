@@ -141,8 +141,7 @@ pub fn run() {
             map_stats::get_map_stats,
             battlegroup_info::get_battlegroup_info,
             game_overlay::game_overlay_show,
-            game_overlay::game_overlay_hide,
-            game_overlay::game_overlay_is_supported
+            game_overlay::game_overlay_hide
         ])
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
             let window = match app.get_webview_window("main") {

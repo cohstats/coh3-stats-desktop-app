@@ -1,8 +1,97 @@
-//! Tests for the in-game overlay geometry.
+//! Tests for the in-game overlay geometry and edition gating.
 //!
-//! Pure maths only - no Win32 calls - so these run on every platform including CI.
+//! Pure maths and config reading - no Win32 calls - so these run on every platform
+//! including CI.
 
 use crate::game_overlay::geometry::{centre_in, overlay_rect, overlay_size, scale_for_dpi, Bounds};
+use crate::game_overlay::is_ms_store_edition;
+
+/// The overlay is a Microsoft Store only feature: the window must not be created in any
+/// other build, and in the builds where it *is* created it must have its capability.
+mod edition {
+    use super::is_ms_store_edition;
+
+    /// The config files carry bundle keys `tauri::Config` refuses (`packageName` and
+    /// friends), so they are read as plain JSON rather than deserialised whole.
+    fn raw_config(file: &str) -> serde_json::Value {
+        let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(file);
+        let raw = std::fs::read_to_string(&path).unwrap_or_else(|e| panic!("{:?}: {}", path, e));
+        serde_json::from_str(&raw).unwrap_or_else(|e| panic!("{:?}: {}", path, e))
+    }
+
+    /// A `tauri::Config` carrying only what `is_ms_store_edition` looks at.
+    fn config_with_updater(create_updater_artifacts: serde_json::Value) -> tauri::Config {
+        serde_json::from_value(serde_json::json!({
+            "identifier": "com.coh3stats.desktop",
+            "bundle": { "createUpdaterArtifacts": create_updater_artifacts },
+        }))
+        .expect("minimal config should deserialise")
+    }
+
+    #[test]
+    fn a_build_that_ships_updater_artifacts_is_not_the_store_edition() {
+        assert!(!is_ms_store_edition(&config_with_updater(
+            serde_json::json!("v1Compatible")
+        )));
+        assert!(!is_ms_store_edition(&config_with_updater(
+            serde_json::json!(true)
+        )));
+    }
+
+    #[test]
+    fn a_build_without_updater_artifacts_is_the_store_edition() {
+        assert!(is_ms_store_edition(&config_with_updater(
+            serde_json::json!(false)
+        )));
+    }
+
+    /// The three real config files, checked the way the builds are actually configured:
+    /// the store and Linux ones leave updating to the store, the default one does not.
+    #[test]
+    fn the_config_files_declare_the_editions_we_expect() {
+        for (file, store_edition) in [
+            ("tauri.conf.json", false),
+            ("tauri.microsoftstore.conf.json", true),
+            ("tauri.linux.conf.json", true),
+        ] {
+            let updater = raw_config(file)["bundle"]["createUpdaterArtifacts"].clone();
+            assert_eq!(
+                is_ms_store_edition(&config_with_updater(updater)),
+                store_edition,
+                "{} is on the wrong side of the store-edition gate",
+                file
+            );
+        }
+    }
+
+    /// The overlay window only ever gets permissions through its own capability, and a
+    /// per-build `capabilities` list replaces the default one rather than adding to it -
+    /// so every config that creates the window has to name it.
+    #[test]
+    fn every_store_edition_config_grants_the_overlay_capability() {
+        for file in [
+            "tauri.conf.json",
+            "tauri.microsoftstore.conf.json",
+            "tauri.linux.conf.json",
+        ] {
+            let config = raw_config(file);
+            let updater = config["bundle"]["createUpdaterArtifacts"].clone();
+            if !is_ms_store_edition(&config_with_updater(updater)) {
+                continue;
+            }
+            let capabilities = config["app"]["security"]["capabilities"]
+                .as_array()
+                .unwrap_or_else(|| panic!("{}: no app.security.capabilities", file));
+            assert!(
+                capabilities
+                    .iter()
+                    .any(|c| c.as_str() == Some("game-overlay-capabilities")),
+                "{} enables the overlay but does not grant game-overlay-capabilities",
+                file
+            );
+        }
+    }
+}
 
 #[test]
 fn scales_lengths_for_dpi() {

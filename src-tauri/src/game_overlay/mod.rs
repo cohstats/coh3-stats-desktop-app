@@ -44,9 +44,36 @@ pub struct GameOverlayState {
     watcher_generation: Arc<AtomicU64>,
 }
 
+/// Whether this build is the Microsoft Store edition.
+///
+/// The overlay is a supporter feature, gated to that edition on the frontend as
+/// `config.MS_STORE_EDITION`. There is no build flag for it on this side, so the same
+/// thing the frontend derives it from is derived from the config instead: the store
+/// edition is the one that ships without the updater, because the store does the
+/// updating. See `tauri.microsoftstore.conf.json` (`createUpdaterArtifacts: false`).
+///
+/// The Linux config disables the updater too, but the overlay is Windows-only anyway.
+/// Note `Updater`'s own default is `Bool(false)` - only ever a concern for a config that
+/// was defaulted rather than read from one of the three files, which does not happen.
+// Only the Windows `create_overlay_window` consults it; the tests cover it everywhere.
+#[cfg_attr(not(target_os = "windows"), allow(dead_code))]
+pub fn is_ms_store_edition(config: &tauri::Config) -> bool {
+    matches!(
+        config.bundle.create_updater_artifacts,
+        tauri::utils::config::Updater::Bool(false)
+    )
+}
+
 #[cfg(target_os = "windows")]
 pub fn create_overlay_window<R: Runtime>(app: &AppHandle<R>) {
     use tauri::{WebviewUrl, WebviewWindowBuilder};
+
+    // Non-store builds can never show the overlay, so they must not pay for a second
+    // webview that would sit hidden for the whole session.
+    if !is_ms_store_edition(app.config()) {
+        info!("Game overlay: not the Microsoft Store edition, window not created");
+        return;
+    }
 
     if app.get_webview_window(OVERLAY_WINDOW_LABEL).is_some() {
         return;
@@ -339,17 +366,4 @@ pub fn hide<R: Runtime>(handle: &AppHandle<R>) {
     if let Some(window) = handle.get_webview_window(OVERLAY_WINDOW_LABEL) {
         hide_window(&window, &state);
     }
-}
-
-/// Whether the overlay can be shown right now: Windows, overlay window created, and
-/// the game window findable.
-#[tauri::command]
-pub async fn game_overlay_is_supported<R: Runtime>(handle: AppHandle<R>) -> Result<bool, String> {
-    if !cfg!(target_os = "windows") {
-        return Ok(false);
-    }
-    if handle.get_webview_window(OVERLAY_WINDOW_LABEL).is_none() {
-        return Ok(false);
-    }
-    Ok(window_detector::find_game_window().is_some())
 }
