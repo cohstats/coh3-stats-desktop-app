@@ -298,12 +298,8 @@ pub fn parse_log_file_reverse(path: String) -> LogFileData {
     team_0.reverse();
     team_1.reverse();
 
-    // The log's team index is the opposite of what CoH3 shows: the game's loading screen
-    // puts team index 1 on the left and team index 0 on the right. Everything downstream
-    // (the Game view, the in-game overlay, the streamer overlay) renders left first, so
-    // the swap belongs here - once - rather than in each consumer.
-    let left_team = get_team_data(team_1);
-    let right_team = get_team_data(team_0);
+    let left_team = get_team_data(team_0);
+    let right_team = get_team_data(team_1);
 
     info!(
         "Log file parsed: Found {} players. Left team {:?}, right team {:?}.",
