@@ -9,11 +9,21 @@ export const useRawGameData = () => {
   const [logFilePath] = useLogFilePath();
   const [rawGameData, setRawGameData] = useState<RawGameData>();
   const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const inFlightRef = useRef(false);
+
   const getLogFileData = async (path: string) => {
-    const data = (await invoke("parse_log_file_reverse", {
-      path,
-    })) as RawGameData;
-    setRawGameData(data);
+    if (inFlightRef.current) {
+      return;
+    }
+    inFlightRef.current = true;
+    try {
+      const data = (await invoke("parse_log_file_reverse", {
+        path,
+      })) as RawGameData;
+      setRawGameData(data);
+    } finally {
+      inFlightRef.current = false;
+    }
   };
 
   const reloadLogFile = () => {
@@ -33,6 +43,13 @@ export const useRawGameData = () => {
         }
       }, config.TIME_LOG_FILE_READER_MS);
     }
+
+    return () => {
+      if (intervalRef.current !== undefined) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = undefined;
+      }
+    };
   }, [logFilePath]);
   return {
     rawGameData,

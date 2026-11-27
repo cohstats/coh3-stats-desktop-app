@@ -64,9 +64,17 @@ export const detectArrangedTeam = async (
     player_ids: playerIds,
   });
 
+  const now = Date.now();
   const cached = cache.get(teamKey);
-  if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
+  if (cached && now - cached.ts < CACHE_TTL_MS) {
     return cached.result;
+  }
+
+  // Evict expired entries so the cache does not grow unbounded over long sessions.
+  for (const [key, entry] of cache) {
+    if (now - entry.ts >= CACHE_TTL_MS) {
+      cache.delete(key);
+    }
   }
 
   const pending = detect(teamKey, playerIds, side);
@@ -76,7 +84,7 @@ export const detectArrangedTeam = async (
       cache.delete(teamKey);
     }
   });
-  cache.set(teamKey, { ts: Date.now(), result: pending });
+  cache.set(teamKey, { ts: now, result: pending });
   return pending;
 };
 

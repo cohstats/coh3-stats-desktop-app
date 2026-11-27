@@ -17,9 +17,24 @@ use tauri::{AppHandle, Manager, Runtime};
 mod unified_monitor;
 
 #[cfg(target_os = "windows")]
+use windows::Win32::Foundation::{CloseHandle, HANDLE};
+#[cfg(target_os = "windows")]
 use windows::Win32::System::ProcessStatus::{EnumProcesses, GetModuleBaseNameW};
 #[cfg(target_os = "windows")]
 use windows::Win32::System::Threading::{OpenProcess, PROCESS_QUERY_INFORMATION, PROCESS_VM_READ};
+
+/// RAII wrapper around a Win32 `HANDLE` that guarantees `CloseHandle` is called on drop.
+#[cfg(target_os = "windows")]
+struct OwnedHandle(HANDLE);
+
+#[cfg(target_os = "windows")]
+impl Drop for OwnedHandle {
+    fn drop(&mut self) {
+        unsafe {
+            let _ = CloseHandle(self.0);
+        }
+    }
+}
 
 use crate::config::GAME_PROCESS_NAME;
 
@@ -68,6 +83,7 @@ pub fn find_game_process_id() -> Option<u32> {
 
             if let Ok(handle) = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, pid)
             {
+                let _guard = OwnedHandle(handle);
                 let mut name_buffer: [u16; 260] = [0; 260];
                 let len = GetModuleBaseNameW(handle, None, &mut name_buffer);
 
