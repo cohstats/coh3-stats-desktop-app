@@ -17,7 +17,7 @@ use tauri::{AppHandle, Manager, Runtime};
 mod unified_monitor;
 
 #[cfg(target_os = "windows")]
-use windows::Win32::Foundation::CloseHandle;
+use windows::core::Owned;
 #[cfg(target_os = "windows")]
 use windows::Win32::System::Diagnostics::ToolHelp::{
     CreateToolhelp32Snapshot, Process32FirstW, Process32NextW, PROCESSENTRY32W,
@@ -58,8 +58,9 @@ fn is_game_exe_name(exe_file: &[u16]) -> bool {
 #[cfg(target_os = "windows")]
 pub fn find_game_process_id() -> Option<u32> {
     unsafe {
+        // `Owned` closes the snapshot handle on drop, on every return path.
         let snapshot = match CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0) {
-            Ok(handle) => handle,
+            Ok(handle) => Owned::new(handle),
             Err(e) => {
                 error!("Failed to snapshot processes: {}", e);
                 return None;
@@ -71,19 +72,16 @@ pub fn find_game_process_id() -> Option<u32> {
             ..Default::default()
         };
 
-        let mut found = None;
-        let mut more = Process32FirstW(snapshot, &mut entry).is_ok();
+        let mut more = Process32FirstW(*snapshot, &mut entry).is_ok();
         while more {
             if is_game_exe_name(&entry.szExeFile) {
                 debug!("Found game process (PID: {})", entry.th32ProcessID);
-                found = Some(entry.th32ProcessID);
-                break;
+                return Some(entry.th32ProcessID);
             }
-            more = Process32NextW(snapshot, &mut entry).is_ok();
+            more = Process32NextW(*snapshot, &mut entry).is_ok();
         }
 
-        let _ = CloseHandle(snapshot);
-        found
+        None
     }
 }
 
