@@ -18,12 +18,47 @@ const WEBVIEW2_REGISTRY_KEYS = [
   'HKCU:\\SOFTWARE\\Microsoft\\EdgeUpdate\\Clients\\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}',
 ]
 
+// Windows PowerShell 5.1 must not inherit PSModulePath from PowerShell 7 (the default shell of
+// GitHub Actions steps on Windows), or it loads PS7's modules and cmdlets like Expand-Archive
+// misbehave. ErrorActionPreference=Stop turns non-terminating errors into a non-zero exit code,
+// so failures are not silently swallowed.
+const powershellEnv = { ...process.env }
+delete powershellEnv.PSModulePath
+
 const powershell = (script) =>
   execFileSync(
     'powershell',
-    ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-Command', script],
-    { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
+    [
+      '-NoProfile',
+      '-NonInteractive',
+      '-ExecutionPolicy',
+      'Bypass',
+      '-Command',
+      `$ErrorActionPreference='Stop'; ${script}`,
+    ],
+    { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], env: powershellEnv }
   ).trim()
+
+const VERSION_PATTERN = /\d+\.\d+\.\d+\.\d+/
+
+// Decodes the LATEST_RELEASE_* response, which is a UTF-16 text file with a BOM.
+const decodeText = (buffer) => {
+  if (buffer[0] === 0xff && buffer[1] === 0xfe) return buffer.subarray(2).toString('utf16le')
+  if (buffer[0] === 0xfe && buffer[1] === 0xff)
+    return buffer.subarray(2).swap16().toString('utf16le')
+  return buffer.toString('utf8')
+}
+
+// Windows 10+ ships bsdtar, which unpacks zip files without depending on PowerShell modules.
+const extractZip = (zipPath, targetDir) => {
+  fs.mkdirSync(targetDir, { recursive: true })
+  const tar = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'tar.exe')
+  if (fs.existsSync(tar)) {
+    execFileSync(tar, ['-xf', zipPath, '-C', targetDir], { stdio: ['ignore', 'pipe', 'pipe'] })
+  } else {
+    powershell(`Expand-Archive -LiteralPath '${zipPath}' -DestinationPath '${targetDir}' -Force`)
+  }
+}
 
 const getWebView2Version = () => {
   for (const key of WEBVIEW2_REGISTRY_KEYS) {
@@ -52,7 +87,7 @@ const downloadDriver = (version) => {
 
   download(`https://msedgedriver.microsoft.com/${version}/edgedriver_win64.zip`, zipPath)
   fs.rmSync(extractDir, { recursive: true, force: true })
-  powershell(`Expand-Archive -LiteralPath '${zipPath}' -DestinationPath '${extractDir}' -Force`)
+  extractZip(zipPath, extractDir)
 
   const extracted = path.join(extractDir, 'msedgedriver.exe')
   if (!fs.existsSync(extracted)) throw new Error(`msedgedriver.exe not found in ${extractDir}`)
@@ -78,14 +113,16 @@ const resolveEdgeDriver = () => {
   const candidates = [version]
   try {
     const major = version.split('.')[0]
-    const latest = powershell(
-      `$ProgressPreference='SilentlyContinue'; (Invoke-WebRequest -Uri 'https://msedgedriver.microsoft.com/LATEST_RELEASE_${major}_WINDOWS' -UseBasicParsing).Content`
-    )
-      // the endpoint answers with a UTF-16 BOM encoded string
-      .replace(/[^\d.]/g, '')
+    // The endpoint serves UTF-16 text as application/octet-stream, so `.Content` would be a
+    // byte array; download it to a file and decode it here instead.
+    fs.mkdirSync(CACHE_DIR, { recursive: true })
+    const latestFile = path.join(CACHE_DIR, `LATEST_RELEASE_${major}_WINDOWS.txt`)
+    download(`https://msedgedriver.microsoft.com/LATEST_RELEASE_${major}_WINDOWS`, latestFile)
+    const latest = (decodeText(fs.readFileSync(latestFile)).match(VERSION_PATTERN) || [])[0]
     if (latest && !candidates.includes(latest)) candidates.push(latest)
-  } catch {
+  } catch (error) {
     // best effort only
+    console.warn(`[edgedriver] Could not look up the latest msedgedriver: ${error.message}`)
   }
 
   for (const candidate of candidates) {

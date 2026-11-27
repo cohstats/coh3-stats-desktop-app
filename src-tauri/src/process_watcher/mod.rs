@@ -17,24 +17,12 @@ use tauri::{AppHandle, Manager, Runtime};
 mod unified_monitor;
 
 #[cfg(target_os = "windows")]
-use windows::Win32::Foundation::{CloseHandle, HANDLE};
+use windows::core::Owned;
 #[cfg(target_os = "windows")]
-use windows::Win32::System::ProcessStatus::{EnumProcesses, GetModuleBaseNameW};
-#[cfg(target_os = "windows")]
-use windows::Win32::System::Threading::{OpenProcess, PROCESS_QUERY_INFORMATION, PROCESS_VM_READ};
-
-/// RAII wrapper around a Win32 `HANDLE` that guarantees `CloseHandle` is called on drop.
-#[cfg(target_os = "windows")]
-struct OwnedHandle(HANDLE);
-
-#[cfg(target_os = "windows")]
-impl Drop for OwnedHandle {
-    fn drop(&mut self) {
-        unsafe {
-            let _ = CloseHandle(self.0);
-        }
-    }
-}
+use windows::Win32::System::Diagnostics::ToolHelp::{
+    CreateToolhelp32Snapshot, Process32FirstW, Process32NextW, PROCESSENTRY32W,
+    TH32CS_SNAPPROCESS,
+};
 
 use crate::config::GAME_PROCESS_NAME;
 
@@ -55,46 +43,42 @@ impl Default for ProcessWatcherState {
     }
 }
 
-/// Find the game process ID by searching for the game process
+/// Whether a NUL-terminated UTF-16 exe name (as in `PROCESSENTRY32W::szExeFile`) is the game.
+#[cfg_attr(not(target_os = "windows"), allow(dead_code))]
+fn is_game_exe_name(exe_file: &[u16]) -> bool {
+    let len = exe_file.iter().position(|&c| c == 0).unwrap_or(exe_file.len());
+    String::from_utf16_lossy(&exe_file[..len]).to_lowercase() == GAME_PROCESS_NAME
+}
+
+/// Find the game process ID by searching for the game process.
+///
+/// Uses a Toolhelp process snapshot, which carries every process's exe name, so no
+/// process has to be opened: nothing to leak, no 1024-process cap, and it works when
+/// the game runs elevated or is otherwise protected.
 #[cfg(target_os = "windows")]
 pub fn find_game_process_id() -> Option<u32> {
     unsafe {
-        let mut pids: [u32; 1024] = [0; 1024];
-        let mut bytes_returned: u32 = 0;
-
-        if !EnumProcesses(
-            pids.as_mut_ptr(),
-            (pids.len() * std::mem::size_of::<u32>()) as u32,
-            &mut bytes_returned,
-        )
-        .is_ok()
-        {
-            error!("Failed to enumerate processes");
-            return None;
-        }
-
-        let num_processes = bytes_returned as usize / std::mem::size_of::<u32>();
-
-        for i in 0..num_processes {
-            let pid = pids[i];
-            if pid == 0 {
-                continue;
+        // `Owned` closes the snapshot handle on drop, on every return path.
+        let snapshot = match CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0) {
+            Ok(handle) => Owned::new(handle),
+            Err(e) => {
+                error!("Failed to snapshot processes: {}", e);
+                return None;
             }
+        };
 
-            if let Ok(handle) = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, pid)
-            {
-                let _guard = OwnedHandle(handle);
-                let mut name_buffer: [u16; 260] = [0; 260];
-                let len = GetModuleBaseNameW(handle, None, &mut name_buffer);
+        let mut entry = PROCESSENTRY32W {
+            dwSize: std::mem::size_of::<PROCESSENTRY32W>() as u32,
+            ..Default::default()
+        };
 
-                if len > 0 {
-                    let name = String::from_utf16_lossy(&name_buffer[..len as usize]);
-                    if name.to_lowercase() == GAME_PROCESS_NAME {
-                        debug!("Found game process: {} (PID: {})", name, pid);
-                        return Some(pid);
-                    }
-                }
+        let mut more = Process32FirstW(*snapshot, &mut entry).is_ok();
+        while more {
+            if is_game_exe_name(&entry.szExeFile) {
+                debug!("Found game process (PID: {})", entry.th32ProcessID);
+                return Some(entry.th32ProcessID);
             }
+            more = Process32NextW(*snapshot, &mut entry).is_ok();
         }
 
         None
@@ -191,4 +175,37 @@ pub fn start_watching<R: Runtime>(_handle: AppHandle<R>) -> Result<(), String> {
 #[cfg(not(target_os = "windows"))]
 pub fn stop_watching<R: Runtime>(_handle: AppHandle<R>) -> Result<(), String> {
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::is_game_exe_name;
+
+    fn exe(name: &str) -> [u16; 260] {
+        let mut buf = [0u16; 260];
+        for (i, c) in name.encode_utf16().enumerate() {
+            buf[i] = c;
+        }
+        buf
+    }
+
+    #[test]
+    fn matches_game_exe_case_insensitively() {
+        assert!(is_game_exe_name(&exe("RelicCoH3.exe")));
+        assert!(is_game_exe_name(&exe("reliccoh3.exe")));
+    }
+
+    #[test]
+    fn rejects_other_exes() {
+        assert!(!is_game_exe_name(&exe("RelicCoH3.exe.bak")));
+        assert!(!is_game_exe_name(&exe("RelicCoH2.exe")));
+        assert!(!is_game_exe_name(&exe("")));
+    }
+
+    #[test]
+    fn ignores_data_after_nul() {
+        let mut buf = exe("RelicCoH3.exe");
+        buf[20] = b'x' as u16;
+        assert!(is_game_exe_name(&buf));
+    }
 }
