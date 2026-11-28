@@ -921,6 +921,7 @@ version = "2.3.0"
 dependencies = [
  "criterion",
  "dirs 5.0.1",
+ "flate2",
  "log",
  "machine-uid",
  "nom 7.1.3",

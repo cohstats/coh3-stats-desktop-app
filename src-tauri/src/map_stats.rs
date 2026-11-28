@@ -102,55 +102,61 @@ fn lock_state_data(state: &MapStatsState) -> std::sync::MutexGuard<'_, Option<Va
 /// Initializes map stats fetching (non-blocking, called from setup)
 pub fn init_map_stats<R: Runtime>(handle: AppHandle<R>) {
     tauri::async_runtime::spawn(async move {
-        let state = handle.state::<MapStatsState>();
+        let data = load_map_stats(&handle).await;
+        // The map stats carry the data tag of the latest patch - start the coh3-data download
+        crate::coh3_data::on_map_stats(&handle, data.as_ref());
+        *lock_state_data(&handle.state::<MapStatsState>()) = data;
+    });
+}
 
-        // Check if cache is fresh (less than 12 hours old)
-        if !is_cache_stale(&handle) {
-            if let Some(cached_data) = load_from_cache(&handle) {
-                info!(
-                    "Loaded map stats from fresh cache (less than {} hours old)",
-                    CACHE_MAX_AGE_HOURS
-                );
-                *lock_state_data(&state) = Some(cached_data);
-                return;
-            }
+/// Loads the map stats from the fresh cache, the API, or the stale cache - in this order.
+async fn load_map_stats<R: Runtime>(handle: &AppHandle<R>) -> Option<Value> {
+    // Check if cache is fresh (less than 12 hours old)
+    if !is_cache_stale(handle) {
+        if let Some(cached_data) = load_from_cache(handle) {
+            info!(
+                "Loaded map stats from fresh cache (less than {} hours old)",
+                CACHE_MAX_AGE_HOURS
+            );
+            return Some(cached_data);
         }
+    }
 
-        // Cache is stale or doesn't exist, fetch from API
-        match fetch_map_stats().await {
-            Ok(data) => {
-                info!("Successfully fetched map stats from API");
-                // Save to cache
-                if let Err(e) = save_to_cache(&handle, &data) {
-                    error!("Failed to save map stats to cache: {}", e);
-                    sentry::capture_message(
-                        &format!("Map stats cache save error: {}", e),
-                        sentry::Level::Warning,
-                    );
-                }
-                *lock_state_data(&state) = Some(data);
-            }
-            Err(e) => {
-                error!("Failed to fetch map stats from API: {}", e);
+    // Cache is stale or doesn't exist, fetch from API
+    match fetch_map_stats().await {
+        Ok(data) => {
+            info!("Successfully fetched map stats from API");
+            // Save to cache
+            if let Err(e) = save_to_cache(handle, &data) {
+                error!("Failed to save map stats to cache: {}", e);
                 sentry::capture_message(
-                    &format!("Map stats API fetch error: {}", e),
+                    &format!("Map stats cache save error: {}", e),
+                    sentry::Level::Warning,
+                );
+            }
+            Some(data)
+        }
+        Err(e) => {
+            error!("Failed to fetch map stats from API: {}", e);
+            sentry::capture_message(
+                &format!("Map stats API fetch error: {}", e),
+                sentry::Level::Error,
+            );
+
+            // Try to load from cache (even if stale, better than nothing)
+            let cached_data = load_from_cache(handle);
+            if cached_data.is_some() {
+                info!("Loaded map stats from stale cache after API failure");
+            } else {
+                error!("Failed to load map stats from cache");
+                sentry::capture_message(
+                    "Map stats cache load failed after API failure",
                     sentry::Level::Error,
                 );
-
-                // Try to load from cache (even if stale, better than nothing)
-                if let Some(cached_data) = load_from_cache(&handle) {
-                    info!("Loaded map stats from stale cache after API failure");
-                    *lock_state_data(&state) = Some(cached_data);
-                } else {
-                    error!("Failed to load map stats from cache");
-                    sentry::capture_message(
-                        "Map stats cache load failed after API failure",
-                        sentry::Level::Error,
-                    );
-                }
             }
+            cached_data
         }
-    });
+    }
 }
 
 /// Tauri command to get map stats data

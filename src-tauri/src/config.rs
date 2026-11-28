@@ -11,3 +11,7 @@ pub const MAP_STATS_API_URL: &str = "https://coh3stats.com/api/getLatestPatchMap
 // Battlegroup Info API and Cache
 pub const BATTLEGROUP_INFO_CACHE_FILENAME: &str = "battlegroup_info.json";
 pub const BATTLEGROUP_INFO_API_URL: &str = "https://coh3stats.com/api/getBattlegroupInfo";
+
+// coh3-data repository files (data tag comes from the map stats API) and their disk cache folder
+pub const COH3_DATA_BASE_URL: &str = "https://data.coh3stats.com/cohstats/coh3-data";
+pub const COH3_DATA_CACHE_DIR: &str = "coh3-data";

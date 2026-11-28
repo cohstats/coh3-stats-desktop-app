@@ -7,6 +7,7 @@ extern crate machine_uid;
 
 mod audio_manager;
 mod battlegroup_info;
+mod coh3_data;
 mod config;
 mod dp_utils;
 mod game_overlay;
@@ -116,6 +117,7 @@ pub fn run() {
         .manage(audio_manager::AudioManagerState::default())
         .manage(process_watcher::ProcessWatcherState::default())
         .manage(map_stats::MapStatsState::default())
+        .manage(coh3_data::Coh3DataState::default())
         .manage(battlegroup_info::BattlegroupInfoState::default())
         .manage(game_overlay::GameOverlayState::default())
         .plugin(
@@ -140,6 +142,9 @@ pub fn run() {
             stop_process_watcher,
             map_stats::get_map_stats,
             battlegroup_info::get_battlegroup_info,
+            coh3_data::get_coh3_data_tag,
+            coh3_data::get_coh3_data_file,
+            coh3_data::get_coh3_locstring,
             game_overlay::game_overlay_show,
             game_overlay::game_overlay_hide
         ])
@@ -341,7 +346,8 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     // shown/hidden afterwards - see game_overlay/mod.rs.
     game_overlay::create_overlay_window(handle);
 
-    // Initialize map stats fetching (non-blocking)
+    // Initialize map stats fetching (non-blocking). Once loaded, it starts the coh3-data
+    // download - the map stats carry the data tag of the latest patch.
     map_stats::init_map_stats(handle.clone());
 
     // Initialize battlegroup info fetching (non-blocking)
