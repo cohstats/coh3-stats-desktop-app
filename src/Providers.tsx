@@ -1,4 +1,8 @@
-import { MantineProvider, localStorageColorSchemeManager } from "@mantine/core";
+import {
+  MantineProvider,
+  localStorageColorSchemeManager,
+  v8CssVariablesResolver,
+} from "@mantine/core";
 import { GameDataProvider } from "./game-data-provider/GameDataProvider";
 import { Notifications } from "@mantine/notifications";
 import { MapStatsProvider } from "./providers/MapStatsProvider";
@@ -26,7 +30,9 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
       <MantineProvider
         defaultColorScheme="dark"
         colorSchemeManager={colorSchemeManager}
+        cssVariablesResolver={v8CssVariablesResolver}
         theme={{
+          defaultRadius: "sm",
           fontSizes: {
             xs: `calc(0.75rem * ${fontScale ?? 1})`,
             sm: `calc(0.875rem * ${fontScale ?? 1})`,
@@ -104,7 +110,7 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
         }}
       >
         <FontScaleInjector />
-        <Notifications />
+        <Notifications pauseResetOnHover="notification" />
         <UpdaterProvider>
           <SteamOnlinePlayersProvider>
             <MapStatsProvider>

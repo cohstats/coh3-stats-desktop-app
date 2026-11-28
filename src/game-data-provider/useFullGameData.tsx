@@ -84,17 +84,15 @@ export const useFullGameData = () => {
         faction: logFileRaceTypeToRaceType[onlyRealPlayers[index].faction],
       }));
 
-      let refinedPlayerData = side.players.map(
-        (player, index): FullPlayerData => ({
-          ai: player.ai,
-          faction: logFileRaceTypeToRaceType[player.faction] || player.faction,
-          relicID: player.relic_id,
-          name: player.name,
-          position: player.position,
-          color: left ? PLAYER_COLOR_OBJECT.left[index] : PLAYER_COLOR_OBJECT.right[index],
-          self: player.name === rawGameData.player_name,
-        }),
-      );
+      let refinedPlayerData = side.players.map((player, index): FullPlayerData => ({
+        ai: player.ai,
+        faction: logFileRaceTypeToRaceType[player.faction] || player.faction,
+        relicID: player.relic_id,
+        name: player.name,
+        position: player.position,
+        color: left ? PLAYER_COLOR_OBJECT.left[index] : PLAYER_COLOR_OBJECT.right[index],
+        self: player.name === rawGameData.player_name,
+      }));
 
       mergedResponses.forEach((response) => {
         const data = response.response as RawLaddersObject;

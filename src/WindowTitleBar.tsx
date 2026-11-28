@@ -97,7 +97,7 @@ export const WindowTitleBar: React.FC<WindowTitleBarProps> = ({ children }) => {
             >
               About
             </Link>
-            {process.env.NODE_ENV === "development" && (
+            {import.meta.env.DEV && (
               <Link
                 to={Routes.DEBUG}
                 className={`${classes.link} ${classes.navLink} ${
