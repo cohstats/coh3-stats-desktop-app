@@ -72,6 +72,10 @@ export const HTML: React.FC<HTMLProps> = ({ html }) => {
                           height: 25px;
                         }
 
+                        .coh3stats-overlay-player-flagEmpty {
+                          display: inline-block;
+                        }
+
                         .coh3stats-overlay-player-rank {
                           padding-right: 10px;
                           min-width: 4ch;
