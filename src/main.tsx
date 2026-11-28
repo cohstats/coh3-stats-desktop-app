@@ -31,6 +31,8 @@ if (getCurrentWebviewWindow().label === GAME_OVERLAY_WINDOW_LABEL) {
     integrations: [Sentry.browserTracingIntegration()],
     tracesSampleRate: 0.1,
     tracePropagationTargets: [],
+    // Sentry v11 collects user IPs by default; keep the previous behaviour
+    dataCollection: { userInfo: false },
     ignoreErrors: ["window.__TAURI_IPC__ is not a function"],
     beforeSend(event, hint) {
       // On macOS we do only development, we can ignore all development errors

@@ -30,7 +30,7 @@ export const SteamOnlinePlayersProvider: React.FC<React.PropsWithChildren> = ({ 
   const [onlinePlayersData, setOnlinePlayersData] = useState<OnlinePlayersData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   const fetchOnlinePlayersData = async () => {
     try {

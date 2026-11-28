@@ -11,7 +11,7 @@ export const Debug: React.FC = () => {
     <>
       This is the debug page, you should see this only in development mode.
       <br />
-      Mode: {process.env.NODE_ENV}
+      Mode: {import.meta.env.MODE}
       <br />
       <Button
         onClick={() => {

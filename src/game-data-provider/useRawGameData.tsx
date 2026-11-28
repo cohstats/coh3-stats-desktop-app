@@ -8,7 +8,7 @@ import config from "../config";
 export const useRawGameData = () => {
   const [logFilePath] = useLogFilePath();
   const [rawGameData, setRawGameData] = useState<RawGameData>();
-  const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
   const inFlightRef = useRef(false);
 
   const getLogFileData = async (path: string) => {

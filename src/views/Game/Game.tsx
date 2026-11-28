@@ -40,7 +40,7 @@ const GameContent = memo(
           <>
             {gameData && gameData.gameData.map.length > 0 ? (
               <>
-                <Grid gutter={0} p={"md"} pt={0}>
+                <Grid gap={0} p={"md"} pt={0}>
                   <Grid.Col span="auto" pt={10}>
                     {gameData.gameData.left.players.map((player, index) => (
                       <PlayerCard
@@ -73,7 +73,7 @@ const GameContent = memo(
                     />
                   </Grid.Col>
                 </Grid>
-                <Grid gutter={0} p={"md"} pt={0}>
+                <Grid gap={0} p={"md"} pt={0}>
                   <Grid.Col span={6} pr={"xl"}>
                     <MapCard gameData={gameData} />
                   </Grid.Col>
