@@ -116,7 +116,7 @@ fn test_download_and_cache_real_files() {
     let dir = temp_dir("network");
     let state = Coh3DataState::default();
     let client = http_client().unwrap();
-    let tag = "v3.0.3-1";
+    let tag = "v3.0.3-2";
 
     tauri::async_runtime::block_on(async {
         let path = ensure_cached(&state, &client, &dir, tag, "locales/en-locstring.json")
@@ -127,14 +127,24 @@ fn test_download_and_cache_real_files() {
         let parsed: serde_json::Value = serde_json::from_str(&json).unwrap();
         assert_eq!(parsed["300"], "Error");
 
-        // Cached now - must not touch the network (an invalid client would fail)
+        // Cached now - served from the disk
         let again = ensure_cached(&state, &client, &dir, tag, "locales/en-locstring.json")
             .await
             .unwrap();
         assert_eq!(again, Some(path));
 
-        // A file the tag doesn't ship is reported as missing, not as an error
-        let missing = ensure_cached(&state, &client, &dir, tag, "does-not-exist.json")
+        let tips_path = ensure_cached(&state, &client, &dir, tag, "ingame-tips.json")
+            .await
+            .unwrap()
+            .expect("ingame tips exist since v3.0.3-2");
+        let tips: serde_json::Value =
+            serde_json::from_str(&decompress_to_string(&fs::read(&tips_path).unwrap()).unwrap())
+                .unwrap();
+        assert!(!tips["tips"].as_array().unwrap().is_empty());
+
+        // A file the tag doesn't ship (v3.0.3-1 had no ingame tips yet) is reported as
+        // missing, not as an error
+        let missing = ensure_cached(&state, &client, &dir, "v3.0.3-1", "ingame-tips.json")
             .await
             .unwrap();
         assert_eq!(missing, None);
