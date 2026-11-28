@@ -65,7 +65,7 @@
     "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch"
   },
   "devDependencies": {
-    "@choochmeque/tauri-windows-bundle": "^0.2.0",
+    "@choochmeque/tauri-windows-bundle": "0.2.0",
     "@tauri-apps/cli": "2.12.6",
     "@types/node": "22.20.7",
     "@types/react": "19.3.3",

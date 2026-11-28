@@ -92,7 +92,7 @@
   resolved "https://registry.yarnpkg.com/@choochmeque/msixbundle-cli-win32/-/msixbundle-cli-win32-1.1.11.tgz#d56de57113854c7dfab3a998155e77f6b41beefe"
   integrity sha512-eT6hnDzYxTflsil/zhf5FNdHC3ip8JPr+Itgh9ULI2KdD3YhWd9PVeRRC5BFHZUKHHsOqW2SVcRvsU3rcfpqiQ==
 
-"@choochmeque/tauri-windows-bundle@^0.2.0":
+"@choochmeque/tauri-windows-bundle@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@choochmeque/tauri-windows-bundle/-/tauri-windows-bundle-0.2.0.tgz#4f67250d1ca2d2ffe056913a41d377d8f9b3cc30"
   integrity sha512-kuksJnGm0J0KbBk3AYtUC7SGwp8uM6yW2CwnnJo4azUjmibU9jH85OZDwXNmT9nDT0sIMQNIRQXQydJ4VXRDMg==
